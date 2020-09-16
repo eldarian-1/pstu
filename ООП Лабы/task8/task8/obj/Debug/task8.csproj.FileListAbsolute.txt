@@ -1,0 +1,9 @@
+C:\Users\LocalUser\Desktop\task8\task8\bin\Debug\task8.exe.config
+C:\Users\LocalUser\Desktop\task8\task8\bin\Debug\task8.exe
+C:\Users\LocalUser\Desktop\task8\task8\bin\Debug\task8.pdb
+C:\Users\LocalUser\Desktop\task8\task8\obj\Debug\task8.csprojResolveAssemblyReference.cache
+C:\Users\LocalUser\Desktop\task8\task8\obj\Debug\task8.Form1.resources
+C:\Users\LocalUser\Desktop\task8\task8\obj\Debug\task8.Properties.Resources.resources
+C:\Users\LocalUser\Desktop\task8\task8\obj\Debug\task8.csproj.GenerateResource.Cache
+C:\Users\LocalUser\Desktop\task8\task8\obj\Debug\task8.exe
+C:\Users\LocalUser\Desktop\task8\task8\obj\Debug\task8.pdb

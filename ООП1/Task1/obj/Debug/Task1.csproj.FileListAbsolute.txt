@@ -1,0 +1,5 @@
+C:\Users\Администратор\Desktop\Lab1\Task1\bin\Debug\Task1.exe
+C:\Users\Администратор\Desktop\Lab1\Task1\bin\Debug\Task1.pdb
+C:\Users\Администратор\Desktop\Lab1\Task1\obj\Debug\Task1.exe
+C:\Users\Администратор\Desktop\Lab1\Task1\obj\Debug\Task1.pdb
+C:\Users\Администратор\Desktop\Lab1\Task1\obj\Debug\Task1.csprojAssemblyReference.cache

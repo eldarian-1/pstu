@@ -1,59 +1,111 @@
 ﻿using System;
 
-//  Variant 14
+//  Вариант 14
 
 namespace Task2
 {
     class Program
     {
-        public static void Main(string[] args)
+        private const char c_cX = 'x';
+        private const char c_cY = 'y';
+        private const char c_cD = 'д';
+
+        private const string c_sPointInfo = "Точка M({0}, {1})";
+        private const string c_sNot = " не";
+        private const string c_sIsEntered = " входит в область фигуры";
+        private const string c_sContinue = "Продолжить? (д - да, иначе - нет)";
+        private const string c_sGetNumber = "Введите число {0}: ";
+
+        static void Main(string[] args)
         {
             do {
-                Run(GetNum(), GetNum());
-                Console.Write("Continue? (y - yes, other - no)");
-            } while (Console.ReadLine()[0] == 'y');
+                RunCalculate(GetNum(c_cX), GetNum(c_cY));
+                Console.Write(c_sContinue);
+            } while (Console.ReadLine()[0] == c_cD);
+
+            Console.WriteLine();
+            TestSystem();
             Console.ReadKey();
         }
 
-        private static void Run(double x, double y)
+        private static void TestSystem()
         {
-            Console.WriteLine("x = " + x + ", y = " + y + " is");
-            if (!(RightTop(x, y) || LeftTop(x, y) || LeftBottom(x, y) || RightBottom(x, y)))
-                Console.WriteLine(" not");
-            Console.WriteLine(" entered in Area");
+            RunCalculate(0.0, 0.1);
+            RunCalculate(0.2, -0.3);
+            RunCalculate(0.4, 0.5);
+            RunCalculate(0.6, -0.7);
+            RunCalculate(0.8, 0.9);
+            RunCalculate(1.0, -1.1);
+            RunCalculate(1.2, 1.3);
+            RunCalculate(1.4, -1.5);
+            RunCalculate(0.0, -0.1);
+            RunCalculate(-0.2, 0.3);
+            RunCalculate(0.4, -0.5);
+            RunCalculate(-0.6, 0.7);
+            RunCalculate(0.8, -0.9);
+            RunCalculate(-1.0, 1.1);
+            RunCalculate(1.2, -1.3);
+            RunCalculate(-1.4, 1.5);
+        }
+
+        private static void RunCalculate(double x, double y)
+        {
+            Console.Write(c_sPointInfo, x, y);
+            if (Calculate(x, y))
+                Console.Write(c_sNot);
+            Console.WriteLine(c_sIsEntered);
+        }
+
+        private static bool Calculate(double x, double y)
+        {
+            return !(RightTop(x, y)
+                || LeftTop(x, y)
+                || LeftBottom(x, y)
+                || RightBottom(x, y));
         }
 
         private static bool RightTop(double x, double y)
         {
-            return x >= 0 && y >= 0 && x <= 1 && y <= 1 && y - x >= 0;
+            return x >= 0
+                && y >= 0
+                && x <= 1
+                && y <= 1
+                && -1 * (x - 1) <= y;
         }
 
         private static bool LeftTop(double x, double y)
         {
-            return x <= 0 && y >= 0 && x >= -1 && y <= 1 && Math.Pow(Math.Pow(x,2)+ Math.Pow(y,2),1/2.0) <= 1;
+            return x <= 0
+                && y >= 0
+                && Math.Pow(Math.Pow(x,2)+ Math.Pow(y,2),1/2.0) <= 1;
         }
 
         private static bool LeftBottom(double x, double y)
         {
-            return x <= 0 && y <= 0 && x >= -1 && y >= -1 && x - y >= 0;
+            return x <= 0
+                && y <= 0
+                && x >= -1
+                && y >= -1
+                && x - 1 >= y;
         }
 
         private static bool RightBottom(double x, double y)
         {
-            return x >= 0 && y <= 0 && x <= 1 && y >= -1 && Math.Pow(Math.Pow(x, 2) + Math.Pow(y, 2), 1 / 2.0) <= 1;
+            return x >= 0
+                && y <= 0
+                && Math.Pow(Math.Pow(x, 2) + Math.Pow(y, 2), 1 / 2.0) <= 1;
         }
 
-        private static double GetNum()
+        private static double GetNum(char simbol)
         {
-            double dNum;
-            bool flag;
-            do
+            double number = 0;
+            for (bool flag = false; !flag;)
             {
-                Console.Write("Введите число (double): ");
+                Console.Write(c_sGetNumber, simbol);
                 string sNum = Console.ReadLine();
-                flag = double.TryParse(sNum, out dNum);
-            } while (!flag);
-            return dNum;
+                flag = double.TryParse(sNum, out number);
+            }
+            return number;
         }
     }
 }

@@ -1,68 +1,112 @@
 ﻿using System;
 
-//  Variant 14
+//  Вариант 14
 
 namespace Task1
 {
+    delegate void Example();
+
     class Program
     {
+        private const char c_cN = 'n';
+        private const char c_cM = 'm';
+        private const char c_cX = 'x';
+
+        private const string c_sGetNumber = "Введите число {0}: ";
+        private const string c_sExample = "ПРИМЕР {0}";
+        private const string c_sExample1 = "n++ * --m";
+        private const string c_sExample2 = "n-- < m++";
+        private const string c_sExample3 = "--n < --m";
+        private const string c_sExample4 = "|x + 1|^(1/4) + 1 / x^2";
+        private const string c_sExpression = "Выражение: {0}";
+        private const string c_sExpressionType = "Тип выражения: {0}";
+        private const string c_sExpressionValue = "Значение выражения: {0}";
+        private const string c_sVariable = "Переменная {0}: {1}";
+
+        private const int EXAMPLES_COUNT = 4;
+        private static readonly Example[] examples =
+            { Example1, Example2, Example3, Example4 };
+
         public static void Main(string[] args)
         {
-            Console.WriteLine("Задание 1");
-            Example1(GetNum(), GetNum());
-            Console.WriteLine("Задание 2");
-            Example2(GetNum(), GetNum());
-            Console.WriteLine("Задание 3");
-            Example3(GetNum(), GetNum());
-            Console.WriteLine("Задание 4");
-            Example4();
+            for (int i = 0; i < EXAMPLES_COUNT; ++i)
+            {
+                Console.WriteLine(c_sExample, i + 1);
+                examples[i]();
+                Console.WriteLine();
+            }
             Console.ReadKey();
         }
 
-        private static void Example1(int n, int m)
+        private static void Example1()
         {
-            Write(n++ * --m, n, m);
+            GetNum(out int n, out int m);
+            Console.WriteLine(c_sExpression, c_sExample1);
+            Expression(n++ * --m);
+            WriteNM(n, m);
         }
 
-        private static void Example2(int n, int m)
+        private static void Example2()
         {
-            Write(n-- < m++, n, m);
+            GetNum(out int n, out int m);
+            Console.WriteLine(c_sExpression, c_sExample2);
+            Expression(n-- < m++);
+            WriteNM(n, m);
         }
 
-        private static void Example3(int n, int m)
+        private static void Example3()
         {
-            Write(--n < --m, n, m);
+            GetNum(out int n, out int m);
+            Console.WriteLine(c_sExpression, c_sExample3);
+            Expression(--n < --m);
+            WriteNM(n, m);
         }
 
         private static void Example4()
         {
-            int x;
-            do x = GetNum();
-            while (x == 0);
-
-            Console.WriteLine(Math.Pow(Math.Abs(x + 1), 1 / 4.0) + 1 / Math.Pow(x, 2));
-            Console.WriteLine();
-        }
-
-        private static void Write <T> (T result, int n, int m)
-        {
-            Console.WriteLine(result);
-            Console.WriteLine(n);
-            Console.WriteLine(m);
-            Console.WriteLine();
-        }
-
-        private static int GetNum()
-        {
-            int iNum;
-            bool flag;
-            do
+            int x = 0;
+            for (bool flag = false; !flag;)
             {
-                Console.Write("Введите число (int): ");
+                GetNum(out x, c_cX);
+                flag = x != 0;
+            }
+            Console.WriteLine(c_sExpression, c_sExample4);
+            Expression(Math.Pow(Math.Abs(x + 1), 1 / 4.0) + 1 / Math.Pow(x, 2));
+            WriteNum(x, c_cX);
+        }
+
+        private static void GetNum(out int number, char simbol)
+        {
+            number = 0;
+            for(bool flag = false; !flag;)
+            {
+                Console.Write(c_sGetNumber, simbol);
                 string sNum = Console.ReadLine();
-                flag = int.TryParse(sNum, out iNum);
-            } while (!flag);
-            return iNum;
+                flag = int.TryParse(sNum, out number);
+            }
+        }
+
+        private static void GetNum(out int n, out int m)
+        {
+            GetNum(out n, c_cN);
+            GetNum(out m, c_cM);
+        }
+
+        private static void Expression<T>(T result)
+        {
+            Console.WriteLine(c_sExpressionType, typeof(T).Name);
+            Console.WriteLine(c_sExpressionValue, result);
+        }
+
+        private static void WriteNum(int number, char simbol)
+        {
+            Console.WriteLine(c_sVariable, simbol, number);
+        }
+
+        private static void WriteNM(int n, int m)
+        {
+            WriteNum(n, c_cN);
+            WriteNum(m, c_cM);
         }
     }
 }

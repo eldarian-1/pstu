@@ -4,8 +4,8 @@ C:\Users\Eldarian\source\repos\Lab1\Task3\bin\Release\Task3.exe
 C:\Users\Eldarian\source\repos\Lab1\Task3\bin\Release\Task3.pdb
 C:\Users\Eldarian\source\repos\Lab1\Task3\obj\Release\Task3.exe
 C:\Users\Eldarian\source\repos\Lab1\Task3\obj\Release\Task3.pdb
-C:\Users\Администратор\Desktop\Lab1\Task3\bin\Release\Task3.exe
-C:\Users\Администратор\Desktop\Lab1\Task3\bin\Release\Task3.pdb
-C:\Users\Администратор\Desktop\Lab1\Task3\obj\Release\Task3.csprojAssemblyReference.cache
-C:\Users\Администратор\Desktop\Lab1\Task3\obj\Release\Task3.exe
-C:\Users\Администратор\Desktop\Lab1\Task3\obj\Release\Task3.pdb
+C:\Users\Администратор\Desktop\pstu\ООП1\Task3\bin\Release\Task3.exe
+C:\Users\Администратор\Desktop\pstu\ООП1\Task3\bin\Release\Task3.pdb
+C:\Users\Администратор\Desktop\pstu\ООП1\Task3\obj\Release\Task3.csprojAssemblyReference.cache
+C:\Users\Администратор\Desktop\pstu\ООП1\Task3\obj\Release\Task3.exe
+C:\Users\Администратор\Desktop\pstu\ООП1\Task3\obj\Release\Task3.pdb

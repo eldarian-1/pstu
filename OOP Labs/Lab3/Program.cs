@@ -10,7 +10,7 @@ namespace Lab3
         private const double c_dK = 10d;
         private const double c_dD = (c_dMax - c_dMin) / c_dK;
         private const double c_dE = 0.0001;
-        private const string c_sOutput = "x = {0}; Sn = {1}; Se = {2}; y = f(x) = {3}";
+        private const string c_sOutput = "x = {0}; Sn = {1}; Se (n:{4}) = {2}; y = f(x) = {3}";
 
         public static void Main(string[] args)
         {
@@ -25,8 +25,8 @@ namespace Lab3
                 Console.WriteLine(
                     c_sOutput, x,
                     SeriesArithmetic(x),
-                    SeriesDifferential(x),
-                    Function(x));
+                    SeriesDifferential(x, out int n),
+                    Function(x), n);
             }
         }
 
@@ -48,13 +48,13 @@ namespace Lab3
             return Sum;
         }
 
-        private static double SeriesDifferential(double x)
+        private static double SeriesDifferential(double x, out int i)
         {
-            int i = 1;
+            i = 0;
             double Sum = 0;
             double Result = Function(x);
             while(Math.Abs(Sum - Result) > c_dE)
-                Sum += Series(x, i++);
+                Sum += Series(x, ++i);
             return Sum;
         }
     }

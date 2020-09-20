@@ -8,15 +8,21 @@ namespace Lab4
         {
             Formation(out int[] array, 100);
             Output(array);
+
             DeleteElems(ref array);
             Output(array);
+
             Addition(ref array, 5, 7);
             Output(array);
+
             Reverse(array);
             Output(array);
+
             FindElem(array, 29);
+
             InsertSort(array);
             Output(array);
+
             Console.ReadKey();
         }
 

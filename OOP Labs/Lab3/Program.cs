@@ -10,7 +10,8 @@ namespace Lab3
         private const double c_dK = 10d;
         private const double c_dD = (c_dMax - c_dMin) / c_dK;
         private const double c_dE = 0.0001;
-        private const string c_sOutput = "x = {0}; Sn = {1}; Se (n:{4}) = {2}; y = f(x) = {3}";
+        private const string c_sOutput =
+            "x = {0}\nSn = {1}\nSe (n:{4}) = {2}\ny = f(x) = {3}\n";
 
         public static void Main(string[] args)
         {
@@ -37,7 +38,8 @@ namespace Lab3
 
         private static double Series(double x, int n)
         {
-            return Math.Pow(-1, n + 1) * Math.Pow(x, 2 * n + 1) / (4 * Math.Pow(n, 2) - 1);
+            return Math.Pow(-1, n + 1) * Math.Pow(x, 2 * n + 1)
+                / (4 * Math.Pow(n, 2) - 1);
         }
 
         private static double SeriesArithmetic(double x)

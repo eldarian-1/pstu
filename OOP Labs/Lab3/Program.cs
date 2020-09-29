@@ -25,9 +25,9 @@ namespace Lab3
             {
                 Console.WriteLine(
                     c_sOutput, x,
-                    SeriesArithmetic(x),
-                    SeriesDifferential(x, out int n),
-                    Function(x), n);
+                    Math.Round(SeriesArithmetic(x), 3),
+                    Math.Round(SeriesDifferential(x, out int n), 3),
+                    Math.Round(Function(x), 3), n);
             }
         }
 

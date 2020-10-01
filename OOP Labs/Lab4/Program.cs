@@ -1,9 +1,13 @@
 ﻿using System;
 
+// Вариант 15
+
 namespace Lab4
 {
     class Program
     {
+        private static Random s_rand = new Random();
+
         public static void Main(string[] args)
         {
             Formation(out int[] array, 100);
@@ -35,10 +39,9 @@ namespace Lab4
 
         private static void Formation(out int[] array, int n)
         {
-            Random rand = new Random();
             array = new int[n];
             for (int i = 0; i < n; ++i)
-                array[i] = rand.Next();
+                array[i] = s_rand.Next();
         }
 
         private static void DeleteElems(ref int[] array)
@@ -52,7 +55,6 @@ namespace Lab4
 
         private static void Addition(ref int[] array, int n, int k)
         {
-            Random rand = new Random();
             int[] temp = array;
             int sizeT = temp.Length;
             int sizeN = sizeT + n;
@@ -60,19 +62,18 @@ namespace Lab4
             for (int i = 0; i < k; ++i)
                 array[i] = temp[i];
             for (int i = k, j = k + n; i < j; ++i)
-                array[i] = rand.Next();
+                array[i] = s_rand.Next();
             for (int i = k + n; i < sizeN; ++i)
                 array[i] = temp[i - n];
         }
 
         private static void Reverse(int[] array)
         {
-            int temp;
             int N = array.Length - 1;
             int n = N / 2;
             for (int i = 0; i < n; ++i)
             {
-                temp = array[i];
+                int temp = array[i];
                 array[i] = array[N - i];
                 array[N - i] = temp;
             }

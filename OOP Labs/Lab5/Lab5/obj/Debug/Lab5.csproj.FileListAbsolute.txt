@@ -5,3 +5,10 @@ C:\Users\Eldarian\source\repos\Lab5\Lab5\obj\Debug\Lab5.csprojAssemblyReference.
 C:\Users\Eldarian\source\repos\Lab5\Lab5\obj\Debug\Lab5.csproj.CoreCompileInputs.cache
 C:\Users\Eldarian\source\repos\Lab5\Lab5\obj\Debug\Lab5.exe
 C:\Users\Eldarian\source\repos\Lab5\Lab5\obj\Debug\Lab5.pdb
+C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\bin\Debug\Lab5.exe.config
+C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\bin\Debug\Lab5.exe
+C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\bin\Debug\Lab5.pdb
+C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.csprojAssemblyReference.cache
+C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.csproj.CoreCompileInputs.cache
+C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.exe
+C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.pdb

@@ -1,5 +1,7 @@
 ﻿using System;
 
+// Вариант 15
+
 namespace Lab6
 {
     delegate void GetNumber(out int number, char simbol);
@@ -17,10 +19,10 @@ namespace Lab6
         private const int c_iMaxNumber = 9;
 
         private const string c_sElem = "{0} ";
-        private const string c_sReadNumber = "Enter {0}: ";
+        private const string c_sReadNumber = "Введите {0}: ";
         private const string c_sTask = "Удаление строк с 2 и более нулями";
 
-        private static Random rand = new Random();
+        private static Random s_rand = new Random();
 
         static void Main(string[] args)
         {
@@ -65,9 +67,9 @@ namespace Lab6
         private static void RandNum(out int number, char simbol)
         {
             if (simbol == c_cN || simbol == c_cM)
-                number = rand.Next(c_iMinArray, c_iMaxArray);
+                number = s_rand.Next(c_iMinArray, c_iMaxArray);
             else
-                number = rand.Next(c_iMinNumber, c_iMaxNumber);
+                number = s_rand.Next(c_iMinNumber, c_iMaxNumber);
         }
 
         private static void Output(int[][] array)
@@ -75,9 +77,7 @@ namespace Lab6
             for (int i = 0, n = array.Length; i < n; ++i)
             {
                 for (int j = 0, k = array[i].Length; j < k; ++j)
-                {
                     Console.Write(c_sElem, array[i][j]);
-                }
                 Console.WriteLine();
             }
             Console.WriteLine();

@@ -12,9 +12,3 @@ C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab3\obj\Debug\Lab3.csprojAssemblyRefere
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab3\obj\Debug\Lab3.csproj.CoreCompileInputs.cache
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab3\obj\Debug\Lab3.exe
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab3\obj\Debug\Lab3.pdb
-C:\Users\Администратор\pstu\OOP Labs\Lab3\bin\Debug\Lab3.exe.config
-C:\Users\Администратор\pstu\OOP Labs\Lab3\bin\Debug\Lab3.exe
-C:\Users\Администратор\pstu\OOP Labs\Lab3\bin\Debug\Lab3.pdb
-C:\Users\Администратор\pstu\OOP Labs\Lab3\obj\Debug\Lab3.csprojAssemblyReference.cache
-C:\Users\Администратор\pstu\OOP Labs\Lab3\obj\Debug\Lab3.exe
-C:\Users\Администратор\pstu\OOP Labs\Lab3\obj\Debug\Lab3.pdb

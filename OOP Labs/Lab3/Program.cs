@@ -7,8 +7,8 @@ namespace Lab3
         private const int c_iN = 30;
         private const double c_dMin = 0.1d;
         private const double c_dMax = 1d;
-        private const double c_dK = 10d;
-        private const double c_dD = (c_dMax - c_dMin) / c_dK;
+        private const int c_iK = 10;
+        private const double c_dD = (c_dMax - c_dMin) / c_iK;
         private const double c_dE = 0.0001;
         private const string c_sOutput =
             "x = {0}\nSn = {1}\nSe (n:{4}) = {2}\ny = f(x) = {3}\n";
@@ -25,9 +25,9 @@ namespace Lab3
             {
                 Console.WriteLine(
                     c_sOutput, x,
-                    Math.Round(SeriesArithmetic(x), 3),
-                    Math.Round(SeriesDifferential(x, out int n), 3),
-                    Math.Round(Function(x), 3), n);
+                    SeriesArithmetic(x),
+                    SeriesDifferential(x, out int n),
+                    Function(x), n);
             }
         }
 

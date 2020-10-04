@@ -10,8 +10,8 @@ namespace Lab4
 
     class Kernel
     {
-        public static int[] array = null;
-        private static IsValidate IsValid = (x, top) => (x >= 0 && x < top);
+        public static int[] array { get; set; }
+        private static IsValidate IsValid = (x, top) => (x >= 0 && x <= top);
 
         // Получение валидного числа
         private static void GetValid(out int number, GetNumber GetNum, char simbol, int top)
@@ -20,7 +20,7 @@ namespace Lab4
             while (!IsValid(number, top));
         }
 
-        private static void CheckArray()
+        public static void CheckArray()
         {
             if (array == null)
                 throw new NullArrayException();
@@ -53,7 +53,7 @@ namespace Lab4
             GetNumber GetNum = ModeGetNum();
             int oldSize = array.Length;
             GetValid(out int n, GetNum, CLI.c_cN, CLI.c_iMaxInt - oldSize);
-            GetValid(out int k, GetNum, CLI.c_cK, oldSize);
+            GetValid(out int k, GetNum, CLI.c_cK, oldSize - 1);
             int newSize = oldSize + n;
             int[] temp = array;
             array = new int[newSize];

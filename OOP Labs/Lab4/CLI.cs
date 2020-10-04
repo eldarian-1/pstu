@@ -23,12 +23,13 @@ namespace Lab4
         private const string c_sReadNumberA = "Введите {0}{1}: ";
         private const string c_sGetTask =
             "МЕНЮ\n" +
-            "1. Создать массив\n" +
-            "2. Удалить четные элементы в массиве\n" +
-            "3. Добавить n элементов с k элемента\n" +
-            "4. Перевернуть массив\n" +
-            "5. Поиск элемента\n" +
-            "6. Сортировка массива\n" +
+            "1. Вывести массив\n" +
+            "2. Создать массив\n" +
+            "3. Удалить четные элементы в массиве\n" +
+            "4. Добавить n элементов с k элемента\n" +
+            "5. Перевернуть массив\n" +
+            "6. Поиск элемента\n" +
+            "7. Сортировка массива\n" +
             "0. Выход\n" +
             "Выберете действие: ";
         private const string c_sGetMode = "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
@@ -99,9 +100,14 @@ namespace Lab4
         // Вывод массива
         private static void Output(int[] array)
         {
+            Kernel.CheckArray();
             for (int i = 0, k = array.Length; i < k; ++i)
                 Console.Write(c_sElem, array[i]);
             Console.WriteLine("\n");
+        }
+        private static void Output()
+        {
+            Output(Kernel.array);
         }
 
         private static void Formation()
@@ -148,16 +154,18 @@ namespace Lab4
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        return Formation;
+                        return Output;
                     case "2":
-                        return DeleteElems;
+                        return Formation;
                     case "3":
-                        return Addition;
+                        return DeleteElems;
                     case "4":
-                        return Reverse;
+                        return Addition;
                     case "5":
-                        return FindElem;
+                        return Reverse;
                     case "6":
+                        return FindElem;
+                    case "7":
                         return InsertSort;
                     case "0":
                         flag = false;

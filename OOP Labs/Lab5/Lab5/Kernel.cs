@@ -3,14 +3,24 @@
 namespace Lab5
 {
     delegate void GetNumber(out int number, char simbol, int i = -1, int j = -1);
+    delegate GetNumber ModeGetNumber();
+    delegate bool IsValidate(int x, int top);
 
     class NullArrayException : Exception { }
 
     class Kernel
     {
-        public static int[] array1 { get; set; }
-        public static int[,] array2 { get; set; }
-        public static int[][] array3 { get; set; }
+        public static int[] array1D { get; set; }
+        public static int[,] array2D { get; set; }
+        public static int[][] arrayRagged { get; set; }
+        private static IsValidate IsValid = (x, top) => (x >= 0 && x <= top);
+
+        // Получение валидного числа
+        private static void GetValid(out int number, GetNumber GetNum, char simbol, int top)
+        {
+            do GetNum(out number, simbol);
+            while (!IsValid(number, top));
+        }
 
         public static void CheckArray<T>(T array)
         {
@@ -18,79 +28,84 @@ namespace Lab5
                 throw new NullArrayException();
         }
 
-        public static void Formation1(GetNumber GetNum)
+        public static void Formation1D(GetNumber GetNum)
         {
-            GetNum(out int n, CLI.c_cN);
-            array1 = new int[n];
+            GetValid(out int n, GetNum, CLI.c_cN, CLI.c_iMaxInt);
+            array1D = new int[n];
             for (int i = 0; i < n; ++i)
-                GetNum(out array1[i], CLI.c_cA);
+                GetNum(out array1D[i], CLI.c_cA, i);
         }
 
-        public static void Formation2(GetNumber GetNum)
+        public static void Formation2D(GetNumber GetNum)
         {
-            GetNum(out int n, CLI.c_cN);
-            GetNum(out int m, CLI.c_cM);
-            array2 = new int[n, m];
+            GetValid(out int n, GetNum, CLI.c_cN, CLI.c_iMaxInt);
+            GetValid(out int m, GetNum, CLI.c_cM, CLI.c_iMaxInt);
+            array2D = new int[n, m];
             for (int i = 0; i < n; ++i)
                 for (int j = 0; j < m; ++j)
-                    GetNum(out array2[i, j], CLI.c_cA, i, j);
+                    GetNum(out array2D[i, j], CLI.c_cA, i, j);
         }
 
-        public static void Formation3( GetNumber GetNum)
+        public static void FormationRagged(GetNumber GetNum)
         {
-            GetNum(out int n, CLI.c_cN);
-            array3 = new int[n][];
+            GetValid(out int n, GetNum, CLI.c_cN, CLI.c_iMaxInt);
+            arrayRagged = new int[n][];
             for (int i = 0; i < n; ++i)
             {
-                GetNum(out int m, CLI.c_cM);
-                array3[i] = new int[m];
+                GetValid(out int m, GetNum, CLI.c_cM, CLI.c_iMaxInt);
+                arrayRagged[i] = new int[m];
                 for (int j = 0; j < m; ++j)
-                    GetNum(out array3[i][j], CLI.c_cA, i, j);
+                    GetNum(out arrayRagged[i][j], CLI.c_cA, i, j);
             }
         }
 
-        public static void Addition1(GetNumber GetNum)
+        // Добавление N элементов после K элемента в одномерный массив
+        public static void Addition(ModeGetNumber Mode)
         {
-            CheckArray(array1);
-            GetNum(out int n, CLI.c_cN);
-            GetNum(out int k, CLI.c_cK);
-            int[] temp = array1;
-            int sizeT = temp.Length;
-            int sizeN = sizeT + n;
-            array1 = new int[sizeN];
+            CheckArray(array1D);
+            GetNumber GetNum = Mode();
+            int oldSize = array1D.Length;
+            GetValid(out int n, GetNum, CLI.c_cN, CLI.c_iMaxInt - oldSize);
+            GetValid(out int k, GetNum, CLI.c_cK, oldSize - 1);
+            int newSize = oldSize + n;
+            int[] temp = array1D;
+            array1D = new int[newSize];
             for (int i = 0; i < k; ++i)
-                array1[i] = temp[i];
+                array1D[i] = temp[i];
             for (int i = k, j = k + n; i < j; ++i)
-                GetNum(out array1[i], CLI.c_cA, i);
-            for (int i = k + n; i < sizeN; ++i)
-                array1[i] = temp[i - n];
+                GetNum(out array1D[i], CLI.c_cA, i);
+            for (int i = k + n; i < newSize; ++i)
+                array1D[i] = temp[i - n];
         }
 
-        public static void DeleteElems2()
+        // Удаление четных строк в двумерном массиве
+        public static void DeleteEven()
         {
-            CheckArray(array2);
-            int[,] temp = array2;
-            int n = array2.GetUpperBound(0) + 1;
-            int k = array2.Length / n;
+            CheckArray(array2D);
+            int[,] temp = array2D;
+            int n = array2D.GetUpperBound(0) + 1;
+            int k = array2D.Length / n;
             int m = n / 2;
-            array2 = new int[m, k];
+            array2D = new int[m, k];
             for (int i = 0; i < m; ++i)
                 for (int j = 0; j < k; ++j)
-                    array2[i, j] = temp[i * 2, j];
+                    array2D[i, j] = temp[i * 2 + 1, j];
         }
 
-        public static void Addition3(GetNumber GetNum)
+        // Добавление строки в конец рваного массива
+        public static void AdditionLine(ModeGetNumber Mode)
         {
-            CheckArray(array3);
-            int[][] temp = array3;
+            CheckArray(arrayRagged);
+            GetNumber GetNum = Mode();
+            int[][] temp = arrayRagged;
             int n = temp.Length;
-            array3 = new int[n + 1][];
+            arrayRagged = new int[n + 1][];
             for (int i = 0; i < n; ++i)
-                array3[i] = temp[i];
-            GetNum(out int m, CLI.c_cM);
-            array3[n] = new int[m];
+                arrayRagged[i] = temp[i];
+            GetValid(out int m, GetNum, CLI.c_cM, CLI.c_iMaxInt);
+            arrayRagged[n] = new int[m];
             for (int i = 0; i < m; ++i)
-                GetNum(out array3[n][i], CLI.c_cA, n, i);
+                GetNum(out arrayRagged[n][i], CLI.c_cA, n, i);
         }
     }
 }

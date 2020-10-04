@@ -21,6 +21,12 @@ namespace Lab4
         private const string c_sElem = "{0} ";
         private const string c_sReadNumber = "Введите {0}: ";
         private const string c_sReadNumberA = "Введите {0}{1}: ";
+        public const string c_sNotFound = "Элемент не найден";
+        public const string c_sNullArray = "Ошибка! Массив не создан.\n";
+        public const string c_sFoundElem =
+            "Порядковый номер искомого элемента: {0}";
+        private const string c_sGetMode =
+            "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
         private const string c_sGetTask =
             "МЕНЮ\n" +
             "1. Вывести массив\n" +
@@ -32,10 +38,6 @@ namespace Lab4
             "7. Сортировка массива\n" +
             "0. Выход\n" +
             "Выберете действие: ";
-        private const string c_sGetMode = "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
-        public const string c_sFoundElem = "Порядковый номер искомого элемента: {0}";
-        public const string c_sNotFound = "Элемент не найден";
-        public const string c_sNullArray = "Ошибка! Массив не создан.\n";
 
         private static Random s_rand = new Random();
 

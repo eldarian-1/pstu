@@ -17,11 +17,15 @@ namespace Lab5
         private const int c_iMaxArray = 20;
         private const int c_iMinNumber = 100;
         private const int c_iMaxNumber = 999;
+        public const int c_iMaxInt = 2147483647;
 
         private const string c_sElem = "{0} ";
         private const string c_sReadNumber = "Введите {0}: ";
         private const string c_sReadNumberA = "Введите {0}{1}: ";
         private const string c_sReadNumberA2 = "Введите {0}({1},{2}): ";
+        public const string c_sNullArray = "Ошибка! Массив не создан.\n";
+        private const string c_sGetMode =
+            "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
         private const string c_sGetTask =
             "МЕНЮ\n" +
             "Одномерный массив\n" +
@@ -38,8 +42,6 @@ namespace Lab5
             "\t9. добавть строку в конец массива\n" +
             "0. Выход\n" +
             "Выберете действие: ";
-        private const string c_sGetMode = "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
-        public const string c_sNullArray = "Ошибка! Массив не создан.\n";
 
         private static Random s_rand = new Random();
 
@@ -103,15 +105,15 @@ namespace Lab5
 
         public static void Output(int[] array)
         {
-            Kernel.CheckArray(Kernel.array1);
+            Kernel.CheckArray(Kernel.array1D);
             for (int i = 0, n = array.Length; i < n; ++i)
                 Console.Write(c_sElem, array[i]);
-            Console.WriteLine();
+            Console.WriteLine("\n");
         }
 
         public static void Output(int[,] array)
         {
-            Kernel.CheckArray(Kernel.array2);
+            Kernel.CheckArray(Kernel.array2D);
             int n = array.GetUpperBound(0) + 1;
             int k = array.Length / n;
             for (int i = 0; i < n; ++i)
@@ -120,62 +122,70 @@ namespace Lab5
                     Console.Write(c_sElem, array[i, j]);
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
 
         public static void Output(int[][] array)
         {
-            Kernel.CheckArray(Kernel.array3);
+            Kernel.CheckArray(Kernel.arrayRagged);
             for (int i = 0, n = array.Length; i < n; ++i)
             {
                 for (int j = 0, k = array[i].Length; j < k; ++j)
                     Console.Write(c_sElem, array[i][j]);
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
 
         public static void Output1()
         {
-            Output(Kernel.array1);
+            Output(Kernel.array1D);
         }
 
         public static void Output2()
         {
-            Output(Kernel.array2);
+            Output(Kernel.array2D);
         }
 
         public static void Output3()
         {
-            Output(Kernel.array3);
+            Output(Kernel.arrayRagged);
         }
 
         public static void Formation1()
         {
-            Kernel.Formation1(GetMode());
+            Kernel.Formation1D(GetMode());
+            Output1();
         }
 
         public static void Formation2()
         {
-            Kernel.Formation2(GetMode());
+            Kernel.Formation2D(GetMode());
+            Output2();
         }
 
         public static void Formation3()
         {
-            Kernel.Formation3(GetMode());
+            Kernel.FormationRagged(GetMode());
+            Output3();
         }
 
         public static void Operation1()
         {
-            Kernel.Addition1(GetMode());
+            Kernel.Addition(GetMode);
+            Output1();
         }
 
         public static void Operation2()
         {
-            Kernel.DeleteElems2();
+            Kernel.DeleteEven();
+            Output2();
         }
 
         public static void Operation3()
         {
-            Kernel.Addition3(GetMode());
+            Kernel.AdditionLine(GetMode);
+            Output3();
         }
 
         private static Task GetTask()

@@ -21,9 +21,10 @@ namespace Lab4
         private const string c_sElem = "{0} ";
         private const string c_sReadNumber = "Введите {0}: ";
         private const string c_sReadNumberA = "Введите {0}{1}: ";
-        public const string c_sNotFound = "Элемент не найден";
-        public const string c_sNullArray = "Ошибка! Массив не создан.\n";
-        public const string c_sFoundElem =
+        private const string c_sNullArray = "Ошибка! Массив не создан.\n";
+        private const string c_sNullFunction = "Спасибо за работу!";
+        private const string c_sNotFound = "Элемент не найден";
+        private const string c_sFoundElem =
             "Порядковый номер искомого элемента: {0}";
         private const string c_sGetMode =
             "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
@@ -43,20 +44,30 @@ namespace Lab4
 
         public static void Run()
         {
-            Task task = null;
-            do
+            while (true)
             {
-                task = GetTask();
                 try
                 {
-                    task();
+                    GetTask()();
                 }
                 catch(NullArrayException)
                 {
                     Console.WriteLine(c_sNullArray);
                 }
+                catch (FoundElemException e)
+                {
+                    Console.WriteLine(CLI.c_sFoundElem, e.N);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine(CLI.c_sNotFound);
+                }
+                catch (NullFunctionException)
+                {
+                    Console.Write(c_sNullFunction);
+                    break;
+                }
             }
-            while (task != null);
         }
 
         // Запись числа со стандартного потока ввода в выходной параметр
@@ -172,9 +183,11 @@ namespace Lab4
                     case "0":
                         flag = false;
                         break;
+                    default:
+                        continue;
                 }
             }
-            return null;
+            throw new NullFunctionException();
         }
     }
 }

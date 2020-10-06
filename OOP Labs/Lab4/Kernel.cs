@@ -2,11 +2,17 @@
 
 namespace Lab4
 {
-    class NullArrayException : Exception { }
-
     delegate void GetNumber(out int number, char simbol, int i = -1);
     delegate GetNumber ModeGetNumber();
     delegate bool IsValidate(int x, int top);
+
+    class NullArrayException : Exception { }
+    class NullFunctionException : Exception { }
+    class FoundElemException : Exception
+    {
+        public int N { get; set; }
+        public FoundElemException(int n) { N = n; }
+    }
 
     class Kernel
     {
@@ -86,19 +92,8 @@ namespace Lab4
             GetNumber GetNum = ModeGetNum();
             GetNum(out int k, CLI.c_cK);
             int n = 0;
-            try
-            {
-                while (array[n++] != k) ;
-                Console.WriteLine(CLI.c_sFoundElem, n);
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine(CLI.c_sNotFound);
-            }
-            finally
-            {
-                Console.WriteLine();
-            }
+            while (array[n++] != k) ;
+            throw new FoundElemException(n);
         }
 
         // Сортировка вставками

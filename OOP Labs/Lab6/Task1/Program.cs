@@ -2,7 +2,7 @@
 
 // Вариант 15
 
-namespace Lab6
+namespace Task1
 {
     delegate void GetNumber(out int number, char simbol);
 

@@ -7,6 +7,7 @@ namespace Lab5
     delegate bool IsValidate(int x, int top);
 
     class NullArrayException : Exception { }
+    class NullFunctionException : Exception { }
 
     class Kernel
     {

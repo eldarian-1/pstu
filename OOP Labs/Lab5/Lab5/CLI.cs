@@ -23,7 +23,8 @@ namespace Lab5
         private const string c_sReadNumber = "Введите {0}: ";
         private const string c_sReadNumberA = "Введите {0}{1}: ";
         private const string c_sReadNumberA2 = "Введите {0}({1},{2}): ";
-        public const string c_sNullArray = "Ошибка! Массив не создан.\n";
+        private const string c_sNullArray = "Ошибка! Массив не создан.\n";
+        private const string c_sNullFunction = "Спасибо за работу!";
         private const string c_sGetMode =
             "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
         private const string c_sGetTask =
@@ -47,20 +48,22 @@ namespace Lab5
 
         public static void Run()
         {
-            Task task = null;
-            do
+            while (true)
             {
-                task = GetTask();
                 try
                 {
-                    task();
+                    GetTask()();
                 }
                 catch (NullArrayException)
                 {
                     Console.WriteLine(c_sNullArray);
                 }
+                catch (NullFunctionException)
+                {
+                    Console.Write(c_sNullFunction);
+                    break;
+                }
             }
-            while (task != null);
         }
 
         public static void ReadNum(out int number, char simbol, int i, int j)
@@ -217,9 +220,11 @@ namespace Lab5
                     case "0":
                         flag = false;
                         break;
+                    default:
+                        continue;
                 }
             }
-            return null;
+            throw new NullFunctionException();
         }
     }
 }

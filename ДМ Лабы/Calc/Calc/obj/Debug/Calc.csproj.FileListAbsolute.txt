@@ -1,0 +1,14 @@
+C:\Users\Eldarian\source\repos\Calc\Calc\bin\Debug\Calc.exe.config
+C:\Users\Eldarian\source\repos\Calc\Calc\bin\Debug\Calc.exe
+C:\Users\Eldarian\source\repos\Calc\Calc\bin\Debug\Calc.pdb
+C:\Users\Eldarian\source\repos\Calc\Calc\obj\Debug\Calc.csprojAssemblyReference.cache
+C:\Users\Eldarian\source\repos\Calc\Calc\obj\Debug\Calc.csproj.CoreCompileInputs.cache
+C:\Users\Eldarian\source\repos\Calc\Calc\obj\Debug\Calc.exe
+C:\Users\Eldarian\source\repos\Calc\Calc\obj\Debug\Calc.pdb
+C:\Users\Eldarian\Desktop\pstu\ДМ Лабы\Calc\Calc\bin\Debug\Calc.exe.config
+C:\Users\Eldarian\Desktop\pstu\ДМ Лабы\Calc\Calc\bin\Debug\Calc.exe
+C:\Users\Eldarian\Desktop\pstu\ДМ Лабы\Calc\Calc\bin\Debug\Calc.pdb
+C:\Users\Eldarian\Desktop\pstu\ДМ Лабы\Calc\Calc\obj\Debug\Calc.csprojAssemblyReference.cache
+C:\Users\Eldarian\Desktop\pstu\ДМ Лабы\Calc\Calc\obj\Debug\Calc.csproj.CoreCompileInputs.cache
+C:\Users\Eldarian\Desktop\pstu\ДМ Лабы\Calc\Calc\obj\Debug\Calc.exe
+C:\Users\Eldarian\Desktop\pstu\ДМ Лабы\Calc\Calc\obj\Debug\Calc.pdb

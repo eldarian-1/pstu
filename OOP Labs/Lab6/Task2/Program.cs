@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Task2
 {
-    class Program
+    public class Program
     {
         private static readonly Regex regex = new Regex(@"\b(\w+)");
 
@@ -16,7 +16,7 @@ namespace Task2
             Console.ReadKey();
         }
 
-        private static string Proccessing(string str)
+        public static string Proccessing(string str)
         {
             StringBuilder strBuild = new StringBuilder(str);
             MatchCollection matches = regex.Matches(str);
@@ -30,4 +30,3 @@ namespace Task2
         }
     }
 }
-// hello world! меня зовут Эльдар. 453 564орпап алвпвалпр345  - helloh world меням зовут Эльдарэ 4534 564орпап алвлпр345Ф

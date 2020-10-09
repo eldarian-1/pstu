@@ -1,7 +1,7 @@
 INSERT INTO lab2 SET
-FirstName="Superman",
-LastName="Spiderman",
-PhoneNumber="192837465",
-Salary=1500,
-Address="World",
-Expirience=1;
+FirstName="Igor",
+LastName="Batman",
+PhoneNumber="865452343",
+Salary=3500,
+Address="Sillent Hill",
+Expirience=5;

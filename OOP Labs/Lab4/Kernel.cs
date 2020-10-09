@@ -8,6 +8,8 @@ namespace Lab4
 
     class NullArrayException : Exception { }
     class NullFunctionException : Exception { }
+    class NotFoundException : Exception { }
+    class NotSortedException : Exception { }
     class FoundElemException : Exception
     {
         public int N { get; set; }
@@ -17,6 +19,7 @@ namespace Lab4
     class Kernel
     {
         public static int[] array { get; set; }
+        private static bool isSorted = false;
         private static IsValidate IsValid = (x, top) => (x >= 0 && x <= top);
 
         // Получение валидного числа
@@ -39,6 +42,7 @@ namespace Lab4
             array = new int[n];
             for (int i = 0; i < n; ++i)
                 GetNum(out array[i], CLI.c_cA, i);
+            isSorted = false;
         }
 
         // Удаление всех элементов с четными индексами
@@ -69,6 +73,7 @@ namespace Lab4
                 GetNum(out array[i], CLI.c_cA, i);
             for (int i = k + n; i < newSize; ++i)
                 array[i] = temp[i - n];
+            isSorted = false;
         }
 
         // Переворот массива
@@ -83,17 +88,31 @@ namespace Lab4
                 array[i] = array[N - i];
                 array[N - i] = temp;
             }
+            isSorted = false;
         }
 
         // Поиск элемента по значению
-        public static void FindElem(ModeGetNumber ModeGetNum)
+        public static void BinarySearch(ModeGetNumber ModeGetNum)
         {
             CheckArray();
+            if (!isSorted)
+                throw new NotSortedException();
             GetNumber GetNum = ModeGetNum();
             GetNum(out int k, CLI.c_cK);
-            int n = 0;
-            while (array[n++] != k) ;
-            throw new FoundElemException(n);
+            int left = 0;
+            int right = array.Length - 1;
+            int search = -1;
+            while (left <= right)
+            {
+                int mid = (left + right) / 2;
+                if(k == array[mid])
+                    throw new FoundElemException(mid);
+                if (k > array[mid])
+                    left = mid - 1;
+                else
+                    right = mid + 1;
+            }
+            throw new NotFoundException();
         }
 
         // Сортировка вставками
@@ -108,6 +127,7 @@ namespace Lab4
                     array[j + 1] = array[j];
                 array[j + 1] = temp;
             }
+            isSorted = true;
         }
     }
 }

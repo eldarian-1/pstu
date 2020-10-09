@@ -24,6 +24,7 @@ namespace Lab4
         private const string c_sNullArray = "Ошибка! Массив не создан.\n";
         private const string c_sNullFunction = "Спасибо за работу!";
         private const string c_sNotFound = "Элемент не найден\n";
+        private const string c_sNotSorted = "Массив не отсортирован\n";
         private const string c_sFoundElem =
             "Порядковый номер искомого элемента: {0}\n";
         private const string c_sGetMode =
@@ -58,9 +59,13 @@ namespace Lab4
                 {
                     Console.WriteLine(CLI.c_sFoundElem, e.N);
                 }
-                catch (IndexOutOfRangeException)
+                catch (NotFoundException)
                 {
                     Console.WriteLine(CLI.c_sNotFound);
+                }
+                catch (NotSortedException)
+                {
+                    Console.WriteLine(CLI.c_sNotSorted);
                 }
                 catch (NullFunctionException)
                 {
@@ -149,7 +154,7 @@ namespace Lab4
 
         private static void FindElem()
         {
-            Kernel.FindElem(GetMode);
+            Kernel.BinarySearch(GetMode);
         }
 
         private static void InsertSort()

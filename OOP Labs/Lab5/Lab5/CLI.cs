@@ -23,7 +23,9 @@ namespace Lab5
         private const string c_sReadNumber = "Введите {0}: ";
         private const string c_sReadNumberA = "Введите {0}{1}: ";
         private const string c_sReadNumberA2 = "Введите {0}({1},{2}): ";
+        private const string c_sIncorrectValue = "Некорректное значение!";
         private const string c_sNullArray = "Ошибка! Массив не создан.\n";
+        private const string c_sCleanArray = "Массив пуст, поэтому удален.\n";
         private const string c_sNullFunction = "Спасибо за работу!";
         private const string c_sGetMode =
             "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
@@ -58,6 +60,10 @@ namespace Lab5
                 {
                     Console.WriteLine(c_sNullArray);
                 }
+                catch (CleanArrayException)
+                {
+                    Console.WriteLine(c_sCleanArray);
+                }
                 catch (NullFunctionException)
                 {
                     Console.Write(c_sNullFunction);
@@ -79,6 +85,8 @@ namespace Lab5
                     Console.Write(c_sReadNumberA2, simbol, i, j);
                 string sNum = Console.ReadLine();
                 flag = int.TryParse(sNum, out number);
+                if (!flag)
+                    IncorrectValue();
             }
         }
 
@@ -104,6 +112,11 @@ namespace Lab5
                 return ReadNum;
             else
                 return RandNum;
+        }
+
+        public static void IncorrectValue()
+        {
+            Console.WriteLine(c_sIncorrectValue);
         }
 
         public static void Output(int[] array)

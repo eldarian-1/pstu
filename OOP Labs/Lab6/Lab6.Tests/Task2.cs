@@ -11,7 +11,7 @@ namespace Lab6.Tests
             = "hello world! меня зовут Эльдар. 453 564орпап алвпвалпр345  -  world  зовут  Эльдарэ  564орпап алвлпр345Ф";
 
         [TestMethod]
-        public void TestMethod1()
+        public void Test_Proccessing()
         {
             Assert.AreEqual(global::Task2.Program.Proccessing(test), result);
         }

@@ -7,6 +7,7 @@ namespace Lab4
     delegate bool IsValidate(int x, int top);
 
     class NullArrayException : Exception { }
+    class CleanArrayException : Exception { }
     class NullFunctionException : Exception { }
     class NotFoundException : Exception { }
     class NotSortedException : Exception { }
@@ -54,6 +55,11 @@ namespace Lab4
             array = new int[n];
             for (int i = 0; i < n; ++i)
                 array[i] = temp[i * 2 + 1];
+            if (array.Length == 0)
+            {
+                array = null;
+                throw new CleanArrayException();
+            }
         }
 
         // Добавление n элементов, начиная с k
@@ -98,21 +104,20 @@ namespace Lab4
             if (!isSorted)
                 throw new NotSortedException();
             GetNumber GetNum = ModeGetNum();
-            GetNum(out int k, CLI.c_cK);
-            int left = 0;
-            int right = array.Length - 1;
-            int search = -1;
-            while (left <= right)
+            GetNum(out int key, CLI.c_cK);
+            int mid, left = 0, right = array.Length - 1;
+            while (true)
             {
-                int mid = (left + right) / 2;
-                if(k == array[mid])
-                    throw new FoundElemException(mid);
-                if (k > array[mid])
-                    left = mid - 1;
+                if(left > right)
+                    throw new NotFoundException();
+                mid = left + (right - left) / 2;
+                if (key > array[mid])
+                    left = mid + 1;
+                else if (key < array[mid])
+                    right = mid - 1;
                 else
-                    right = mid + 1;
+                    throw new FoundElemException(mid);
             }
-            throw new NotFoundException();
         }
 
         // Сортировка вставками

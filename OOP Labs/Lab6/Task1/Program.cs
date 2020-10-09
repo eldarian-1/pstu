@@ -4,72 +4,123 @@
 
 namespace Task1
 {
-    delegate void GetNumber(out int number, char simbol);
+    delegate void GetNumber(out int number, char simbol, int i = -1, int j = -1);
+    delegate bool IsValidate(int x, int top);
 
-    class Program
+    public class Program
     {
         private const char c_cN = 'N';
         private const char c_cM = 'M';
-        private const char c_cK = 'K';
+        public const char c_cA = 'A';
 
         private const int c_iCountZero = 2;
         private const int c_iMinArray = 5;
         private const int c_iMaxArray = 15;
         private const int c_iMinNumber = 0;
         private const int c_iMaxNumber = 9;
+        public const int c_iMaxInt = 2147483647;
 
         private const string c_sElem = "{0} ";
         private const string c_sReadNumber = "Введите {0}: ";
+        private const string c_sReadNumberA = "Введите {0}({1},{2}): ";
+        private const string c_sIncorrectValue = "Некорректное значение!";
         private const string c_sTask = "Удаление строк с 2 и более нулями";
+        private const string c_sContinue = "Продолжить? (д - да, другое - выход)";
+        private const string c_sExit = "Спасибо за работу!";
+        private const string c_sGetMode =
+            "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
 
         private static Random s_rand = new Random();
+        private static IsValidate IsValid = (x, top) => (x >= 0 && x <= top);
 
         static void Main(string[] args)
         {
-            int[][] array = GetArray(RandNum);
-            Output(array);
+            do
+            {
+                int[][] array = GetArray(GetMode());
+                Output(array);
 
-            Console.WriteLine(c_sTask);
-            DeleteRows(ref array);
-            Output(array);
+                Console.WriteLine(c_sTask);
+                DeleteRows(ref array);
+                Output(array);
 
+                Console.WriteLine(c_sContinue);
+            }
+            while (Console.ReadLine() == "д");
+            Console.WriteLine(c_sExit);
             Console.ReadKey();
         }
 
         static int[][] GetArray(GetNumber GetNum)
         {
-            GetNum(out int n, c_cN);
+            GetValid(out int n, GetNum, c_cN, c_iMaxInt);
             int[][] array = new int[n][];
             for(int i = 0; i < n; ++i)
             {
-                GetNum(out int m, c_cM);
+                GetValid(out int m, GetNum, c_cM, c_iMaxInt);
                 array[i] = new int[m];
                 for (int j = 0; j < m; ++j)
                 {
-                    GetNum(out int k, c_cK);
-                    array[i][j] = k;
+                    GetNum(out int a, c_cA, i, j);
+                    array[i][j] = a;
                 }
             }
             return array;
         }
 
-        private static void ReadNum(out int number, char simbol)
+        public static void ReadNum(out int number, char simbol, int i, int j)
         {
             number = 0;
             for (bool flag = false; !flag;)
             {
-                Console.Write(c_sReadNumber, simbol);
+                if (i == -1)
+                    Console.Write(c_sReadNumber, simbol);
+                else
+                    Console.Write(c_sReadNumberA, simbol, i, j);
                 string sNum = Console.ReadLine();
                 flag = int.TryParse(sNum, out number);
+                if (!flag)
+                    IncorrectValue();
             }
         }
 
-        private static void RandNum(out int number, char simbol)
+        public static void RandNum(out int number, char simbol, int i, int j)
         {
             if (simbol == c_cN || simbol == c_cM)
                 number = s_rand.Next(c_iMinArray, c_iMaxArray);
             else
                 number = s_rand.Next(c_iMinNumber, c_iMaxNumber);
+        }
+
+        private static GetNumber GetMode()
+        {
+            string key = "";
+            do
+            {
+                Console.Write(c_sGetMode);
+                key = Console.ReadLine();
+            } while (key != "1" && key != "2");
+            if (key == "1")
+                return ReadNum;
+            else
+                return RandNum;
+        }
+
+        public static void IncorrectValue()
+        {
+            Console.WriteLine(c_sIncorrectValue);
+        }
+
+        private static void GetValid(out int number, GetNumber GetNum, char simbol, int top)
+        {
+            while (true)
+            {
+                GetNum(out number, simbol);
+                if (IsValid(number, top))
+                    break;
+                else
+                    IncorrectValue();
+            }
         }
 
         private static void Output(int[][] array)
@@ -83,7 +134,7 @@ namespace Task1
             Console.WriteLine();
         }
 
-        private static void DeleteRows(ref int[][] array)
+        public static void DeleteRows(ref int[][] array)
         {
             for (int i = 0, n = array.Length; i < n; ++i)
             {

@@ -7,6 +7,7 @@ namespace Lab5
     delegate bool IsValidate(int x, int top);
 
     class NullArrayException : Exception { }
+    class CleanArrayException : Exception { }
     class NullFunctionException : Exception { }
 
     class Kernel
@@ -19,8 +20,14 @@ namespace Lab5
         // Получение валидного числа
         private static void GetValid(out int number, GetNumber GetNum, char simbol, int top)
         {
-            do GetNum(out number, simbol);
-            while (!IsValid(number, top));
+            while (true)
+            {
+                GetNum(out number, simbol);
+                if (IsValid(number, top))
+                    break;
+                else
+                    CLI.IncorrectValue();
+            }
         }
 
         public static void CheckArray<T>(T array)
@@ -91,6 +98,11 @@ namespace Lab5
             for (int i = 0; i < m; ++i)
                 for (int j = 0; j < k; ++j)
                     array2D[i, j] = temp[i * 2 + 1, j];
+            if(array2D.Length == 0)
+            {
+                array2D = null;
+                throw new CleanArrayException();
+            }
         }
 
         // Добавление строки в конец рваного массива

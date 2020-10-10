@@ -26,8 +26,14 @@ namespace Lab4
         // Получение валидного числа
         private static void GetValid(out int number, GetNumber GetNum, char simbol, int top)
         {
-            do GetNum(out number, simbol);
-            while (!IsValid(number, top));
+            while (true)
+            {
+                GetNum(out number, simbol);
+                if (IsValid(number, top))
+                    break;
+                else
+                    CLI.IncorrectValue();
+            }
         }
 
         public static void CheckArray()

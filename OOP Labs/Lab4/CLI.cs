@@ -21,8 +21,9 @@ namespace Lab4
         private const string c_sElem = "{0} ";
         private const string c_sReadNumber = "Введите {0}: ";
         private const string c_sReadNumberA = "Введите {0}{1}: ";
+        private const string c_sIncorrectValue = "Некорректное значение!";
         private const string c_sNullArray = "Ошибка! Массив не создан.\n";
-        private const string c_sCleanArray = "Массив пуст - поэтому он уничтожен.\n";
+        private const string c_sCleanArray = "Массив пуст, поэтому удален.\n";
         private const string c_sNullFunction = "Спасибо за работу!";
         private const string c_sNotFound = "Элемент не найден\n";
         private const string c_sNotSorted = "Массив не отсортирован\n";
@@ -92,6 +93,8 @@ namespace Lab4
                     Console.Write(c_sReadNumberA, simbol, i);
                 string sNum = Console.ReadLine();
                 flag = int.TryParse(sNum, out number);
+                if (!flag)
+                    IncorrectValue();
             }
         }
 
@@ -118,6 +121,11 @@ namespace Lab4
                 return ReadNum;
             else
                 return RandNum;
+        }
+
+        public static void IncorrectValue()
+        {
+            Console.WriteLine(c_sIncorrectValue);
         }
 
         // Вывод массива

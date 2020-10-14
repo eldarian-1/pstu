@@ -23,6 +23,7 @@ namespace Calc
         private const int c_iMinNumber = 0;
         private const int c_iMaxNumber = 30;
         public const int c_iMaxInt = 2147483647;
+        public const int c_iCountUniversal = 200;
 
         private const string c_sReadNumber = "Введите {0}: ";
         private const string c_sReadNumberA = "Введите {0}{1}: ";
@@ -37,6 +38,8 @@ namespace Calc
             "5. Выполнить операцию \"" + c_sIntersect + "\"\n" +
             "6. Выполнить операцию \"" + c_sUnite + "\"\n" +
             "7. Выполнить операцию \"" + c_sSymmetricDifference + "\"\n" +
+            "8. Выполнить операцию \"" + c_sInversion + "\" левого множества\n" +
+            "9. Выполнить операцию \"" + c_sInversion + "\" правого множества\n" +
             "0. Выход\n" +
             "Выберете действие: ";
 
@@ -52,16 +55,19 @@ namespace Calc
         private const string c_sIntersect = "Пересечение";
         private const string c_sUnite = "Объединение";
         private const string c_sSymmetricDifference = "Симметрическая разность";
+        private const string c_sInversion = "Отрицание";
 
         private static Random s_rand = new Random();
         private static int[] left;
         private static int[] right;
+        public static int[] universal;
 
         private static IsValidate IsValid = (x, top) => (x >= 0 && x <= top);
 
 
         public static void Main()
         {
+            SetUniversal();
             while (true)
             {
                 try
@@ -80,6 +86,13 @@ namespace Calc
             }
 
             Console.ReadKey();
+        }
+
+        private static void SetUniversal()
+        {
+            universal = new int[c_iCountUniversal];
+            for (int i = 0; i < c_iCountUniversal; ++i)
+                universal[i] = i + 1;
         }
 
         public static void CheckArray()
@@ -183,6 +196,20 @@ namespace Calc
             Console.WriteLine(c_sResult, c_sSymmetricDifference, string.Join(" ", left.MySymmetricDifference(right)));
         }
 
+        private static void OperationInversionLeft()
+        {
+            if (left == null)
+                throw new NullArrayException();
+            Console.WriteLine(c_sResult, c_sInversion, string.Join(" ", universal.MyExcept(left)));
+        }
+
+        private static void OperationInversionRight()
+        {
+            if (right == null)
+                throw new NullArrayException();
+            Console.WriteLine(c_sResult, c_sInversion, string.Join(" ", universal.MyExcept(right)));
+        }
+
         private static Task GetTask()
         {
             bool flag = true;
@@ -205,6 +232,10 @@ namespace Calc
                         return OperationUnite;
                     case "7":
                         return OperationSymmetricDifference;
+                    case "8":
+                        return OperationInversionLeft;
+                    case "9":
+                        return OperationInversionRight;
                     case "0":
                         flag = false;
                         break;

@@ -9,6 +9,7 @@ namespace Lab9
         private const string c_sPenny = "Копейки: ";
         private const string c_sReadNumber = "{0}) {1}";
         private const string c_sResult = "Результат: {0}\n";
+        private const string c_sMinimum = "Минимум: Array[{0}] == {1}\n";
         private const string c_sIncorrectlyValue = "Некорректное значение!";
         private const string c_sInvalidArgument = "Некорректные аргументы!";
         private const string c_sInvalidOperation = "Некорректная операция!";
@@ -20,6 +21,9 @@ namespace Lab9
 
         public static void Result<T>(T arg)
             => Console.WriteLine(c_sResult, arg);
+
+        public static void Result<T, P>(T arg1, P arg2)
+            => Console.WriteLine(c_sMinimum, arg1, arg2);
 
         public static void ReadNum(out int number, string thing, int i = -1)
         {

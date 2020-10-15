@@ -5,27 +5,25 @@ namespace Lab9
 {
     class Program
     {
-        private const string Tasks =
-               "МЕНЮ ЗАДАЧ\n" +
-               "Money\n" +
-               "\t1. Добавить объект в список\n" +
-               "\t2. Удалить первый объект из списка\n" +
-               "\t3. Сравнение двух первых объектов в списке\n" +
-               "\t4. Инкрементировать первый объект\n" +
-               "\t5. Декрементировать первый объект\n" +
-               "\t6. Привести первый объект неявно к int\n" +
-               "\t7. Привести первый объект явно к double\n" +
-               "\t8. Вычесть int (копейки) из Money (=> Money)\n" +
-               "\t9. Вычесть Money из int (копейки) (=> Money)\n" +
-               "\t10. Вывести количество созданных объектов\n" +
-               "\t11. Вывести список объектов\n" +
-               "MoneyArray\n" +
-               "\t12. Создать и вывести\n" +
-               "\t13. Найти минимальное значение\n" +
+        private const string MainMenu =
+               "Главное меню\n" +
+               "1. Money (1 и 2 части)\n" +
+               "2. MoneyArray (3 часть)\n" +
                "0. Выход\n" +
                "Выберете действие: ";
 
-        private const string Compares =
+        private const string MoneyMenu =
+               "Меню Money\n" +
+               "1. Добавить объект в список\n" +
+               "2. Удалить первый объект из списка\n" +
+               "3. Сравнение двух первых объектов в списке (1 часть)\n" +
+               "4. Операции над первым объектом в списке (2 часть)\n" +
+               "5. Вывести количество созданных объектов\n" +
+               "6. Вывести список объектов\n" +
+               "0. Назад\n" +
+               "Выберете действие: ";
+
+        private const string FirstPart =
                "МЕНЮ ОПЕРАЦИЙ\n" +
                "1. Меньше\n" +
                "2. Меньше или равно\n" +
@@ -36,17 +34,66 @@ namespace Lab9
                "0. Назад\n" +
                "Выберете операцию: ";
 
+        private const string SecondPart =
+               "Меню Money (2 часть)\n" +
+               "1. Инкрементировать первый объект\n" +
+               "2. Декрементировать первый объект\n" +
+               "3. Привести первый объект неявно к int\n" +
+               "4. Привести первый объект явно к double\n" +
+               "5. Вычесть int (копейки) из Money (=> Money)\n" +
+               "6. Вычесть Money из int (копейки) (=> Money)\n" +
+               "0. Назад\n" +
+               "Выберете действие: ";
+
+        private const string ThirdPart =
+               "Меню MoneyArray\n" +
+               "1. Создать и вывести\n" +
+               "2. Найти минимальное значение\n" +
+               "0. Назад\n" +
+               "Выберете действие: ";
+
         private static CLIObject Obj;
         private static List<Money> St;
         private static MoneyArray Ar;
 
         static void Main(string[] args)
         {
-            Obj = new CLIObject(Tasks, AddStack, PopStack,
-                Compare, Increment, Decrement, ToInt, ToDouble, MoneyInt,
-                IntMoney, ElemCount, EnterElems, CreateEnter, FindMinimum);
+            Obj = new CLIObject(MainMenu, MenuMoney, ArrayOperation);
             St = new List<Money>();
             Obj.Run();
+            Console.WriteLine("Спасибо за работу!");
+            Console.ReadKey();
+        }
+
+        static void MenuMoney()
+        {
+            Console.WriteLine();
+            Obj.Run(MoneyMenu, AddStack, PopStack,
+                Compare, MoneyOperation, ElemCount, EnterElems);
+        }
+
+        static void Compare()
+        {
+            if (St.Count < 2)
+                throw new InvalidOperationException();
+            Console.WriteLine();
+            Obj.Run(FirstPart, OperatitonLess, OperatitonLessEq,
+                OperatitonOver, OperatitonOverEq, OperatitonEq, OperatitonNEq);
+        }
+
+        static void MoneyOperation()
+        {
+            if (St.Count == 0)
+                throw new InvalidOperationException();
+            Console.WriteLine();
+            Obj.Run(SecondPart, Increment, Decrement,
+                ToInt, ToDouble, MoneyInt, IntMoney);
+        }
+
+        static void ArrayOperation()
+        {
+            Console.WriteLine();
+            Obj.Run(ThirdPart, CreateEnter, FindMinimum);
         }
 
         static void AddStack()
@@ -61,17 +108,23 @@ namespace Lab9
             Console.WriteLine();
         }
 
-        static void Compare()
-        {
-            if(St.Count < 2)
-            {
-                Console.WriteLine("Слишком мало элементов в стеке\n");
-                return;
-            }
-            Console.WriteLine();
-            Obj.Run(Compares, OperatitonLess, OperatitonLessEq,
-                OperatitonOver, OperatitonOverEq, OperatitonEq, OperatitonNEq);
-        }
+        static void OperatitonLess()
+            => CLI.Result(St[0] < St[1]);
+
+        static void OperatitonLessEq()
+            => CLI.Result(St[0] <= St[1]);
+
+        static void OperatitonOver()
+            => CLI.Result(St[0] > St[1]);
+
+        static void OperatitonOverEq()
+            => CLI.Result(St[0] >= St[1]);
+
+        static void OperatitonEq()
+            => CLI.Result(St[0] == St[1]);
+
+        static void OperatitonNEq()
+            => CLI.Result(St[0] != St[1]);
 
         static void Increment()
             => CLI.Result(++St[0]);
@@ -116,25 +169,8 @@ namespace Lab9
         {
             if (Ar == null)
                 return;
-            CLI.Result(Ar.Minimum);
+            Ar.Minimum(out int index, out Money money);
+            CLI.Result(index, money);
         }
-
-        static void OperatitonLess()
-            => CLI.Result(St[0] < St[1]);
-
-        static void OperatitonLessEq()
-            => CLI.Result(St[0] <= St[1]);
-
-        static void OperatitonOver()
-            => CLI.Result(St[0] > St[1]);
-
-        static void OperatitonOverEq()
-            => CLI.Result(St[0] >= St[1]);
-
-        static void OperatitonEq()
-            => CLI.Result(St[0] == St[1]);
-
-        static void OperatitonNEq()
-            => CLI.Result(St[0] != St[1]);
     }
 }

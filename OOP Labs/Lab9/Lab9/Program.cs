@@ -3,16 +3,21 @@ using System.Collections.Generic;
 
 namespace Lab9
 {
-    class Program
+    static class Program
     {
-        private const string MainMenu =
+        private const string c_sEnterPenny = "Введите копейки: ";
+        private const string c_sRuble = "рублей";
+        private const string c_sPenny = "копеек";
+        private const string c_sThanksForJob = "Спасибо за работу!";
+
+        private const string c_sMainMenu =
                "Главное меню\n" +
                "1. Money (1 и 2 части)\n" +
                "2. MoneyArray (3 часть)\n" +
                "0. Выход\n" +
                "Выберете действие: ";
 
-        private const string MoneyMenu =
+        private const string c_sMoneyMenu =
                "Меню Money\n" +
                "1. Добавить объект в список\n" +
                "2. Удалить первый объект из списка\n" +
@@ -23,7 +28,7 @@ namespace Lab9
                "0. Назад\n" +
                "Выберете действие: ";
 
-        private const string FirstPart =
+        private const string c_sFirstPart =
                "МЕНЮ ОПЕРАЦИЙ\n" +
                "1. Меньше\n" +
                "2. Меньше или равно\n" +
@@ -34,7 +39,7 @@ namespace Lab9
                "0. Назад\n" +
                "Выберете операцию: ";
 
-        private const string SecondPart =
+        private const string c_sSecondPart =
                "Меню Money (2 часть)\n" +
                "1. Инкрементировать первый объект\n" +
                "2. Декрементировать первый объект\n" +
@@ -45,7 +50,7 @@ namespace Lab9
                "0. Назад\n" +
                "Выберете действие: ";
 
-        private const string ThirdPart =
+        private const string c_sThirdPart =
                "Меню MoneyArray\n" +
                "1. Создать и вывести\n" +
                "2. Найти минимальное значение\n" +
@@ -58,42 +63,42 @@ namespace Lab9
 
         static void Main(string[] args)
         {
-            Obj = new CLIObject(MainMenu, MenuMoney, ArrayOperation);
+            Obj = new CLIObject(c_sMainMenu, MoneyMenu, ThirdPart);
             St = new List<Money>();
             Obj.Run();
-            Console.WriteLine("Спасибо за работу!");
+            Console.WriteLine(c_sThanksForJob);
             Console.ReadKey();
         }
 
-        static void MenuMoney()
+        static void MoneyMenu()
         {
             Console.WriteLine();
-            Obj.Run(MoneyMenu, AddStack, PopStack,
-                Compare, MoneyOperation, ElemCount, EnterElems);
+            Obj.Run(c_sMoneyMenu, AddStack, PopStack,
+                FirstPart, SecondPart, ElemCount, EnterElems);
         }
 
-        static void Compare()
+        static void FirstPart()
         {
             if (St.Count < 2)
                 throw new InvalidOperationException();
             Console.WriteLine();
-            Obj.Run(FirstPart, OperatitonLess, OperatitonLessEq,
+            Obj.Run(c_sFirstPart, OperatitonLess, OperatitonLessEq,
                 OperatitonOver, OperatitonOverEq, OperatitonEq, OperatitonNEq);
         }
 
-        static void MoneyOperation()
+        static void SecondPart()
         {
             if (St.Count == 0)
                 throw new InvalidOperationException();
             Console.WriteLine();
-            Obj.Run(SecondPart, Increment, Decrement,
+            Obj.Run(c_sSecondPart, Increment, Decrement,
                 ToInt, ToDouble, MoneyInt, IntMoney);
         }
 
-        static void ArrayOperation()
+        static void ThirdPart()
         {
             Console.WriteLine();
-            Obj.Run(ThirdPart, CreateEnter, FindMinimum);
+            Obj.Run(c_sThirdPart, CreateEnter, FindMinimum);
         }
 
         static void AddStack()
@@ -143,21 +148,25 @@ namespace Lab9
 
         static void MoneyInt()
         {
-            CLI.GetMode()(out int num, "Введите число: ");
-            CLI.Result($"{St[0]} - {num} = {St[0] - num}");
+            CLI.GetValid(out int num, CLI.GetMode(), Core.IsValidNum, c_sEnterPenny);
+            CLI.Result($"{St[0]} {c_sRuble} - {num} {c_sPenny} = {St[0] - num} {c_sRuble}");
         }
 
         static void IntMoney()
         {
-            CLI.GetMode()(out int num, "Введите число: ");
-            CLI.Result($"{num} - {St[0]} = {num - St[0]}");
+            CLI.GetValid(out int num, CLI.GetMode(), Core.IsValidNum, c_sEnterPenny);
+            CLI.Result($"{num} {c_sPenny} - {St[0]} {c_sRuble} = {num - St[0]} {c_sRuble}");
         }
 
         static void ElemCount()
             => CLI.Result(Money.Count);
 
         static void EnterElems()
-            => CLI.Result(new MoneyArray(St.ToArray()));
+        {
+            if (St.Count == 0)
+                throw new ArgumentNullException();
+            CLI.Result(new MoneyArray(St.ToArray()));
+        }
 
         static void CreateEnter()
         {

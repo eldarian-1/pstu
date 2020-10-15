@@ -10,9 +10,11 @@ namespace Lab9
         private const string c_sReadNumber = "{0}) {1}";
         private const string c_sResult = "Результат: {0}\n";
         private const string c_sMinimum = "Минимум: Array[{0}] == {1}\n";
-        private const string c_sIncorrectlyValue = "Некорректное значение!";
-        private const string c_sInvalidArgument = "Некорректные аргументы!";
-        private const string c_sInvalidOperation = "Некорректная операция!";
+        private const string c_sIncorrectlyValue = "Некорректное значение!\n";
+        private const string c_sInvalidArgument = "Некорректные аргументы!\n";
+        private const string c_sInvalidOperation = "Некорректная операция!\n";
+        private const string c_sEmptyArray = "Массив пуст.\n";
+        private const string c_sException = "Неизвестная ошибка!\n";
         private const string c_sModus =
             "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
 
@@ -65,7 +67,7 @@ namespace Lab9
                 return RandNum;
         }
 
-        public static void GetValid(out int number, GetNumber GetNum, IsValidate IsValid, string thing)
+        public static void GetValid(out int number, GetNumber GetNum, IsValidate IsValid, string thing, int i = -1)
         {
             while (true)
             {
@@ -77,10 +79,16 @@ namespace Lab9
             }
         }
 
+        public static int GetValidNum(GetNumber GetNum, string text)
+        {
+            GetValid(out int num, GetNum, Core.IsValidNum, text);
+            return num;
+        }
+
         public static Money GetMoney(GetNumber GetNum, int i = -1)
         {
-            GetNum(out int ruble, c_sRuble, i);
-            GetNum(out int penny, c_sPenny, i);
+            GetValid(out int ruble, GetNum, Core.IsValidRuble, c_sRuble, i);
+            GetValid(out int penny, GetNum, Core.IsValidPenny, c_sPenny, i);
             return new Money(ruble, penny);
         }
 
@@ -92,18 +100,25 @@ namespace Lab9
                 {
                     task()();
                 }
+                catch (ArgumentNullException)
+                {
+                    Console.WriteLine(c_sEmptyArray);
+                }
                 catch (ArgumentException)
                 {
                     Console.WriteLine(c_sInvalidArgument);
                 }
                 catch (InvalidOperationException)
                 {
-                    Console.Write(c_sInvalidOperation);
-                    break;
+                    Console.WriteLine(c_sInvalidOperation);
                 }
                 catch (ApplicationException)
                 {
                     break;
+                }              
+                catch (Exception)
+                {
+                    Console.WriteLine(c_sException);
                 }
             }
         }

@@ -13,6 +13,7 @@ namespace Lab9
     {
         public static IsValidate IsValidRuble = n => n >= 0;
         public static IsValidate IsValidPenny = n => n >= 0 && n < 100;
+        public static IsValidate IsValidNum = n => n >= 0 && n < MaxInt;
         
         public const int MinArray = 10;
         public const int MaxArray = 20;

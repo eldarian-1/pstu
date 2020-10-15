@@ -4,6 +4,8 @@ namespace Lab9
 {
     class CLIObject
     {
+        private const string c_sCount = "Количество элементов: ";
+
         private string m_sMenu;
         private Task[] m_tTasks;
 
@@ -48,7 +50,7 @@ namespace Lab9
 
         public MoneyArray GetMoneyArray(GetNumber GetNum)
         {
-            GetNum(out int n, "Count: ");
+            int n = CLI.GetValidNum(GetNum, c_sCount);
             Money[] array = new Money[n];
             for(int i = 0; i < n; ++i)
                 array[i] = GetMoney(GetNum, i);

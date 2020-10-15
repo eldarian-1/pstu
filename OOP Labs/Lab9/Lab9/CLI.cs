@@ -5,10 +5,10 @@ namespace Lab9
     static class CLI
     {
         private const string c_sCount = "Количество элементов";
-        private const string c_sRuble = "Рубли";
-        private const string c_sPenny = "Копейки";
-        private const string c_sReadNumber = "Введите {0}: ";
-        private const string c_sReadNumberA = "{0}) {1}: ";
+        private const string c_sRuble = "Рубли: ";
+        private const string c_sPenny = "Копейки: ";
+        private const string c_sReadNumber = "{0}) {1}";
+        private const string c_sResult = "Результат: {0}\n";
         private const string c_sIncorrectlyValue = "Некорректное значение!";
         private const string c_sInvalidArgument = "Некорректные аргументы!";
         private const string c_sInvalidOperation = "Некорректная операция!";
@@ -16,9 +16,10 @@ namespace Lab9
             "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
 
         public static void IncorrectValue()
-        {
-            Console.WriteLine(c_sIncorrectlyValue);
-        }
+            => Console.WriteLine(c_sIncorrectlyValue);
+
+        public static void Result<T>(T arg)
+            => Console.WriteLine(c_sResult, arg);
 
         public static void ReadNum(out int number, string thing, int i = -1)
         {
@@ -26,9 +27,9 @@ namespace Lab9
             for (bool flag = false; !flag;)
             {
                 if (i == -1)
-                    Console.Write(c_sReadNumber, thing);
+                    Console.Write(thing);
                 else
-                    Console.Write(c_sReadNumberA, i, thing);
+                    Console.Write(c_sReadNumber, i, thing);
                 string sNum = Console.ReadLine();
                 flag = int.TryParse(sNum, out number);
                 if (!flag)
@@ -75,7 +76,7 @@ namespace Lab9
         public static Money GetMoney(GetNumber GetNum, int i = -1)
         {
             GetNum(out int ruble, c_sRuble, i);
-            GetNum(out int penny, c_sRuble, i);
+            GetNum(out int penny, c_sPenny, i);
             return new Money(ruble, penny);
         }
 

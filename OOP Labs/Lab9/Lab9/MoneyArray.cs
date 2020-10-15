@@ -4,12 +4,7 @@ namespace Lab9
 {
     class MoneyArray
     {
-        private Money[] m_maWads;
-
-        public MoneyArray()
-        {
-            m_maWads = null;
-        }
+        private Money[] m_maWads = null;
 
         public MoneyArray(Money[] array)
         {

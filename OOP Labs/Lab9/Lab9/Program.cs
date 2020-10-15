@@ -15,8 +15,8 @@ namespace Lab9
                "\t5. Декрементировать первый объект\n" +
                "\t6. Привести первый объект неявно к int\n" +
                "\t7. Привести первый объект явно к double\n" +
-               "\t8. Привести первый объект int из Money (=> Money)\n" +
-               "\t9. Привести первый объект Money из int (=> Money)\n" +
+               "\t8. Вычесть int (копейки) из Money (=> Money)\n" +
+               "\t9. Вычесть Money из int (копейки) (=> Money)\n" +
                "\t10. Вывести количество созданных объектов\n" +
                "\t11. Вывести список объектов\n" +
                "MoneyArray\n" +
@@ -38,6 +38,7 @@ namespace Lab9
 
         private static CLIObject Obj;
         private static List<Money> St;
+        private static MoneyArray Ar;
 
         static void Main(string[] args)
         {
@@ -51,92 +52,89 @@ namespace Lab9
         static void AddStack()
         {
             St.Add(Obj.GetMoney(CLI.GetMode()));
+            Console.WriteLine();
         }
 
         static void PopStack()
         {
             St.RemoveAt(0);
+            Console.WriteLine();
         }
 
         static void Compare()
         {
             if(St.Count < 2)
             {
-                Console.WriteLine("Слишком мало элементов в стеке");
+                Console.WriteLine("Слишком мало элементов в стеке\n");
                 return;
             }
+            Console.WriteLine();
             Obj.Run(Compares, OperatitonLess, OperatitonLessEq,
                 OperatitonOver, OperatitonOverEq, OperatitonEq, OperatitonNEq);
         }
 
         static void Increment()
-        {
-
-        }
+            => CLI.Result(++St[0]);
 
         static void Decrement()
-        {
-
-        }
+            => CLI.Result(--St[0]);
 
         static void ToInt()
         {
-
+            int money = St[0];
+            CLI.Result(money);
         }
 
         static void ToDouble()
-        {
-
-        }
+            => CLI.Result((double)St[0]);
 
         static void MoneyInt()
         {
-
+            CLI.GetMode()(out int num, "Введите число: ");
+            CLI.Result($"{St[0]} - {num} = {St[0] - num}");
         }
 
         static void IntMoney()
         {
-
+            CLI.GetMode()(out int num, "Введите число: ");
+            CLI.Result($"{num} - {St[0]} = {num - St[0]}");
         }
 
         static void ElemCount()
-        {
-
-        }
+            => CLI.Result(Money.Count);
 
         static void EnterElems()
-        {
-            for (int i = 0, n = St.Count; i < n; ++i)
-                Console.Write("{0} ", St[i]);
-            Console.WriteLine();
-        }
+            => CLI.Result(new MoneyArray(St.ToArray()));
 
         static void CreateEnter()
         {
-
+            Ar = Obj.GetMoneyArray(CLI.GetMode());
+            CLI.Result(Ar);
         }
 
         static void FindMinimum()
         {
-
+            if (Ar == null)
+                return;
+            CLI.Result(Ar.Minimum);
         }
 
         static void OperatitonLess()
-            => Console.WriteLine(St[0] < St[1]);
+            => CLI.Result(St[0] < St[1]);
 
         static void OperatitonLessEq()
-            => Console.WriteLine(St[0] <= St[1]);
+            => CLI.Result(St[0] <= St[1]);
 
         static void OperatitonOver()
-            => Console.WriteLine(St[0] > St[1]);
+            => CLI.Result(St[0] > St[1]);
 
         static void OperatitonOverEq()
-            => Console.WriteLine(St[0] >= St[1]);
+            => CLI.Result(St[0] >= St[1]);
 
         static void OperatitonEq()
-            => Console.WriteLine(St[0] == St[1]);
+            => CLI.Result(St[0] == St[1]);
 
         static void OperatitonNEq()
-            => Console.WriteLine(St[0] != St[1]);
+            => CLI.Result(St[0] != St[1]);
     }
 }

@@ -14,9 +14,7 @@ namespace Lab9
         }
 
         public void Run()
-        {
-            CLI.Run(GetTask);
-        }
+            => CLI.Run(GetTask);
 
         public void Run(string menu, params Task[] tasks)
         {
@@ -25,6 +23,7 @@ namespace Lab9
             m_sMenu = menu;
             m_tTasks = tasks;
             CLI.Run(GetTask);
+            Console.WriteLine();
             m_sMenu = sTemp;
             m_tTasks = tTemp;
         }
@@ -45,8 +44,15 @@ namespace Lab9
         }
 
         public Money GetMoney(GetNumber GetNum, int i = -1)
+            => CLI.GetMoney(GetNum, i);
+
+        public MoneyArray GetMoneyArray(GetNumber GetNum)
         {
-            return CLI.GetMoney(GetNum, i);
+            GetNum(out int n, "Count: ");
+            Money[] array = new Money[n];
+            for(int i = 0; i < n; ++i)
+                array[i] = GetMoney(GetNum, i);
+            return new MoneyArray(array);
         }
     }
 }

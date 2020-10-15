@@ -1,80 +1,142 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Lab9
 {
-    delegate void GetNumber(out int number, char simbol, int i = -1);
-    delegate GetNumber ModeGetNumber();
-    delegate bool IsValidate(int x, int top);
-    delegate void Task();
-
     class Program
     {
-        public const char c_cN = 'N';
-        public const char c_cR = 'R';
-        public const char c_cP = 'P';
+        private const string Tasks =
+               "МЕНЮ ЗАДАЧ\n" +
+               "Money\n" +
+               "\t1. Добавить объект в список\n" +
+               "\t2. Удалить первый объект из списка\n" +
+               "\t3. Сравнение двух первых объектов в списке\n" +
+               "\t4. Инкрементировать первый объект\n" +
+               "\t5. Декрементировать первый объект\n" +
+               "\t6. Привести первый объект неявно к int\n" +
+               "\t7. Привести первый объект явно к double\n" +
+               "\t8. Привести первый объект int из Money (=> Money)\n" +
+               "\t9. Привести первый объект Money из int (=> Money)\n" +
+               "\t10. Вывести количество созданных объектов\n" +
+               "\t11. Вывести список объектов\n" +
+               "MoneyArray\n" +
+               "\t12. Создать и вывести\n" +
+               "\t13. Найти минимальное значение\n" +
+               "0. Выход\n" +
+               "Выберете действие: ";
 
-        private const int c_iMinArray = 10;
-        private const int c_iMaxArray = 20;
-        private const int c_iMaxRubles = 999;
-        private const int c_iMaxPennies = 99;
-        public const int c_iMaxInt = 2147483647;
+        private const string Compares =
+               "МЕНЮ ОПЕРАЦИЙ\n" +
+               "1. Меньше\n" +
+               "2. Меньше или равно\n" +
+               "3. Больше\n" +
+               "4. Больше или равно\n" +
+               "5. Равно\n" +
+               "6. Не равно\n" +
+               "0. Назад\n" +
+               "Выберете операцию: ";
 
-        private const string c_sReadNumber = "Введите {0}: ";
-        private const string c_sReadNumberA = "Введите {0}{1}: ";
-        private const string c_sIncorrectValue = "Некорректное значение!";
-        private const string c_sGetMode =
-            "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
-
-        private static Random s_rand = new Random();
+        private static CLIObject Obj;
+        private static List<Money> St;
 
         static void Main(string[] args)
         {
-
+            Obj = new CLIObject(Tasks, AddStack, PopStack,
+                Compare, Increment, Decrement, ToInt, ToDouble, MoneyInt,
+                IntMoney, ElemCount, EnterElems, CreateEnter, FindMinimum);
+            St = new List<Money>();
+            Obj.Run();
         }
 
-        public static void ReadNum(out int number, char simbol, int i)
+        static void AddStack()
         {
-            number = 0;
-            for (bool flag = false; !flag;)
+            St.Add(Obj.GetMoney(CLI.GetMode()));
+        }
+
+        static void PopStack()
+        {
+            St.RemoveAt(0);
+        }
+
+        static void Compare()
+        {
+            if(St.Count < 2)
             {
-                if (i == -1)
-                    Console.Write(c_sReadNumber, simbol);
-                else
-                    Console.Write(c_sReadNumberA, simbol, i);
-                string sNum = Console.ReadLine();
-                flag = int.TryParse(sNum, out number);
-                if (!flag)
-                    IncorrectValue();
+                Console.WriteLine("Слишком мало элементов в стеке");
+                return;
             }
+            Obj.Run(Compares, OperatitonLess, OperatitonLessEq,
+                OperatitonOver, OperatitonOverEq, OperatitonEq, OperatitonNEq);
         }
 
-        public static void RandNum(out int number, char simbol, int i)
+        static void Increment()
         {
-            if (simbol == c_cN)
-                number = s_rand.Next(c_iMinArray, c_iMaxArray);
-            else if (simbol == c_cR)
-                number = s_rand.Next(0, c_iMaxRubles);
-            else
-                number = s_rand.Next(0, c_iMaxPennies);
+
         }
 
-        private static GetNumber GetMode()
+        static void Decrement()
         {
-            string key = "";
-            do
-            {
-                Console.Write(c_sGetMode);
-                key = Console.ReadLine();
-            } while (key != "1" && key != "2");
-            if (key == "1")
-                return ReadNum;
-            else
-                return RandNum;
+
         }
 
-        public static void IncorrectValue()
+        static void ToInt()
         {
-            Console.WriteLine(c_sIncorrectValue);
+
         }
+
+        static void ToDouble()
+        {
+
+        }
+
+        static void MoneyInt()
+        {
+
+        }
+
+        static void IntMoney()
+        {
+
+        }
+
+        static void ElemCount()
+        {
+
+        }
+
+        static void EnterElems()
+        {
+            for (int i = 0, n = St.Count; i < n; ++i)
+                Console.Write("{0} ", St[i]);
+            Console.WriteLine();
+        }
+
+        static void CreateEnter()
+        {
+
+        }
+
+        static void FindMinimum()
+        {
+
+        }
+
+        static void OperatitonLess()
+            => Console.WriteLine(St[0] < St[1]);
+
+        static void OperatitonLessEq()
+            => Console.WriteLine(St[0] <= St[1]);
+
+        static void OperatitonOver()
+            => Console.WriteLine(St[0] > St[1]);
+
+        static void OperatitonOverEq()
+            => Console.WriteLine(St[0] >= St[1]);
+
+        static void OperatitonEq()
+            => Console.WriteLine(St[0] == St[1]);
+
+        static void OperatitonNEq()
+            => Console.WriteLine(St[0] != St[1]);
     }
 }

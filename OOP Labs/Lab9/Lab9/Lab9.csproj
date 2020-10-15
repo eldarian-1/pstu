@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CLIObject.cs" />
+    <Compile Include="CLI.cs" />
+    <Compile Include="Core.cs" />
     <Compile Include="Money.cs" />
     <Compile Include="MoneyArray.cs" />
     <Compile Include="Program.cs" />

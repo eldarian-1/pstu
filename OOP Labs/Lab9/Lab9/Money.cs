@@ -8,26 +8,21 @@ namespace Lab9
 
         private static int s_iCount = 0;
 
-        private int m_iRubles;
-        private int m_iPennies;
+        private int m_iRuble = 0;
+        private int m_iPenny = 0;
 
-        public Money() : this(0, 0) { }
-
-        public Money(int p) : this(0, p) {}
+        public Money(int p) : this(0, p) { }
 
         public Money(int r, int p)
         {
             if (r < 0 || p < 0)
                 throw new ArgumentException();
             ++s_iCount;
-            m_iRubles = r + p / c_iDevide;
-            m_iPennies = p % c_iDevide;
+            m_iRuble = r + p / c_iDevide;
+            m_iPenny = p % c_iDevide;
         }
 
-        ~Money()
-        {
-            --s_iCount;
-        }
+        ~Money() { --s_iCount; }
 
         public static int Count
         {
@@ -35,97 +30,79 @@ namespace Lab9
             set { s_iCount = value; }
         }
 
-        public int Rubles
+        public int Ruble
         {
-            get { return m_iRubles; }
-            set { m_iRubles = value; }
+            get { return m_iRuble; }
+            set { m_iRuble = value; }
         }
 
-        public int Pennies
+        public int Penny
         {
-            get { return m_iPennies; }
-            set { m_iPennies = value; }
+            get { return m_iPenny; }
+            set { m_iPenny = value; }
+        }
+
+        public override string ToString()
+        {
+            return "" + m_iRuble + "," + ((m_iPenny < 10) ? "0" : "") + m_iPenny;
         }
 
         public static bool operator ==(Money left, Money right)
-        {
-            return left.m_iRubles == right.m_iRubles
-                && left.m_iPennies == right.m_iPennies;
-        }
+            => left.m_iRuble == right.m_iRuble
+                && left.m_iPenny == right.m_iPenny;
 
         public static bool operator !=(Money left, Money right)
-        {
-            return !(left == right);
-        }
+            => !(left == right);
 
         public static bool operator <(Money left, Money right)
-        {
-            return left.m_iRubles * c_iDevide + left.m_iPennies
-                < right.m_iRubles * c_iDevide + right.m_iPennies;
-        }
+            => left.m_iRuble * c_iDevide + left.m_iPenny
+                < right.m_iRuble * c_iDevide + right.m_iPenny;
 
         public static bool operator >(Money left, Money right)
-        {
-            return left != right && !(left < right);
-        }
+            => left != right && !(left < right);
 
         public static bool operator <=(Money left, Money right)
-        {
-            return left == right || left < right;
-        }
+            => left == right || left < right;
 
         public static bool operator >=(Money left, Money right)
-        {
-            return left == right || left > right;
-        }
+            => left == right || left > right;
 
         public static Money operator ++(Money money)
         {
-            Money result = new Money(money.m_iRubles, money.m_iPennies);
-            if (++result.m_iPennies == c_iDevide)
+            Money result = new Money(money.m_iRuble, money.m_iPenny);
+            if (++result.m_iPenny == c_iDevide)
             {
-                result.m_iPennies = 0;
-                if (result.m_iRubles == Program.c_iMaxInt)
+                result.m_iPenny = 0;
+                if (result.m_iRuble == Core.MaxInt)
                     throw new InvalidOperationException();
                 else
-                    ++result.m_iRubles;
+                    ++result.m_iRuble;
             }
             return result;
         }
 
         public static Money operator --(Money money)
         {
-            Money result = new Money(money.m_iRubles, money.m_iPennies);
-            if(--result.m_iPennies < 0)
+            Money result = new Money(money.m_iRuble, money.m_iPenny);
+            if(--result.m_iPenny < 0)
             {
-                result.m_iPennies = 99;
-                if (--result.m_iRubles < 0)
+                result.m_iPenny = 99;
+                if (--result.m_iRuble < 0)
                     throw new InvalidOperationException();
             }
             return result;
         }
 
         public static implicit operator int(Money money)
-        {
-            return money.m_iRubles;
-        }
+            => money.m_iRuble;
 
         public static explicit operator double(Money money)
-        {
-            return (double)money.m_iPennies / c_iDevide;
-        }
+            => (double)money.m_iPenny / c_iDevide;
 
-        public static Money operator -(Money money, int pennies)
-        {
-            return new Money(
-                money.m_iRubles * c_iDevide + money.m_iPennies - pennies);
-        }
+        public static Money operator -(Money money, int penny)
+            => new Money(money.m_iRuble * c_iDevide + money.m_iPenny - penny);
 
-        public static Money operator -(int pennies, Money money)
-        {
-            return new Money(
-                pennies - (money.m_iRubles * c_iDevide + money.m_iPennies));
-        }
-
+        public static Money operator -(int penny, Money money)
+            => new Money(penny - (money.m_iRuble * c_iDevide + money.m_iPenny));
     }
 }

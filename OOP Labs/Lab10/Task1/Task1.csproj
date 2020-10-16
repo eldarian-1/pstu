@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DieselEngine.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="IExecutable.cs" />
     <Compile Include="InternalCombustionEngine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

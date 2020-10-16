@@ -30,21 +30,14 @@ namespace Lab9
             }
         }
 
-        public void Minimum(out int index, out Money money)
+        public int Length
         {
-            if (m_maWads == null)
-                throw new InvalidOperationException();
-            int len = m_maWads.Length;
-            if (len == 0)
-                throw new InvalidOperationException();
-            money = m_maWads[0];
-            index = 0;
-            for (int i = 1; i < len; ++i)
-                if (money > m_maWads[i])
-                {
-                    money = m_maWads[i];
-                    index = i;
-                }
+            get
+            {
+                if (m_maWads == null)
+                    throw new ArgumentException();
+                return m_maWads.Length;
+            }
         }
 
         public override string ToString()

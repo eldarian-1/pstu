@@ -5,9 +5,14 @@ namespace Lab9
 {
     static class Program
     {
+        private const string c_sEnterIndex = "Введите индекс: ";
+        private const string c_sEnterRuble = "Введите рубли: ";
         private const string c_sEnterPenny = "Введите копейки: ";
         private const string c_sRuble = "рублей";
         private const string c_sPenny = "копеек";
+        private const string c_sValue = "значение";
+        private const string c_sNewValue = "новое значение";
+        private const string c_sMoneyArray = "MoneyArray";
         private const string c_sThanksForJob = "Спасибо за работу!";
 
         private const string c_sMainMenu =
@@ -52,8 +57,11 @@ namespace Lab9
 
         private const string c_sThirdPart =
                "Меню MoneyArray\n" +
-               "1. Создать и вывести\n" +
-               "2. Найти минимальное значение\n" +
+               "1. Создать массив\n" +
+               "2. Вывести массив\n" +
+               "3. Посмотреть значение по индексу\n" +
+               "4. Обновить значение по индексу\n" +
+               "5. Найти минимальное значение\n" +
                "0. Назад\n" +
                "Выберете действие: ";
 
@@ -98,7 +106,7 @@ namespace Lab9
         static void ThirdPart()
         {
             Console.WriteLine();
-            Obj.Run(c_sThirdPart, CreateEnter, FindMinimum);
+            Obj.Run(c_sThirdPart, CreateArray, OutputArray, OutputByIndex, UpdateByIndex, FindMinimum);
         }
 
         static void AddStack()
@@ -168,17 +176,45 @@ namespace Lab9
             CLI.Result(new MoneyArray(St.ToArray()));
         }
 
-        static void CreateEnter()
+        static void CreateArray()
         {
             Ar = Obj.GetMoneyArray(CLI.GetMode());
+            OutputArray();
+        }
+
+        static void OutputArray()
+        {
+            if (Ar == null)
+                throw new ArgumentNullException();
             CLI.Result(Ar);
+        }
+
+        static void OutputByIndex()
+        {
+            if (Ar == null)
+                throw new ArgumentNullException();
+            CLI.GetValid(out int index, CLI.ReadNum, Core.IsValidNum, c_sEnterIndex);
+            CLI.Result($"{c_sValue} {c_sMoneyArray}[{index}] == {Ar[index]}");
+        }
+
+        static void UpdateByIndex()
+        {
+            if (Ar == null)
+                throw new ArgumentNullException();
+            CLI.GetValid(out int index, CLI.ReadNum, Core.IsValidNum, c_sEnterIndex);
+            Ar[index] = null;
+            GetNumber GetNum = CLI.GetMode();
+            CLI.GetValid(out int ruble, GetNum, Core.IsValidRuble, c_sEnterRuble);
+            CLI.GetValid(out int penny, GetNum, Core.IsValidPenny, c_sEnterPenny);
+            Ar[index] = new Money(ruble, penny);
+            CLI.Result($"{c_sNewValue} {c_sMoneyArray}[{index}] == {Ar[index]}");
         }
 
         static void FindMinimum()
         {
             if (Ar == null)
-                return;
-            Ar.Minimum(out int index, out Money money);
+                throw new ArgumentNullException();
+            Core.MinimumMoneyArray(Ar, out int index, out Money money);
             CLI.Result(index, money);
         }
     }

@@ -43,9 +43,13 @@ namespace Lab9
         }
 
         public override string ToString()
-        {
-            return "" + m_iRuble + "," + ((m_iPenny < 10) ? "0" : "") + m_iPenny;
-        }
+            => "" + m_iRuble + "," + ((m_iPenny < 10) ? "0" : "") + m_iPenny;
+
+        public override bool Equals(object obj)
+            => this == (Money)obj;
+
+        public override int GetHashCode()
+            => base.GetHashCode();
 
         public static bool operator ==(Money left, Money right)
             => left.m_iRuble == right.m_iRuble

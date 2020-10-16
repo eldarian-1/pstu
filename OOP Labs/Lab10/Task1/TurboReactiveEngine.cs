@@ -11,5 +11,8 @@ namespace Lab10
 
         public virtual void Fuel()
             => Console.WriteLine("Hydrogen - {0}", index);
+
+        public override object Clone()
+            => new TurboReactiveEngine(this.index);
     }
 }

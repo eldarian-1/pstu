@@ -11,5 +11,8 @@ namespace Lab10
 
         public override void Fuel()
             => Console.WriteLine("Bensin - {0}", index);
+
+        public override object Clone()
+            => new InternalCombustionEngine(this.index);
     }
 }

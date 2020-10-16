@@ -11,5 +11,8 @@ namespace Lab10
 
         public new void Fuel()
             => Console.WriteLine("Diesel - {0}", index);
+
+        public override object Clone()
+            => new DieselEngine(this.index);
     }
 }

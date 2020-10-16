@@ -2,12 +2,15 @@
 
 namespace Lab10
 {
-    class Engine : IExecutable
+    abstract class Engine : IExecutable
     {
         protected int index;
 
         public Engine(int i)
             => index = i;
+
+        public int Index()
+            => index;
 
         public virtual void Name()
             => Console.WriteLine("Engine - {0}", index);
@@ -28,8 +31,7 @@ namespace Lab10
         public int Compare(object left, object right)
             => ((Engine)left).CompareTo(right);
 
-        public object Clone()
-            => new Engine(this.index);
+        public abstract object Clone();
 
         public Engine Copy()
             => (Engine)this.MemberwiseClone();

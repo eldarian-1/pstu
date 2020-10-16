@@ -24,6 +24,7 @@ namespace Task1
         private const string c_sReadNumber = "Введите {0}: ";
         private const string c_sReadNumberA = "Введите {0}({1},{2}): ";
         private const string c_sIncorrectValue = "Некорректное значение!";
+        private const string c_sEmptyLine = "пустая строка";
         private const string c_sEmptyArray = "Массив пуст.";
         private const string c_sTask = "Удаление строк с 2 и более нулями";
         private const string c_sContinue = "Продолжить? (д - да, другое - выход)";
@@ -133,6 +134,8 @@ namespace Task1
                 {
                     for (int j = 0, k = array[i].Length; j < k; ++j)
                         Console.Write(c_sElem, array[i][j]);
+                    if (array[i].Length == 0)
+                        Console.Write(c_sEmptyLine);
                     Console.WriteLine();
                 }
             Console.WriteLine();

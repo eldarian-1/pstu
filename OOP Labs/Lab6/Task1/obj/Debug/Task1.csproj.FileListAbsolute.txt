@@ -5,3 +5,9 @@ C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab6\Task1\obj\Debug\Task1.csprojAssembl
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab6\Task1\obj\Debug\Task1.csproj.CoreCompileInputs.cache
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab6\Task1\obj\Debug\Lab6.exe
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab6\Task1\obj\Debug\Lab6.pdb
+C:\Users\Администратор\pstu\OOP Labs\Lab6\Task1\bin\Debug\Lab6.exe.config
+C:\Users\Администратор\pstu\OOP Labs\Lab6\Task1\bin\Debug\Lab6.exe
+C:\Users\Администратор\pstu\OOP Labs\Lab6\Task1\bin\Debug\Lab6.pdb
+C:\Users\Администратор\pstu\OOP Labs\Lab6\Task1\obj\Debug\Task1.csprojAssemblyReference.cache
+C:\Users\Администратор\pstu\OOP Labs\Lab6\Task1\obj\Debug\Lab6.exe
+C:\Users\Администратор\pstu\OOP Labs\Lab6\Task1\obj\Debug\Lab6.pdb

@@ -8,8 +8,6 @@ namespace Lab9
         private const string c_sEnterIndex = "Введите индекс: ";
         private const string c_sEnterRuble = "Введите рубли: ";
         private const string c_sEnterPenny = "Введите копейки: ";
-        private const string c_sRuble = "рублей";
-        private const string c_sPenny = "копеек";
         private const string c_sValue = "значение";
         private const string c_sNewValue = "новое значение";
         private const string c_sMoneyArray = "MoneyArray";
@@ -157,13 +155,13 @@ namespace Lab9
         static void MoneyInt()
         {
             CLI.GetValid(out int num, CLI.GetMode(), Core.IsValidNum, c_sEnterPenny);
-            CLI.Result($"{St[0]} {c_sRuble} - {num} {c_sPenny} = {St[0] - num} {c_sRuble}");
+            CLI.Result($"{St[0]} - {num}к = {St[0] - num}");
         }
 
         static void IntMoney()
         {
             CLI.GetValid(out int num, CLI.GetMode(), Core.IsValidNum, c_sEnterPenny);
-            CLI.Result($"{num} {c_sPenny} - {St[0]} {c_sRuble} = {num - St[0]} {c_sRuble}");
+            CLI.Result($"{num} - {St[0]}к = {num - St[0]}");
         }
 
         static void ElemCount()

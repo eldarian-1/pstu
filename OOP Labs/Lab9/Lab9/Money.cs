@@ -15,35 +15,44 @@ namespace Lab9
 
         public Money(int r, int p)
         {
-            if (r < 0 || p < 0)
-                throw new ArgumentException();
+            Ruble = r;
+            Penny = p;
             ++s_iCount;
-            m_iRuble = r + p / c_iDevide;
-            m_iPenny = p % c_iDevide;
         }
 
         ~Money() { --s_iCount; }
 
         public static int Count
         {
-            get { return s_iCount; }
-            set { s_iCount = value; }
+            get => s_iCount;
+            set => s_iCount = value;
         }
 
         public int Ruble
         {
-            get { return m_iRuble; }
-            set { m_iRuble = value; }
+            get => m_iRuble;
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException();
+                m_iRuble = value;
+            }
         }
 
         public int Penny
         {
-            get { return m_iPenny; }
-            set { m_iPenny = value; }
+            get => m_iPenny;
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException();
+                m_iRuble += value / c_iDevide;
+                m_iPenny = value % c_iDevide;
+            }
         }
 
         public override string ToString()
-            => "" + m_iRuble + "," + ((m_iPenny < 10) ? "0" : "") + m_iPenny;
+            => "" + m_iRuble + "," + ((m_iPenny < 10) ? "0" : "") + m_iPenny + "р";
 
         public override bool Equals(object obj)
             => this == (Money)obj;

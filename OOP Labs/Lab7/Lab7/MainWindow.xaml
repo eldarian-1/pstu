@@ -14,19 +14,14 @@
                     <StackPanel Orientation="Horizontal">
                         <Label>N:</Label>
                         <TextBox Name="Array1Size" Text="3" />
-                        <Button Margin="5" Click="ChangeArray1Size">Изменить</Button>
+                        <Button Margin="5" Click="ChangeArray1DSize">Изменить</Button>
                     </StackPanel>
-                    <ListBox Grid.Column="1" ItemsSource="{Binding Array1Ds}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListBox Name="ListBoxArray1D" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBox Text="{Binding Path=Text}" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
                     </ListBox>
                 </StackPanel>
             </TabItem>
@@ -35,24 +30,28 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label>N:</Label>
-                        <TextBox>13</TextBox>
+                        <TextBox Name="Array2SizeN">13</TextBox>
                         <Label>M:</Label>
-                        <TextBox>13</TextBox>
-                        <Button>Изменить</Button>
+                        <TextBox Name="Array2SizeM">13</TextBox>
+                        <Button Click="ChangeArray2DSize">Изменить</Button>
                     </StackPanel>
-                    <TreeView ItemsSource="{Binding Array2Ds}">
-                        <TreeView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel />
-                            </ItemsPanelTemplate>
-                        </TreeView.ItemsPanel>
-                        <TreeView.ItemTemplate>
-                            <DataTemplate>
-                                <TreeViewItem>
-                                    <Label Content="{Binding}"/>
-                                </TreeViewItem>
-                            </DataTemplate>
-                        </TreeView.ItemTemplate>
+                    <TreeView Name="TreeViewArray2D">
+                        <TreeViewItem Header="Строка 1">
+                            <WrapPanel>
+                                <TextBox>13</TextBox>
+                                <TextBox>13</TextBox>
+                                <TextBox>13</TextBox>
+                                <TextBox>13</TextBox>
+                            </WrapPanel>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Строка 2">
+                            <WrapPanel>
+                                <TextBox>13</TextBox>
+                                <TextBox>13</TextBox>
+                                <TextBox>13</TextBox>
+                                <TextBox>13</TextBox>
+                            </WrapPanel>
+                        </TreeViewItem>
                     </TreeView>
                 </StackPanel>
             </TabItem>
@@ -64,22 +63,23 @@
                         <TextBox>13</TextBox>
                         <Button>Изменить</Button>
                     </StackPanel>
-                    <TreeViewItem>
-                        <TreeViewItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <Label>1 строка</Label>
-                                <Label>M:</Label>
+                    <TreeView Name="TreeViewArrayJagged">
+                        <TreeViewItem>
+                            <TreeViewItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>Строка 1 M:</Label>
+                                    <TextBox>13</TextBox>
+                                    <Button>Изменить</Button>
+                                </StackPanel>
+                            </TreeViewItem.Header>
+                            <WrapPanel Name="JaggedArray">
                                 <TextBox>13</TextBox>
-                                <Button>Изменить</Button>
-                            </StackPanel>
-                        </TreeViewItem.Header>
-                        <WrapPanel Name="JaggedArray">
-                            <TextBox>13</TextBox>
-                            <TextBox>13</TextBox>
-                            <TextBox>13</TextBox>
-                            <TextBox>13</TextBox>
-                        </WrapPanel>
-                    </TreeViewItem>
+                                <TextBox>13</TextBox>
+                                <TextBox>13</TextBox>
+                                <TextBox>13</TextBox>
+                            </WrapPanel>
+                        </TreeViewItem>
+                    </TreeView>
                 </StackPanel>
             </TabItem>
             

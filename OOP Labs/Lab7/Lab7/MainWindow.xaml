@@ -60,8 +60,8 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label>N:</Label>
-                        <TextBox>13</TextBox>
-                        <Button>Изменить</Button>
+                        <TextBox Name="ArrayJaggedSize">13</TextBox>
+                        <Button Name="ChangeArrayJagged" Click="ChangeArrayJaggedSize">Изменить</Button>
                     </StackPanel>
                     <TreeView Name="TreeViewArrayJagged">
                         <TreeViewItem>

@@ -64,14 +64,46 @@ namespace Lab7
 
         private void ChangeArrayJaggedSize(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(Array2SizeN.Text, out int n) &&
-                int.TryParse(Array2SizeM.Text, out int m))
+            string tempString = ((Button)sender).Name.ToString().Remove(0, 1);
+            if (int.TryParse(tempString, out int index))
             {
-                Array2D = new int[n, m];
-                for (int i = 0; i < n; i++)
-                    for (int j = 0; j < m; j++)
-                        Array2D[i, j] = i * m + j;
-                SetArray2D();
+
+                TextBox tempTextBox = FindChild<TextBox>(Application.Current.MainWindow, "t" + index);
+                if (int.TryParse(tempTextBox.Text, out int m))
+                    ChangeArrayJaggedByIndex(index, m);
+            }
+            else if (int.TryParse(ArrayJaggedSize.Text, out int size))
+                ChangeArrayJaggedToSize(size);
+            SetArrayJagged();
+        }
+
+        private void ChangeArrayJaggedByIndex(int index, int m)
+        {
+            int len = ArrayJagged[index].Length;
+            int[] tempArray = ArrayJagged[index];
+            ArrayJagged[index] = new int[m];
+            if (len > m)
+                for (int i = 0; i < m; ++i)
+                    ArrayJagged[index][i] = tempArray[i];
+            else
+                for (int i = 0; i < len; ++i)
+                    ArrayJagged[index][i] = tempArray[i];
+        }
+
+        private void ChangeArrayJaggedToSize(int m)
+        {
+            int len = ArrayJagged.Length;
+            int[][] tempArray = ArrayJagged;
+            ArrayJagged = new int[m][];
+            if (len > m)
+                for (int i = 0; i < m; ++i)
+                    ArrayJagged[i] = tempArray[i];
+            else
+            {
+                for (int i = 0; i < len; ++i)
+                    ArrayJagged[i] = tempArray[i];
+                for (int i = len; i < m; ++i)
+                    ArrayJagged[i] = new int[1];
             }
         }
 
@@ -111,10 +143,10 @@ namespace Lab7
                 int m = ArrayJagged[i].Length;
                 WrapPanel tempWrapPanel = new WrapPanel();
                 Label tempLabel = new Label { Content = $"Строка {i} M:" };
-                TextBox tempTextBox = new TextBox { Text = m.ToString() };
-                Button tempButton = new Button { Content = $"Изменить{i}" };
+                TextBox tempTextBox = new TextBox { Name = "t" + i, Text = m.ToString() };
+                Button tempButton = new Button { Name = "b" + i, Content = "Изменить" };
                 StackPanel tempStackPanel = new StackPanel { Orientation = Orientation.Horizontal };
-                TreeViewItem tempItem = new TreeViewItem { Header = tempStackPanel };
+                TreeViewItem tempItem = new TreeViewItem { Name = "i" + i, Header = tempStackPanel };
                 tempButton.Click += ChangeArrayJaggedSize;
                 tempStackPanel.Children.Add(tempLabel);
                 tempStackPanel.Children.Add(tempTextBox);
@@ -143,6 +175,39 @@ namespace Lab7
                                 </ListBox.ItemsPanel>
                             </ListBox >";
             return XamlReader.Parse(xaml) as ListBox;
+        }
+
+        public static T FindChild<T>(DependencyObject parent, string childName)
+            where T : DependencyObject
+        {
+            if (parent == null) return null;
+            T foundChild = null;
+            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < childrenCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                T childType = child as T;
+                if (childType == null)
+                {
+                    foundChild = FindChild<T>(child, childName);
+                    if (foundChild != null) break;
+                }
+                else if (!string.IsNullOrEmpty(childName))
+                {
+                    var frameworkElement = child as FrameworkElement;
+                    if (frameworkElement != null && frameworkElement.Name == childName)
+                    {
+                        foundChild = (T)child;
+                        break;
+                    }
+                }
+                else
+                {
+                    foundChild = (T)child;
+                    break;
+                }
+            }
+            return foundChild;
         }
     }
 }

@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Markup;
+using Microsoft.Win32;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Controls;
 
 namespace Lab7
 {
@@ -36,6 +26,7 @@ namespace Lab7
 
         private void ChangeArray1DSize(object sender, RoutedEventArgs e)
         {
+            FixArray1D();
             if (int.TryParse(Array1DSize.Text, out int size))
             {
                 Array1D = new int[size];
@@ -49,6 +40,7 @@ namespace Lab7
 
         private void ChangeArray2DSize(object sender, RoutedEventArgs e)
         {
+            FixArray2D();
             if (int.TryParse(Array2SizeN.Text, out int n) &&
                 int.TryParse(Array2SizeM.Text, out int m))
             {
@@ -64,6 +56,7 @@ namespace Lab7
 
         private void ChangeArrayJaggedSize(object sender, RoutedEventArgs e)
         {
+            FixArrayJagged();
             string tempString = ((Button)sender).Name.ToString().Remove(0, 1);
             if (int.TryParse(tempString, out int index))
             {
@@ -80,6 +73,21 @@ namespace Lab7
                 return;
             }
             SetArrayJagged();
+        }
+
+        private void ChangeArray1DField(object sender, RoutedEventArgs e)
+        {
+            FixArray1D();
+        }
+
+        private void ChangeArray2DField(object sender, RoutedEventArgs e)
+        {
+            FixArray2D();
+        }
+
+        private void ChangeArrayJaggedField(object sender, RoutedEventArgs e)
+        {
+            FixArrayJagged();
         }
 
         private void ChangeArrayJaggedByIndex(int index, int m)
@@ -150,7 +158,7 @@ namespace Lab7
             for (int i = 0, n = ArrayJagged.Length; i < n; ++i)
                 for (int j = 0, m = ArrayJagged[i].Length; j < m; ++j)
                 {
-                    TextBox tempTextBox = FindChild<TextBox>(Application.Current.MainWindow, "AJ" + i + "_" + j);
+                    TextBox tempTextBox = FindChild<TextBox>(Application.Current.MainWindow, "AJG" + i + "_" + j);
                     if (int.TryParse(tempTextBox.Text, out int num))
                         ArrayJagged[i][j] = num;
                     else
@@ -190,21 +198,107 @@ namespace Lab7
 
         private void SaveToFile(object sender, RoutedEventArgs e)
         {
-            FixArray1D();
-            FixArray2D();
-            FixArrayJagged();
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Текстовый документ (*.txt)|*.txt";
+            if (dialog.ShowDialog() == true)
+            {
+                using (FileStream fstream = new FileStream(dialog.FileName, FileMode.OpenOrCreate))
+                {
+                    int Sum = 16,
+                        n1d = Array1D.Length,
+                        n2d = Array2D.GetUpperBound(0) + 1,
+                        m2d = Array2D.Length / n2d,
+                        n2j = ArrayJagged.Length;
+                    int[] m2j = new int[n2j];
+                    for (int i = 0; i < n2j; ++i)
+                    {
+                        m2j[i] = ArrayJagged[i].Length;
+                        Sum += m2j[i] * 4;
+                    }
+                    Sum += (n1d + n2d + m2d + n2j) * 4;
+
+                    byte[] A = new byte[Sum];
+                    SetByteArray(A, 0, n1d);
+                    SetByteArray(A, 4, n2d);
+                    SetByteArray(A, 8, m2d);
+                    SetByteArray(A, 12, n2j);
+                    for(int i = 0; i < n2j; ++i)
+                        SetByteArray(A, (4 + i) * 4, m2j[i]);
+                    for (int i = 0; i < n1d; ++i)
+                        SetByteArray(A, (4 + n2j + i) * 4, Array1D[i]);
+                    for (int i = 0; i < n2d; ++i)
+                        for (int j = 0; j < m2d; ++j)
+                            SetByteArray(A, (4 + n2j + n1d + i + j) * 4, Array2D[i, j]);
+                    for (int i = 0; i < n2j; ++i)
+                        for (int j = 0; j < m2j[i]; ++j)
+                            SetByteArray(A, (4 + n2j + n1d + n2d + m2d + i + j) * 4, ArrayJagged[i][j]);
+
+                    fstream.Write(A, 0, Sum);
+                    fstream.Close();
+                }
+            }
+        }
+
+        private void SetByteArray(byte[] array, int pos, int num)
+        {
+            byte[] numA = BitConverter.GetBytes(num);
+            for (int i = 0; i < 4; ++i)
+                array[pos + i] = numA[i];
         }
 
         private void LoadFromFile(object sender, RoutedEventArgs e)
         {
-            
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Текстовые документы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            if (dialog.ShowDialog() == true)
+            {
+                using (FileStream fstream = new FileStream(dialog.FileName, FileMode.OpenOrCreate))
+                {
+                    byte[] A = new byte[fstream.Length];
+                    fstream.Read(A, 0, A.Length);
+                    SetIntFromByteArray(A, 0, out int n1d);
+                    SetIntFromByteArray(A, 4, out int n2d);
+                    SetIntFromByteArray(A, 8, out int m2d);
+                    SetIntFromByteArray(A, 12, out int n2j);
+                    int[] m2j = new int[n2j];
+                    for(int i = 0; i < n2j; ++i)
+                        SetIntFromByteArray(A, (4 + i) * 4, out m2j[i]);
+                    Array1D = new int[n1d];
+                    Array2D = new int[n2d, m2d];
+                    ArrayJagged = new int[n2j][];
+                    for (int i = 0; i < n1d; ++i)
+                        SetIntFromByteArray(A, (4 + n2j + i) * 4, out Array1D[i]);
+                    for (int i = 0; i < n2d; ++i)
+                        for (int j = 0; j < m2d; ++j)
+                            SetIntFromByteArray(A, (4 + n2j + n1d + i + j) * 4, out Array2D[i, j]);
+                    for (int i = 0; i < n2j; ++i)
+                    {
+                        ArrayJagged[i] = new int[m2j[i]];
+                        for (int j = 0; j < m2j[i]; ++j)
+                            SetIntFromByteArray(A, (4 + n2j + n1d + n2d + m2d + i + j) * 4, out ArrayJagged[i][j]);
+                    }
+                    fstream.Close();
+                    SetArray1D();
+                    SetArray2D();
+                    SetArrayJagged();
+                }
+            }
+        }
+
+        private void SetIntFromByteArray(byte[] array, int pos, out int num)
+        {
+            num = BitConverter.ToInt32(array, pos);
         }
 
         private void SetArray1D()
         {
             ListBoxArray1D.Items.Clear();
             for (int i = 0, n = Array1D.Length; i < n; ++i)
-                ListBoxArray1D.Items.Add(new ListBoxItem { Content = new TextBox { Name = "A1D" + i, Text = Array1D[i].ToString() } });
+            {
+                TextBox textBox = new TextBox { Name = "A1D" + i, Text = Array1D[i].ToString() };
+                textBox.TextChanged += ChangeArray1DField;
+                ListBoxArray1D.Items.Add(new ListBoxItem { Content = textBox });
+            }
         }
 
         private void SetArray2D()
@@ -222,6 +316,7 @@ namespace Lab7
                 {
                     string tempText = Array2D[i, j].ToString();
                     TextBox tempTextBox = new TextBox { Name = "A2D" + i + "_" + j, Text = tempText };
+                    tempTextBox.TextChanged += ChangeArray2DField;
                     tempWrapPanel.Children.Add(tempTextBox);
                 }
             }
@@ -249,7 +344,8 @@ namespace Lab7
                 for (int j = 0; j < m; ++j)
                 {
                     string tempText = ArrayJagged[i][j].ToString();
-                    TextBox tempEdit = new TextBox { Name = "AJ" + i + "_" + j, Text = tempText };
+                    TextBox tempEdit = new TextBox { Name = "AJG" + i + "_" + j, Text = tempText };
+                    tempEdit.TextChanged += ChangeArrayJaggedField;
                     tempWrapPanel.Children.Add(tempEdit);
                 }
             }

@@ -13,8 +13,13 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label>N:</Label>
-                        <TextBox Name="Array1Size" Text="3" />
-                        <Button Margin="5" Click="ChangeArray1DSize">Изменить</Button>
+                        <TextBox Name="Array1DSize" Text="3" />
+                        <Button Click="ChangeArray1DSize">Изменить</Button>
+                        <Label>Добавить N:</Label>
+                        <TextBox Name="Array1DN" Text="3" />
+                        <Label>после K:</Label>
+                        <TextBox Name="Array1DK" Text="3" />
+                        <Button Click="AddLineArray1D">Выполнить</Button>
                     </StackPanel>
                     <ListBox Name="ListBoxArray1D" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <ListBox.ItemsPanel>
@@ -34,25 +39,9 @@
                         <Label>M:</Label>
                         <TextBox Name="Array2SizeM">13</TextBox>
                         <Button Click="ChangeArray2DSize">Изменить</Button>
+                        <Button Click="DropEvenArray2D">Удалить все четные столбцы</Button>
                     </StackPanel>
-                    <TreeView Name="TreeViewArray2D">
-                        <TreeViewItem Header="Строка 1">
-                            <WrapPanel>
-                                <TextBox>13</TextBox>
-                                <TextBox>13</TextBox>
-                                <TextBox>13</TextBox>
-                                <TextBox>13</TextBox>
-                            </WrapPanel>
-                        </TreeViewItem>
-                        <TreeViewItem Header="Строка 2">
-                            <WrapPanel>
-                                <TextBox>13</TextBox>
-                                <TextBox>13</TextBox>
-                                <TextBox>13</TextBox>
-                                <TextBox>13</TextBox>
-                            </WrapPanel>
-                        </TreeViewItem>
-                    </TreeView>
+                    <TreeView Name="TreeViewArray2D" />
                 </StackPanel>
             </TabItem>
 
@@ -62,24 +51,18 @@
                         <Label>N:</Label>
                         <TextBox Name="ArrayJaggedSize">13</TextBox>
                         <Button Name="ChangeArrayJagged" Click="ChangeArrayJaggedSize">Изменить</Button>
+                        <Button Click="AddLineArrayJagged">Добавить строку в конец массива</Button>
                     </StackPanel>
                     <TreeView Name="TreeViewArrayJagged">
-                        <TreeViewItem>
-                            <TreeViewItem.Header>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label>Строка 1 M:</Label>
-                                    <TextBox>13</TextBox>
-                                    <Button>Изменить</Button>
-                                </StackPanel>
-                            </TreeViewItem.Header>
-                            <WrapPanel Name="JaggedArray">
-                                <TextBox>13</TextBox>
-                                <TextBox>13</TextBox>
-                                <TextBox>13</TextBox>
-                                <TextBox>13</TextBox>
-                            </WrapPanel>
-                        </TreeViewItem>
+                        <TreeViewItem />
                     </TreeView>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Файл">
+                <StackPanel>
+                    <Button Click="SaveToFile">Сохранить в файл</Button>
+                    <Button Click="LoadFromFile">Загрузть из файла</Button>
                 </StackPanel>
             </TabItem>
             

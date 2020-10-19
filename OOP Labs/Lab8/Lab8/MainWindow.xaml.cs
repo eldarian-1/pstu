@@ -10,16 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Lab7
+namespace Lab8
 {
-    /// <summary>
-    /// Логика взаимодействия для FileDialog.xaml
-    /// </summary>
-    public partial class FileDialog : Window
+    public class Phone
     {
-        public FileDialog()
+        public string Title { get; set; }
+        public string Company { get; set; }
+        public int Price { get; set; }
+    }
+
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
         {
             InitializeComponent();
         }

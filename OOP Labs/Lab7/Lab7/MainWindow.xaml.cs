@@ -199,7 +199,7 @@ namespace Lab7
         private void SaveToFile(object sender, RoutedEventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Текстовый документ (*.txt)|*.txt";
+            dialog.Filter = "Документ ARR (*.arr)|*.arr";
             if (dialog.ShowDialog() == true)
             {
                 using (FileStream fstream = new FileStream(dialog.FileName, FileMode.OpenOrCreate))
@@ -249,7 +249,7 @@ namespace Lab7
         private void LoadFromFile(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Текстовые документы (*.txt)|*.txt|Все файлы (*.*)|*.*";
+            dialog.Filter = "Документ ARR (*.arr)|*.arr";
             if (dialog.ShowDialog() == true)
             {
                 using (FileStream fstream = new FileStream(dialog.FileName, FileMode.OpenOrCreate))

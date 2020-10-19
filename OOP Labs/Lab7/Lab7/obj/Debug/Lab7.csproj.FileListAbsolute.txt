@@ -20,7 +20,6 @@ C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\Lab7.csprojAssemblyR
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\MainWindow.g.cs
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\App.g.cs
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\Lab7_MarkupCompile.cache
-C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\Lab7_MarkupCompile.lref
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\MainWindow.baml
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\Lab7.g.resources
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\Lab7.Properties.Resources.resources
@@ -28,5 +27,3 @@ C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\Lab7.csproj.Generate
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\Lab7.csproj.CoreCompileInputs.cache
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\Lab7.exe
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\Lab7.pdb
-C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\FileDialog.g.cs
-C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab7\Lab7\obj\Debug\FileDialog.baml

@@ -7,46 +7,63 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel>
-            
-            <Menu Height="20" VerticalAlignment="Top">
-                <MenuItem Header="File">
-                    <MenuItem Header="New Project" ></MenuItem>
-                    <MenuItem Header="Open Project" >
-                        <MenuItem Header="WinForms"></MenuItem>
-                        <MenuItem Header="WPF" ></MenuItem>
-                    </MenuItem>
-                    <Separator />
-                    <MenuItem Header="Exit" ></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Edit" ></MenuItem>
-                <MenuItem Header="View" ></MenuItem>
-            </Menu>
-            
-            <StackPanel Orientation="Horizontal">
-                <Label>Поиск</Label>
-                <TextBox>Введите ФИО</TextBox>
-            </StackPanel>
-            
-            <ListView Name="phonesList" ItemsSource="{DynamicResource ResourceKey=phones}" >
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Title}">Модель</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Company}" Width="100">Компания</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Price}">Цена</GridViewColumn>
-                    </GridView>
-                </ListView.View>
-                <ListView.Resources>
-                    <col:ArrayList x:Key="phones">
-                        <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
-                        <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
-                        <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
-                        <local:Phone Title = "Galaxy Edge" Company = "Samsung" Price = "45670" />
-                    </col:ArrayList>
-                </ListView.Resources>
-            </ListView>
-            
+    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+    <StackPanel>
+
+        <Menu Height="20" VerticalAlignment="Top">
+                <MenuItem Header="Сохранить" Click="ClickSave" />
+                <MenuItem Header="Загрузить" Click="ClickLoad" />
+        </Menu>
+
+        <StackPanel Orientation="Horizontal">
+            <Label>Поиск</Label>
+            <TextBox>Введите ФИО</TextBox>
         </StackPanel>
-    </Grid>
+
+        <ListView Name="clientsList">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">ФИО</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Summ}">Сумма</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Type}">Тип</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Period}">Срок</GridViewColumn>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock FontSize="16" Text="{Binding Path=Name}" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="16" Text="{Binding Path=Summ}" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="16" Text="{Binding Path=Type}" HorizontalAlignment="Center" />
+                        <TextBlock FontSize="16" Text="{Binding Path=Period}" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0">ФИО</Label>
+            <TextBox Grid.Column="1" Grid.Row="0" Name="ClientName"></TextBox>
+            <Label Grid.Column="0" Grid.Row="1">Сумма</Label>
+            <TextBox Grid.Column="1" Grid.Row="1" Name="ClientSumm"></TextBox>
+            <Label Grid.Column="0" Grid.Row="2">Тип</Label>
+            <TextBox Grid.Column="1" Grid.Row="2" Name="ClientType"></TextBox>
+            <Label Grid.Column="0" Grid.Row="3">Срок</Label>
+            <TextBox Grid.Column="1" Grid.Row="3" Name="ClientPeriod"></TextBox>
+            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Click="ButtonAddClient">Добавить</Button>
+        </Grid>
+
+    </StackPanel>
+    </ScrollViewer>
 </Window>

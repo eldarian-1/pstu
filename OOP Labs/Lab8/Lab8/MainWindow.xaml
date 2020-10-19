@@ -9,10 +9,26 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <StackPanel>
+            
+            <Menu Height="20" VerticalAlignment="Top">
+                <MenuItem Header="File">
+                    <MenuItem Header="New Project" ></MenuItem>
+                    <MenuItem Header="Open Project" >
+                        <MenuItem Header="WinForms"></MenuItem>
+                        <MenuItem Header="WPF" ></MenuItem>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Exit" ></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Edit" ></MenuItem>
+                <MenuItem Header="View" ></MenuItem>
+            </Menu>
+            
             <StackPanel Orientation="Horizontal">
                 <Label>Поиск</Label>
                 <TextBox>Введите ФИО</TextBox>
             </StackPanel>
+            
             <ListView Name="phonesList" ItemsSource="{DynamicResource ResourceKey=phones}" >
                 <ListView.View>
                     <GridView>
@@ -30,6 +46,7 @@
                     </col:ArrayList>
                 </ListView.Resources>
             </ListView>
+            
         </StackPanel>
     </Grid>
 </Window>

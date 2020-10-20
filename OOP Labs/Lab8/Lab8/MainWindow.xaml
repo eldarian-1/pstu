@@ -8,62 +8,62 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <ScrollViewer HorizontalScrollBarVisibility="Auto">
-    <StackPanel>
+        <StackPanel>
 
-        <Menu Height="20" VerticalAlignment="Top">
-                <MenuItem Header="Сохранить" Click="ClickSave" />
-                <MenuItem Header="Загрузить" Click="ClickLoad" />
-        </Menu>
+            <Menu Height="20" VerticalAlignment="Top">
+                    <MenuItem Header="Сохранить" Click="ClickSave" />
+                    <MenuItem Header="Загрузить" Click="ClickLoad" />
+            </Menu>
 
-        <StackPanel Orientation="Horizontal">
-            <Label>Поиск</Label>
-            <TextBox>Введите ФИО</TextBox>
+            <StackPanel Orientation="Horizontal">
+                <Label>Поиск</Label>
+                <TextBox>Введите ФИО</TextBox>
+            </StackPanel>
+
+            <ListView Name="clientsList">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">ФИО</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Summ}">Сумма</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Type}">Тип</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Period}">Срок</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <TextBlock FontSize="16" Text="{Binding Path=Name}" HorizontalAlignment="Center" />
+                            <TextBlock FontSize="16" Text="{Binding Path=Summ}" HorizontalAlignment="Center" />
+                            <TextBlock FontSize="16" Text="{Binding Path=Type}" HorizontalAlignment="Center" />
+                            <TextBlock FontSize="16" Text="{Binding Path=Period}" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0">ФИО</Label>
+                <TextBox Grid.Column="1" Grid.Row="0" Name="ClientName"></TextBox>
+                <Label Grid.Column="0" Grid.Row="1">Сумма</Label>
+                <TextBox Grid.Column="1" Grid.Row="1" Name="ClientSumm"></TextBox>
+                <Label Grid.Column="0" Grid.Row="2">Тип</Label>
+                <TextBox Grid.Column="1" Grid.Row="2" Name="ClientType"></TextBox>
+                <Label Grid.Column="0" Grid.Row="3">Срок</Label>
+                <TextBox Grid.Column="1" Grid.Row="3" Name="ClientPeriod"></TextBox>
+                <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Click="ButtonAddClient">Добавить</Button>
+            </Grid>
+
         </StackPanel>
-
-        <ListView Name="clientsList">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">ФИО</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Summ}">Сумма</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Type}">Тип</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Period}">Срок</GridViewColumn>
-                </GridView>
-            </ListView.View>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <TextBlock FontSize="16" Text="{Binding Path=Name}" HorizontalAlignment="Center" />
-                        <TextBlock FontSize="16" Text="{Binding Path=Summ}" HorizontalAlignment="Center" />
-                        <TextBlock FontSize="16" Text="{Binding Path=Type}" HorizontalAlignment="Center" />
-                        <TextBlock FontSize="16" Text="{Binding Path=Period}" HorizontalAlignment="Center" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0">ФИО</Label>
-            <TextBox Grid.Column="1" Grid.Row="0" Name="ClientName"></TextBox>
-            <Label Grid.Column="0" Grid.Row="1">Сумма</Label>
-            <TextBox Grid.Column="1" Grid.Row="1" Name="ClientSumm"></TextBox>
-            <Label Grid.Column="0" Grid.Row="2">Тип</Label>
-            <TextBox Grid.Column="1" Grid.Row="2" Name="ClientType"></TextBox>
-            <Label Grid.Column="0" Grid.Row="3">Срок</Label>
-            <TextBox Grid.Column="1" Grid.Row="3" Name="ClientPeriod"></TextBox>
-            <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Click="ButtonAddClient">Добавить</Button>
-        </Grid>
-
-    </StackPanel>
     </ScrollViewer>
 </Window>

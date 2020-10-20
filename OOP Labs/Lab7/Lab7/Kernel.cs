@@ -1,4 +1,6 @@
-﻿namespace Lab7
+﻿using System;
+
+namespace Lab7
 {
     static class Kernel
     {
@@ -20,7 +22,10 @@
         // Добавление N элементов после K элемента в одномерный массив
         public static void Addition(ref int[] array, int n, int k)
         {
-            int newSize = array.Length + n;
+            int oldSize = array.Length;
+            int newSize = oldSize + n;
+            if(k > oldSize || oldSize >= newSize)
+                throw new Exception();
             int[] temp = array;
             array = new int[newSize];
             for (int i = 0; i < k; ++i)
@@ -36,6 +41,8 @@
         {
             int[,] temp = array;
             int n = array.GetUpperBound(0) + 1;
+            if (n == 0)
+                return;
             int k = array.Length / n;
             int m = n / 2;
             array = new int[m, k];

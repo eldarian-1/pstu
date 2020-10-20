@@ -9,53 +9,59 @@
         <TabControl>
 
             <TabItem Header="Одномерный массив">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label>N:</Label>
-                        <TextBox Name="Array1DSize" Text="3" />
-                        <Button Click="ChangeArray1DSize">Изменить</Button>
-                        <Label>Добавить N:</Label>
-                        <TextBox Name="Array1DN" Text="3" />
-                        <Label>после K:</Label>
-                        <TextBox Name="Array1DK" Text="3" />
-                        <Button Click="AddLineArray1D">Выполнить</Button>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>N:</Label>
+                            <TextBox Name="Array1DSize" Text="3" />
+                            <Button Click="ChangeArray1DSize">Изменить</Button>
+                            <Label>Добавить N:</Label>
+                            <TextBox Name="Array1DN" Text="3" />
+                            <Label>после K:</Label>
+                            <TextBox Name="Array1DK" Text="3" />
+                            <Button Click="AddLineArray1D">Выполнить</Button>
+                        </StackPanel>
+                        <ListBox Name="ListBoxArray1D" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
                     </StackPanel>
-                    <ListBox Name="ListBoxArray1D" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel />
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                    </ListBox>
-                </StackPanel>
+                </ScrollViewer>
             </TabItem>
 
             <TabItem Header="Двумерный массив">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label>N:</Label>
-                        <TextBox Name="Array2SizeN">13</TextBox>
-                        <Label>M:</Label>
-                        <TextBox Name="Array2SizeM">13</TextBox>
-                        <Button Click="ChangeArray2DSize">Изменить</Button>
-                        <Button Click="DropEvenArray2D">Удалить все четные столбцы</Button>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>N:</Label>
+                            <TextBox Name="Array2SizeN">13</TextBox>
+                            <Label>M:</Label>
+                            <TextBox Name="Array2SizeM">13</TextBox>
+                            <Button Click="ChangeArray2DSize">Изменить</Button>
+                            <Button Click="DropEvenArray2D">Удалить все четные столбцы</Button>
+                        </StackPanel>
+                        <TreeView Name="TreeViewArray2D" />
                     </StackPanel>
-                    <TreeView Name="TreeViewArray2D" />
-                </StackPanel>
+                </ScrollViewer>
             </TabItem>
 
             <TabItem Header="Рваный массив">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label>N:</Label>
-                        <TextBox Name="ArrayJaggedSize">13</TextBox>
-                        <Button Name="ChangeArrayJagged" Click="ChangeArrayJaggedSize">Изменить</Button>
-                        <Button Click="AddLineArrayJagged">Добавить строку в конец массива</Button>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>N:</Label>
+                            <TextBox Name="ArrayJaggedSize">13</TextBox>
+                            <Button Name="ChangeArrayJagged" Click="ChangeArrayJaggedSize">Изменить</Button>
+                            <Button Click="AddLineArrayJagged">Добавить строку в конец массива</Button>
+                        </StackPanel>
+                        <TreeView Name="TreeViewArrayJagged">
+                            <TreeViewItem />
+                        </TreeView>
                     </StackPanel>
-                    <TreeView Name="TreeViewArrayJagged">
-                        <TreeViewItem />
-                    </TreeView>
-                </StackPanel>
+                </ScrollViewer>
             </TabItem>
 
             <TabItem Header="Файлы">

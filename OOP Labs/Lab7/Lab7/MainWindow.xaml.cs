@@ -29,6 +29,8 @@ namespace Lab7
             FixArray1D();
             if (int.TryParse(Array1DSize.Text, out int size))
             {
+                if (size < 0)
+                    return;
                 Array1D = new int[size];
                 for (int i = 0; i < size; i++)
                     Array1D[i] = i;
@@ -44,6 +46,8 @@ namespace Lab7
             if (int.TryParse(Array2SizeN.Text, out int n) &&
                 int.TryParse(Array2SizeM.Text, out int m))
             {
+                if (n < 0 || m < 0)
+                    return;
                 Array2D = new int[n, m];
                 for (int i = 0; i < n; i++)
                     for (int j = 0; j < m; j++)
@@ -60,13 +64,18 @@ namespace Lab7
             string tempString = ((Button)sender).Name.ToString().Remove(0, 1);
             if (int.TryParse(tempString, out int index))
             {
-
                 TextBox tempTextBox = FindChild<TextBox>(Application.Current.MainWindow, "t" + index);
                 if (int.TryParse(tempTextBox.Text, out int m))
-                    ChangeArrayJaggedByIndex(index, m);
+                    if (m >= 0)
+                        ChangeArrayJaggedByIndex(index, m);
+                    else
+                        return;
             }
             else if (int.TryParse(ArrayJaggedSize.Text, out int size))
-                ChangeArrayJaggedToSize(size);
+                if (size >= 0)
+                    ChangeArrayJaggedToSize(size);
+                else
+                    return;
             else
             {
                 MessageBox.Show($"Некорректное значение поля!");
@@ -138,6 +147,8 @@ namespace Lab7
         private void FixArray2D()
         {
             int n = Array2D.GetUpperBound(0) + 1;
+            if (n == 0)
+                return;
             int m = Array2D.Length / n;
             for (int i = 0; i < n; ++i)
                 for (int j = 0; j < m; ++j)
@@ -172,14 +183,18 @@ namespace Lab7
         private void AddLineArray1D(object sender, RoutedEventArgs e)
         {
             FixArray1D();
-            if (int.TryParse(Array1DN.Text, out int n) && int.TryParse(Array1DK.Text, out int k))
-                Kernel.Addition(ref Array1D, n, k);
-            else
+            try
+            {
+                if (int.TryParse(Array1DN.Text, out int n) && int.TryParse(Array1DK.Text, out int k))
+                    Kernel.Addition(ref Array1D, n, k);
+                else
+                    throw new Exception();
+                SetArray1D();
+            }
+            catch (Exception)
             {
                 MessageBox.Show($"Некорректное значение поля!");
-                return;
             }
-            SetArray1D();
         }
 
         private void DropEvenArray2D(object sender, RoutedEventArgs e)
@@ -219,19 +234,19 @@ namespace Lab7
 
                     byte[] A = new byte[Sum];
                     SetByteArray(A, 0, n1d);
-                    SetByteArray(A, 4, n2d);
-                    SetByteArray(A, 8, m2d);
-                    SetByteArray(A, 12, n2j);
+                    SetByteArray(A, 1, n2d);
+                    SetByteArray(A, 2, m2d);
+                    SetByteArray(A, 3, n2j);
                     for(int i = 0; i < n2j; ++i)
-                        SetByteArray(A, (4 + i) * 4, m2j[i]);
+                        SetByteArray(A, 4 + i, m2j[i]);
                     for (int i = 0; i < n1d; ++i)
-                        SetByteArray(A, (4 + n2j + i) * 4, Array1D[i]);
+                        SetByteArray(A, 4 + n2j + i, Array1D[i]);
                     for (int i = 0; i < n2d; ++i)
                         for (int j = 0; j < m2d; ++j)
-                            SetByteArray(A, (4 + n2j + n1d + i + j) * 4, Array2D[i, j]);
+                            SetByteArray(A, 4 + n2j + n1d + i + j, Array2D[i, j]);
                     for (int i = 0; i < n2j; ++i)
                         for (int j = 0; j < m2j[i]; ++j)
-                            SetByteArray(A, (4 + n2j + n1d + n2d + m2d + i + j) * 4, ArrayJagged[i][j]);
+                            SetByteArray(A, 4 + n2j + n1d + n2d + m2d + i + j, ArrayJagged[i][j]);
 
                     fstream.Write(A, 0, Sum);
                     fstream.Close();
@@ -242,6 +257,7 @@ namespace Lab7
         private void SetByteArray(byte[] array, int pos, int num)
         {
             byte[] numA = BitConverter.GetBytes(num);
+            pos *= 4;
             for (int i = 0; i < 4; ++i)
                 array[pos + i] = numA[i];
         }
@@ -257,25 +273,25 @@ namespace Lab7
                     byte[] A = new byte[fstream.Length];
                     fstream.Read(A, 0, A.Length);
                     SetIntFromByteArray(A, 0, out int n1d);
-                    SetIntFromByteArray(A, 4, out int n2d);
-                    SetIntFromByteArray(A, 8, out int m2d);
-                    SetIntFromByteArray(A, 12, out int n2j);
+                    SetIntFromByteArray(A, 1, out int n2d);
+                    SetIntFromByteArray(A, 2, out int m2d);
+                    SetIntFromByteArray(A, 3, out int n2j);
                     int[] m2j = new int[n2j];
                     for(int i = 0; i < n2j; ++i)
-                        SetIntFromByteArray(A, (4 + i) * 4, out m2j[i]);
+                        SetIntFromByteArray(A, 4 + i, out m2j[i]);
                     Array1D = new int[n1d];
                     Array2D = new int[n2d, m2d];
                     ArrayJagged = new int[n2j][];
                     for (int i = 0; i < n1d; ++i)
-                        SetIntFromByteArray(A, (4 + n2j + i) * 4, out Array1D[i]);
+                        SetIntFromByteArray(A, 4 + n2j + i, out Array1D[i]);
                     for (int i = 0; i < n2d; ++i)
                         for (int j = 0; j < m2d; ++j)
-                            SetIntFromByteArray(A, (4 + n2j + n1d + i + j) * 4, out Array2D[i, j]);
+                            SetIntFromByteArray(A, 4 + n2j + n1d + i + j, out Array2D[i, j]);
                     for (int i = 0; i < n2j; ++i)
                     {
                         ArrayJagged[i] = new int[m2j[i]];
                         for (int j = 0; j < m2j[i]; ++j)
-                            SetIntFromByteArray(A, (4 + n2j + n1d + n2d + m2d + i + j) * 4, out ArrayJagged[i][j]);
+                            SetIntFromByteArray(A, 4 + n2j + n1d + n2d + m2d + i + j, out ArrayJagged[i][j]);
                     }
                     fstream.Close();
                     SetArray1D();
@@ -286,9 +302,7 @@ namespace Lab7
         }
 
         private void SetIntFromByteArray(byte[] array, int pos, out int num)
-        {
-            num = BitConverter.ToInt32(array, pos);
-        }
+            => num = BitConverter.ToInt32(array, pos * 4);
 
         private void SetArray1D()
         {
@@ -305,6 +319,8 @@ namespace Lab7
         {
             TreeViewArray2D.Items.Clear();
             int n = Array2D.GetUpperBound(0) + 1;
+            if (n == 0)
+                return;
             int m = Array2D.Length / n;
             for (int i = 0; i < n; ++i)
             {

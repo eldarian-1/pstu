@@ -63,6 +63,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Array1D.cs" />
+    <Compile Include="Array2D.cs" />
+    <Compile Include="Array2J.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

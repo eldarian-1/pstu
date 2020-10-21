@@ -5,7 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <StackPanel>
+        
+        <Menu>
+            <MenuItem Click="SaveToFile" Header="Сохранить" />
+            <MenuItem Click="LoadFromFile" Header="Загрузить" />
+            <MenuItem>
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>Способ заполнения полей</Label>
+                        <ComboBox>
+                            <ComboBoxItem Selected="ComboBoxNullSelected"  IsSelected="True">Null</ComboBoxItem>
+                            <ComboBoxItem Selected="ComboBoxRandSelected">Rand</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+
         <TabControl>
 
             <TabItem Header="Одномерный массив">
@@ -14,7 +31,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Label>N:</Label>
                             <TextBox Name="Array1DSize" Text="3" />
-                            <Button Click="ChangeArray1DSize">Изменить</Button>
+                            <Button Click="ResizeArray1D">Изменить</Button>
                             <Label>Добавить N:</Label>
                             <TextBox Name="Array1DN" Text="3" />
                             <Label>после K:</Label>
@@ -40,7 +57,7 @@
                             <TextBox Name="Array2SizeN">13</TextBox>
                             <Label>M:</Label>
                             <TextBox Name="Array2SizeM">13</TextBox>
-                            <Button Click="ChangeArray2DSize">Изменить</Button>
+                            <Button Click="ResizeArray2D">Изменить</Button>
                             <Button Click="DropEvenArray2D">Удалить все четные столбцы</Button>
                         </StackPanel>
                         <TreeView Name="TreeViewArray2D" />
@@ -53,24 +70,17 @@
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label>N:</Label>
-                            <TextBox Name="ArrayJaggedSize">13</TextBox>
-                            <Button Name="ChangeArrayJagged" Click="ChangeArrayJaggedSize">Изменить</Button>
-                            <Button Click="AddLineArrayJagged">Добавить строку в конец массива</Button>
+                            <TextBox Name="Array2JSize">13</TextBox>
+                            <Button Name="ChangeArray2J" Click="ResizeArray2J">Изменить</Button>
+                            <Button Click="AddLineArray2J">Добавить строку в конец массива</Button>
                         </StackPanel>
-                        <TreeView Name="TreeViewArrayJagged">
+                        <TreeView Name="TreeViewArray2J">
                             <TreeViewItem />
                         </TreeView>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
 
-            <TabItem Header="Файлы">
-                <StackPanel>
-                    <Button Click="SaveToFile">Сохранить в файл</Button>
-                    <Button Click="LoadFromFile">Загрузть из файла</Button>
-                </StackPanel>
-            </TabItem>
-
         </TabControl>
-    </Grid>
+    </StackPanel>
 </Window>

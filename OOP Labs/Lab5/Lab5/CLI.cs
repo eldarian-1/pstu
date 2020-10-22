@@ -25,6 +25,8 @@ namespace Lab5
         private const string c_sReadNumberA2 = "Введите {0}({1},{2}): ";
         private const string c_sIncorrectValue = "Некорректное значение!";
         private const string c_sNullArray = "Ошибка! Массив не создан.\n";
+        private const string c_sEmptyLine = "Пустая строка";
+        private const string c_sEmptyArray = "Массив пуст.\n";
         private const string c_sCleanArray = "Массив пуст, поэтому удален.\n";
         private const string c_sNullFunction = "Спасибо за работу!";
         private const string c_sGetMode =
@@ -35,10 +37,10 @@ namespace Lab5
             "\t1. вывести массив\n" +
             "\t2. cоздать массив\n" +
             "\t3. добавить N элементов, начиная с K элемента\n" +
-            "Двемерный массив\n" +
+            "Двумерный массив\n" +
             "\t4. вывести массив\n" +
             "\t5. создать массив\n" +
-            "\t6. удалить чентные строки в массиве\n" +
+            "\t6. удалить четные столбцы в массиве\n" +
             "Рваный массив\n" +
             "\t7. вывести массив\n" +
             "\t8. создать массив\n" +
@@ -63,6 +65,10 @@ namespace Lab5
                 catch (CleanArrayException)
                 {
                     Console.WriteLine(c_sCleanArray);
+                }
+                catch (BadSizeArray)
+                {
+                    Console.WriteLine(c_sEmptyArray);
                 }
                 catch (NullFunctionException)
                 {
@@ -122,8 +128,12 @@ namespace Lab5
         public static void Output(int[] array)
         {
             Kernel.CheckArray(Kernel.array1D);
-            for (int i = 0, n = array.Length; i < n; ++i)
-                Console.Write(c_sElem, array[i]);
+            int n = array.Length;
+            if(n != 0)
+                for (int i = 0; i < n; ++i)
+                    Console.Write(c_sElem, array[i]);
+            else
+                Console.Write(c_sEmptyArray);
             Console.WriteLine("\n");
         }
 
@@ -131,9 +141,13 @@ namespace Lab5
         {
             Kernel.CheckArray(Kernel.array2D);
             int n = array.GetUpperBound(0) + 1;
+            if (n == 0)
+                throw new BadSizeArray();
             int k = array.Length / n;
             for (int i = 0; i < n; ++i)
             {
+                if (k == 0)
+                    Console.Write(c_sEmptyLine);
                 for (int j = 0; j < k; ++j)
                     Console.Write(c_sElem, array[i, j]);
                 Console.WriteLine();
@@ -144,12 +158,20 @@ namespace Lab5
         public static void Output(int[][] array)
         {
             Kernel.CheckArray(Kernel.arrayRagged);
-            for (int i = 0, n = array.Length; i < n; ++i)
-            {
-                for (int j = 0, k = array[i].Length; j < k; ++j)
-                    Console.Write(c_sElem, array[i][j]);
-                Console.WriteLine();
-            }
+            int n = array.Length;
+            if (n != 0)
+                for (int i = 0; i < n; ++i)
+                {
+                    int m = array[i].Length;
+                    if(m != 0)
+                        for (int j = 0; j < m; ++j)
+                            Console.Write(c_sElem, array[i][j]);
+                    else
+                        Console.Write(c_sEmptyLine);
+                    Console.WriteLine();
+                }
+            else
+                Console.Write(c_sEmptyArray);
             Console.WriteLine();
         }
 

@@ -23,12 +23,12 @@ namespace Lab4
         private const string c_sReadNumberA = "Введите {0}{1}: ";
         private const string c_sIncorrectValue = "Некорректное значение!";
         private const string c_sNullArray = "Ошибка! Массив не создан.\n";
+        private const string c_sEmptyArray = "Массив пуст.\n";
         private const string c_sCleanArray = "Массив пуст, поэтому удален.\n";
         private const string c_sNullFunction = "Спасибо за работу!";
         private const string c_sNotFound = "Элемент не найден\n";
         private const string c_sNotSorted = "Массив не отсортирован\n";
-        private const string c_sFoundElem =
-            "Порядковый номер искомого элемента: {0}\n";
+        private const string c_sFoundElem = "Индекс: {0}\n";
         private const string c_sGetMode =
             "Введите способ получения чисел (1 - ввод, - 2 случайное): ";
         private const string c_sGetTask =
@@ -132,8 +132,12 @@ namespace Lab4
         private static void Output(int[] array)
         {
             Kernel.CheckArray();
-            for (int i = 0, k = array.Length; i < k; ++i)
-                Console.Write(c_sElem, array[i]);
+            int n = array.Length;
+            if (n != 0)
+                for (int i = 0; i < n; ++i)
+                    Console.Write(c_sElem, array[i]);
+            else
+                Console.Write(c_sEmptyArray);
             Console.WriteLine("\n");
         }
         private static void Output()

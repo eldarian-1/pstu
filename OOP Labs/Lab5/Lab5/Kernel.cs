@@ -8,6 +8,7 @@ namespace Lab5
 
     class NullArrayException : Exception { }
     class CleanArrayException : Exception { }
+    class BadSizeArray : Exception { }
     class NullFunctionException : Exception { }
 
     class Kernel
@@ -86,12 +87,14 @@ namespace Lab5
                 array1D[i] = temp[i - n];
         }
 
-        // Удаление четных строк в двумерном массиве
+        // Удаление четных столбцов в двумерном массиве
         public static void DeleteEven()
         {
             CheckArray(array2D);
             int[,] temp = array2D;
             int n = array2D.GetUpperBound(0) + 1;
+            if (n == 0)
+                throw new BadSizeArray();
             int k = array2D.Length / n;
             int m = n / 2;
             array2D = new int[m, k];

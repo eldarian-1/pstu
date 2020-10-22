@@ -161,7 +161,7 @@ namespace Lab9
         static void IntMoney()
         {
             CLI.GetValid(out int num, CLI.GetMode(), Core.IsValidNum, c_sEnterPenny);
-            CLI.Result($"{num} - {St[0]}к = {num - St[0]}");
+            CLI.Result($"{num}к - {St[0]} = {num - St[0]}");
         }
 
         static void ElemCount()

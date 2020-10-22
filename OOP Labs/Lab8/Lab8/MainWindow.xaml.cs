@@ -1,45 +1,34 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 using Microsoft.Win32;
-using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Lab8
 {
-    [Serializable]
-    public class Client
-    {
-        public string Name { get; set; }
-        public int Summ { get; set; }
-        public string Type { get; set; }
-        public int Period { get; set; }
-
-        public override string ToString()
-        {
-            return "" + Name + " " + Summ + " " + Type + " " + Period;
-        }
-    }
+    
 
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Client> clients { get; set; }
+        public ClientList clients { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-            clients = new ObservableCollection<Client>
-            {
-                new Client{ Name="Mike", Summ = 15000, Type = "Year", Period = 5 }
-            };
+            clients = new ClientList();
             clientsList.ItemsSource = clients;
         }
 
         private void ButtonAddClient(object sender, RoutedEventArgs e)
         {
-            if(int.TryParse(ClientSumm.Text, out int summ) &&
-                int.TryParse(ClientPeriod.Text, out int period))
-                clients.Add(new Client { Name = ClientName.Text, Summ = summ, Type = ClientType.Text, Period = period });
+            if (int.TryParse(ClientSumm.Text, out int summ))
+                clients.Add(new Client
+                {
+                    Name = ClientName.Text,
+                    Summ = summ,
+                    Type = (ClientType.SelectedItem as ComboBoxItem).Content.ToString(),
+                    Period = (ClientPeriod.SelectedItem as ComboBoxItem).Content.ToString()
+                });
         }
 
         private void ClickSave(object sender, RoutedEventArgs e)
@@ -66,11 +55,26 @@ namespace Lab8
                 using (FileStream fstream = new FileStream(dialog.FileName, FileMode.Open))
                 {
                     BinaryFormatter buffer = new BinaryFormatter();
-                    clients = (ObservableCollection<Client>)buffer.Deserialize(fstream);
+                    clients = (ClientList)buffer.Deserialize(fstream);
                     fstream.Close();
                     clientsList.ItemsSource = clients;
                 }
             }
+        }
+
+        private void ClickFindName(object sender, RoutedEventArgs e)
+        {
+            clientsList.ItemsSource = clients.GetListByName(BoxFindName.Text);
+        }
+
+        private void ClickFindPeriod(object sender, RoutedEventArgs e)
+        {
+            clientsList.ItemsSource = clients.GetListByPeriod((BoxFindPeriod.SelectedItem as ComboBoxItem).Content.ToString());
+        }
+
+        private void ClickReset(object sender, RoutedEventArgs e)
+        {
+            clientsList.ItemsSource = clients;
         }
     }
 }

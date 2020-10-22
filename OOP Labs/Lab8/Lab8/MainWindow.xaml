@@ -9,15 +9,44 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
 
-            <Menu Height="20" VerticalAlignment="Top">
-                    <MenuItem Header="Сохранить" Click="ClickSave" />
-                    <MenuItem Header="Загрузить" Click="ClickLoad" />
+            <Menu>
+                <MenuItem Header="Сохранить" Click="ClickSave" />
+                <MenuItem Header="Загрузить" Click="ClickLoad" />
             </Menu>
 
-            <StackPanel Orientation="Horizontal">
-                <Label>Поиск</Label>
-                <TextBox>Введите ФИО</TextBox>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">ФИО</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Name="BoxFindName" />
+                <Button Grid.Row="0" Grid.Column="4" Click="ClickFindName">Поиск</Button>
+                <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Right">Срок от</Label>
+                <ComboBox Grid.Row="0" Grid.Column="6" Name="BoxFindPeriod">
+                    <ComboBoxItem IsSelected="True" Content="3 м" />
+                    <ComboBoxItem Content="6 м" />
+                    <ComboBoxItem Content="9 м" />
+                    <ComboBoxItem Content="1 г" />
+                    <ComboBoxItem Content="1,5 г" />
+                    <ComboBoxItem Content="2 г" />
+                    <ComboBoxItem Content="3 г" />
+                    <ComboBoxItem Content="5 г" />
+                </ComboBox>
+                <Button Grid.Row="0" Grid.Column="7" Click="ClickFindPeriod">Поиск</Button>
+                <Button Grid.Row="0" Grid.Column="9" Click="ClickReset">Сбросить</Button>
+            </Grid>
 
             <ListView Name="clientsList">
                 <ListView.View>
@@ -57,9 +86,23 @@
                 <Label Grid.Column="0" Grid.Row="1">Сумма</Label>
                 <TextBox Grid.Column="1" Grid.Row="1" Name="ClientSumm"></TextBox>
                 <Label Grid.Column="0" Grid.Row="2">Тип</Label>
-                <TextBox Grid.Column="1" Grid.Row="2" Name="ClientType"></TextBox>
+                <ComboBox Grid.Column="1" Grid.Row="2" Name="ClientType">
+                    <ComboBoxItem IsSelected="True" Content="Микрозайм" />
+                    <ComboBoxItem Content="Потребительский" />
+                    <ComboBoxItem Content="Автокредит" />
+                    <ComboBoxItem Content="Ипотечный" />
+                </ComboBox>
                 <Label Grid.Column="0" Grid.Row="3">Срок</Label>
-                <TextBox Grid.Column="1" Grid.Row="3" Name="ClientPeriod"></TextBox>
+                <ComboBox Grid.Column="1" Grid.Row="3" Name="ClientPeriod">
+                    <ComboBoxItem IsSelected="True" Content="3 м" />
+                    <ComboBoxItem Content="6 м" />
+                    <ComboBoxItem Content="9 м" />
+                    <ComboBoxItem Content="1 г" />
+                    <ComboBoxItem Content="1,5 г" />
+                    <ComboBoxItem Content="2 г" />
+                    <ComboBoxItem Content="3 г" />
+                    <ComboBoxItem Content="5 г" />
+                </ComboBox>
                 <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Click="ButtonAddClient">Добавить</Button>
             </Grid>
 

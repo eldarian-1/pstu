@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Lab7
+﻿namespace Lab7
 {
     class Array1D
     {
@@ -24,33 +22,50 @@ namespace Lab7
         {
             get
             {
-                if (index < 0)
-                    throw new Exception();
+                if (index < 0 || index >= Length)
+                    throw new IncorrectIndex();
                 return m_iArray[index];
             }
             set
             {
-                if (index < 0)
-                    throw new Exception();
+                if (index < 0 || index >= Length)
+                    throw new IncorrectIndex();
                 m_iArray[index] = value;
             }
         }
 
-        public void Resize(int size, GetNumber GetNum)
+        public void Resize(int newSize, GetNumber GetNum)
         {
-            m_iArray = new int[size];
-            for (int i = 0; i < size; i++)
-                GetNum(out m_iArray[i]);
+            if(newSize < 0)
+                throw new IncorrectNewSize();
+
+            int[] temp = m_iArray;
+            int oldSize = temp.Length;
+            m_iArray = new int[newSize];
+
+            if (oldSize > newSize)
+                for (int i = 0; i < newSize; ++i)
+                    m_iArray[i] = temp[i];
+            else
+            {
+                for (int i = 0; i < oldSize; ++i)
+                    m_iArray[i] = temp[i];
+                for(int i = oldSize; i < newSize; ++i)
+                    GetNum(out m_iArray[i]);
+            }
         }
 
         public void AddLine(int n, int k, GetNumber GetNum)
         {
             int oldSize = m_iArray.Length;
             int newSize = oldSize + n;
-            if (k > oldSize || oldSize >= newSize)
-                throw new Exception();
+
+            if (k < 0 || k > oldSize || n <= 0)
+                throw new IncorrectValue();
+
             int[] temp = m_iArray;
             m_iArray = new int[newSize];
+
             for (int i = 0; i < k; ++i)
                 m_iArray[i] = temp[i];
             for (int i = k, j = k + n; i < j; ++i)

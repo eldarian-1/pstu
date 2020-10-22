@@ -11,7 +11,7 @@ namespace Lab7
         private Array1D m_Array1D;
         private Array2D m_Array2D;
         private Array2J m_Array2J;
-        private GetNumber GetNum = Kernel.GetNull;
+        private GetNumber GetNum;
 
         public MainWindow()
         {
@@ -19,6 +19,7 @@ namespace Lab7
             m_Array1D = new Array1D();
             m_Array2D = new Array2D();
             m_Array2J = new Array2J();
+            GetNum = Kernel.GetNull;
             SetArray1D();
             SetArray2D();
             SetArray2J();
@@ -38,12 +39,12 @@ namespace Lab7
                 if (int.TryParse(Array1DSize.Text, out int size))
                     m_Array1D.Resize(size, GetNum);
                 else
-                    throw new BadSizeException();
+                    throw new IncorrectNewSize();
                 SetArray1D();
             }
-            catch(BadSizeException)
+            catch (IncorrectNewSize)
             {
-                MessageBox.Show($"Некорректное значение поля!");
+                MessageBox.Show($"Некорректное значение поля ввода размера!");
             }
         }
 
@@ -56,12 +57,12 @@ namespace Lab7
                     int.TryParse(Array2SizeM.Text, out int m))
                     m_Array2D.Resize(n, m, GetNum);
                 else
-                    throw new BadSizeException();
+                    throw new IncorrectNewSize();
                 SetArray2D();
             }
-            catch (BadSizeException)
+            catch (IncorrectNewSize)
             {
-                MessageBox.Show($"Некорректное значение поля!");
+                MessageBox.Show($"Некорректные значения полей ввода размера!");
             }
         }
 
@@ -73,12 +74,12 @@ namespace Lab7
                 if (int.TryParse(Array2JSize.Text, out int n))
                     m_Array2J.Resize(n);
                 else
-                    throw new BadSizeException();
+                    throw new IncorrectNewSize();
                 SetArray2J();
             }
-            catch (BadSizeException)
+            catch (IncorrectNewSize)
             {
-                MessageBox.Show($"Некорректное значение поля!");
+                MessageBox.Show($"Некорректное значение поля ввода размера!");
             }
         }
 
@@ -87,22 +88,18 @@ namespace Lab7
             try
             {
                 FixArray2J();
-                string tempString = ((Button)sender).Name.ToString().Remove(0, 1);
-                if (int.TryParse(tempString, out int index))
-                {
-                    TextBox tempTextBox = FindChild<TextBox>(Application.Current.MainWindow, "t" + index);
-                    if (int.TryParse(tempTextBox.Text, out int m))
-                        m_Array2J.ResizeByIndex(index, m, GetNum);
-                    else
-                        throw new BadSizeException();
-                }
+                string sIndex = (sender as Button).Name.Remove(0, 1);
+                int.TryParse(sIndex, out int n);
+                TextBox tempTextBox = FindChild<TextBox>(Application.Current.MainWindow, "t" + n);
+                if (int.TryParse(tempTextBox.Text, out int m))
+                    m_Array2J.ResizeByIndex(n, m, GetNum);
                 else
-                    throw new BadSizeException();
+                    throw new IncorrectField { I = n };
                 SetArray2J();
             }
-            catch (BadSizeException)
+            catch (IncorrectField ex)
             {
-                MessageBox.Show($"Некорректное значение поля!");
+                MessageBox.Show($"Некорректное значение поля [{ex.I}]!");
             }
         }
 
@@ -125,63 +122,70 @@ namespace Lab7
                     if (int.TryParse(tempTextBox.Text, out int num))
                         m_Array1D[i] = num;
                     else
-                        throw new Exception();
+                        throw new IncorrectField { I = i };
                 }
             }
-            catch (Exception)
+            catch (IncorrectField ex)
             {
-                MessageBox.Show($"Некорректное значение поля!");
+                MessageBox.Show($"Некорректное значение поля [{ex.I}]!");
             }
         }
 
         private void FixArray2D()
         {
-            int n = m_Array2D.N;
-            if (n == 0)
-                return;
-            int m = m_Array2D.M;
-            for (int i = 0; i < n; ++i)
-                for (int j = 0; j < m; ++j)
-                {
-                    TextBox tempTextBox = FindChild<TextBox>(Application.Current.MainWindow, "A2D" + i + "_" + j);
-                    if (int.TryParse(tempTextBox.Text, out int num))
-                        m_Array2D[i, j] = num;
-                    else
+            try
+            {
+                int n = m_Array2D.N;
+                if (n == 0)
+                    return;
+                int m = m_Array2D.M;
+                for (int i = 0; i < n; ++i)
+                    for (int j = 0; j < m; ++j)
                     {
-                        MessageBox.Show($"Некорректное поле под индексом [{i},{j}]!");
-                        break;
+                        TextBox tempTextBox = FindChild<TextBox>(Application.Current.MainWindow, "A2D" + i + "_" + j);
+                        if (int.TryParse(tempTextBox.Text, out int num))
+                            m_Array2D[i, j] = num;
+                        else
+                            throw new IncorrectFields { N = i, M = j };
                     }
-                }
+            }
+            catch (IncorrectFields ex)
+            {
+                MessageBox.Show($"Некорректное значение поля [{ex.N}, {ex.M}]!");
+            }
         }
 
         private void FixArray2J()
         {
-            for (int i = 0, n = m_Array2J.Length; i < n; ++i)
-                for (int j = 0, m = m_Array2J[i].Length; j < m; ++j)
-                {
-                    TextBox tempTextBox = FindChild<TextBox>(Application.Current.MainWindow, "AJG" + i + "_" + j);
-                    if (int.TryParse(tempTextBox.Text, out int num))
-                        m_Array2J[i][j] = num;
-                    else
+            try
+            {
+                for (int i = 0, n = m_Array2J.Length; i < n; ++i)
+                    for (int j = 0, m = m_Array2J[i].Length; j < m; ++j)
                     {
-                        MessageBox.Show($"Некорректное поле под индексом [{i}][{j}]!");
-                        break;
+                        TextBox tempTextBox = FindChild<TextBox>(Application.Current.MainWindow, "AJG" + i + "_" + j);
+                        if (int.TryParse(tempTextBox.Text, out int num))
+                            m_Array2J[i][j] = num;
+                        else
+                            throw new IncorrectFields { N = i, M = j };
                     }
-                }
+            }
+            catch (IncorrectFields ex)
+            {
+                MessageBox.Show($"Некорректное значение поля [{ex.N}][{ex.M}]!");
+            }
         }
 
         private void AddLineArray1D(object sender, RoutedEventArgs e)
         {
-            FixArray1D();
             try
             {
                 if (int.TryParse(Array1DN.Text, out int n) && int.TryParse(Array1DK.Text, out int k))
                     m_Array1D.AddLine(n, k, GetNum);
                 else
-                    throw new Exception();
+                    throw new IncorrectValue();
                 SetArray1D();
             }
-            catch (Exception)
+            catch (IncorrectValue)
             {
                 MessageBox.Show($"Некорректное значение поля!");
             }
@@ -189,14 +193,12 @@ namespace Lab7
 
         private void DropEvenArray2D(object sender, RoutedEventArgs e)
         {
-            FixArray2D();
             m_Array2D.DropEven();
             SetArray2D();
         }
 
         private void AddLineArray2J(object sender, RoutedEventArgs e)
         {
-            FixArray2J();
             m_Array2J.AddLine();
             SetArray2J();
         }
@@ -231,6 +233,7 @@ namespace Lab7
                 textBox.TextChanged += ChangeArray1DField;
                 ListBoxArray1D.Items.Add(new ListBoxItem { Content = textBox });
             }
+            Array1DSize.Text = m_Array1D.Length.ToString();
         }
 
         private void SetArray2D()
@@ -241,7 +244,7 @@ namespace Lab7
             for (int i = 0; i < n; ++i)
             {
                 WrapPanel tempWrapPanel = new WrapPanel();
-                TreeViewItem tempItem = new TreeViewItem { Header = "Строка " + i};
+                TreeViewItem tempItem = new TreeViewItem { Header = "Строка " + i };
                 TreeViewArray2D.Items.Add(tempItem);
                 TreeViewArray2D.Items.Add(tempWrapPanel);
                 for (int j = 0; j < m; ++j)
@@ -252,6 +255,8 @@ namespace Lab7
                     tempWrapPanel.Children.Add(tempTextBox);
                 }
             }
+            Array2SizeN.Text = n.ToString();
+            Array2SizeM.Text = m.ToString();
         }
 
         private void SetArray2J()
@@ -281,9 +286,10 @@ namespace Lab7
                     tempWrapPanel.Children.Add(tempEdit);
                 }
             }
+            Array2JSize.Text = n.ToString();
         }
 
-        public static T FindChild<T>(DependencyObject parent, string childName)
+        private static T FindChild<T>(DependencyObject parent, string childName)
             where T : DependencyObject
         {
             if (parent == null) return null;

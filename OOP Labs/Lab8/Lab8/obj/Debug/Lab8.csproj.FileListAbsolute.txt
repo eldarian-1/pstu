@@ -29,3 +29,17 @@ C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.csproj.Generate
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.csproj.CoreCompileInputs.cache
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.exe
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.pdb
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\bin\Debug\Lab8.exe.config
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\bin\Debug\Lab8.exe
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\bin\Debug\Lab8.pdb
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.csprojAssemblyReference.cache
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\MainWindow.baml
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\MainWindow.g.cs
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\App.g.cs
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\Lab8_MarkupCompile.cache
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.g.resources
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.Properties.Resources.resources
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.csproj.GenerateResource.cache
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.csproj.CoreCompileInputs.cache
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.exe
+D:\Lester\Политех\Master\OOP Labs\Lab8\Lab8\obj\Debug\Lab8.pdb

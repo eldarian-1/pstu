@@ -5,8 +5,6 @@ namespace Lab7
 {
     delegate void GetNumber(out int num);
 
-    class BadSizeException : Exception { }
-
     static class Kernel
     {
         private static Random s_Rand = new Random();

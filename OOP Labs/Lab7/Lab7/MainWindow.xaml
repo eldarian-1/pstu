@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Лабораторная работа №7"
+        Height="480" Width="720"
+        ResizeMode="NoResize">
     <StackPanel>
         
         <Menu>
@@ -13,7 +15,7 @@
             <MenuItem>
                 <MenuItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Label>Способ заполнения полей</Label>
+                        <Label>Автозаполнение</Label>
                         <ComboBox>
                             <ComboBoxItem Selected="ComboBoxNullSelected"  IsSelected="True">Null</ComboBoxItem>
                             <ComboBoxItem Selected="ComboBoxRandSelected">Rand</ComboBoxItem>
@@ -26,59 +28,62 @@
         <TabControl>
 
             <TabItem Header="Одномерный массив">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label>N:</Label>
-                            <TextBox Name="Array1DSize" Text="3" />
-                            <Button Click="ResizeArray1D">Изменить</Button>
-                            <Label>Добавить N:</Label>
-                            <TextBox Name="Array1DN" Text="3" />
-                            <Label>после K:</Label>
-                            <TextBox Name="Array1DK" Text="3" />
-                            <Button Click="AddLineArray1D">Выполнить</Button>
-                        </StackPanel>
-                        <ListBox Name="ListBoxArray1D" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel />
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                        </ListBox>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>N:</Label>
+                        <TextBox Name="Array1DSize"/>
+                        <Button Click="ResizeArray1D">Изменить</Button>
+                        <Label>Добавить N:</Label>
+                        <TextBox Name="Array1DN" Text="3" />
+                        <Label>элементов с K:</Label>
+                        <TextBox Name="Array1DK" Text="3" />
+                        <Label>элемента</Label>
+                        <Button Click="AddLineArray1D">Выполнить</Button>
                     </StackPanel>
-                </ScrollViewer>
+                    <ListBox Name="ListBoxArray1D"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             Height="360">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </StackPanel>
             </TabItem>
 
             <TabItem Header="Двумерный массив">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label>N:</Label>
-                            <TextBox Name="Array2SizeN">13</TextBox>
-                            <Label>M:</Label>
-                            <TextBox Name="Array2SizeM">13</TextBox>
-                            <Button Click="ResizeArray2D">Изменить</Button>
-                            <Button Click="DropEvenArray2D">Удалить все четные столбцы</Button>
-                        </StackPanel>
-                        <TreeView Name="TreeViewArray2D" />
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>N:</Label>
+                        <TextBox Name="Array2SizeN" />
+                        <Label>M:</Label>
+                        <TextBox Name="Array2SizeM" />
+                        <Button Click="ResizeArray2D">Изменить</Button>
+                        <Button Click="DropEvenArray2D">Удалить все четные столбцы</Button>
                     </StackPanel>
-                </ScrollViewer>
+                    <TreeView Name="TreeViewArray2D"
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ScrollViewer.CanContentScroll="True"
+                              Height="360" />
+                </StackPanel>
             </TabItem>
 
             <TabItem Header="Рваный массив">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Label>N:</Label>
-                            <TextBox Name="Array2JSize">13</TextBox>
-                            <Button Name="ChangeArray2J" Click="ResizeArray2J">Изменить</Button>
-                            <Button Click="AddLineArray2J">Добавить строку в конец массива</Button>
-                        </StackPanel>
-                        <TreeView Name="TreeViewArray2J">
-                            <TreeViewItem />
-                        </TreeView>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label>N:</Label>
+                        <TextBox Name="Array2JSize" />
+                        <Button Name="ChangeArray2J" Click="ResizeArray2J">Изменить</Button>
+                        <Button Click="AddLineArray2J">Добавить строку в конец массива</Button>
                     </StackPanel>
-                </ScrollViewer>
+                    <TreeView Name="TreeViewArray2J"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  ScrollViewer.CanContentScroll="True"
+                                  Height="360" />
+                </StackPanel>
             </TabItem>
 
         </TabControl>

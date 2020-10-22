@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Lab7
+﻿namespace Lab7
 {
     class Array2D
     {
@@ -28,7 +26,7 @@ namespace Lab7
             get
             {
                 if (N == 0)
-                    throw new Exception();
+                    return 0;
                 return m_iArray.Length / N;
             }
         }
@@ -37,24 +35,53 @@ namespace Lab7
         {
             get
             {
-                if (i < 0 || j < 0)
-                    throw new Exception();
+                if (i < 0 || j < 0 || i >= N || j >= M)
+                    throw new IncorrectIndex();
                 return m_iArray[i, j];
             }
             set
             {
-                if (i < 0 || j < 0)
-                    throw new Exception();
+                if (i < 0 || j < 0 || i >= N || j >= M)
+                    throw new IncorrectIndex();
                 m_iArray[i, j] = value;
             }
         }
 
-        public void Resize(int n, int m, GetNumber GetNum)
+        public void Resize(int newN, int newM, GetNumber GetNum)
         {
-            m_iArray = new int[n, m];
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < m; j++)
-                    GetNum(out m_iArray[i, j]);
+            if (newN < 0 || newM < 0)
+                throw new IncorrectNewSize();
+
+            int oldN = N;
+            int oldM = M;
+            int[,] temp = m_iArray;
+            m_iArray = new int[newN, newM];
+
+            if (oldN > newN)
+                for (int i = 0; i < newN; i++)
+                    ResizeRow(i, oldM, newM, temp, GetNum);
+            else
+            {
+                for (int i = 0; i < oldN; ++i)
+                    ResizeRow(i, oldM, newM, temp, GetNum);
+                for (int i = oldN; i < newN; ++i)
+                    for (int j = oldM; j < newM; ++j)
+                        GetNum(out m_iArray[i, j]);
+            }
+        }
+
+        private void ResizeRow(int index, int oldM, int newM, int[,] old, GetNumber GetNum)
+        {
+            if (oldM > newM)
+                for (int i = 0; i < newM; i++)
+                    m_iArray[index, i] = old[index, i];
+            else
+            {
+                for (int i = 0; i < oldM; ++i)
+                    m_iArray[index, i] = old[index, i];
+                for (int i = oldM; i < newM; ++i)
+                    GetNum(out m_iArray[index, i]);
+            }
         }
 
         public void DropEven()

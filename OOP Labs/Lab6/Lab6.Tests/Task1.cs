@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using global::Task1;
 
 namespace Lab6.Tests
 {
@@ -22,7 +23,7 @@ namespace Lab6.Tests
         [TestMethod]
         public void Test_DeleteRows()
         {
-            global::Task1.Program.DeleteRows(ref array);
+            Program.DeleteRows(ref array);
             Assert.AreEqual(array.Length, result.Length);
             for(int i = 0, n = array.Length; i < n; ++i)
             {

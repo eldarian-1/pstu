@@ -57,8 +57,10 @@
         {
             if (newSize < 0)
                 throw new IncorrectNewSize();
+            int oldSize = Length;
+            if (oldSize == newSize)
+                throw new AlreadySet();
 
-            int oldSize = m_iArray.Length;
             int[][] tempArray = m_iArray;
             m_iArray = new int[newSize][];
 
@@ -78,8 +80,10 @@
         {
             if(newSize < 0)
                 throw new IncorrectField { I = index };
-
             int oldSize = m_iArray[index].Length;
+            if (oldSize == newSize)
+                throw new AlreadySet();
+
             int[] tempArray = m_iArray[index];
             m_iArray[index] = new int[newSize];
 

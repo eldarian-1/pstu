@@ -35,6 +35,7 @@ namespace Lab8
                     case Key.E:
                         UpdateClient(index);
                         break;
+                    case Key.D:
                     case Key.Delete:
                         DeleteClient(index);
                         break;
@@ -155,18 +156,13 @@ namespace Lab8
         }
 
         private void ClickFindName(object sender, RoutedEventArgs e)
-        {
-            ListClient.ItemsSource = clients.GetListByName(BoxFindName.Text);
-        }
+            => ListClient.ItemsSource = clients.GetListByName(BoxFindName.Text);
 
         private void ClickFindPeriod(object sender, RoutedEventArgs e)
-        {
-            ListClient.ItemsSource = clients.GetListByPeriod((BoxFindPeriod.SelectedItem as ComboBoxItem).Content.ToString());
-        }
+            => ListClient.ItemsSource = clients.GetListByPeriod(
+                (BoxFindPeriod.SelectedItem as ComboBoxItem).Content.ToString());
 
         private void ClickReset(object sender, RoutedEventArgs e)
-        {
-            ListClient.ItemsSource = clients;
-        }
+            => ListClient.ItemsSource = clients;
     }
 }

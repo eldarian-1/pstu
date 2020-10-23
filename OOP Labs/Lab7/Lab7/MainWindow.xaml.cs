@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using Microsoft.Win32;
 using System.Windows.Media;
 using System.Windows.Controls;
@@ -46,6 +45,10 @@ namespace Lab7
             {
                 MessageBox.Show($"Некорректное значение поля ввода размера!");
             }
+            catch (AlreadySet)
+            {
+                MessageBox.Show($"Заданная размерность уже установлена.");
+            }
         }
 
         private void ResizeArray2D(object sender, RoutedEventArgs e)
@@ -64,6 +67,10 @@ namespace Lab7
             {
                 MessageBox.Show($"Некорректные значения полей ввода размера!");
             }
+            catch (AlreadySet)
+            {
+                MessageBox.Show($"Заданная размерность уже установлена.");
+            }
         }
 
         private void ResizeArray2J(object sender, RoutedEventArgs e)
@@ -80,6 +87,10 @@ namespace Lab7
             catch (IncorrectNewSize)
             {
                 MessageBox.Show($"Некорректное значение поля ввода размера!");
+            }
+            catch (AlreadySet)
+            {
+                MessageBox.Show($"Заданная размерность уже установлена.");
             }
         }
 
@@ -100,6 +111,10 @@ namespace Lab7
             catch (IncorrectField ex)
             {
                 MessageBox.Show($"Некорректное значение поля [{ex.I}]!");
+            }
+            catch (AlreadySet)
+            {
+                MessageBox.Show($"Заданная размерность уже установлена.");
             }
         }
 
@@ -193,8 +208,15 @@ namespace Lab7
 
         private void DropEvenArray2D(object sender, RoutedEventArgs e)
         {
-            m_Array2D.DropEven();
-            SetArray2D();
+            try
+            {
+                m_Array2D.DropEven();
+                SetArray2D();
+            }
+            catch (EmptyArray)
+            {
+                MessageBox.Show($"Массив уже пуст.");
+            }
         }
 
         private void AddLineArray2J(object sender, RoutedEventArgs e)

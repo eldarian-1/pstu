@@ -14,9 +14,7 @@ namespace Lab8
         public string Period { get; set; }
 
         public override string ToString()
-        {
-            return "" + Name + " " + Summ + " " + Type + " " + Period;
-        }
+            => "" + Name + " " + Summ + " " + Type + " " + Period;
 
         public bool IsBeginOn(string name)
         {

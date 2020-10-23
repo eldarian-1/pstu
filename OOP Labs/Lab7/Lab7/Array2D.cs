@@ -51,9 +51,11 @@
         {
             if (newN < 0 || newM < 0)
                 throw new IncorrectNewSize();
-
             int oldN = N;
             int oldM = M;
+            if (oldN == newN && oldM == newM)
+                throw new AlreadySet();
+
             int[,] temp = m_iArray;
             m_iArray = new int[newN, newM];
 
@@ -89,6 +91,10 @@
             int[,] temp = m_iArray;
             int n = N;
             int k = M;
+
+            if (n == 0 && k == 0)
+                throw new EmptyArray();
+
             int m = n / 2;
             m_iArray = new int[m, k];
             for (int i = 0; i < m; ++i)

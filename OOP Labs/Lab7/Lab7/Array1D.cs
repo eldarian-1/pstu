@@ -36,11 +36,13 @@
 
         public void Resize(int newSize, GetNumber GetNum)
         {
-            if(newSize < 0)
+            if (newSize < 0)
                 throw new IncorrectNewSize();
+            int oldSize = Length;
+            if (oldSize == newSize)
+                throw new AlreadySet();
 
             int[] temp = m_iArray;
-            int oldSize = temp.Length;
             m_iArray = new int[newSize];
 
             if (oldSize > newSize)

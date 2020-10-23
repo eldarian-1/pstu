@@ -33,7 +33,7 @@
                 <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">ФИО</Label>
                 <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Name="BoxFindName" />
                 <Button Grid.Row="0" Grid.Column="4" Click="ClickFindName">Поиск</Button>
-                <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Right">Срок от</Label>
+                <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Right">Срок</Label>
                 <ComboBox Grid.Row="0" Grid.Column="6" Name="BoxFindPeriod">
                     <ComboBoxItem IsSelected="True" Content="3 м" />
                     <ComboBoxItem Content="6 м" />
@@ -48,7 +48,7 @@
                 <Button Grid.Row="0" Grid.Column="9" Click="ClickReset">Сбросить</Button>
             </Grid>
 
-            <ListView Name="clientsList">
+            <ListView Name="ListClient">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">ФИО</GridViewColumn>
@@ -103,7 +103,7 @@
                     <ComboBoxItem Content="3 г" />
                     <ComboBoxItem Content="5 г" />
                 </ComboBox>
-                <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Click="ButtonAddClient">Добавить</Button>
+                <Button x:Name="ButtonClient" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Click="ButtonAddClient">Добавить</Button>
             </Grid>
 
         </StackPanel>

@@ -71,6 +71,8 @@ namespace Lab8
             if(updateIndex != -1)
             {
                 updateIndex = -1;
+                ButtonClient.Click -= ButtonUpdateClient;
+                ButtonClient.Click += ButtonAddClient;
                 ClearFields();
             }
         }

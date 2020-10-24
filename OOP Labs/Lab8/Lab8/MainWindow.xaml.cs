@@ -9,8 +9,8 @@ namespace Lab8
 {
     public partial class MainWindow : Window
     {
-        public ClientList clients { get; set; }
-        public int updateIndex = -1;
+        private ClientList clients { get; set; }
+        private int updateIndex = -1;
 
         public MainWindow()
         {
@@ -52,12 +52,39 @@ namespace Lab8
             }
         }
 
+        private void ClearFields()
+        {
+            ClientName.Text = "";
+            ClientSumm.Text = "";
+            ClientType.Text = "Микрозайм";
+            ClientPeriod.Text = "3 м";
+        }
+
+        private void ButtonToUpdate(int index)
+        {
+            if (updateIndex == -1)
+            {
+                ButtonClient.Click -= ButtonAddClient;
+                ButtonClient.Click += ButtonUpdateClient;
+                ButtonClient.Content = "Обновить";
+            }
+            updateIndex = index;
+        }
+
+        private void ButtonToAdd()
+        {
+            if (updateIndex != -1)
+            {
+                updateIndex = -1;
+                ButtonClient.Click -= ButtonUpdateClient;
+                ButtonClient.Click += ButtonAddClient;
+                ButtonClient.Content = "Добавить";
+            }
+        }
+
         private void UpdateClient(int index)
         {
-            updateIndex = index;
-            ButtonClient.Click -= ButtonAddClient;
-            ButtonClient.Click += ButtonUpdateClient;
-            ButtonClient.Content = "Обновить";
+            ButtonToUpdate(index);
             Client client = clients[updateIndex];
             ClientName.Text = client.Name;
             ClientSumm.Text = client.Summ.ToString();
@@ -69,13 +96,8 @@ namespace Lab8
         {
             clients.RemoveAt(index);
             ListClient.ItemsSource = clients;
-            if(updateIndex != -1)
-            {
-                updateIndex = -1;
-                ButtonClient.Click -= ButtonUpdateClient;
-                ButtonClient.Click += ButtonAddClient;
-                ClearFields();
-            }
+            ButtonToAdd();
+            ClearFields();
         }
 
         private void ButtonAddClient(object sender, RoutedEventArgs e)
@@ -105,23 +127,12 @@ namespace Lab8
                 client.Type = (ClientType.SelectedItem as ComboBoxItem).Content.ToString();
                 client.Period = (ClientPeriod.SelectedItem as ComboBoxItem).Content.ToString();
 
-                ButtonClient.Click -= ButtonUpdateClient;
-                ButtonClient.Click += ButtonAddClient;
+                ButtonToAdd();
                 ClearFields();
-                updateIndex = -1;
                 ListClient.Items.Refresh();
             }
             else
                 MessageBox.Show("Некорректное значение поля суммы!");
-        }
-
-        private void ClearFields()
-        {
-            ButtonClient.Content = "Добавить";
-            ClientName.Text = "";
-            ClientSumm.Text = "";
-            ClientType.Text = "Микрозайм";
-            ClientPeriod.Text = "3 м";
         }
 
         private void ClickSave(object sender, RoutedEventArgs e)

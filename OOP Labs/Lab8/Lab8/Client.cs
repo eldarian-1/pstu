@@ -13,9 +13,6 @@ namespace Lab8
 
         public string Period { get; set; }
 
-        public override string ToString()
-            => "" + Name + " " + Summ + " " + Type + " " + Period;
-
         public bool IsBeginOn(string name)
         {
             int N = Name.Length;

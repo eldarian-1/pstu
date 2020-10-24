@@ -1,0 +1,11 @@
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\obj\Debug\Task2.csprojAssemblyReference.cache
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\obj\Debug\Task2.csproj.CoreCompileInputs.cache
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\bin\Debug\Task2.exe.config
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\bin\Debug\Task2.exe
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\bin\Debug\Task2.pdb
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\bin\Debug\Lab10.exe
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\bin\Debug\Lab10.pdb
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\bin\Debug\Lab10.exe.config
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\obj\Debug\Task2.csproj.CopyComplete
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\obj\Debug\Task2.exe
+D:\Lester\Политех\Master\OOP Labs\Lab10\Task2\obj\Debug\Task2.pdb

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Lab10
+namespace Task1
 {
-    class DieselEngine : Engine
+    public class DieselEngine : Engine
     {
         public DieselEngine(int i) : base(i) { }
 

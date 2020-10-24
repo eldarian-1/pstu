@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Lab10
+namespace Task1
 {
-    class InternalCombustionEngine : Engine
+    public class InternalCombustionEngine : Engine
     {
         public InternalCombustionEngine(int i) : base(i) { }
 

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Lab10
+namespace Task1
 {
-    class TurboReactiveEngine : Engine
+    public class TurboReactiveEngine : Engine
     {
         public TurboReactiveEngine(int i) : base(i) { }
 

@@ -1,10 +1,11 @@
 ﻿using System;
 
-namespace Lab10
+namespace Task1
 {
-    abstract class Engine : IExecutable
+    public abstract class Engine : IExecutable
     {
         protected int index;
+        public int Power { get; set; }
 
         public Engine(int i)
             => index = i;
@@ -35,5 +36,7 @@ namespace Lab10
 
         public Engine Copy()
             => (Engine)this.MemberwiseClone();
+
+        int IExecutable.Power() => Power;
     }
 }

@@ -36,7 +36,5 @@ namespace Task1
 
         public Engine Copy()
             => (Engine)this.MemberwiseClone();
-
-        int IExecutable.Power() => Power;
     }
 }

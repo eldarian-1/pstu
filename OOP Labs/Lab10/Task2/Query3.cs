@@ -28,7 +28,7 @@ namespace Task2
             }
             for (int i = 0; i < n; ++i)
             {
-                Console.Write("Power {0}: ", lists[i][0].Power());
+                Console.Write("Power {0}: ", lists[i][0].Power);
                 for (int j = 0, m = lists[i].Count; j < m; ++j)
                     Console.Write("{0} ", lists[i][j].Index());
                 Console.WriteLine();
@@ -43,13 +43,13 @@ namespace Task2
                 {
                     bool flag = false;
                     for (int j = i - 1; j >= 0 && !flag; --j)
-                        flag = arr[i].Power() == arr[j].Power();
+                        flag = arr[i].Power == arr[j].Power;
                     if (!flag)
                     {
                         lists.Add(new List<IExecutable>());
                         lists[k].Add(arr[i]);
                         for (int j = i + 1; j < n; ++j)
-                            if (arr[i].Power() == arr[j].Power())
+                            if (arr[i].Power == arr[j].Power)
                                 lists[k].Add(arr[j]);
                         ++k;
                     }

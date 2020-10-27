@@ -25,7 +25,7 @@ namespace Task2
             for (int i = 0, n = arr.Length; i < n; ++i)
                 if (arr[i] is T)
                 {
-                    power += arr[i].Power();
+                    power += arr[i].Power;
                     ++count;
                 }
             if (count != 0)

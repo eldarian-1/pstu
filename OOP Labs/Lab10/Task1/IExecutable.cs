@@ -8,6 +8,6 @@ namespace Task1
         int Index();
         void Name();
         void Fuel();
-        int Power();
+        int Power { get; set; }
     }
 }

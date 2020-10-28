@@ -30,7 +30,7 @@ namespace Task2
             {
                 Console.Write("Power {0}: ", lists[i][0].Power);
                 for (int j = 0, m = lists[i].Count; j < m; ++j)
-                    Console.Write("{0} ", lists[i][j].Index());
+                    Console.Write("{0} ", lists[i][j].Index);
                 Console.WriteLine();
             }
         }

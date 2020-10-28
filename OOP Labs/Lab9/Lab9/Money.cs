@@ -20,7 +20,7 @@ namespace Lab9
             ++s_iCount;
         }
 
-        ~Money() { --s_iCount; }
+        ~Money() => --s_iCount;
 
         public static int Count
         {

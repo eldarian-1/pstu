@@ -7,7 +7,7 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            Generate.Run(out IExecutable[] arr);
+            Generate.Run(out IExecutable[] arr, true);
             Console.WriteLine("Query1 - Количество двигателей заданного типа");
             Query1.Run(arr);
             Console.WriteLine("\nQuery2 - Средняя мощность двигателей заданного типа");

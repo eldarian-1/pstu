@@ -8,8 +8,8 @@ namespace Lab9
 
         private static int s_iCount = 0;
 
-        private int m_iRuble = 0;
-        private int m_iPenny = 0;
+        private int m_iRuble;
+        private int m_iPenny;
 
         public Money(int p) : this(0, p) { }
 

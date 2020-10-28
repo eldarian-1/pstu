@@ -9,7 +9,7 @@ namespace Task1
         public override void Name()
             => Console.WriteLine("TurboReactiveEngine - {0}", index);
 
-        public virtual void Fuel()
+        public void Fuel()
             => Console.WriteLine("Hydrogen - {0}", index);
 
         public override object Clone()

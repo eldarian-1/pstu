@@ -47,6 +47,7 @@ namespace Lab8
         {
             if (newIndex >= 0 && newIndex < clients.Count)
             {
+                ButtonToAdd();
                 clients.Move(oldIndex, newIndex);
                 ListClient.SelectedIndex = newIndex;
             }
@@ -76,6 +77,7 @@ namespace Lab8
             if (updateIndex != -1)
             {
                 updateIndex = -1;
+                ClearFields();
                 ButtonClient.Click -= ButtonUpdateClient;
                 ButtonClient.Click += ButtonAddClient;
                 ButtonClient.Content = "Добавить";
@@ -94,10 +96,9 @@ namespace Lab8
 
         private void DeleteClient(int index)
         {
+            ButtonToAdd();
             clients.RemoveAt(index);
             ListClient.ItemsSource = clients;
-            ButtonToAdd();
-            ClearFields();
         }
 
         private void ButtonAddClient(object sender, RoutedEventArgs e)
@@ -128,7 +129,6 @@ namespace Lab8
                 client.Period = (ClientPeriod.SelectedItem as ComboBoxItem).Content.ToString();
 
                 ButtonToAdd();
-                ClearFields();
                 ListClient.Items.Refresh();
             }
             else

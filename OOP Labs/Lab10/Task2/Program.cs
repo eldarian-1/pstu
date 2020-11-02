@@ -1,5 +1,5 @@
 ﻿using System;
-using Task1;
+using Entity;
 
 namespace Task2
 {

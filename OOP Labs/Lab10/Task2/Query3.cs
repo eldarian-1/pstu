@@ -1,6 +1,6 @@
 ﻿using System;
+using Entity;
 using System.Collections.Generic;
-using Task1;
 
 namespace Task2
 {

@@ -9,8 +9,8 @@ namespace Lab11
 
         public static void Main(string[] args)
         {
-            Runner = new TaskRunner(MainMenu.Instance);
-            Runner.Run();
+            Runner = TaskRunner.Instance;
+            Runner.Run(MainMenu.Instance);
             Console.ReadKey();
         }
     }

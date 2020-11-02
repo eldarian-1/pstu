@@ -39,7 +39,7 @@ namespace Lab11
 
         private void Enter1()
         {
-            Console.WriteLine("Hello World!");
+            TaskRunner.Instance.Run(SecondMenu.Instance);
         }
 
         private void Enter2()

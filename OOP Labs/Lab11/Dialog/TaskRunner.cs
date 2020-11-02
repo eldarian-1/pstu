@@ -4,13 +4,27 @@ namespace Dialog
 {
     public class TaskRunner
     {
-        private static readonly Exception ProgramEnd
-            = new Exception("Спасибо за работу");
+        private static readonly Exception ProgramEnd = new ApplicationException();
+
+        private static TaskRunner s_Instance;
+        private static int s_Level = 0;
 
         private IWaiter Waiter { get; set; }
 
-        public TaskRunner(IWaiter waiter)
-            => Waiter = waiter;
+        private TaskRunner() { }
+
+        public static TaskRunner Instance
+        {
+            get
+            {
+                if (s_Instance == null)
+                    s_Instance = new TaskRunner();
+                return s_Instance;
+            }
+        }
+
+        public static void WriteLine(string text)
+            => Console.WriteLine(text + "\n");
 
         public Task GetTask()
         {
@@ -34,24 +48,30 @@ namespace Dialog
                 {
                     GetTask()();
                 }
-                catch (Exception e)
+                catch(ApplicationException)
                 {
-                    if (Waiter.Reactions.Contains(e) || e == ProgramEnd)
-                        Console.WriteLine(e.Message);
+                    if(s_Level == 1)
+                        WriteLine(Output.EndProgram);
+                    break;
+                }
+                catch (Exception exeption)
+                {
+                    if (Waiter.Reactions.Contains(exeption))
+                        WriteLine(exeption.Message);
                     else
-                        Console.WriteLine(Output.UnknownError);
-                    if (e == ProgramEnd)
-                        break;
+                        WriteLine(Output.UnknownError);
                 }
             }
         }
 
         public void Run(IWaiter waiter)
         {
+            ++s_Level;
             IWaiter tWaiter = Waiter;
             Waiter = waiter;
             Run();
             Waiter = tWaiter;
+            --s_Level;
         }
     }
 }

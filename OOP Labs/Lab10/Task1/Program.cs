@@ -1,4 +1,5 @@
 ﻿using System;
+using Entity;
 
 namespace Task1
 {
@@ -47,6 +48,7 @@ namespace Task1
             Console.WriteLine("Поиск элемента массива по индексу двигателя");
             ReadNum(out int key);
             Console.WriteLine("Индекс искомого элемента: {0}", BinarySearch(engines, key));
+            Console.WriteLine();
         }
 
         private static void ReadNum(out int number)

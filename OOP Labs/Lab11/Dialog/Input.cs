@@ -15,6 +15,8 @@ namespace Dialog
                 flag = int.TryParse(sNum, out number);
                 if (!flag)
                     Console.WriteLine(Output.IncorrectValue);
+                else
+                    Console.WriteLine();
             }
         }
     }

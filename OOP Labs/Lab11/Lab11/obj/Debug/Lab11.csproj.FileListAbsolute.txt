@@ -1,0 +1,10 @@
+C:\Users\Eldarian\source\repos\Lab11\Lab11\bin\Debug\Lab11.exe.config
+C:\Users\Eldarian\source\repos\Lab11\Lab11\bin\Debug\Lab11.exe
+C:\Users\Eldarian\source\repos\Lab11\Lab11\bin\Debug\Lab11.pdb
+C:\Users\Eldarian\source\repos\Lab11\Lab11\obj\Debug\Lab11.csprojAssemblyReference.cache
+C:\Users\Eldarian\source\repos\Lab11\Lab11\obj\Debug\Lab11.csproj.CoreCompileInputs.cache
+C:\Users\Eldarian\source\repos\Lab11\Lab11\obj\Debug\Lab11.exe
+C:\Users\Eldarian\source\repos\Lab11\Lab11\obj\Debug\Lab11.pdb
+C:\Users\Eldarian\source\repos\Lab11\Lab11\bin\Debug\Dialog.dll
+C:\Users\Eldarian\source\repos\Lab11\Lab11\bin\Debug\Dialog.pdb
+C:\Users\Eldarian\source\repos\Lab11\Lab11\obj\Debug\Lab11.csproj.CopyComplete

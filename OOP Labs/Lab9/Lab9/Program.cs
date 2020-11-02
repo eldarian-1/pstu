@@ -115,6 +115,8 @@ namespace Lab9
 
         static void PopStack()
         {
+            if (St.Count == 0)
+                throw new ArgumentNullException();
             St.RemoveAt(0);
             Console.WriteLine();
         }

@@ -39,7 +39,7 @@ namespace Lab11
 
         private void Enter1()
         {
-            TaskRunner.WriteLine("Hello World!");
+            TaskRunner.Write("Hello World!");
         }
 
         private void Enter2()

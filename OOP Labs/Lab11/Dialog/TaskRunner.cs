@@ -23,7 +23,7 @@ namespace Dialog
             }
         }
 
-        public static void WriteLine(string text)
+        public static void Write(string text)
             => Console.WriteLine(text + "\n");
 
         public Task GetTask()
@@ -51,15 +51,15 @@ namespace Dialog
                 catch(ApplicationException)
                 {
                     if(s_Level == 1)
-                        WriteLine(Output.EndProgram);
+                        Write(Output.EndProgram);
                     break;
                 }
                 catch (Exception exeption)
                 {
                     if (Waiter.Reactions.Contains(exeption))
-                        WriteLine(exeption.Message);
+                        Write(exeption.Message);
                     else
-                        WriteLine(Output.UnknownError);
+                        Write(Output.UnknownError);
                 }
             }
         }

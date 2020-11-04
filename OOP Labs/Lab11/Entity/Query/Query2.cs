@@ -1,20 +1,19 @@
-﻿using System;
-
-namespace Entity
+﻿namespace Entity
 {
     internal class Query2 : IQuery
     {
-        public void Run(IEngine[] arr)
+        public string Run(IEngine[] arr)
         {
-            Start<InternalCombustionEngine>(arr);
-            Start<DieselEngine>(arr);
-            Start<TurboReactiveEngine>(arr);
+            return
+                Start<InternalCombustionEngine>(arr) + "\n" +
+                Start<DieselEngine>(arr) + "\n" +
+                Start<TurboReactiveEngine>(arr);
         }
 
-        private void Start<T>(IEngine[] arr)
+        private string Start<T>(IEngine[] arr)
         {
             Query<T>(arr, out int power);
-            Console.WriteLine("Power {0}: {1}", typeof(T).Name, power);
+            return string.Format("Power {0}: {1}", typeof(T).Name, power);
         }
 
         private void Query<T>(IEngine[] arr, out int power)

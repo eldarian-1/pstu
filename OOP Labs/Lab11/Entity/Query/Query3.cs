@@ -1,37 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Entity
 {
     internal class Query3 : IQuery
     {
-        public void Run(IEngine[] arr)
+        public string Run(IEngine[] arr)
         {
-            Start<InternalCombustionEngine>(arr);
-            Console.WriteLine();
-            Start<DieselEngine>(arr);
-            Console.WriteLine();
-            Start<TurboReactiveEngine>(arr);
+            return
+                Start<InternalCombustionEngine>(arr) + "\n\n" +
+                Start<DieselEngine>(arr) + "\n\n" +
+                Start<TurboReactiveEngine>(arr);
         }
 
-        private void Start<T>(IEngine[] arr)
+        private string Start<T>(IEngine[] arr)
         {
+            string result = "";
             List<List<IEngine>> lists = new List<List<IEngine>>();
             Query<T>(arr, ref lists);
-            Console.WriteLine("Lists {0}:", typeof(T).Name);
+            result += string.Format("Lists {0}:\n", typeof(T).Name);
             int n = lists.Count;
             if(n == 0)
             {
-                Console.WriteLine("Empty list");
-                return;
+                result += string.Format("Empty list");
+                return result;
             }
             for (int i = 0; i < n; ++i)
             {
-                Console.Write("Power {0}: ", lists[i][0].Power);
+                result += string.Format("Power {0}: \n", lists[i][0].Power);
                 for (int j = 0, m = lists[i].Count; j < m; ++j)
-                    Console.Write("{0} ", lists[i][j].Index);
-                Console.WriteLine();
+                    result += string.Format("{0} ", lists[i][j].Index);
             }
+            return result;
         }
 
         private void Query<T>(IEngine[] arr, ref List<List<IEngine>> lists)

@@ -2,6 +2,6 @@
 {
     public interface IQuery
     {
-        void Run(IEngine[] arr);
+        string Run(IEngine[] arr);
     }
 }

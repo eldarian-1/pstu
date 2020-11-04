@@ -1,4 +1,6 @@
-﻿namespace Entity
+﻿using System;
+
+namespace Entity
 {
     public class EngineFacade
     {
@@ -15,10 +17,14 @@
         }
 
         private Generator m_Generator;
+        private CompareByPower m_CompareByPower;
+        private EngineFinder m_EngineFinder;
 
         public EngineFacade()
         {
             m_Generator = new Generator();
+            m_CompareByPower = new CompareByPower();
+            m_EngineFinder = new EngineFinder();
         }
 
         public IEngine Generate()
@@ -33,25 +39,45 @@
             return engines;
         }
 
-        private void Run<TQuery>(TQuery query, IEngine[] engines)
+        public void SortingByIndex(IEngine[] engines)
+        {
+            Array.Sort(engines);
+        }
+
+        public void SortingByPower(IEngine[] engines)
+        {
+            Array.Sort(engines, m_CompareByPower);
+        }
+
+        public int FindByIndex(IEngine[] engines, int key)
+        {
+            return m_EngineFinder.FindByIndex(engines, key);
+        }
+
+        public int FindByPower(IEngine[] engines, int key)
+        {
+            return m_EngineFinder.FindByPower(engines, key);
+        }
+
+        private string Run<TQuery>(TQuery query, IEngine[] engines)
             where TQuery : IQuery, new()
         {
-            query.Run(engines);
+            return query.Run(engines);
         }
 
-        public void RunQuery1(IEngine[] engines)
+        public string RunQuery1(IEngine[] engines)
         {
-            Run(new Query1(), engines);
+            return Run(new Query1(), engines);
         }
 
-        public void RunQuery2(IEngine[] engines)
+        public string RunQuery2(IEngine[] engines)
         {
-            Run(new Query2(), engines);
+            return Run(new Query2(), engines);
         }
 
-        public void RunQuery3(IEngine[] engines)
+        public string RunQuery3(IEngine[] engines)
         {
-            Run(new Query3(), engines);
+            return Run(new Query3(), engines);
         }
     }
 }

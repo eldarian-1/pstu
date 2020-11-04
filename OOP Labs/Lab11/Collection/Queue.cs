@@ -52,6 +52,18 @@ namespace Collection
             Count = 0;
         }
 
+        public T this[int index]
+        {
+            get
+            {
+                int i = 0;
+                Node temp = First;
+                while (i++ < index)
+                    temp = temp.Next;
+                return temp.Data;
+            }
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             Node temp = First;
@@ -128,6 +140,15 @@ namespace Collection
                 throw new Exception();
             while (i++ < n)
                 Add(array[i]);
+        }
+
+        public T[] ToArray()
+        {
+            int i = 0, n = Count;
+            T[] array = new T[n];
+            foreach (T elem in this)
+                array[i++] = elem;
+            return array;
         }
 
         public bool Remove(T item)

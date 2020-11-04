@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CompareByPower.cs" />
     <Compile Include="EngineFacade.cs" />
+    <Compile Include="EngineFinder.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Engine\IEngine.cs" />
     <Compile Include="Engine\DieselEngine.cs" />

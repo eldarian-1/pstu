@@ -2,7 +2,7 @@
 
 namespace Dialog
 {
-    internal static class Input
+    public static class Input
     {
         public static void ReadNum(out int number, string thing)
         {

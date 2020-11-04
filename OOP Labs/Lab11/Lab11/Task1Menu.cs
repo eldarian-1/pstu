@@ -8,6 +8,15 @@ namespace Lab11
 {
     class Task1Menu : IWaiter
     {
+        private enum IsSorted : byte
+        {
+            None,
+            ByIndex,
+            ByPower
+        }
+
+        private delegate void Sort(IEngine[] engines);
+
         private static Task1Menu s_Instance = null;
 
         private const string c_Menu =
@@ -19,17 +28,26 @@ namespace Lab11
             "5. Удаление с начала\n" +
             "6. Выполнение запросов\n" +
             "7. Вывод через Foreach\n" +
-            "8. Сортировка коллекции\n" +
-            "9. Бинарный поиск в коллекции\n" +
+            "8. Сортировка коллекции по индексам двигателей\n" +
+            "9. Сортировка коллекции по мощности двигателей\n" +
+            "10. Бинарный поиск в коллекции по индексу\n" +
+            "11. Бинарный поиск в коллекции по мощности\n" +
             "0. Назад\n" +
             "Выберете действие: ";
+        private const string c_FindByIndex = "Введите индекс: ";
+        private const string c_FindByPower = "Введите мощность: ";
+        private const string c_FoundEngine = "Искомый двигатель: {0}";
+        private const string c_NotFoundEngine = "Двигатель не найден";
 
         private static readonly Exception UngeneratedCollection = new Exception("Коллекция не сгенерирована");
         private static readonly Exception EmptyCollection = new Exception("Коллекция пуста");
-        private static readonly Exception UnsortedCollection = new Exception("Коллекция не отсортирована");
+        private static readonly Exception UnsortedByIndexCollection = new Exception("Коллекция не отсортирована по индексам двигателей");
+        private static readonly Exception UnsortedByPowerCollection = new Exception("Коллекция не отсортирована по мощностям двигателей");
 
         private Queue<IEngine> m_Main;
         private Queue<IEngine> m_Reserv;
+        private IsSorted m_MainIsSorted;
+        private IsSorted m_ReservIsSorted;
 
         public static Task1Menu Instance
         {
@@ -56,12 +74,17 @@ namespace Lab11
                 PopFront,
                 ExecuteQuery,
                 OutputForeach,
-                Sorting,
-                BinarySearch);
+                SortingByIndex,
+                SortingByPower,
+                BinarySearchByIndex,
+                BinarySearchByPower);
             Reactions = new MyList<Exception>(
                 UngeneratedCollection,
                 EmptyCollection,
-                UnsortedCollection);
+                UnsortedByIndexCollection,
+                UnsortedByPowerCollection);
+            m_MainIsSorted = IsSorted.None;
+            m_ReservIsSorted = IsSorted.None;
         }
 
         private void CheckCollection()
@@ -76,13 +99,17 @@ namespace Lab11
             IEngine[] engines = EngineFacade.Instance.GenerateArray();
             foreach (IEngine engine in engines)
                 m_Main.Add(engine);
+            m_MainIsSorted = IsSorted.None;
         }
 
         private void SwapReserv()
         {
-            Queue<IEngine> temp = m_Main;
+            Queue<IEngine> tQueue = m_Main;
             m_Main = m_Reserv;
-            m_Reserv = temp;
+            m_Reserv = tQueue;
+            IsSorted tIsSorted = m_MainIsSorted;
+            m_MainIsSorted = m_ReservIsSorted;
+            m_ReservIsSorted = tIsSorted;
         }
 
         private void CloneToReserv()
@@ -93,6 +120,7 @@ namespace Lab11
         private void PushBack()
         {
             m_Main.Add(EngineFacade.Instance.Generate());
+            m_MainIsSorted = IsSorted.None;
         }
 
         private void PopFront()
@@ -104,7 +132,7 @@ namespace Lab11
         private void ExecuteQuery()
         {
             CheckCollection();
-            TaskRunner.Instance.Run(new QueryMenu<Queue<IEngine>>(m_Main));
+            TaskRunner.Instance.Run(new QueryMenu<Queue<IEngine>>(m_Main.ToArray()));
         }
 
         private void OutputForeach()
@@ -117,19 +145,56 @@ namespace Lab11
             TaskRunner.Write(text);
         }
 
-        private void Sorting()
+        private void Sorting(Sort sorting)
         {
             CheckCollection();
             IEngine[] engines = m_Main.ToArray();
-            Array.Sort(engines);
+            sorting(engines);
             m_Main = new Queue<IEngine>();
             foreach (IEngine engine in engines)
                 m_Main.Add(engine);
         }
 
-        private void BinarySearch()
+        private void SortingByIndex()
+        {
+            Sorting(EngineFacade.Instance.SortingByIndex);
+            m_MainIsSorted = IsSorted.ByIndex;
+        }
+
+        private void SortingByPower()
+        {
+            Sorting(EngineFacade.Instance.SortingByPower);
+            m_MainIsSorted = IsSorted.ByPower;
+        }
+
+        private void BinarySearchResult(int index)
+        {
+            string result;
+            if (index != -1)
+                result = string.Format(c_FoundEngine, m_Main[index].Name);
+            else
+                result = c_NotFoundEngine;
+            TaskRunner.Write(result);
+        }
+
+        private void BinarySearchByIndex()
         {
             CheckCollection();
+            if (m_MainIsSorted != IsSorted.ByIndex)
+                throw UnsortedByIndexCollection;
+            Input.ReadNum(out int index, c_FindByIndex);
+            int i = EngineFacade.Instance.FindByIndex(m_Main.ToArray(), index);
+            BinarySearchResult(i);
+        }
+
+        private void BinarySearchByPower()
+        {
+            CheckCollection();
+            if (m_MainIsSorted != IsSorted.ByPower)
+                throw UnsortedByPowerCollection;
+            Input.ReadNum(out int power, c_FindByPower);
+            int i = EngineFacade.Instance.FindByPower(m_Main.ToArray(), power);
+            BinarySearchResult(i);
         }
     }
 }

@@ -1,16 +1,13 @@
 ﻿using Dialog;
 using System;
 using Entity;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Lab11
 {
     public class QueryMenu<TCollection> : IWaiter
-        where TCollection : ICollection<IEngine>
     {
         private static string c_Menu =
-            "Меню запросов" + typeof(TCollection).Name + "\n" +
+            "Меню запросов " + typeof(TCollection).Name + "\n" +
             "1. Запрос 1\n" +
             "2. Запрос 2\n" +
             "3. Запрос 3\n" +
@@ -25,9 +22,9 @@ namespace Lab11
         public MyList<Task> Tasks { get; }
         public MyList<Exception> Reactions { get; }
 
-        public QueryMenu(TCollection collection)
+        public QueryMenu(IEngine[] engines)
         {
-            m_Engines = collection.ToArray();
+            m_Engines = engines;
             Menu = c_Menu;
             Tasks = new MyList<Task>(Query1, Query2, Query3);
             Reactions = new MyList<Exception>(UnknownError);
@@ -35,17 +32,17 @@ namespace Lab11
 
         private void Query1()
         {
-            EngineFacade.Instance.RunQuery1(m_Engines);
+            TaskRunner.Write(EngineFacade.Instance.RunQuery1(m_Engines));
         }
 
         private void Query2()
         {
-            EngineFacade.Instance.RunQuery1(m_Engines);
+            TaskRunner.Write(EngineFacade.Instance.RunQuery2(m_Engines));
         }
 
         private void Query3()
         {
-            EngineFacade.Instance.RunQuery1(m_Engines);
+            TaskRunner.Write(EngineFacade.Instance.RunQuery3(m_Engines));
         }
     }
 }

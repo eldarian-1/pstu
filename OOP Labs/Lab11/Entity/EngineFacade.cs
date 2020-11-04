@@ -2,40 +2,56 @@
 {
     public class EngineFacade
     {
-        private IEngine[] m_Engines;
+        private static EngineFacade m_Instance;
+
+        public static EngineFacade Instance
+        {
+            get
+            {
+                if (m_Instance == null)
+                    m_Instance = new EngineFacade();
+                return m_Instance;
+            }
+        }
+
         private Generator m_Generator;
-        private IQuery m_Query1;
-        private IQuery m_Query2;
-        private IQuery m_Query3;
 
         public EngineFacade()
         {
             m_Generator = new Generator();
-            m_Query1 = new Query1();
-            m_Query2 = new Query2();
-            m_Query3 = new Query3();
         }
 
-        public IEngine[] Engines
+        public IEngine Generate()
         {
-            get
-            {
-                if (m_Engines == null)
-                    Generate();
-                return m_Engines;
-            }
+            m_Generator.Run(out IEngine engine);
+            return engine;
         }
 
-        public void Generate()
-            => m_Generator.Run(out m_Engines);
+        public IEngine[] GenerateArray()
+        {
+            m_Generator.Run(out IEngine[] engines);
+            return engines;
+        }
 
-        public void RunQuery1()
-            => m_Query1.Run(Engines);
+        private void Run<TQuery>(TQuery query, IEngine[] engines)
+            where TQuery : IQuery, new()
+        {
+            query.Run(engines);
+        }
 
-        public void RunQuery2()
-            => m_Query2.Run(Engines);
+        public void RunQuery1(IEngine[] engines)
+        {
+            Run(new Query1(), engines);
+        }
 
-        public void RunQuery3()
-            => m_Query3.Run(Engines);
+        public void RunQuery2(IEngine[] engines)
+        {
+            Run(new Query2(), engines);
+        }
+
+        public void RunQuery3(IEngine[] engines)
+        {
+            Run(new Query3(), engines);
+        }
     }
 }

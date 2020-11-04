@@ -36,7 +36,10 @@ namespace Dialog
                 else if (i == 0)
                     throw ProgramEnd;
                 else
+                {
+                    Write(Output.IncorrectValue);
                     continue;
+                }
             }
         }
 

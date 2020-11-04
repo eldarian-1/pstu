@@ -67,7 +67,7 @@ namespace Collection
 
         public int Count => Keys.Count;
 
-        public bool IsReadOnly => true;
+        public bool IsReadOnly => false;
 
         public void Add(TKey key, TValue value)
         {

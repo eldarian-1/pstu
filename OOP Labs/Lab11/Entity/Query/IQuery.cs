@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    internal interface IQuery
+    public interface IQuery
     {
         void Run(IEngine[] arr);
     }

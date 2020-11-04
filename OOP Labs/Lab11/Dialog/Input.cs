@@ -13,10 +13,9 @@ namespace Dialog
                 Console.Write(thing);
                 string sNum = Console.ReadLine();
                 flag = int.TryParse(sNum, out number);
+                Console.WriteLine();
                 if (!flag)
-                    Console.WriteLine(Output.IncorrectValue);
-                else
-                    Console.WriteLine();
+                    TaskRunner.Write(Output.IncorrectValue);
             }
         }
     }

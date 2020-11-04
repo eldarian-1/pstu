@@ -7,12 +7,11 @@ namespace Lab11
     {
         private const string c_Menu =
             "Главное меню\n" +
-            "1. Enter1\n" +
-            "2. Enter2\n" +
+            "1. Задание 1 - Queue\n" +
+            "2. Задание 2 - Dictionary\n" +
+            "3. Задание 3 - Stack и Dictionary\n" +
             "0. Выход\n" +
             "Выберете действие: ";
-        private static readonly Exception UnknownError
-            = new Exception("Неизвестная ошибка");
 
         private static MainMenu s_Instance = null;
 
@@ -33,18 +32,23 @@ namespace Lab11
         private MainMenu()
         {
             Menu = c_Menu;
-            Tasks = new MyList<Task>(Enter1, Enter2);
-            Reactions = new MyList<Exception>(UnknownError);
+            Tasks = new MyList<Task>(Task1, Task2, Task3);
+            Reactions = new MyList<Exception>();
         }
 
-        private void Enter1()
+        private void Task1()
         {
-            TaskRunner.Instance.Run(SecondMenu.Instance);
+            TaskRunner.Instance.Run(Task1Menu.Instance);
         }
 
-        private void Enter2()
+        private void Task2()
         {
-            throw UnknownError;
+            TaskRunner.Instance.Run(Task2Menu.Instance);
+        }
+
+        private void Task3()
+        {
+            TaskRunner.Instance.Run(Task3Menu.Instance);
         }
     }
 }

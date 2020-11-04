@@ -2,14 +2,12 @@
 
 namespace Entity
 {
-    public static class Generate
+    internal class Generator
     {
-        private static Random rand = new Random();
+        private Random rand = new Random();
 
         private const int c_iSizeMin = 10;
         private const int c_iSizeMax = 20;
-        private const int c_iSizeMinB = 50;
-        private const int c_iSizeMaxB = 99;
         private const int c_iIndexMin = 100;
         private const int c_iIndexMax = 999;
         private const int c_iInternalMin = 70;
@@ -19,14 +17,10 @@ namespace Entity
         private const int c_iReactiveMin = 300;
         private const int c_iReactiveMax = 900;
 
-        public static void Run(out IExecutable[] arr, bool big = false)
+        public void Run(out IEngine[] arr)
         {
-            int size;
-            if(big)
-                size = rand.Next(c_iSizeMinB, c_iSizeMaxB);
-            else
-                size = rand.Next(c_iSizeMin, c_iSizeMax);
-            arr = new IExecutable[size];
+            int size = rand.Next(c_iSizeMin, c_iSizeMax);
+            arr = new IEngine[size];
             for(int i = 0; i < size; ++i)
                 switch(rand.Next(0, 3))
                 {

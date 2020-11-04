@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    public class TurboReactiveEngine : Engine
+    internal class TurboReactiveEngine : Engine
     {
         public TurboReactiveEngine(int i) : base(i) { }
 

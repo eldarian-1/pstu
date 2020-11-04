@@ -2,7 +2,7 @@
 
 namespace Entity
 {
-    public interface IExecutable : IComparable, ICloneable
+    public interface IEngine : IComparable, ICloneable
     {
         int Index { get; }
         int Power { get; set; }

@@ -8,24 +8,28 @@ namespace Collection
     {
         private class Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>
         {
-            public KeyValuePair<TKey, TValue> Current => throw new NotImplementedException();
+            private Dictionary<TKey, TValue> m_Dictionary;
+            private IEnumerator<TKey> m_EnumKeys;
 
-            object IEnumerator.Current => throw new NotImplementedException();
+            public KeyValuePair<TKey, TValue> Current
+                => new KeyValuePair<TKey, TValue>
+                (m_EnumKeys.Current, m_Dictionary[m_EnumKeys.Current]);
+            object IEnumerator.Current => m_EnumKeys;
+
+            public Enumerator(Dictionary<TKey, TValue> dictionary)
+            {
+                m_Dictionary = dictionary;
+                m_EnumKeys = dictionary.Keys.GetEnumerator();
+            }
 
             public void Dispose()
-            {
-                throw new NotImplementedException();
-            }
+                => m_EnumKeys.Dispose();
 
             public bool MoveNext()
-            {
-                throw new NotImplementedException();
-            }
+                => m_EnumKeys.MoveNext();
 
             public void Reset()
-            {
-                throw new NotImplementedException();
-            }
+                => m_EnumKeys.Reset();
         }
 
         public TValue this[TKey key]
@@ -41,7 +45,20 @@ namespace Collection
                 }
                 throw new Exception();
             }
-            set => throw new NotImplementedException();
+            set
+            {
+                int i = 0;
+                foreach (TKey tKey in Keys)
+                {
+                    if (tKey.Equals(key))
+                    {
+                        (Values as IList)[i] = value;
+                        return;
+                    }
+                    ++i;
+                }
+                throw new Exception();
+            }
         }
 
         public ICollection<TKey> Keys { get; private set; }
@@ -80,7 +97,11 @@ namespace Collection
 
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
-            throw new NotImplementedException();
+            bool flag = ContainsKey(item.Key);
+            if (flag)
+                flag = this[item.Key].Equals(item.Value);
+            return flag;
+
         }
 
         public bool ContainsKey(TKey key)
@@ -93,28 +114,51 @@ namespace Collection
         }
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+            => new Enumerator(this);
 
         public bool Remove(TKey key)
         {
-            throw new NotImplementedException();
+            int i = 0, n = Keys.Count;
+            IEnumerator<TKey> ek = Keys.GetEnumerator();
+            IEnumerator<TValue> ev = Values.GetEnumerator();
+
+            while (i++ < n)
+            {
+                if (ek.Current.Equals(key))
+                    break;
+                ek.MoveNext();
+            }
+
+            if(i == Keys.Count || !Keys.Remove(key))
+                return false;
+
+            while (i-- > 0)
+                ev.MoveNext();
+
+            return Values.Remove(ev.Current);
         }
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            throw new NotImplementedException();
+            bool flag = Keys.Contains(item.Key) && Values.Contains(item.Value);
+            if(flag)
+            {
+                Keys.Remove(item.Key);
+                Values.Remove(item.Value);
+            }
+            return flag;
         }
 
         public bool TryGetValue(TKey key, out TValue value)
         {
-            throw new NotImplementedException();
+            value = default;
+            bool flag = Keys.Contains(key);
+            if (flag)
+                value = this[key];
+            return flag;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+            => GetEnumerator();
     }
 }

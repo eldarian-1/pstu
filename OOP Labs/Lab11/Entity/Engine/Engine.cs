@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    public abstract class Engine : IExecutable
+    internal abstract class Engine : IEngine
     {
         public int Power { get; set; }
         public int Index { get; protected set; }

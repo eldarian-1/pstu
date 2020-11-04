@@ -1,6 +1,0 @@
-D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\bin\Release\Dialog.dll
-D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\bin\Release\Dialog.pdb
-D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\obj\Release\Dialog.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\obj\Release\Dialog.csproj.CoreCompileInputs.cache
-D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\obj\Release\Dialog.dll
-D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\obj\Release\Dialog.pdb

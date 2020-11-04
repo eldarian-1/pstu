@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    public class InternalCombustionEngine : Engine
+    internal class InternalCombustionEngine : Engine
     {
         public InternalCombustionEngine(int i) : base(i) { }
 

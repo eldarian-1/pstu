@@ -3,10 +3,10 @@ using Dialog;
 
 namespace Lab11
 {
-    class SecondMenu : IWaiter
+    class Task2Menu : IWaiter
     {
         private const string c_Menu =
-            "Второстепенное меню\n" +
+            "Меню Dictionary\n" +
             "1. Enter1\n" +
             "2. Enter2\n" +
             "0. Назад\n" +
@@ -14,14 +14,14 @@ namespace Lab11
         private static readonly Exception UnknownError
             = new Exception("Неизвестная ошибка");
 
-        private static SecondMenu s_Instance = null;
+        private static Task2Menu s_Instance = null;
 
-        public static SecondMenu Instance
+        public static Task2Menu Instance
         {
             get
             {
                 if (s_Instance == null)
-                    s_Instance = new SecondMenu();
+                    s_Instance = new Task2Menu();
                 return s_Instance;
             }
         }
@@ -30,7 +30,7 @@ namespace Lab11
         public MyList<Task> Tasks { get; }
         public MyList<Exception> Reactions { get; }
 
-        private SecondMenu()
+        private Task2Menu()
         {
             Menu = c_Menu;
             Tasks = new MyList<Task>(Enter1, Enter2);

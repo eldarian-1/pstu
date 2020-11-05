@@ -8,5 +8,6 @@ namespace Entity
         int Power { get; set; }
         string Name { get; }
         string Fuel { get; }
+        IEngine BaseEngine { get; }
     }
 }

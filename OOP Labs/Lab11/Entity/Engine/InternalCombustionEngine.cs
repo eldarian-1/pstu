@@ -8,5 +8,7 @@
 
         public override object Clone()
             => new InternalCombustionEngine(Index);
+
+        public override IEngine BaseEngine => new Engine(Index);
     }
 }

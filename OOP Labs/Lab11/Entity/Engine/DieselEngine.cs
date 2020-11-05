@@ -8,5 +8,7 @@
 
         public override object Clone()
             => new DieselEngine(Index);
+
+        public override IEngine BaseEngine => new Engine(Index);
     }
 }

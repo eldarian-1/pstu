@@ -38,21 +38,21 @@ namespace Entity
             return engine;
         }
 
-        public IEngine[] GenerateArray()
+        public IEngine[] GenerateArray(int count = -1)
         {
-            m_Generator.Run(out IEngine[] engines);
+            m_Generator.Run(out IEngine[] engines, count);
             return engines;
         }
 
-        public string GeneratePseudonym()
+        public string GeneratePseudonym(bool isBig = false)
         {
-            m_Generator.Run(out string pseudonym);
+            m_Generator.Run(out string pseudonym, isBig);
             return pseudonym;
         }
 
-        public string[] GeneratePseudonymArray(int count)
+        public string[] GeneratePseudonymArray(int count, bool isBig = false)
         {
-            m_Generator.Run(out string[] pseudonyms, count);
+            m_Generator.Run(out string[] pseudonyms, count, isBig);
             return pseudonyms;
         }
 

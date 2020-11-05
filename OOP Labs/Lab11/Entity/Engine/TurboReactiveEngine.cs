@@ -8,5 +8,7 @@
 
         public override object Clone()
             => new TurboReactiveEngine(Index);
+
+        public override IEngine BaseEngine => new Engine(Index);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    internal abstract class Engine : IEngine
+    internal class Engine : IEngine
     {
         public int Power { get; set; }
         public int Index { get; protected set; }
@@ -13,6 +13,8 @@
 
         public virtual string Fuel => "Fuel";
 
+        public virtual IEngine BaseEngine => null;
+
         public int CompareTo(object obj)
         {
             Engine right = (Engine)obj;
@@ -23,7 +25,8 @@
             return -1;
         }
 
-        public abstract object Clone();
+        public virtual object Clone()
+            => new Engine(Index);
 
         public object Copy()
             => MemberwiseClone();

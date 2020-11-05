@@ -38,11 +38,12 @@ namespace Entity
             }
         }
 
-        public void Run(out IEngine[] engines)
+        public void Run(out IEngine[] engines, int count)
         {
-            int size = rand.Next(c_iSizeMin, c_iSizeMax);
-            engines = new IEngine[size];
-            for (int i = 0; i < size; ++i)
+            if(count == -1)
+                count = rand.Next(c_iSizeMin, c_iSizeMax);
+            engines = new IEngine[count];
+            for (int i = 0; i < count; ++i)
                 Run(out engines[i]);
         }
 
@@ -52,20 +53,24 @@ namespace Entity
             character = Convert.ToChar(i);
         }
 
-        public void Run(out string pseudonym)
+        public void Run(out string pseudonym, bool isBig)
         {
-            int size = rand.Next(c_iWordSizeMin, c_iWordSizeMax);
+            int size;
+            if(isBig)
+                size =  rand.Next(c_iSizeMin, c_iSizeMax);
+            else
+                size = rand.Next(c_iWordSizeMin, c_iWordSizeMax);
             char[] characters = new char[size];
             for (int i = 0; i < size; ++i)
                 Run(out characters[i]);
             pseudonym = string.Join("", characters);
         }
 
-        public void Run(out string[] pseudonyms, int size)
+        public void Run(out string[] pseudonyms, int size, bool isBig)
         {
             pseudonyms = new string[size];
             for (int i = 0; i < size; ++i)
-                Run(out pseudonyms[i]);
+                Run(out pseudonyms[i], isBig);
         }
     }
 }

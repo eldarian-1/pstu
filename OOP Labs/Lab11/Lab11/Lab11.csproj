@@ -49,6 +49,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryMenu.cs" />
+    <Compile Include="TestCollections.cs" />
     <Compile Include="Task3Menu.cs" />
     <Compile Include="Task2Menu.cs" />
     <Compile Include="Task1Menu.cs" />

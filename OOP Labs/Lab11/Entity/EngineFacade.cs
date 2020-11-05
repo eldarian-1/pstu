@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Entity
 {
@@ -18,12 +19,16 @@ namespace Entity
 
         private Generator m_Generator;
         private CompareByPower m_CompareByPower;
+        private CompareByIndex m_CompareByIndex;
+        private CompareByPseudonym m_CompareByPseudonym;
         private EngineFinder m_EngineFinder;
 
         public EngineFacade()
         {
             m_Generator = new Generator();
             m_CompareByPower = new CompareByPower();
+            m_CompareByIndex = new CompareByIndex();
+            m_CompareByPseudonym = new CompareByPseudonym();
             m_EngineFinder = new EngineFinder();
         }
 
@@ -39,6 +44,18 @@ namespace Entity
             return engines;
         }
 
+        public string GeneratePseudonym()
+        {
+            m_Generator.Run(out string pseudonym);
+            return pseudonym;
+        }
+
+        public string[] GeneratePseudonymArray(int count)
+        {
+            m_Generator.Run(out string[] pseudonyms, count);
+            return pseudonyms;
+        }
+
         public void SortingByIndex(IEngine[] engines)
         {
             Array.Sort(engines);
@@ -49,6 +66,16 @@ namespace Entity
             Array.Sort(engines, m_CompareByPower);
         }
 
+        public void SortingByIndex(KeyValuePair<string, IEngine>[] engines)
+        {
+            Array.Sort(engines, m_CompareByIndex);
+        }
+
+        public void SortingByPseudonym(KeyValuePair<string, IEngine>[] engines)
+        {
+            Array.Sort(engines, m_CompareByPseudonym);
+        }
+
         public int FindByIndex(IEngine[] engines, int key)
         {
             return m_EngineFinder.FindByIndex(engines, key);
@@ -57,6 +84,11 @@ namespace Entity
         public int FindByPower(IEngine[] engines, int key)
         {
             return m_EngineFinder.FindByPower(engines, key);
+        }
+
+        public string FindByPseudonym(string[] pseudonyms, string key)
+        {
+            return m_EngineFinder.FindByPseudonym(pseudonyms, key);
         }
 
         private string Run<TQuery>(TQuery query, IEngine[] engines)

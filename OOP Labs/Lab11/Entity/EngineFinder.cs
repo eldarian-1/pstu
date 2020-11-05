@@ -35,5 +35,17 @@
                     return mid;
             }
         }
+
+        public string FindByPseudonym(string[] pseudonyms, string key)
+        {
+            int i = 0, n = pseudonyms.Length;
+            bool flag = false;
+            while (!flag && i < n)
+                flag = pseudonyms[i++] == key;
+            if (flag)
+                return pseudonyms[i - 1];
+            else
+                return "";
+        }
     }
 }

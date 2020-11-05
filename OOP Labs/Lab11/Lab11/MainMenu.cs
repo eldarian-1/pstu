@@ -7,9 +7,9 @@ namespace Lab11
     {
         private const string c_Menu =
             "Главное меню\n" +
-            "1. Задание 1 - Queue\n" +
-            "2. Задание 2 - Dictionary\n" +
-            "3. Задание 3 - Stack и Dictionary\n" +
+            "1. Queue\n" +
+            "2. Dictionary\n" +
+            "3. Stack и Dictionary\n" +
             "0. Выход\n" +
             "Выберете действие: ";
 

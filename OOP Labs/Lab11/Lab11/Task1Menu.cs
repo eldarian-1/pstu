@@ -36,7 +36,7 @@ namespace Lab11
             "Выберете действие: ";
         private const string c_FindByIndex = "Введите индекс: ";
         private const string c_FindByPower = "Введите мощность: ";
-        private const string c_FoundEngine = "Искомый двигатель: {0}";
+        private const string c_FoundEngine = "Искомый двигатель[{0}]: {1}";
         private const string c_NotFoundEngine = "Двигатель не найден";
 
         private static readonly Exception UngeneratedCollection = new Exception("Коллекция не сгенерирована");
@@ -141,7 +141,7 @@ namespace Lab11
             string text = "";
             int i = 0, n = m_Main.Count;
             foreach (IEngine engine in m_Main)
-                text += engine.Name + (i++ != n - 1 ? "\n" : "");
+                text += engine.Name + "-" + engine.Power + (i++ != n - 1 ? "\n" : "");
             TaskRunner.Write(text);
         }
 
@@ -171,7 +171,7 @@ namespace Lab11
         {
             string result;
             if (index != -1)
-                result = string.Format(c_FoundEngine, m_Main[index].Name);
+                result = string.Format(c_FoundEngine, index, m_Main[index].Name + "-" + m_Main[index].Power);
             else
                 result = c_NotFoundEngine;
             TaskRunner.Write(result);

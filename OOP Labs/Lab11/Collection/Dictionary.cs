@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Collection
 {
-    class Dictionary<TKey, TValue> : IDictionary<TKey, TValue>, ICloneable
+    public class Dictionary<TKey, TValue> : IDictionary<TKey, TValue>, ICloneable
     {
         private class Enumerator : IEnumerator<KeyValuePair<TKey, TValue>>
         {
@@ -69,6 +69,12 @@ namespace Collection
 
         public bool IsReadOnly => false;
 
+        public Dictionary()
+        {
+            Keys = new List<TKey>();
+            Values = new List<TValue>();
+        }
+
         public void Add(TKey key, TValue value)
         {
             Keys.Add(key);
@@ -115,6 +121,15 @@ namespace Collection
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
             => new Enumerator(this);
+
+        public KeyValuePair<TKey, TValue>[] ToArray()
+        {
+            int i = 0, n = Count;
+            KeyValuePair<TKey, TValue>[] array = new KeyValuePair<TKey, TValue>[n];
+            foreach (KeyValuePair<TKey, TValue> elem in this)
+                array[i++] = elem;
+            return array;
+        }
 
         public bool Remove(TKey key)
         {

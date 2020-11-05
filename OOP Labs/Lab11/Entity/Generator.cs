@@ -8,6 +8,10 @@ namespace Entity
 
         private const int c_iSizeMin = 10;
         private const int c_iSizeMax = 20;
+        private const char c_cCharMin = 'A';
+        private const int c_cCharMax = 'Z';
+        private const int c_iWordSizeMin = 2;
+        private const int c_iWordSizeMax = 5;
         private const int c_iIndexMin = 100;
         private const int c_iIndexMax = 999;
         private const int c_iInternalMin = 70;
@@ -40,6 +44,28 @@ namespace Entity
             engines = new IEngine[size];
             for (int i = 0; i < size; ++i)
                 Run(out engines[i]);
+        }
+
+        public void Run(out char character)
+        {
+            int i = rand.Next(c_cCharMin, c_cCharMax);
+            character = Convert.ToChar(i);
+        }
+
+        public void Run(out string pseudonym)
+        {
+            int size = rand.Next(c_iWordSizeMin, c_iWordSizeMax);
+            char[] characters = new char[size];
+            for (int i = 0; i < size; ++i)
+                Run(out characters[i]);
+            pseudonym = string.Join("", characters);
+        }
+
+        public void Run(out string[] pseudonyms, int size)
+        {
+            pseudonyms = new string[size];
+            for (int i = 0; i < size; ++i)
+                Run(out pseudonyms[i]);
         }
     }
 }

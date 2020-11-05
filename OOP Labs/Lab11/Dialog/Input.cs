@@ -8,7 +8,7 @@ namespace Dialog
         {
             bool flag = false;
             number = 0;
-            while(!flag)
+            while (!flag)
             {
                 Console.Write(thing);
                 string sNum = Console.ReadLine();
@@ -17,6 +17,12 @@ namespace Dialog
                 if (!flag)
                     TaskRunner.Write(Output.IncorrectValue);
             }
+        }
+
+        public static void ReadWord(out string word, string thing)
+        {
+            Console.Write(thing);
+            word = Console.ReadLine();
         }
     }
 }

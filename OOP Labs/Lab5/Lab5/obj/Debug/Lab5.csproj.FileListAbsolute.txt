@@ -12,10 +12,3 @@ C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.csprojAssemblyR
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.csproj.CoreCompileInputs.cache
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.exe
 C:\Users\Eldarian\Desktop\pstu\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.pdb
-D:\Lester\Политех\Master\OOP Labs\Lab5\Lab5\bin\Debug\Lab5.exe.config
-D:\Lester\Политех\Master\OOP Labs\Lab5\Lab5\bin\Debug\Lab5.exe
-D:\Lester\Политех\Master\OOP Labs\Lab5\Lab5\bin\Debug\Lab5.pdb
-D:\Lester\Политех\Master\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.csproj.CoreCompileInputs.cache
-D:\Lester\Политех\Master\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.exe
-D:\Lester\Политех\Master\OOP Labs\Lab5\Lab5\obj\Debug\Lab5.pdb

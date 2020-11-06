@@ -18,10 +18,3 @@ C:\Users\Администратор\pstu\OOP Labs\Lab4\obj\Debug\Lab4.pdb
 C:\Users\Администратор\pstu\OOP Labs\Lab4\bin\Debug\Lab4.exe.config
 C:\Users\Администратор\pstu\OOP Labs\Lab4\bin\Debug\Lab4.exe
 C:\Users\Администратор\pstu\OOP Labs\Lab4\bin\Debug\Lab4.pdb
-D:\Lester\Политех\Master\OOP Labs\Lab4\bin\Debug\Lab4.exe.config
-D:\Lester\Политех\Master\OOP Labs\Lab4\bin\Debug\Lab4.exe
-D:\Lester\Политех\Master\OOP Labs\Lab4\bin\Debug\Lab4.pdb
-D:\Lester\Политех\Master\OOP Labs\Lab4\obj\Debug\Lab4.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\OOP Labs\Lab4\obj\Debug\Lab4.csproj.CoreCompileInputs.cache
-D:\Lester\Политех\Master\OOP Labs\Lab4\obj\Debug\Lab4.exe
-D:\Lester\Политех\Master\OOP Labs\Lab4\obj\Debug\Lab4.pdb

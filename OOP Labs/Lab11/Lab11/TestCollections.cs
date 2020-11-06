@@ -12,6 +12,7 @@ namespace Lab11
         private const string c_sByIndexEngine = "по индексу двигателя ";
         private const string c_sByPower = "по мощности двигателя ";
         private const string c_sByPseudonym = "по псевдониму двигателя ";
+        private const string c_sNonIncluded = "не включенного двигателя ";
 
         public Exception NotFound { get; } = new Exception("Двигатель не существует");
 
@@ -107,15 +108,24 @@ namespace Lab11
 
         private string ToStringResult(string byWhat, bool isFinded, long[] ticks)
         {
-            return
-                $"Результат нахождения: {isFinded}\n" +
-                $"Время нахождения {byWhat}:\n" +
-                $"StackBaseEngine - {ticks[0]} ticks\n" +
-                $"StackPseudonymEngine - {ticks[1]} ticks\n" +
-                $"DictionaryPseudonym by key - {ticks[2]} ticks\n" +
-                $"DictionaryPseudonym by value - {ticks[3]} ticks\n" +
-                $"DictionaryBaseEngine by key - {ticks[4]} ticks\n" +
-                $"DictionaryBaseEngine by value - {ticks[5]} ticks";
+            if (ticks.Length == 6)
+                return
+                    $"Результат нахождения: {isFinded}\n" +
+                    $"Время нахождения {byWhat}:\n" +
+                    $"StackBaseEngine - {ticks[0]} ticks\n" +
+                    $"StackPseudonymEngine - {ticks[1]} ticks\n" +
+                    $"DictionaryPseudonym by key - {ticks[2]} ticks\n" +
+                    $"DictionaryPseudonym by value - {ticks[3]} ticks\n" +
+                    $"DictionaryBaseEngine by key - {ticks[4]} ticks\n" +
+                    $"DictionaryBaseEngine by value - {ticks[5]} ticks";
+            else if (ticks.Length == 2)
+                return
+                    $"Результат нахождения: {isFinded}\n" +
+                    $"Время нахождения {byWhat}:\n" +
+                    $"StackPseudonymEngine - {ticks[0]} ticks\n" +
+                    $"DictionaryPseudonym by key - {ticks[1]} ticks";
+            else
+                return "";
         }
 
         public string Find(
@@ -177,15 +187,10 @@ namespace Lab11
 
         public string FindByPseudonym(string pseudonym)
         {
-            int index = -1;
-            string[] engines = m_DictionaryPseudonym.Keys.ToArray();
-            for (int i = 0, n = engines.Count(); i < n; ++i)
-                if (engines[i] == pseudonym)
-                {
-                    index = i;
-                    break;
-                }
-            return FindByIndexList(index, c_sByPseudonym + pseudonym);
+            long[] ticks = new long[2];
+            bool isFinded = Find(m_StackPseudonymEngine, pseudonym, out ticks[0]);
+            FindKey(m_DictionaryPseudonym, pseudonym, (IEngine)null, out ticks[1]);
+            return ToStringResult(c_sByPseudonym + pseudonym, isFinded, ticks);
         }
 
         public string FindFirst()
@@ -205,7 +210,10 @@ namespace Lab11
 
         public string FindNonIncluded()
         {
-            return FindByIndexList(-1);
+            string pseudonym = EngineFacade.Instance.GeneratePseudonym(true);
+            IEngine engine = EngineFacade.Instance.Generate();
+            return Find(pseudonym, engine, engine.BaseEngine,
+                c_sNonIncluded + $"{engine.Name}-{pseudonym} [{engine.Power} HP]");
         }
     }
 }

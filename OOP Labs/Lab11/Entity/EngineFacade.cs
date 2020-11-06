@@ -19,16 +19,18 @@ namespace Entity
 
         private Generator m_Generator;
         private CompareByPower m_CompareByPower;
-        private CompareByIndex m_CompareByIndex;
-        private CompareByPseudonym m_CompareByPseudonym;
+        private CompareByIndexD m_CompareByIndexD;
+        private CompareByPowerD m_CompareByPowerD;
+        private CompareByPseudonymD m_CompareByPseudonymD;
         private EngineFinder m_EngineFinder;
 
         public EngineFacade()
         {
             m_Generator = new Generator();
             m_CompareByPower = new CompareByPower();
-            m_CompareByIndex = new CompareByIndex();
-            m_CompareByPseudonym = new CompareByPseudonym();
+            m_CompareByIndexD = new CompareByIndexD();
+            m_CompareByPowerD = new CompareByPowerD();
+            m_CompareByPseudonymD = new CompareByPseudonymD();
             m_EngineFinder = new EngineFinder();
         }
 
@@ -68,12 +70,17 @@ namespace Entity
 
         public void SortingByIndex(KeyValuePair<string, IEngine>[] engines)
         {
-            Array.Sort(engines, m_CompareByIndex);
+            Array.Sort(engines, m_CompareByIndexD);
+        }
+
+        public void SortingByPower(KeyValuePair<string, IEngine>[] engines)
+        {
+            Array.Sort(engines, m_CompareByPowerD);
         }
 
         public void SortingByPseudonym(KeyValuePair<string, IEngine>[] engines)
         {
-            Array.Sort(engines, m_CompareByPseudonym);
+            Array.Sort(engines, m_CompareByPseudonymD);
         }
 
         public int FindByIndex(IEngine[] engines, int key)

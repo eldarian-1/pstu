@@ -11,16 +11,18 @@ namespace Lab11
             "2. Вывести коллекцию Dictionary<string, IEngine>\n" +
             "3. Поиск по индексу в списке\n" +
             "4. Поиск по индексу двигателя\n" +
-            "5. Поиск по псевдониму двигателя\n" +
-            "6. Поиск первого элемента\n" +
-            "7. Поиск центрального элемента\n" +
-            "8. Поиск последнего элемента\n" +
-            "9. Поиск невходящего элемента\n" +
+            "5. Поиск первого двигателя с указанной мощностью\n" +
+            "6. Поиск по псевдониму двигателя\n" +
+            "7. Поиск первого элемента\n" +
+            "8. Поиск центрального элемента\n" +
+            "9. Поиск последнего элемента\n" +
+            "10. Поиск невходящего элемента\n" +
             "0. Назад\n" +
             "Выберете действие: ";
         private const string c_sEnterCount = "Введите количество элементов: ";
         private const string c_sFindByIndexList = "Введите индекс в списке: ";
         private const string c_sFindByIndexEngine = "Введите индекс двигателя: ";
+        private const string c_sFindByPower = "Введите мощность двигателя: ";
         private const string c_sFindByPseudonym = "Введите псевдоним двигателя: ";
         private static readonly Exception EmptyCollections = new Exception("Коллекции пусты");
 
@@ -51,12 +53,15 @@ namespace Lab11
                 Output,
                 FindByIndexList,
                 FindByIndexEngine,
+                FindByPower,
                 FindByPseudonym,
                 FindFirst,
                 FindCenter,
                 FindLast,
                 FindNonIncluded);
-            Reactions = new MyList<Exception>(EmptyCollections);
+            Reactions = new MyList<Exception>(
+                EmptyCollections,
+                testCollections.NotFound);
         }
 
         private void Generate()
@@ -82,6 +87,13 @@ namespace Lab11
         {
             Input.ReadNum(out int index, c_sFindByIndexEngine);
             string result = testCollections.FindByIndexEngine(index);
+            TaskRunner.Write(result);
+        }
+
+        private void FindByPower()
+        {
+            Input.ReadNum(out int power, c_sFindByPower);
+            string result = testCollections.FindByPower(power);
             TaskRunner.Write(result);
         }
 

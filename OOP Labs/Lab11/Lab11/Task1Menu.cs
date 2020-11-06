@@ -141,7 +141,7 @@ namespace Lab11
             string text = "";
             int i = 0, n = m_Main.Count;
             foreach (IEngine engine in m_Main)
-                text += engine.Name + "-" + engine.Power + (i++ != n - 1 ? "\n" : "");
+                text += $"{engine.Name} [{engine.Power} HP]" + (i++ != n - 1 ? "\n" : "");
             TaskRunner.Write(text);
         }
 
@@ -171,7 +171,7 @@ namespace Lab11
         {
             string result;
             if (index != -1)
-                result = string.Format(c_FoundEngine, index, m_Main[index].Name + "-" + m_Main[index].Power);
+                result = string.Format(c_FoundEngine, index, $"{m_Main[index].Name} [{m_Main[index].Power} HP]");
             else
                 result = c_NotFoundEngine;
             TaskRunner.Write(result);

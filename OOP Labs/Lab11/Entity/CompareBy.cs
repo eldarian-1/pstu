@@ -18,7 +18,7 @@ namespace Entity
         }
     }
 
-    internal class CompareByIndex : IComparer
+    internal class CompareByIndexD : IComparer
     {
         public int Compare(object x, object y)
         {
@@ -33,7 +33,22 @@ namespace Entity
         }
     }
 
-    internal class CompareByPseudonym : IComparer
+    internal class CompareByPowerD : IComparer
+    {
+        public int Compare(object x, object y)
+        {
+            KeyValuePair<string, IEngine> left = (KeyValuePair<string, IEngine>)x;
+            KeyValuePair<string, IEngine> right = (KeyValuePair<string, IEngine>)y;
+            if (left.Value.Power > right.Value.Power)
+                return 1;
+            if (left.Value.Power < right.Value.Power)
+                return -1;
+            else
+                return 0;
+        }
+    }
+
+    internal class CompareByPseudonymD : IComparer
     {
         public int Compare(object x, object y)
         {

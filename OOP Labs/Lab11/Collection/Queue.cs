@@ -109,7 +109,8 @@ namespace Collection
             if (First != null)
             {
                 First = First.Next;
-                First.Prev = null;
+                if(First != null)
+                    First.Prev = null;
                 --Count;
             }
         }

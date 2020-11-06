@@ -1,4 +1,5 @@
-﻿using Entity;
+﻿using System;
+using Entity;
 using System.Linq;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -9,7 +10,10 @@ namespace Lab11
     {
         private const string c_sByIndexList = "по индексу в списке ";
         private const string c_sByIndexEngine = "по индексу двигателя ";
+        private const string c_sByPower = "по мощности двигателя ";
         private const string c_sByPseudonym = "по псевдониму двигателя ";
+
+        public Exception NotFound { get; } = new Exception("Двигатель не существует");
 
         private Stack<IEngine> m_StackBaseEngine;
         private Stack<string> m_StackPseudonymEngine;
@@ -32,7 +36,7 @@ namespace Lab11
             int i = 0, n = m_DictionaryPseudonym.Count;
             string result = "";
             foreach (var item in m_DictionaryPseudonym)
-                result += item.Key + ": " + item.Value.Name + (i++ < n - 1 ? "\n" : "");
+                result += $"{item.Key}: {item.Value.Name} [{item.Value.Power} HP]" + (i++ < n - 1 ? "\n" : "");
             return result;
         }
 
@@ -132,7 +136,10 @@ namespace Lab11
 
         public string FindByIndexList(int index, string byWhat = "")
         {
-            IEngine requiredBaseEngine = m_StackBaseEngine.ToArray()[index];
+            IEngine[] baseEngines = m_StackBaseEngine.ToArray();
+            if (baseEngines.Length <= index || index < 0)
+                throw NotFound;
+            IEngine requiredBaseEngine = baseEngines[index];
             string requiredPseudonym = m_StackPseudonymEngine.ToArray()[index];
             IEngine requiredEngine = m_DictionaryPseudonym.Values.ToArray()[index];
             return Find(
@@ -146,13 +153,26 @@ namespace Lab11
         {
             int indexList = -1;
             IEngine[] engines = m_DictionaryPseudonym.Values.ToArray();
-            for(int i = 0, n = engines.Count(); i < n; ++i)
-                if(engines[i].Index == indexEngine)
+            for (int i = 0, n = engines.Count(); i < n; ++i)
+                if (engines[i].Index == indexEngine)
                 {
                     indexList = i;
                     break;
                 }
             return FindByIndexList(indexList, c_sByIndexEngine + indexEngine);
+        }
+
+        public string FindByPower(int power)
+        {
+            int index = -1;
+            IEngine[] engines = m_DictionaryPseudonym.Values.ToArray();
+            for (int i = 0, n = engines.Count(); i < n; ++i)
+                if (engines[i].Power == power)
+                {
+                    index = i;
+                    break;
+                }
+            return FindByIndexList(index, c_sByPower + power);
         }
 
         public string FindByPseudonym(string pseudonym)

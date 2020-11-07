@@ -1,0 +1,4 @@
+C:\Users\Администратор\pstu\OOP Labs\Lab10\Entity\bin\Debug\Entity.dll
+C:\Users\Администратор\pstu\OOP Labs\Lab10\Entity\bin\Debug\Entity.pdb
+C:\Users\Администратор\pstu\OOP Labs\Lab10\Entity\obj\Debug\Entity.dll
+C:\Users\Администратор\pstu\OOP Labs\Lab10\Entity\obj\Debug\Entity.pdb

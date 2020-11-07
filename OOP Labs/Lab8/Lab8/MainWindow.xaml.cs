@@ -9,6 +9,10 @@ namespace Lab8
 {
     public partial class MainWindow : Window
     {
+        private const string c_sIncorrectSumm = "Некорректное значение поля суммы!";
+        private const string c_sTypeDocument = "Документ CLI (*.cli)|*.cli";
+        private const string c_sEmptyList = "Поиск выдал пустой список";
+
         private ClientList clients { get; set; }
         private int updateIndex = -1;
 
@@ -115,7 +119,7 @@ namespace Lab8
                 ClearFields();
             }
             else
-                MessageBox.Show("Некорректное значение поля суммы!");
+                MessageBox.Show(c_sIncorrectSumm);
         }
 
         private void ButtonUpdateClient(object sender, RoutedEventArgs e)
@@ -132,13 +136,13 @@ namespace Lab8
                 ListClient.Items.Refresh();
             }
             else
-                MessageBox.Show("Некорректное значение поля суммы!");
+                MessageBox.Show(c_sIncorrectSumm);
         }
 
         private void ClickSave(object sender, RoutedEventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Документ CLI (*.cli)|*.cli";
+            dialog.Filter = c_sTypeDocument;
             if (dialog.ShowDialog() == true)
             {
                 using (FileStream fstream = new FileStream(dialog.FileName, FileMode.OpenOrCreate))
@@ -153,7 +157,7 @@ namespace Lab8
         private void ClickLoad(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Документ CLI (*.cli)|*.cli";
+            dialog.Filter = c_sTypeDocument;
             if (dialog.ShowDialog() == true)
             {
                 using (FileStream fstream = new FileStream(dialog.FileName, FileMode.Open))
@@ -162,16 +166,28 @@ namespace Lab8
                     clients = (ClientList)buffer.Deserialize(fstream);
                     fstream.Close();
                     ListClient.ItemsSource = clients;
+                    if (clients.Count == 0)
+                        MessageBox.Show(c_sEmptyList);
                 }
             }
         }
 
         private void ClickFindName(object sender, RoutedEventArgs e)
-            => ListClient.ItemsSource = clients.GetListByName(BoxFindName.Text);
+        {
+            ClientList list = clients.GetListByName(BoxFindName.Text);
+            ListClient.ItemsSource = list;
+            if (list.Count == 0)
+                MessageBox.Show(c_sEmptyList);
+        }
 
         private void ClickFindPeriod(object sender, RoutedEventArgs e)
-            => ListClient.ItemsSource = clients.GetListByPeriod(
+        {
+            ClientList list = clients.GetListByPeriod(
                 (BoxFindPeriod.SelectedItem as ComboBoxItem).Content.ToString());
+            ListClient.ItemsSource = list;
+            if (list.Count == 0)
+                MessageBox.Show(c_sEmptyList);
+        }
 
         private void ClickReset(object sender, RoutedEventArgs e)
             => ListClient.ItemsSource = clients;

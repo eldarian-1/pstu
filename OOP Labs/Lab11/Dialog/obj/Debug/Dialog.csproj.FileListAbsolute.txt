@@ -7,3 +7,9 @@ C:\Users\Администратор\pstu\OOP Labs\Lab11\Dialog\bin\Debug\Dialog.
 C:\Users\Администратор\pstu\OOP Labs\Lab11\Dialog\bin\Debug\Dialog.pdb
 C:\Users\Администратор\pstu\OOP Labs\Lab11\Dialog\obj\Debug\Dialog.dll
 C:\Users\Администратор\pstu\OOP Labs\Lab11\Dialog\obj\Debug\Dialog.pdb
+D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\bin\Debug\Dialog.dll
+D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\bin\Debug\Dialog.pdb
+D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\obj\Debug\Dialog.csprojAssemblyReference.cache
+D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\obj\Debug\Dialog.csproj.CoreCompileInputs.cache
+D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\obj\Debug\Dialog.dll
+D:\Lester\Политех\Master\OOP Labs\Lab11\Dialog\obj\Debug\Dialog.pdb

@@ -149,9 +149,9 @@ namespace Lab11
             IEngine[] baseEngines = m_StackBaseEngine.ToArray();
             if (baseEngines.Length <= index || index < 0)
                 throw NotFound;
-            IEngine requiredBaseEngine = baseEngines[index];
-            string requiredPseudonym = m_StackPseudonymEngine.ToArray()[index];
-            IEngine requiredEngine = m_DictionaryPseudonym.Values.ToArray()[index];
+            IEngine requiredBaseEngine = baseEngines[index].Clone() as IEngine;
+            string requiredPseudonym = m_StackPseudonymEngine.ToArray()[index].Clone() as string;
+            IEngine requiredEngine = m_DictionaryPseudonym.Values.ToArray()[index].Clone() as IEngine;
             return Find(
                 requiredPseudonym,
                 requiredEngine,

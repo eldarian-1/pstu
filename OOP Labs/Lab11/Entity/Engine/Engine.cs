@@ -1,4 +1,6 @@
-﻿namespace Entity
+﻿using System;
+
+namespace Entity
 {
     internal class Engine : IEngine
     {
@@ -26,7 +28,23 @@
         }
 
         public virtual object Clone()
-            => new Engine(Index);
+            => new Engine(Index) { Power = Power};
+
+        public override bool Equals(object obj)
+        {
+            bool flag = obj.GetType() == GetType();
+            if (flag)
+            {
+                Engine engine = obj as Engine;
+                flag = engine.Index == Index && engine.Power == Power;
+            }
+            return flag;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
 
         public object Copy()
             => MemberwiseClone();

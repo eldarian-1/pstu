@@ -8,7 +8,7 @@
         Title="MainWindow" Height="480" Width="720"
         ResizeMode="NoResize">
     <StackPanel Orientation="Vertical" Width="720">
-        
+
         <StackPanel Orientation="Horizontal">
             <Label>IP</Label>
             <TextBox x:Name="IPAddressBox">127.0.0.1</TextBox>
@@ -18,6 +18,8 @@
             <TextBox x:Name="RemotePortBox">2324</TextBox>
             <Button x:Name="ConnectButton">Connect</Button>
         </StackPanel>
+
+        <Image x:Name="CameraImage"></Image>
         
         <TextBlock x:Name="MessageStory"></TextBlock>
         

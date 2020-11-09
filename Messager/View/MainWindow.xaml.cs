@@ -1,6 +1,8 @@
 ﻿using Controller;
 using System.Windows;
+using System.Drawing;
 using System.Threading.Tasks;
+using WebEye.Controls.Wpf;
 
 namespace View
 {
@@ -14,6 +16,8 @@ namespace View
             Controller = new ControllerFacade();
             ConnectButton.Click += ConnectButtonClick;
             SendButton.Click += SendButtonClick;
+            WebCameraControl camera = new WebCameraControl();
+            Bitmap image = camera.GetCurrentImage();
         }
 
         private void ConnectButtonClick(object sender, RoutedEventArgs e)

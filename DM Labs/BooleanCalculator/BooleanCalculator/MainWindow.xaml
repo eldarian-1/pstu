@@ -1,0 +1,58 @@
+﻿<Window x:Class="BooleanCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BooleanCalculator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+
+            <ListBox x:Name="SymbolListBox">
+                
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                            <Button Click="InvertValueClick" Content="{Binding Path=Value}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                
+            </ListBox>
+
+            <Button Click="AddSymbolClick">+</Button>
+            
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>F1</TextBlock>
+            <Button Click="ChangeSymbolClick">A</Button>
+            <Button Click="ChangeExpressionClick">|</Button>
+            <Button Click="ChangeSymbolClick">B</Button>
+            <Button Click="AddExpressionClick">+</Button>
+        </StackPanel>
+
+        <Button x:Name="RunExpression" Click="RunExpressionClick" Content="{Binding Path=FullString}"/>
+
+        <ListBox x:Name="ExpressionListBox">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="ChooseExpressionClick" Content="{Binding Path=Name}"/>
+                        <TextBlock Text="{Binding Path=ShortString}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+    </StackPanel>
+</Window>

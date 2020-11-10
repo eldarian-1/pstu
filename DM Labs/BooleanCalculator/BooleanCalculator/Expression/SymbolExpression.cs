@@ -12,6 +12,8 @@
             m_Value = value;
         }
 
+        public SymbolExpression(SymbolExpression expression) : this(expression.m_Value) {}
+
         public virtual bool Run() => m_Value;
 
         public string Value
@@ -23,6 +25,14 @@
                 else
                     return "0";
             }
+        }
+
+        public void Set(int num)
+        {
+            if (num == 0)
+                m_Value = false;
+            else
+                m_Value = true;
         }
 
         public void InvertValue()

@@ -1,4 +1,5 @@
 ﻿using BooleanCalculator.Expression;
+using System;
 using System.Collections.ObjectModel;
 
 namespace BooleanCalculator
@@ -61,17 +62,6 @@ namespace BooleanCalculator
             {
                 if (item.Name == name)
                     find = true;
-                else if(find == true)
-                {
-                    ChangeSymbol(item, isLeft);
-                    return;
-                }
-            }
-
-            foreach(StateExpression item in Expressions)
-            {
-                if (item.Name == name)
-                    find = true;
                 else if (find == true)
                 {
                     ChangeSymbol(item, isLeft);
@@ -79,8 +69,35 @@ namespace BooleanCalculator
                 }
             }
 
-            if(find)
+            foreach (StateExpression item in Expressions)
+            {
+                if (item.Name == name)
+                    find = true;
+                else if (find == true)
+                {
+                    if (item.Name == ActiveExpression.Name)
+                        continue;
+                    ChangeSymbol(item, isLeft);
+                    return;
+                }
+            }
+
+            if (find)
                 ChangeSymbol(Symbols[0], isLeft);
+        }
+
+        public void InvertSymbol(bool isLeft)
+        {
+            if (isLeft)
+                if (ActiveExpression.Left is InversionExpression)
+                    ActiveExpression.Left = (ActiveExpression.Left as InversionExpression).OriginalExpression;
+                else
+                    ActiveExpression.Left = new InversionExpression(ActiveExpression.Left);
+            else
+                if (ActiveExpression.Right is InversionExpression)
+                ActiveExpression.Right = (ActiveExpression.Right as InversionExpression).OriginalExpression;
+            else
+                ActiveExpression.Right = new InversionExpression(ActiveExpression.Right);
         }
 
         public void AddExpression()
@@ -125,7 +142,40 @@ namespace BooleanCalculator
 
         public string RunExpression()
         {
-            return ActiveExpression.Run().ToString();
+            string result
+                = "Результат на заданном наборе: "
+                + GetNum(ActiveExpression.Run())
+                + "\n\nТаблица истинности:\n";
+
+            int size = Symbols.Count;
+            for (int i = 0; i < size; ++i)
+                result += ((char)('A' + i)).ToString();
+            result += " Res\n";
+
+            int[] devide = new int[size];
+            for (int i = 0; i < size; ++i)
+                devide[i] = (int)Math.Pow(2, i);
+
+            for (int i = 0, n = (int)Math.Pow(2, size); i < n; ++i)
+            {
+                for(int j = 0; j < size; ++j)
+                {
+                    int num = (i & devide[size - 1 - j]) / devide[size - 1 - j];
+                    Symbols[j].Set(num);
+                    result += num;
+                }
+                result += " " + GetNum(ActiveExpression.Run()) + "\n";
+            }
+
+            return result;
+        }
+
+        public string GetNum(bool val)
+        {
+            if (val)
+                return "1";
+            else
+                return "0";
         }
 
         public void SetActiveExpression(string name)

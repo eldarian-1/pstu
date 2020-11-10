@@ -51,7 +51,7 @@
 
         public override string ToString()
         {
-            return "(" + Left.ToString() + SymbolOperation + Right.ToString() + ")";
+            return "(" + Left.ToString() + " " + SymbolOperation + " " + Right.ToString() + ")";
         }
     }
 }

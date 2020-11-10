@@ -1,12 +1,26 @@
-﻿namespace BooleanCalculator
+﻿namespace BooleanCalculator.Expression
 {
-    internal class InversionExpression : SymbolExpression
+    internal class InversionExpression : IExpression
     {
-        public InversionExpression(bool value) : base(value)
-            => Name = "¬" + Name;
+        public IExpression OriginalExpression { get; }
 
-        public override bool Run() => !m_Value;
+        public InversionExpression(IExpression expression)
+        {
+            Name = "¬" + expression.Name;
+            OriginalExpression = expression;
+        }
 
-        public override string ToString() => Name;
+        public bool Run() => !OriginalExpression.Run();
+
+        public string Name { get; set; }
+
+        public string ShortString => OriginalExpression.ShortString;
+
+        public string FullString => ToString();
+
+        public override string ToString()
+        {
+            return "¬" + OriginalExpression.ToString();
+        }
     }
 }

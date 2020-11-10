@@ -58,6 +58,8 @@
 
         public string FullString => m_State.FullString;
 
+        public override string ToString() => FullString;
+
         public bool Run() => m_State.Run();
     }
 }

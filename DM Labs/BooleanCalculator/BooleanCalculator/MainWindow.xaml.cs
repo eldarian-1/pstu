@@ -1,5 +1,4 @@
-﻿using BooleanCalculator.Expression;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace BooleanCalculator
@@ -12,33 +11,47 @@ namespace BooleanCalculator
         {
             InitializeComponent();
             m_Facade = new Facade();
-            SymbolListBox.ItemsSource = m_Facade.Simbols;
+            SymbolListBox.ItemsSource = m_Facade.Symbols;
             ExpressionListBox.ItemsSource = m_Facade.Expressions;
             UpdateActiveExpression();
         }
 
         private void UpdateActiveExpression()
         {
+            ExpressionConstructor.DataContext = m_Facade.ActiveExpression;
             RunExpression.DataContext = m_Facade.ActiveExpression;
+            ExpressionConstructor.InvalidateArrange();
         }
 
         private void InvertValueClick(object sender, RoutedEventArgs e)
-            => m_Facade.InvertBySymbol((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
+        {
+            m_Facade.InvertBySymbol((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
+            SymbolListBox.Items.Refresh();
+        }
 
         private void AddSymbolClick(object sender, RoutedEventArgs e)
             => m_Facade.AddSymbol();
 
-        private void ChangeSymbolClick(object sender, RoutedEventArgs e)
-            => m_Facade.ChangeSymbol();
+        private void ChangeSymbolLeftClick(object sender, RoutedEventArgs e)
+            => m_Facade.ChangeSymbol((sender as Button).Content.ToString(), true);
+
+        private void ChangeSymbolRightClick(object sender, RoutedEventArgs e)
+            => m_Facade.ChangeSymbol((sender as Button).Content.ToString(), false);
 
         private void AddExpressionClick(object sender, RoutedEventArgs e)
-            => m_Facade.AddExpression();
+        {
+            m_Facade.AddExpression();
+            UpdateActiveExpression();
+        }
 
         private void ChangeExpressionClick(object sender, RoutedEventArgs e)
-            => m_Facade.AddExpression();
+        {
+            m_Facade.ChangeExpression((sender as Button).Content.ToString());
+            UpdateActiveExpression();
+        }
 
         private void RunExpressionClick(object sender, RoutedEventArgs e)
-            => m_Facade.AddExpression();
+            => MessageBox.Show(m_Facade.RunExpression());
 
         private void ChooseExpressionClick(object sender, RoutedEventArgs e)
         {

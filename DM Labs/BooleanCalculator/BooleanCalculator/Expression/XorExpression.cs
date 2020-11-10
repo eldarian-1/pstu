@@ -5,7 +5,7 @@
         public XorExpression() : base() { }
         public XorExpression(IExpression left, IExpression right) : base(left, right) { }
 
-        protected override char SymbolOperation => '+';
+        public override char SymbolOperation => '+';
 
         public override bool Run()
         {

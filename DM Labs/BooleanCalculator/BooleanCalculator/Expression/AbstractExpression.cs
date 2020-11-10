@@ -2,15 +2,10 @@
 {
     internal abstract class AbstractExpression : IExpression
     {
-        private static int s_Count = 0;
-
         private IExpression m_Left;
         private IExpression m_Right;
 
-        public AbstractExpression()
-        {
-            Name = "F" + s_Count++;
-        }
+        public AbstractExpression() {}
 
         public AbstractExpression(IExpression left, IExpression right) : this()
         {
@@ -46,9 +41,9 @@
 
         public abstract bool Run();
 
-        protected abstract char SymbolOperation { get; }
+        public abstract char SymbolOperation { get; }
 
-        public string Name { get; protected set; }
+        public string Name { get; set; }
 
         public string ShortString { get; protected set; }
 

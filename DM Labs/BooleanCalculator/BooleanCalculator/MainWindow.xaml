@@ -33,11 +33,11 @@
             
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>F1</TextBlock>
-            <Button Click="ChangeSymbolClick">A</Button>
-            <Button Click="ChangeExpressionClick">|</Button>
-            <Button Click="ChangeSymbolClick">B</Button>
+        <StackPanel Orientation="Horizontal" x:Name="ExpressionConstructor">
+            <TextBlock Text="{Binding Path=Name}"/>
+            <Button Click="ChangeSymbolLeftClick" Content="{Binding Path=Left.Name}"/>
+            <Button Click="ChangeExpressionClick" Content="{Binding Path=SymbolOperation}"/>
+            <Button Click="ChangeSymbolRightClick" Content="{Binding Path=Right.Name}"/>
             <Button Click="AddExpressionClick">+</Button>
         </StackPanel>
 

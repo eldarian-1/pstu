@@ -15,7 +15,15 @@
             <TextBox x:Name="LocalPortBox">2323</TextBox>
             <Label>Remote port</Label>
             <TextBox x:Name="RemotePortBox">2324</TextBox>
+            <ComboBox x:Name="CameraList">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Button x:Name="ConnectButton">Connect</Button>
+            <Button x:Name="DisconnectButton">Disconnect</Button>
         </StackPanel>
 
         <Image x:Name="CameraImage" Width="720" Height="720"></Image>

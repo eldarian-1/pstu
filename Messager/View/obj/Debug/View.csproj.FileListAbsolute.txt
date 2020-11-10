@@ -1,5 +1,0 @@
-D:\Lester\Политех\Master\Messager\View\obj\Debug\View.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\Messager\View\obj\Debug\MainWindow.g.cs
-D:\Lester\Политех\Master\Messager\View\obj\Debug\App.g.cs
-D:\Lester\Политех\Master\Messager\View\obj\Debug\View_MarkupCompile.cache
-D:\Lester\Политех\Master\Messager\View\obj\Debug\View_MarkupCompile.lref

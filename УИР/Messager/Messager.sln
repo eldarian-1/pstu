@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{A5D5B326-9DC5-416F-A62D-80A654F565D5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{6E24BEEA-6467-445A-BF6F-B440DB35478F}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A5D5B326-9DC5-416F-A62D-80A654F565D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5D5B326-9DC5-416F-A62D-80A654F565D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5D5B326-9DC5-416F-A62D-80A654F565D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5D5B326-9DC5-416F-A62D-80A654F565D5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6E24BEEA-6467-445A-BF6F-B440DB35478F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6E24BEEA-6467-445A-BF6F-B440DB35478F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E24BEEA-6467-445A-BF6F-B440DB35478F}.Release|Any CPU.ActiveCfg = Release|Any CPU

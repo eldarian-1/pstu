@@ -43,13 +43,14 @@ namespace Logic
 
         private bool IsExternal(StateExpression target)
         {
+            bool result = false;
             if (target == m_ActiveExpression)
-                return true;
-            if (target.Left is StateExpression)
-                return IsExternal(target.Left as StateExpression);
-            else if (target.Right is StateExpression)
-                return IsExternal(target.Right as StateExpression);
-            return false;
+                result = true;
+            if (!result && target.Left is StateExpression)
+                result = IsExternal(target.Left as StateExpression);
+            if (!result && target.Right is StateExpression)
+                result = IsExternal(target.Right as StateExpression);
+            return result;
         }
 
         private bool Find<TCollection, TValue>

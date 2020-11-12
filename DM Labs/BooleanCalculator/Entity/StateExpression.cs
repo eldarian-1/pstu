@@ -10,7 +10,7 @@
 
         public StateExpression()
         {
-            State = new OrExpression();
+            State = new AndExpression();
             Name = "F" + s_Count++;
         }
 

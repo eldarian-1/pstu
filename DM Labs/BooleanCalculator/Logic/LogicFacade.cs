@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 
 namespace Logic
 {
-    public class Facade
+    public class LogicFacade
     {
         public ObservableCollection<SymbolAdapter> Symbols { get; protected set; }
         public ObservableCollection<StateExpression> Expressions { get; protected set; }
         public StateExpression ActiveExpression { get; protected set; }
 
-        public Facade()
+        public LogicFacade()
         {
             Symbols = new ObservableCollection<SymbolAdapter>();
             Expressions = new ObservableCollection<StateExpression>();

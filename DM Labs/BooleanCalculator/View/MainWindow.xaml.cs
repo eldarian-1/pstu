@@ -7,14 +7,14 @@ namespace BooleanCalculator
 {
     public partial class MainWindow : Window
     {
-        private Facade m_Facade;
+        private LogicFacade m_Facade;
         private bool m_Inversion;
 
         public MainWindow()
         {
             InitializeComponent();
             m_Inversion = false;
-            m_Facade = new Facade();
+            m_Facade = new LogicFacade();
             SymbolListBox.ItemsSource = m_Facade.Symbols;
             ExpressionListBox.ItemsSource = m_Facade.Expressions;
             UpdateActiveExpression();

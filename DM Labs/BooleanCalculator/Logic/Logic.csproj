@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Facade.cs" />
+    <Compile Include="LogicFacade.cs" />
     <Compile Include="ResultBuilder.cs" />
     <Compile Include="SymbolAdapter.cs" />
     <Compile Include="SymbolChanger.cs" />

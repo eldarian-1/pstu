@@ -5,11 +5,11 @@ namespace Logic
 {
     class SymbolChanger
     {
-        private Facade m_Facade;
+        private LogicFacade m_Facade;
         private bool m_IsLeft;
         private string m_Name;
 
-        public SymbolChanger(Facade facade, bool isLeft, string name)
+        public SymbolChanger(LogicFacade facade, bool isLeft, string name)
         {
             m_Facade = facade;
             m_IsLeft = isLeft;

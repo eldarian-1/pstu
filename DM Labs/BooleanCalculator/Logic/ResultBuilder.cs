@@ -9,7 +9,7 @@ namespace Logic
         private ObservableCollection<SymbolAdapter> m_Symbols;
         private StateExpression m_Expression;
 
-        public ResultBuilder(Facade facade)
+        public ResultBuilder(LogicFacade facade)
         {
             m_Symbols = facade.Symbols;
             m_Expression = facade.ActiveExpression;

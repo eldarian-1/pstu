@@ -46,6 +46,8 @@ namespace BooleanCalculator
         {
             ExpressionConstructor.DataContext = m_Facade.ActiveExpression;
             RunExpression.DataContext = m_Facade.ActiveExpression;
+            ExpressionListBox.DataContext = m_Facade.Expressions;
+            ExpressionListBox.Items.Refresh();
             ChangeSymbolLeft.Content = m_Facade.ActiveExpression.Left.Name;
             ChangeSymbolLeft.InvalidateMeasure();
             ChangeSymbolRight.Content = m_Facade.ActiveExpression.Right.Name;

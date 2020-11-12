@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Logic
 {
-    class ResultBuilder
+    internal class ResultBuilder
     {
         private ObservableCollection<SymbolAdapter> m_Symbols;
         private StateExpression m_Expression;
@@ -15,34 +15,35 @@ namespace Logic
             m_Expression = facade.ActiveExpression;
         }
 
-        public string Run()
+        public TruthTable CreateTable()
         {
-            string result
-                = "Результат на заданном наборе: "
-                + GetNum(m_Expression.Value)
-                + "\n\nТаблица истинности:\n";
+            int variables = m_Symbols.Count;
+            int changes = (int)Math.Pow(2, variables);
+            TruthTable table = new TruthTable(variables, changes);
 
-            int size = m_Symbols.Count;
-            for (int i = 0; i < size; ++i)
-                result += ((char)('A' + i)).ToString();
-            result += " Res\n";
+            bool[] tempVariables = new bool[variables];
+            for (int i = 0; i < variables; ++i)
+                tempVariables[i] = m_Symbols[i].Value;
 
-            int[] devide = new int[size];
-            for (int i = 0; i < size; ++i)
+            int[] devide = new int[variables];
+            for (int i = 0; i < variables; ++i)
                 devide[i] = (int)Math.Pow(2, i);
 
-            for (int i = 0, n = (int)Math.Pow(2, size); i < n; ++i)
+            for (int i = 0; i < changes; ++i)
             {
-                for (int j = 0; j < size; ++j)
+                for (int j = 0; j < variables; ++j)
                 {
-                    int num = (i & devide[size - 1 - j]) / devide[size - 1 - j];
-                    m_Symbols[j].Value = num == 1;
-                    result += num;
+                    int num = (i & devide[variables - 1 - j]) / devide[variables - 1 - j];
+                    table[i, j] = num == 1;
+                    m_Symbols[j].Value = table[i, j];
                 }
-                result += " " + GetNum(m_Expression.Value) + "\n";
+                table[i] = m_Expression.Value;
             }
 
-            return result;
+            for (int i = 0; i < variables; ++i)
+                m_Symbols[i].Value = tempVariables[i];
+
+            return table;
         }
 
         private string GetNum(bool val)
@@ -51,6 +52,28 @@ namespace Logic
                 return "1";
             else
                 return "0";
+        }
+
+        public string Run()
+        {
+            TruthTable table = CreateTable();
+            string result
+                = "Результат на заданном наборе: "
+                + GetNum(m_Expression.Value)
+                + "\n\nТаблица истинности:\n";
+
+            for (int i = 0, n = table.Variables; i < n; ++i)
+                result += ((char)('A' + i)).ToString();
+            result += " Res\n";
+
+            for (int i = 0, n = table.Changes; i < n; ++i)
+            {
+                for (int j = 0, m = table.Variables; j < m; ++j)
+                    result += table[i, j] ? 1 : 0;
+                result += " " + GetNum(table[i]) + "\n";
+            }
+
+            return result;
         }
     }
 }

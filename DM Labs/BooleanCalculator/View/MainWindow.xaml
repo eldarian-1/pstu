@@ -46,7 +46,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Button Click="ChooseExpressionClick" Content="{Binding Path=Name}"/>
-                        <TextBlock Text="{Binding Path=ShortString}"/>
+                        <TextBlock Text="{Binding Path=Briefly}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

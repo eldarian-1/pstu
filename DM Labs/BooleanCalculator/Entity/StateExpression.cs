@@ -6,11 +6,11 @@
 
         private IExpression m_Left;
         private IExpression m_Right;
-        private AbstractExpression m_State;
+        public AbstractExpression State { get; protected set; }
 
         public StateExpression()
         {
-            m_State = new OrExpression();
+            State = new OrExpression();
             Name = "F" + s_Count++;
         }
 
@@ -20,7 +20,7 @@
             set
             {
                 m_Left = value;
-                m_State.Left = value;
+                State.Left = value;
             }
         }
 
@@ -30,27 +30,27 @@
             set
             {
                 m_Right = value;
-                m_State.Right = value;
+                State.Right = value;
             }
         }
 
-        public string Symbol  => m_State.Symbol.ToString();
+        public string Symbol  => State.Symbol.ToString();
 
         public string Name { get; set; }
         
-        public string Briefly => m_State.Briefly;
+        public string Briefly => State.Briefly;
 
-        public string Wholly => m_State.Wholly;
+        public string Wholly => State.Wholly;
 
         public override string ToString() => Wholly;
 
-        public bool Value => m_State.Value;
+        public bool Value => State.Value;
 
         public void ChangeExpression()
         {
-            m_State = m_State.Next;
-            m_State.Left = m_Left;
-            m_State.Right = m_Right;
+            State = State.Next;
+            State.Left = m_Left;
+            State.Right = m_Right;
         }
 
         public void InvertExpression(bool isLeft)

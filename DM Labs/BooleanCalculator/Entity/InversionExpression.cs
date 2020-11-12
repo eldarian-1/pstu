@@ -1,17 +1,22 @@
 ﻿namespace Entity
 {
-    internal class InversionExpression : IExpression
+    public class InversionExpression : IExpression
     {
         public IExpression Original { get; }
 
         public InversionExpression(IExpression expression)
             => Original = expression;
 
-        public string Name => "¬" + Original.Name;
+        public const char Symbol = '¬';
 
-        public string Briefly => "¬" + Original.Briefly;
+        public string Name => Symbol + Original.Name;
 
-        public string Wholly => "¬" + Original.Wholly;
+        public string Briefly => Symbol +
+            (Original is SymbolExpression
+            ? Original.Name
+            : "(" + Original.Briefly + ")");
+
+        public string Wholly => Symbol + Original.Wholly;
 
         public override string ToString() => Wholly;
 

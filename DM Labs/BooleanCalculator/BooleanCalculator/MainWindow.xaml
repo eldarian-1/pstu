@@ -20,7 +20,7 @@
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Text="{Binding Path=Name}"/>
-                            <Button Click="InvertValueClick" Content="{Binding Path=Value}"/>
+                            <Button Click="InvertValueClick" Content="{Binding Path=Data}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -34,7 +34,7 @@
         <StackPanel Orientation="Horizontal" x:Name="ExpressionConstructor">
             <TextBlock Text="{Binding Path=Name}"/>
             <Button x:Name="ChangeSymbolLeft" Click="ChangeSymbolLeftClick" Content="{Binding Path=Left.Name}"/>
-            <Button x:Name="ChangeExpression" Click="ChangeExpressionClick" Content="{Binding Path=SymbolOperation}"/>
+            <Button x:Name="ChangeExpression" Click="ChangeExpressionClick" Content="{Binding Path=Symbol}"/>
             <Button x:Name="ChangeSymbolRight" Click="ChangeSymbolRightClick" Content="{Binding Path=Right.Name}"/>
             <Button Click="AddExpressionClick">+</Button>
         </StackPanel>

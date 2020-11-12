@@ -1,6 +1,7 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using Logic;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Controls;
 
 namespace BooleanCalculator
 {
@@ -49,7 +50,7 @@ namespace BooleanCalculator
             ChangeSymbolLeft.InvalidateMeasure();
             ChangeSymbolRight.Content = m_Facade.ActiveExpression.Right.Name;
             ChangeSymbolRight.InvalidateMeasure();
-            ChangeExpression.Content = m_Facade.ActiveExpression.SymbolOperation;
+            ChangeExpression.Content = m_Facade.ActiveExpression.Symbol;
             ChangeExpression.InvalidateMeasure();
             RunExpression.Content = m_Facade.ActiveExpression.ToString();
             RunExpression.InvalidateMeasure();
@@ -60,7 +61,7 @@ namespace BooleanCalculator
 
         private void InvertValueClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.InvertBySymbol((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
+            m_Facade.InvertSymbol((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
             SymbolListBox.Items.Refresh();
         }
 
@@ -83,14 +84,14 @@ namespace BooleanCalculator
 
         private void InvertSymbolLeftClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.InvertSymbol(true);
+            m_Facade.InvertExpression(true);
             SetActiveExpression(sender);
             UpdateActiveExpression();
         }
 
         private void InvertSymbolRightClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.InvertSymbol(false);
+            m_Facade.InvertExpression(false);
             SetActiveExpression(sender);
             UpdateActiveExpression();
         }
@@ -103,7 +104,7 @@ namespace BooleanCalculator
 
         private void ChangeExpressionClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.ChangeExpression((sender as Button).Content.ToString());
+            m_Facade.ChangeExpression();
             SetActiveExpression(sender);
             UpdateActiveExpression();
         }

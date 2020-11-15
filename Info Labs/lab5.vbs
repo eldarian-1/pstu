@@ -1,11 +1,21 @@
 Option Explicit
 
+'Конвертация массива строк в массив чисел
+function ConvertArray(arr)
+	dim i
+	redim result(arr.Count - 1)
+	for i = 0 to arr.Count - 1
+		result(i) = CInt(arr(i))
+	next
+	ConvertArray = result
+end function
+
 '1 задание - вычисление суммы четных элемента
-function EvenSum(array)
+function EvenSum(arr)
 	dim index, item
 	index = 0
 	EvenSum = 0
-	for each item in array
+	for each item in arr
 		index = index + 1
 		if index mod 2 = 0 then
 			EvenSum = EvenSum + item
@@ -23,115 +33,128 @@ function Min(left, right)
 end function
 
 '2 задание - получение массива минимумов в парах (мин(1,2),мин(3,4))
-function PairMins(array)
-	dim count, result(), i
-	count = array.Count \ 2
-	redim result(count)
-	for i = 0 to count - 1
-		result(i) = Min(array(i * 2), array(i * 2 + 1))
+function PairMins(arr)
+	dim temp, item, index, str
+	index = 0
+	str = ""
+	for each item in arr
+		if index mod 2 = 0 then
+			temp = item
+		else
+			str = str & Min(temp, item) & " "
+		end if
+		index = index + 1
 	next
-	PairMins = result
-end function
-
-'Копирование массива
-function CopyArray(array)
-	dim result(), i
-	redim result(array.Count)
-	for i = 0 to array.Count - 1
-		result(i) = array(i)
-	next
-	CopyArray = result
+	PairMins = str
 end function
 
 '3 задание - Сортировка пузырьком
-function BubbleSort(array)
-	dim temp, result, i, j
-	result = CopyArray(array)
-	for i = 0 to array.Count
-		for j = i + 1 to array.Count
-			if result(i) > result(j) then
+function BubbleSort(arr)
+	dim temp, result(), i, j, size
+	
+	size = 0
+	for each i in arr
+		size = size + 1
+	next
+	
+	j = 0
+	redim result(size)
+	for each i in arr
+		result(j) = i
+		j = j + 1
+	next
+	
+	for i = 0 to size
+		for j = i to size
+			if result(i) < result(j) then
 				temp = result(i)
 				result(i) = result(j)
 				result(j) = temp
 			end if
 		next
 	next
+	
 	BubbleSort = result
 end function
 
 '4 задание - поиск максимального нечетного элемента
-function MaxNoEven(array)
-	dim i
-	MaxNoEven = array(0)
-	for i = 2 to array.Count step 2
-		if MaxNoEven < array(i) then
-			MaxNoEven = array(i)
+function MaxNoEven(arr)
+	dim index, item
+	MaxNoEven = -32768
+	index = 0
+	for each item in arr
+		if index mod 2 = 0 and MaxNoEven < item then
+			MaxNoEven = item
 		end if
+		index = index + 1
 	next
 end function
 
 '5 задание - получение массива попарных делений
-function PairDevs(array)
-	dim count, result(), i
-	count = array.Count \ 2
-	redim result(count)
-	for i = 0 to count - 1
-		result(i) = array(i * 2) \ array(i * 2 + 1)
+function PairDevs(arr)
+	dim item, index, str, temp
+	str = ""
+	for each item in arr
+		if index mod 2 = 0 then
+			temp = item
+		else
+			str = str & (temp \ item) & " "
+		end if
+		index = index + 1
 	next
-	PairDevs = result
+	PairDevs = str
 end function
 
 'Вывод 1 задания
-sub Task1(array)
-	MsgBox "1. Even arguments summ: " & EvenSum(array)
-end sub
+function Task1(arr)
+	Task1 = "1. Even arguments summ: " & EvenSum(arr)
+end function
 
 'Формирование строк для 2 или 5 задания
-function Task2or5(start, array)
+function Task2or5(start, arr)
 	dim result, item
 	result = start
-	for each item in array
+	for each item in arr
 		result = result & item & " "
 	next
 	Task2or5 = result
 end function
 
 'Вывод 2 задания
-sub Task2(array)
-	array = PairMins(array)
-	MsgBox Task2or5("2. Pair minimums: ", array)
-end sub
+function Task2(arr)
+	dim result
+	result = PairMins(arr)
+	Task2 = "2. Pair minimums: " & result
+end function
 
 'Вывод 3 задания
-sub Task3(array)
-	dim str, i, count
-	array = BubbleSort(array)
-	count = array.Count
-	str = "3. Sorted array: "
-	for i = count to 0 step -1
-		str = str & array(i) & " "
+function Task3(arr)
+	dim str, item, count, result
+	result = BubbleSort(arr)
+	str = "3. Sorted arr: "
+	for each item in result
+		str = str & item & " "
 	next
-	MsgBox str
-end sub
+	Task3 = str
+end function
 
 'Вывод 4 задания
-sub Task4(array)
-	MsgBox "4. Max no-even argument: " & MaxNoEven(array)
-end sub
+function Task4(arr)
+	Task4 = "4. Max no-even argument: " & MaxNoEven(arr)
+end function
 
 'Вывод 5 задания
-sub Task5(array)
-	array = PairDevs(array)
-	MsgBox Task2or5("5. Pair devides: ", array)
-end sub
+function Task5(arr)
+	dim result
+	result = PairDevs(arr)
+	Task5 = "5. Pair devides: " & result
+end function
 
 'Точка входа
-sub Main(array)
-	Task1(array)
-	Task2(array)
-	Task3(array)
-	Task4(array)
-	Task5(array)
+sub Main(arr)
+	dim iArr
+	iArr = ConvertArray(arr)
+	MsgBox Task1(iArr) & vbCrLf & Task2(iArr) & vbCrLf & Task3(iArr) & vbCrLf & Task4(iArr) & vbCrLf & Task5(iArr)
 end sub
 
 'Вход

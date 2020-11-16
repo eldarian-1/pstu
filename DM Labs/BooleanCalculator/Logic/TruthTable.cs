@@ -1,4 +1,6 @@
-﻿namespace Logic
+﻿using System;
+
+namespace Logic
 {
     class TruthTable
     {
@@ -7,12 +9,27 @@
         public int Variables { get; }
         public int Changes { get; }
 
-        public TruthTable(int variables, int changes)
+        public TruthTable(int variables)
         {
             Variables = variables;
-            Changes = changes;
-            m_Values = new bool[changes, variables];
-            m_Results = new bool[changes];
+            Changes = (int)Math.Pow(2, variables);
+            m_Values = new bool[Changes, variables];
+            m_Results = new bool[Changes];
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            int[] devide = new int[Variables];
+            for (int i = 0; i < Variables; ++i)
+                devide[i] = (int)Math.Pow(2, i);
+
+            for (int i = 0; i < Changes; ++i)
+                for (int j = 0; j < Variables; ++j)
+                {
+                    int num = (i & devide[Variables - 1 - j]) / devide[Variables - 1 - j];
+                    this[i, j] = num == 1;
+                }
         }
 
         public bool this[int change]
@@ -24,7 +41,7 @@
         public bool this[int change, int variable]
         {
             get => m_Values[change, variable];
-            set => m_Values[change, variable] = value;
+            protected set => m_Values[change, variable] = value;
         }
     }
 }

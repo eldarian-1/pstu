@@ -64,6 +64,6 @@ namespace Logic
 
         public void ChangeExpression() => ActiveExpression.ChangeExpression();
 
-        public string RunExpression() => new ResultBuilder(this).Run();
+        public string RunExpression() => new ResultFormater(this).Execute();
     }
 }

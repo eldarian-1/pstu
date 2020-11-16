@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogicFacade.cs" />
-    <Compile Include="ResultBuilder.cs" />
+    <Compile Include="ResultFormater.cs" />
     <Compile Include="SymbolAdapter.cs" />
     <Compile Include="SymbolChanger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

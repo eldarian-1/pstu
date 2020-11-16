@@ -37,7 +37,7 @@ namespace Logic
 
         public void AddSymbol() => Symbols.Add(new SymbolAdapter());
 
-        public void ChangeSymbol(string name, bool isLeft) => new SymbolChanger(this, isLeft, name).Run();
+        public void ChangeSymbol(string name, bool isLeft) => new SymbolChanger(this, isLeft, name).Execute();
 
         private void NewExpression(SymbolExpression A, SymbolExpression B)
         {

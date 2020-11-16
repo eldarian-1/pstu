@@ -73,7 +73,7 @@ namespace Logic
             return false;
         }
 
-        public void Run()
+        public void Execute()
         {
             bool isFound = false;
             if (Find<ObservableCollection<SymbolAdapter>, SymbolAdapter>(m_Symbols, ref isFound))

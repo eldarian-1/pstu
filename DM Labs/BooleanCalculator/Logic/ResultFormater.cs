@@ -5,36 +5,46 @@ namespace Logic
 {
     internal class ResultFormater
     {
+        private ObservableCollection<SymbolAdapter> m_Symbols;
         private StateExpression m_Expression;
         private TruthTable m_TruthTable;
+        private bool[] m_Reserv;
 
         public ResultFormater(LogicFacade facade)
         {
             m_Expression = facade.ActiveExpression;
-            m_TruthTable = CreateTable(facade.Symbols);
+            m_Symbols = facade.Symbols;
+            m_TruthTable = new TruthTable(m_Symbols.Count);
+            PackReserv();
+            Calculate();
+            UnpackReserv();
         }
 
-        private TruthTable CreateTable(ObservableCollection<SymbolAdapter> symbols)
+        private void PackReserv()
         {
-            TruthTable table = new TruthTable(symbols.Count);
-            int changes = table.Changes;
-            int variables = table.Variables;
-
-            bool[] tempVariables = new bool[variables];
+            int variables = m_TruthTable.Variables;
+            m_Reserv = new bool[variables];
             for (int i = 0; i < variables; ++i)
-                tempVariables[i] = symbols[i].Value;
+                m_Reserv[i] = m_Symbols[i].Value;
+        }
 
+        private void UnpackReserv()
+        {
+            int variables = m_TruthTable.Variables;
+            for (int i = 0; i < variables; ++i)
+                m_Symbols[i].Value = m_Reserv[i];
+        }
+
+        private void Calculate()
+        {
+            int changes = m_TruthTable.Changes;
+            int variables = m_TruthTable.Variables;
             for (int i = 0; i < changes; ++i)
             {
                 for (int j = 0; j < variables; ++j)
-                    symbols[j].Value = table[i, j];
-                table[i] = m_Expression.Value;
+                    m_Symbols[j].Value = m_TruthTable[i, j];
+                m_TruthTable[i] = m_Expression.Value;
             }
-
-            for (int i = 0; i < variables; ++i)
-                symbols[i].Value = tempVariables[i];
-
-            return table;
         }
 
         private string GetNum(bool val) => val ? "1" : "0";

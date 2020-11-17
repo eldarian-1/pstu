@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    public class StateExpression : IExpression
+    public class Function : IExpression
     {
         private static int s_Count = 0;
 
@@ -8,7 +8,7 @@
         private IExpression m_Right;
         public AbstractExpression State { get; protected set; }
 
-        public StateExpression()
+        public Function()
         {
             State = new AndExpression();
             Name = "F" + s_Count++;
@@ -56,14 +56,14 @@
         public void InvertExpression(bool isLeft)
         {
             if (isLeft)
-                if (Left is InversionExpression)
-                    Left = (Left as InversionExpression).Original;
+                if (Left is Inversion)
+                    Left = (Left as Inversion).Original;
                 else
-                    Left = new InversionExpression(Left);
-            else if (Right is InversionExpression)
-                Right = (Right as InversionExpression).Original;
+                    Left = new Inversion(Left);
+            else if (Right is Inversion)
+                Right = (Right as Inversion).Original;
             else
-                Right = new InversionExpression(Right);
+                Right = new Inversion(Right);
         }
     }
 }

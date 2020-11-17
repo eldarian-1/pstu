@@ -5,9 +5,9 @@ namespace Logic
 {
     internal class SymbolChanger
     {
-        private StateExpression m_ActiveExpression;
-        private ObservableCollection<SymbolAdapter> m_Symbols;
-        private ObservableCollection<StateExpression> m_Expressions;
+        private Function m_ActiveExpression;
+        private ObservableCollection<VariableAdapter> m_Symbols;
+        private ObservableCollection<Function> m_Expressions;
         private bool m_IsLeft;
         private bool m_IsInversion;
         private string m_Name;
@@ -18,14 +18,14 @@ namespace Logic
             m_Symbols = facade.Symbols;
             m_Expressions = facade.Expressions;
             m_IsLeft = isLeft;
-            m_IsInversion = name[0] == InversionExpression.Symbol;
+            m_IsInversion = name[0] == Inversion.Symbol;
             m_Name = name;
         }
 
         private void Change(IExpression target)
         {
             if (m_IsInversion)
-                target = new InversionExpression(target);
+                target = new Inversion(target);
             if (m_IsLeft)
                 m_ActiveExpression.Left = target;
             else
@@ -36,20 +36,20 @@ namespace Logic
         {
             string name = target.Name;
             if (m_IsInversion)
-                name = InversionExpression.Symbol + name;
+                name = Inversion.Symbol + name;
             bool result = name == m_Name;
             return result;
         }
 
-        private bool IsExternal(StateExpression target)
+        private bool IsExternal(Function target)
         {
             bool result = false;
             if (target == m_ActiveExpression)
                 result = true;
-            if (!result && target.Left is StateExpression)
-                result = IsExternal(target.Left as StateExpression);
-            if (!result && target.Right is StateExpression)
-                result = IsExternal(target.Right as StateExpression);
+            if (!result && target.Left is Function)
+                result = IsExternal(target.Left as Function);
+            if (!result && target.Right is Function)
+                result = IsExternal(target.Right as Function);
             return result;
         }
 
@@ -64,7 +64,7 @@ namespace Logic
                     isFound = true;
                 else if (isFound)
                 {
-                    if (collection[i] is StateExpression && IsExternal(collection[i] as StateExpression))
+                    if (collection[i] is Function && IsExternal(collection[i] as Function))
                         continue;
                     Change(collection[i]);
                     return true;
@@ -76,9 +76,9 @@ namespace Logic
         public void Execute()
         {
             bool isFound = false;
-            if (Find<ObservableCollection<SymbolAdapter>, SymbolAdapter>(m_Symbols, ref isFound))
+            if (Find<ObservableCollection<VariableAdapter>, VariableAdapter>(m_Symbols, ref isFound))
                 return;
-            if (Find<ObservableCollection<StateExpression>, StateExpression>(m_Expressions, ref isFound))
+            if (Find<ObservableCollection<Function>, Function>(m_Expressions, ref isFound))
                 return;
             if (isFound)
                 Change(m_Symbols[0]);

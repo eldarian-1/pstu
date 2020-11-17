@@ -1,10 +1,10 @@
 ﻿namespace Entity
 {
-    public class InversionExpression : IExpression
+    public class Inversion : IExpression
     {
         public IExpression Original { get; }
 
-        public InversionExpression(IExpression expression)
+        public Inversion(IExpression expression)
             => Original = expression;
 
         public const char Symbol = '¬';
@@ -12,7 +12,7 @@
         public string Name => Symbol + Original.Name;
 
         public string Briefly => Symbol +
-            (Original is SymbolExpression
+            (Original is Variable
             ? Original.Name
             : "(" + Original.Briefly + ")");
 

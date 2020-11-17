@@ -46,12 +46,12 @@
     <Compile Include="Expression\EquivalenceExpression.cs" />
     <Compile Include="IExpression.cs" />
     <Compile Include="Expression\ImplicationExpression.cs" />
-    <Compile Include="InversionExpression.cs" />
+    <Compile Include="Inversion.cs" />
     <Compile Include="Expression\OrExpression.cs" />
     <Compile Include="Expression\PearsExpression.cs" />
     <Compile Include="Expression\ShefferExpression.cs" />
-    <Compile Include="StateExpression.cs" />
-    <Compile Include="SymbolExpression.cs" />
+    <Compile Include="Function.cs" />
+    <Compile Include="Variable.cs" />
     <Compile Include="Expression\XorExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

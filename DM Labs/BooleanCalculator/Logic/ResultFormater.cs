@@ -5,8 +5,8 @@ namespace Logic
 {
     internal class ResultFormater
     {
-        private ObservableCollection<SymbolAdapter> m_Symbols;
-        private StateExpression m_Expression;
+        private ObservableCollection<VariableAdapter> m_Symbols;
+        private Function m_Expression;
         private TruthTable m_TruthTable;
         private bool[] m_Reserv;
 

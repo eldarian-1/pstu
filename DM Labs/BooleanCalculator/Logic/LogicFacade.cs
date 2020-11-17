@@ -5,21 +5,21 @@ namespace Logic
 {
     public class LogicFacade
     {
-        public ObservableCollection<SymbolAdapter> Symbols { get; protected set; }
-        public ObservableCollection<StateExpression> Expressions { get; protected set; }
-        public StateExpression ActiveExpression { get; protected set; }
+        public ObservableCollection<VariableAdapter> Symbols { get; protected set; }
+        public ObservableCollection<Function> Expressions { get; protected set; }
+        public Function ActiveExpression { get; protected set; }
 
         public LogicFacade()
         {
-            Symbols = new ObservableCollection<SymbolAdapter>();
-            Expressions = new ObservableCollection<StateExpression>();
+            Symbols = new ObservableCollection<VariableAdapter>();
+            Expressions = new ObservableCollection<Function>();
             Initialize();
         }
 
         private void Initialize()
         {
-            SymbolAdapter A = new SymbolAdapter();
-            SymbolAdapter B = new SymbolAdapter();
+            VariableAdapter A = new VariableAdapter();
+            VariableAdapter B = new VariableAdapter();
             Symbols.Add(A);
             Symbols.Add(B);
             NewExpression(A, B);
@@ -27,7 +27,7 @@ namespace Logic
 
         public void InvertSymbol(string name)
         {
-            foreach(SymbolExpression item in Symbols)
+            foreach(Variable item in Symbols)
                 if(item.Name == name)
                 {
                     item.InvertValue();
@@ -35,13 +35,13 @@ namespace Logic
                 }
         }
 
-        public void AddSymbol() => Symbols.Add(new SymbolAdapter());
+        public void AddSymbol() => Symbols.Add(new VariableAdapter());
 
         public void ChangeSymbol(string name, bool isLeft) => new SymbolChanger(this, isLeft, name).Execute();
 
-        private void NewExpression(SymbolExpression A, SymbolExpression B)
+        private void NewExpression(Variable A, Variable B)
         {
-            StateExpression F = new StateExpression();
+            Function F = new Function();
             F.Left = A;
             F.Right = B;
             Expressions.Add(F);
@@ -52,7 +52,7 @@ namespace Logic
 
         public void SetActiveExpression(string name)
         {
-            foreach (StateExpression item in Expressions)
+            foreach (Function item in Expressions)
                 if (item.Name == name)
                 {
                     ActiveExpression = item;

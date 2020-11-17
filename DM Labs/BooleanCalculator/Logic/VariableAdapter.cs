@@ -2,9 +2,9 @@
 
 namespace Logic
 {
-    public class SymbolAdapter : SymbolExpression
+    public class VariableAdapter : Variable
     {
-        public SymbolAdapter() : base() { }
+        public VariableAdapter() : base() { }
 
         public string Data => Value ? "1" : "0";
     }

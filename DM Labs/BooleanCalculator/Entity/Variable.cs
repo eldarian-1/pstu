@@ -1,10 +1,10 @@
 ﻿namespace Entity
 {
-    public class SymbolExpression : IExpression
+    public class Variable : IExpression
     {
         public static int Count { get; protected set; } = 0;
 
-        public SymbolExpression()
+        public Variable()
         {
             Name = ((char)('A' + Count++)).ToString();
             Value = false;

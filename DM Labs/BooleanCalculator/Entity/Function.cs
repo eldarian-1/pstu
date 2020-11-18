@@ -34,7 +34,7 @@
             }
         }
 
-        public string Symbol  => State.Symbol.ToString();
+        public string Symbol  => State.Operator.ToString();
 
         public string Name { get; set; }
         

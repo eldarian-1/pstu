@@ -41,15 +41,26 @@ namespace Logic
             return result;
         }
 
+        private bool CheckSymbol(IExpression symbol)
+        {
+            bool result = false;
+            if (symbol is Function)
+                result = IsExternal(symbol as Function);
+            else if (symbol is Inversion
+                && (symbol as Inversion).Original is Function)
+                result = IsExternal((symbol as Inversion).Original as Function);
+            return result;
+        }
+
         private bool IsExternal(Function target)
         {
             bool result = false;
             if (target == m_ActiveExpression)
                 result = true;
-            if (!result && target.Left is Function)
-                result = IsExternal(target.Left as Function);
-            if (!result && target.Right is Function)
-                result = IsExternal(target.Right as Function);
+            if (!result)
+                result = CheckSymbol(target.Left);
+            if (!result)
+                result = CheckSymbol(target.Right);
             return result;
         }
 

@@ -2,7 +2,7 @@
 {
     class ShefferExpression : AbstractExpression
     {
-        public override char Symbol => '|';
+        public override char Operator => '|';
 
         public override bool Value => !Left.Value || !Right.Value;
 

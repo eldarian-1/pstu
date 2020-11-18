@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entity
+﻿namespace Entity
 {
     internal class Engine : IEngine
     {

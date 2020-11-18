@@ -2,7 +2,7 @@
 {
     class EquivalenceExpression : AbstractExpression
     {
-        public override char Symbol => '~';
+        public override char Operator => '~';
 
         public override bool Value
         {

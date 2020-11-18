@@ -6,15 +6,15 @@
 
         public IExpression Right { get; set; }
 
-        public abstract char Symbol { get; }
+        public abstract char Operator { get; }
 
         public string Name { get; set; }
 
         public string Briefly
-            => Left.Name + " " + Symbol + " " + Right.Name;
+            => Left.Name + " " + Operator + " " + Right.Name;
 
         public string Wholly
-            => "(" + Left.Wholly + " " + Symbol + " " + Right.Wholly + ")";
+            => "(" + Left.Wholly + " " + Operator + " " + Right.Wholly + ")";
 
         public override string ToString() => Wholly;
 

@@ -2,7 +2,7 @@
 {
     class OrExpression : AbstractExpression
     {
-        public override char Symbol => 'v';
+        public override char Operator => 'v';
 
         public override bool Value => Left.Value || Right.Value;
 

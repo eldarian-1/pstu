@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    public class Variable : IExpression
+    public class Variable : ISymbol
     {
         public static int Count { get; protected set; } = 0;
 

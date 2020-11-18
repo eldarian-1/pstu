@@ -1,10 +1,10 @@
 ﻿namespace Entity
 {
-    public abstract class AbstractExpression : IExpression
+    public abstract class AbstractExpression : ISymbol
     {
-        public IExpression Left { get; set; }
+        public ISymbol Left { get; set; }
 
-        public IExpression Right { get; set; }
+        public ISymbol Right { get; set; }
 
         public abstract char Operator { get; }
 

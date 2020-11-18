@@ -5,43 +5,43 @@ namespace Logic
 {
     internal class SymbolChanger
     {
-        private Function m_ActiveExpression;
-        private ObservableCollection<VariableAdapter> m_Symbols;
-        private ObservableCollection<Function> m_Expressions;
+        private Function m_ActiveFunction;
+        private ObservableCollection<VariableAdapter> m_Variables;
+        private ObservableCollection<Function> m_Functions;
         private bool m_IsLeft;
         private bool m_IsInversion;
         private string m_Name;
 
         public SymbolChanger(LogicFacade facade, bool isLeft, string name)
         {
-            m_ActiveExpression = facade.ActiveExpression;
-            m_Symbols = facade.Symbols;
-            m_Expressions = facade.Expressions;
+            m_ActiveFunction = facade.ActiveFunction;
+            m_Variables = facade.Variables;
+            m_Functions = facade.Functions;
             m_IsLeft = isLeft;
-            m_IsInversion = name[0] == Inversion.Symbol;
+            m_IsInversion = name[0] == Inversion.Operator;
             m_Name = name;
         }
 
-        private void Change(IExpression target)
+        private void Change(ISymbol target)
         {
             if (m_IsInversion)
                 target = new Inversion(target);
             if (m_IsLeft)
-                m_ActiveExpression.Left = target;
+                m_ActiveFunction.Left = target;
             else
-                m_ActiveExpression.Right = target;
+                m_ActiveFunction.Right = target;
         }
 
-        private bool IsIt(IExpression target)
+        private bool IsIt(ISymbol target)
         {
             string name = target.Name;
             if (m_IsInversion)
-                name = Inversion.Symbol + name;
+                name = Inversion.Operator + name;
             bool result = name == m_Name;
             return result;
         }
 
-        private bool CheckSymbol(IExpression symbol)
+        private bool CheckSymbol(ISymbol symbol)
         {
             bool result = false;
             if (symbol is Function)
@@ -55,7 +55,7 @@ namespace Logic
         private bool IsExternal(Function target)
         {
             bool result = false;
-            if (target == m_ActiveExpression)
+            if (target == m_ActiveFunction)
                 result = true;
             if (!result)
                 result = CheckSymbol(target.Left);
@@ -67,7 +67,7 @@ namespace Logic
         private bool Find<TCollection, TValue>
             (TCollection collection, ref bool isFound)
             where TCollection : ObservableCollection<TValue>
-            where TValue : IExpression
+            where TValue : ISymbol
         {
             for(int i = 0, n = collection.Count; i < n; ++i)
             {
@@ -87,12 +87,12 @@ namespace Logic
         public void Execute()
         {
             bool isFound = false;
-            if (Find<ObservableCollection<VariableAdapter>, VariableAdapter>(m_Symbols, ref isFound))
+            if (Find<ObservableCollection<VariableAdapter>, VariableAdapter>(m_Variables, ref isFound))
                 return;
-            if (Find<ObservableCollection<Function>, Function>(m_Expressions, ref isFound))
+            if (Find<ObservableCollection<Function>, Function>(m_Functions, ref isFound))
                 return;
             if (isFound)
-                Change(m_Symbols[0]);
+                Change(m_Variables[0]);
         }
     }
 }

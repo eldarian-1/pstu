@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    public interface IExpression
+    public interface ISymbol
     {
         string Name { get; }
         string Briefly { get; }

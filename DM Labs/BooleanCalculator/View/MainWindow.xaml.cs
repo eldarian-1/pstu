@@ -15,9 +15,9 @@ namespace BooleanCalculator
             InitializeComponent();
             m_Inversion = false;
             m_Facade = new LogicFacade();
-            SymbolListBox.ItemsSource = m_Facade.Symbols;
-            ExpressionListBox.ItemsSource = m_Facade.Expressions;
-            UpdateActiveExpression();
+            VariablesBox.ItemsSource = m_Facade.Variables;
+            FunctionsBox.ItemsSource = m_Facade.Functions;
+            UpdateActiveFunction();
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -42,82 +42,82 @@ namespace BooleanCalculator
             }
         }
 
-        private void UpdateActiveExpression()
+        private void UpdateActiveFunction()
         {
-            ExpressionConstructor.DataContext = m_Facade.ActiveExpression;
-            RunExpression.DataContext = m_Facade.ActiveExpression;
-            ExpressionListBox.DataContext = m_Facade.Expressions;
-            ExpressionListBox.Items.Refresh();
-            ChangeSymbolLeft.Content = m_Facade.ActiveExpression.Left.Name;
+            FunctionConstructor.DataContext = m_Facade.ActiveFunction;
+            RunFunction.DataContext = m_Facade.ActiveFunction;
+            FunctionsBox.DataContext = m_Facade.Functions;
+            FunctionsBox.Items.Refresh();
+            ChangeSymbolLeft.Content = m_Facade.ActiveFunction.Left.Name;
             ChangeSymbolLeft.InvalidateMeasure();
-            ChangeSymbolRight.Content = m_Facade.ActiveExpression.Right.Name;
+            ChangeSymbolRight.Content = m_Facade.ActiveFunction.Right.Name;
             ChangeSymbolRight.InvalidateMeasure();
-            ChangeExpression.Content = m_Facade.ActiveExpression.Symbol;
-            ChangeExpression.InvalidateMeasure();
-            RunExpression.Content = m_Facade.ActiveExpression.ToString();
-            RunExpression.InvalidateMeasure();
+            ChangeOperator.Content = m_Facade.ActiveFunction.Symbol;
+            ChangeOperator.InvalidateMeasure();
+            RunFunction.Content = m_Facade.ActiveFunction.ToString();
+            RunFunction.InvalidateMeasure();
         }
 
-        private void SetActiveExpression(object sender)
-            => m_Facade.SetActiveExpression((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
+        private void SetActiveFunction(object sender)
+            => m_Facade.SetActiveFunction((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
 
         private void InvertValueClick(object sender, RoutedEventArgs e)
         {
             m_Facade.InvertSymbol((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
-            SymbolListBox.Items.Refresh();
+            VariablesBox.Items.Refresh();
         }
 
-        private void AddSymbolClick(object sender, RoutedEventArgs e)
-            => m_Facade.AddSymbol();
+        private void AddVariableClick(object sender, RoutedEventArgs e)
+            => m_Facade.AddVariable();
 
         private void ChangeSymbolLeftClick(object sender, RoutedEventArgs e)
         {
             m_Facade.ChangeSymbol((sender as Button).Content.ToString(), true);
-            SetActiveExpression(sender);
-            UpdateActiveExpression();
+            SetActiveFunction(sender);
+            UpdateActiveFunction();
         }
 
         private void ChangeSymbolRightClick(object sender, RoutedEventArgs e)
         {
             m_Facade.ChangeSymbol((sender as Button).Content.ToString(), false);
-            SetActiveExpression(sender);
-            UpdateActiveExpression();
+            SetActiveFunction(sender);
+            UpdateActiveFunction();
         }
 
         private void InvertSymbolLeftClick(object sender, RoutedEventArgs e)
         {
             m_Facade.InvertExpression(true);
-            SetActiveExpression(sender);
-            UpdateActiveExpression();
+            SetActiveFunction(sender);
+            UpdateActiveFunction();
         }
 
         private void InvertSymbolRightClick(object sender, RoutedEventArgs e)
         {
             m_Facade.InvertExpression(false);
-            SetActiveExpression(sender);
-            UpdateActiveExpression();
+            SetActiveFunction(sender);
+            UpdateActiveFunction();
         }
 
-        private void AddExpressionClick(object sender, RoutedEventArgs e)
+        private void AddFunctionClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.AddExpression();
-            UpdateActiveExpression();
+            m_Facade.AddFunction();
+            UpdateActiveFunction();
         }
 
-        private void ChangeExpressionClick(object sender, RoutedEventArgs e)
+        private void ChangeOperatorClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.ChangeExpression();
-            SetActiveExpression(sender);
-            UpdateActiveExpression();
+            m_Facade.ChangeOperator();
+            SetActiveFunction(sender);
+            UpdateActiveFunction();
         }
 
-        private void RunExpressionClick(object sender, RoutedEventArgs e)
-            => MessageBox.Show(m_Facade.RunExpression());
+        private void RunFunctionClick(object sender, RoutedEventArgs e)
+            => MessageBox.Show(m_Facade.RunFunction());
 
-        private void ChooseExpressionClick(object sender, RoutedEventArgs e)
+        private void ChooseFunctionClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.SetActiveExpression((sender as Button).Content.ToString());
-            UpdateActiveExpression();
+            m_Facade.SetActiveFunction((sender as Button).Content.ToString());
+            UpdateActiveFunction();
         }
     }
 }

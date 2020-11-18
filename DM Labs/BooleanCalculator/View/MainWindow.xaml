@@ -8,7 +8,7 @@
 
         <StackPanel Orientation="Horizontal">
 
-            <ListBox x:Name="SymbolListBox">
+            <ListBox x:Name="VariablesBox">
                 
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -27,25 +27,25 @@
                 
             </ListBox>
 
-            <Button Click="AddSymbolClick">+</Button>
+            <Button Click="AddVariableClick">+</Button>
             
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" x:Name="ExpressionConstructor">
+        <StackPanel Orientation="Horizontal" x:Name="FunctionConstructor">
             <TextBlock Text="{Binding Path=Name}"/>
             <Button x:Name="ChangeSymbolLeft" Click="ChangeSymbolLeftClick" Content="{Binding Path=Left.Name}"/>
-            <Button x:Name="ChangeExpression" Click="ChangeExpressionClick" Content="{Binding Path=Symbol}"/>
+            <Button x:Name="ChangeOperator" Click="ChangeOperatorClick" Content="{Binding Path=Symbol}"/>
             <Button x:Name="ChangeSymbolRight" Click="ChangeSymbolRightClick" Content="{Binding Path=Right.Name}"/>
-            <Button Click="AddExpressionClick">+</Button>
+            <Button Click="AddFunctionClick">+</Button>
         </StackPanel>
 
-        <Button x:Name="RunExpression" Click="RunExpressionClick" Content="{Binding Path=FullString}"/>
+        <Button x:Name="RunFunction" Click="RunFunctionClick" Content="{Binding Path=FullString}"/>
 
-        <ListBox x:Name="ExpressionListBox">
+        <ListBox x:Name="FunctionsBox">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Button Click="ChooseExpressionClick" Content="{Binding Path=Name}"/>
+                        <Button Click="ChooseFunctionClick" Content="{Binding Path=Name}"/>
                         <TextBlock Text="{Binding Path=Briefly}"/>
                     </StackPanel>
                 </DataTemplate>

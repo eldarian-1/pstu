@@ -1,11 +1,11 @@
 ﻿namespace Entity
 {
-    public class Function : IExpression
+    public class Function : ISymbol
     {
         private static int s_Count = 0;
 
-        private IExpression m_Left;
-        private IExpression m_Right;
+        private ISymbol m_Left;
+        private ISymbol m_Right;
         public AbstractExpression State { get; protected set; }
 
         public Function()
@@ -14,7 +14,7 @@
             Name = "F" + s_Count++;
         }
 
-        public IExpression Left
+        public ISymbol Left
         {
             get => m_Left;
             set
@@ -24,7 +24,7 @@
             }
         }
 
-        public IExpression Right
+        public ISymbol Right
         {
             get => m_Right;
             set
@@ -46,14 +46,14 @@
 
         public bool Value => State.Value;
 
-        public void ChangeExpression()
+        public void Change()
         {
             State = State.Next;
             State.Left = m_Left;
             State.Right = m_Right;
         }
 
-        public void InvertExpression(bool isLeft)
+        public void Invert(bool isLeft)
         {
             if (isLeft)
                 if (Left is Inversion)

@@ -44,7 +44,7 @@
     <Compile Include="AbstractExpression.cs" />
     <Compile Include="Expression\AndExpression.cs" />
     <Compile Include="Expression\EquivalenceExpression.cs" />
-    <Compile Include="IExpression.cs" />
+    <Compile Include="ISymbol.cs" />
     <Compile Include="Expression\ImplicationExpression.cs" />
     <Compile Include="Inversion.cs" />
     <Compile Include="Expression\OrExpression.cs" />

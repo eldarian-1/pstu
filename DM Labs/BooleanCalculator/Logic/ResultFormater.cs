@@ -5,16 +5,16 @@ namespace Logic
 {
     internal class ResultFormater
     {
-        private ObservableCollection<VariableAdapter> m_Symbols;
-        private Function m_Expression;
+        private ObservableCollection<VariableAdapter> m_Variables;
+        private Function m_Function;
         private TruthTable m_TruthTable;
         private bool[] m_Reserv;
 
         public ResultFormater(LogicFacade facade)
         {
-            m_Expression = facade.ActiveExpression;
-            m_Symbols = facade.Symbols;
-            m_TruthTable = new TruthTable(m_Symbols.Count);
+            m_Function = facade.ActiveFunction;
+            m_Variables = facade.Variables;
+            m_TruthTable = new TruthTable(m_Variables.Count);
             PackReserv();
             Calculate();
             UnpackReserv();
@@ -25,14 +25,14 @@ namespace Logic
             int variables = m_TruthTable.Variables;
             m_Reserv = new bool[variables];
             for (int i = 0; i < variables; ++i)
-                m_Reserv[i] = m_Symbols[i].Value;
+                m_Reserv[i] = m_Variables[i].Value;
         }
 
         private void UnpackReserv()
         {
             int variables = m_TruthTable.Variables;
             for (int i = 0; i < variables; ++i)
-                m_Symbols[i].Value = m_Reserv[i];
+                m_Variables[i].Value = m_Reserv[i];
         }
 
         private void Calculate()
@@ -42,8 +42,8 @@ namespace Logic
             for (int i = 0; i < changes; ++i)
             {
                 for (int j = 0; j < variables; ++j)
-                    m_Symbols[j].Value = m_TruthTable[i, j];
-                m_TruthTable[i] = m_Expression.Value;
+                    m_Variables[j].Value = m_TruthTable[i, j];
+                m_TruthTable[i] = m_Function.Value;
             }
         }
 
@@ -53,7 +53,7 @@ namespace Logic
         {
             string result
                 = "Результат на заданном наборе: "
-                + GetNum(m_Expression.Value)
+                + GetNum(m_Function.Value)
                 + "\n\nТаблица истинности:\n";
 
             for (int i = 0, n = m_TruthTable.Variables; i < n; ++i)

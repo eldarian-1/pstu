@@ -5,14 +5,14 @@ namespace Logic
 {
     public class LogicFacade
     {
-        public ObservableCollection<VariableAdapter> Symbols { get; protected set; }
-        public ObservableCollection<Function> Expressions { get; protected set; }
-        public Function ActiveExpression { get; protected set; }
+        public ObservableCollection<VariableAdapter> Variables { get; protected set; }
+        public ObservableCollection<Function> Functions { get; protected set; }
+        public Function ActiveFunction { get; protected set; }
 
         public LogicFacade()
         {
-            Symbols = new ObservableCollection<VariableAdapter>();
-            Expressions = new ObservableCollection<Function>();
+            Variables = new ObservableCollection<VariableAdapter>();
+            Functions = new ObservableCollection<Function>();
             Initialize();
         }
 
@@ -20,14 +20,14 @@ namespace Logic
         {
             VariableAdapter A = new VariableAdapter();
             VariableAdapter B = new VariableAdapter();
-            Symbols.Add(A);
-            Symbols.Add(B);
-            NewExpression(A, B);
+            Variables.Add(A);
+            Variables.Add(B);
+            NewFunction(A, B);
         }
 
         public void InvertSymbol(string name)
         {
-            foreach(Variable item in Symbols)
+            foreach(VariableAdapter item in Variables)
                 if(item.Name == name)
                 {
                     item.InvertValue();
@@ -35,35 +35,35 @@ namespace Logic
                 }
         }
 
-        public void AddSymbol() => Symbols.Add(new VariableAdapter());
+        public void AddVariable() => Variables.Add(new VariableAdapter());
 
         public void ChangeSymbol(string name, bool isLeft) => new SymbolChanger(this, isLeft, name).Execute();
 
-        private void NewExpression(Variable A, Variable B)
+        private void NewFunction(Variable A, Variable B)
         {
             Function F = new Function();
             F.Left = A;
             F.Right = B;
-            Expressions.Add(F);
-            ActiveExpression = F;
+            Functions.Add(F);
+            ActiveFunction = F;
         }
 
-        public void InvertExpression(bool isLeft) => ActiveExpression.InvertExpression(isLeft);
+        public void InvertExpression(bool isLeft) => ActiveFunction.Invert(isLeft);
 
-        public void SetActiveExpression(string name)
+        public void SetActiveFunction(string name)
         {
-            foreach (Function item in Expressions)
+            foreach (Function item in Functions)
                 if (item.Name == name)
                 {
-                    ActiveExpression = item;
+                    ActiveFunction = item;
                     break;
                 }
         }
 
-        public void AddExpression() => NewExpression(Symbols[0], Symbols[1]);
+        public void AddFunction() => NewFunction(Variables[0], Variables[1]);
 
-        public void ChangeExpression() => ActiveExpression.ChangeExpression();
+        public void ChangeOperator() => ActiveFunction.Change();
 
-        public string RunExpression() => new ResultFormater(this).Execute();
+        public string RunFunction() => new ResultFormater(this).Execute();
     }
 }

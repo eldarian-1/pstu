@@ -40,7 +40,27 @@
         
         public string Briefly => State.Briefly;
 
-        public string Wholly => State.Wholly;
+        public string Wholly
+        {
+            get
+            {
+                string result = "";
+
+                if (Left is Function && State.Priority > (Left as Function).State.Priority)
+                    result += "(" + Left.Wholly + ") ";
+                else
+                    result += Left.Wholly;
+
+                result += " " + State.Operator + " ";
+
+                if (Right is Function && State.Priority > (Right as Function).State.Priority)
+                    result += "(" + Right.Wholly + ") ";
+                else
+                    result += Right.Wholly;
+
+                return result;
+            }
+        }
 
         public override string ToString() => Wholly;
 

@@ -11,12 +11,14 @@
 
         public string Name => Operator + Original.Name;
 
-        public string Briefly => Operator +
+        private string Description(string size) => Operator +
             (Original is Variable
             ? Original.Name
-            : "(" + Original.Briefly + ")");
+            : "(" + size + ")");
 
-        public string Wholly => Operator + Original.Wholly;
+        public string Briefly => Description(Original.Briefly);
+
+        public string Wholly => Description(Original.Wholly);
 
         public override string ToString() => Wholly;
 

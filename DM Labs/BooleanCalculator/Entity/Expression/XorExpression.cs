@@ -4,6 +4,8 @@
     {
         public override char Operator => '+';
 
+        public override int Priority => 3;
+
         public override bool Value
         {
             get

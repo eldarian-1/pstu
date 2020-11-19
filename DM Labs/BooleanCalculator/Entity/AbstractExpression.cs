@@ -8,13 +8,15 @@
 
         public abstract char Operator { get; }
 
+        public abstract int Priority { get; }
+
         public string Name { get; set; }
 
         public string Briefly
             => Left.Name + " " + Operator + " " + Right.Name;
 
         public string Wholly
-            => "(" + Left.Wholly + " " + Operator + " " + Right.Wholly + ")";
+            => Left.Wholly + " " + Operator + " " + Right.Wholly;
 
         public override string ToString() => Wholly;
 

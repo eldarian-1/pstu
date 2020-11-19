@@ -40,18 +40,6 @@
   </Class>
   <Class Name="Lab11.Task1Menu" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="2.5" Y="9.5" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="Lab11.Task1Menu.IsSorted" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Task1Menu.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Delegate Name="Lab11.Task1Menu.Sort" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Task1Menu.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Delegate>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>MAEwAABBAAAAEAAAAgGAFFARCAAKAABAQAAYIcAABAI=</HashCode>
       <FileName>Task1Menu.cs</FileName>
@@ -60,18 +48,6 @@
   </Class>
   <Class Name="Lab11.Task2Menu" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="4.25" Y="9.5" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="Lab11.Task2Menu.IsSorted" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Task2Menu.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Delegate Name="Lab11.Task2Menu.Sort" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Task2Menu.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Delegate>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>EAAwAAABEACAFAAAAgGAFFARCAAKAABAQAE4IcAABQI=</HashCode>
       <FileName>Task2Menu.cs</FileName>

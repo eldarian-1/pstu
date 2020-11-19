@@ -3,7 +3,7 @@ using Entity;
 
 namespace Task2
 {
-    class Query2
+    public static class Query2
     {
         public static void Run(IExecutable[] arr)
         {

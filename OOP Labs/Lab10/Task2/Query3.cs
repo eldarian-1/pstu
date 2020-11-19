@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Task2
 {
-    class Query3
+    public static class Query3
     {
         public static void Run(IExecutable[] arr)
         {

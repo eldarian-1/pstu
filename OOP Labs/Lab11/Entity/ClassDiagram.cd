@@ -10,7 +10,7 @@
   <Class Name="Entity.Engine" Collapsed="true">
     <Position X="3" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAAAAAAAQAAgAAAQABAgEAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAQAgAAAAAQAAgAAAYABAgEAAAAAABA=</HashCode>
       <FileName>Engine\Engine.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -70,7 +70,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Entity.CompareByPowerD" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="6.75" Y="7.25" Width="1.5" />
+    <Position X="6.75" Y="7.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>CompareBy.cs</FileName>
@@ -78,7 +78,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Entity.CompareByPseudonymD" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="8.5" Y="7.25" Width="1.5" />
+    <Position X="8.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>CompareBy.cs</FileName>

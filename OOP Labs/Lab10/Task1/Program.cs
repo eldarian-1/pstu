@@ -3,7 +3,7 @@ using Entity;
 
 namespace Task1
 {
-    class Program
+    public static class Program
     {
         private static IExecutable[] engines;
 

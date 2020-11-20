@@ -31,7 +31,7 @@
     <Lollipop Position="0.1" />
   </Class>
   <Class Name="Lab11.QueryMenu&lt;TCollection&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3.5" Y="10.5" Width="1.5" />
+    <Position X="3.5" Y="10.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAABAAAIAAgAAAAIIAAAAAI=</HashCode>
       <FileName>QueryMenu.cs</FileName>

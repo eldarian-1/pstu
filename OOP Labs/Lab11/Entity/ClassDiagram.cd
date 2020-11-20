@@ -77,8 +77,8 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Entity.CompareByPseudonymD" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="8.75" Y="7.25" Width="1.5" />
+  <Class Name="Entity.CompareByPseudonymD" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="7.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>CompareBy.cs</FileName>

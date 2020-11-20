@@ -1,26 +1,43 @@
 ﻿using System.IO;
 using System.Windows;
 using Microsoft.Win32;
+using System.Windows.Input;
 using System.Windows.Controls;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows.Input;
 
 namespace Lab8
 {
     public partial class MainWindow : Window
     {
+        private enum FindType
+        {
+            None,
+            ByName,
+            ByPeriod
+        }
+
         private const string c_sIncorrectSumm = "Некорректное значение поля суммы!";
         private const string c_sTypeDocument = "Документ CLI (*.cli)|*.cli";
         private const string c_sEmptyList = "Поиск выдал пустой список";
 
         private ClientList clients { get; set; }
         private int updateIndex = -1;
+        private FindType m_FindState;
 
         public MainWindow()
         {
             InitializeComponent();
             clients = new ClientList();
             ListClient.ItemsSource = clients;
+            m_FindState = FindType.None;
+        }
+
+        private void CheckFindState()
+        {
+            if (m_FindState == FindType.ByName)
+                ClickFindName(null, null);
+            else if (m_FindState == FindType.ByPeriod)
+                ClickFindPeriod(null, null);
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -101,21 +118,26 @@ namespace Lab8
         private void DeleteClient(int index)
         {
             ButtonToAdd();
-            clients.RemoveAt(index);
-            ListClient.ItemsSource = clients;
+            ClientList list = ListClient.ItemsSource as ClientList;
+            Client client = list[index];
+            list.Remove(client);
+            if (m_FindState != FindType.None)
+                clients.Remove(client);
         }
 
         private void ButtonAddClient(object sender, RoutedEventArgs e)
         {
             if (int.TryParse(ClientSumm.Text, out int summ) && summ > 0)
             {
-                clients.Add(new Client
+                Client client = new Client
                 {
                     Name = ClientName.Text,
                     Summ = summ,
                     Type = (ClientType.SelectedItem as ComboBoxItem).Content.ToString(),
                     Period = (ClientPeriod.SelectedItem as ComboBoxItem).Content.ToString()
-                });
+                };
+                clients.Add(client);
+                CheckFindState();
                 ClearFields();
             }
             else
@@ -131,7 +153,7 @@ namespace Lab8
                 client.Summ = summ;
                 client.Type = (ClientType.SelectedItem as ComboBoxItem).Content.ToString();
                 client.Period = (ClientPeriod.SelectedItem as ComboBoxItem).Content.ToString();
-
+                CheckFindState();
                 ButtonToAdd();
                 ListClient.Items.Refresh();
             }
@@ -178,6 +200,7 @@ namespace Lab8
             ListClient.ItemsSource = list;
             if (list.Count == 0)
                 MessageBox.Show(c_sEmptyList);
+            m_FindState = FindType.ByName;
         }
 
         private void ClickFindPeriod(object sender, RoutedEventArgs e)
@@ -187,9 +210,13 @@ namespace Lab8
             ListClient.ItemsSource = list;
             if (list.Count == 0)
                 MessageBox.Show(c_sEmptyList);
+            m_FindState = FindType.ByPeriod;
         }
 
         private void ClickReset(object sender, RoutedEventArgs e)
-            => ListClient.ItemsSource = clients;
+        {
+            ListClient.ItemsSource = clients;
+            m_FindState = FindType.None;
+        }
     }
 }

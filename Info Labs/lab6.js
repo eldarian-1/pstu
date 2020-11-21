@@ -1,6 +1,10 @@
 var ConvertArray = function(arr){
-	for(var i = 0, n = arr.length; i < n; ++i)
-		arr(i) = parseInt(arr(i), 10)
+	var result = arr.slice(0, 3)
+	for(var i = 0, n = arr.length; i < n; ++i){
+		result(i) = parseInt(arr(i), 10)
+		WScript.Echo(result(i))
+	}
+	return result
 }
 
 var SummEven = function(arr){
@@ -53,33 +57,39 @@ var Sorting = function(arr){
 
 var SortEven = function(arr){
 	var temp = Sorting(arr)
+	var result = ""
+	for(var i = 0, n = temp.length; i < n; ++i)
+		if(i % 2 == 0)
+			result += temp(i) + " "
+	return result
 }
 
 var Alert = function(str){
 	WScript.Echo(str)
 }
 
-var Task1 = function(){
-	
+var Task1 = function(arr){
+	return "1. Summ even: " + SummEven(arr)
 }
 
-var Task2 = function(){
-	
+var Task2 = function(arr){
+	return "2. Max even: " + MaxEven(arr)
 }
 
-var Task3 = function(){
-	
+var Task3 = function(arr){
+	return "3. Max item: " + MaxItem(arr)
 }
 
-var Task4 = function(){
-	
+var Task4 = function(arr){
+	return "4. Min even: " + MinEven(arr)
 }
 
-var Task5 = function(){
-	
+var Task5 = function(arr){
+	return "5. Sorted even: " + SortEven(arr)
 }
 
 var Main = function(arr){
+	ConvertArray(arr)
 	var result = ""
 	result += Task1(arr) + "\n"
 	result += Task2(arr) + "\n"

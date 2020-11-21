@@ -7,8 +7,8 @@
         public new string Fuel => "Diesel";
 
         public override object Clone()
-            => new DieselEngine(Index);
+            => new DieselEngine(Index) { Power = Power};
 
-        public override IEngine BaseEngine => new Engine(Index);
+        public override IEngine BaseEngine => new Engine(Index) { Power = Power };
     }
 }

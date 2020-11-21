@@ -21,17 +21,3 @@ C:\Users\Администратор\pstu\OOP Labs\Lab11\Lab11\obj\Debug\Lab11.cs
 C:\Users\Администратор\pstu\OOP Labs\Lab11\Lab11\obj\Debug\Lab11.csproj.CopyComplete
 C:\Users\Администратор\pstu\OOP Labs\Lab11\Lab11\obj\Debug\Lab11.exe
 C:\Users\Администратор\pstu\OOP Labs\Lab11\Lab11\obj\Debug\Lab11.pdb
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\bin\Debug\Lab11.exe.config
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\bin\Debug\Lab11.exe
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\bin\Debug\Lab11.pdb
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\bin\Debug\Collection.dll
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\bin\Debug\Dialog.dll
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\bin\Debug\Entity.dll
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\bin\Debug\Collection.pdb
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\bin\Debug\Dialog.pdb
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\bin\Debug\Entity.pdb
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\obj\Debug\Lab11.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\obj\Debug\Lab11.csproj.CoreCompileInputs.cache
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\obj\Debug\Lab11.csproj.CopyComplete
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\obj\Debug\Lab11.exe
-D:\Lester\Политех\Master\OOP Labs\Lab11\Lab11\obj\Debug\Lab11.pdb

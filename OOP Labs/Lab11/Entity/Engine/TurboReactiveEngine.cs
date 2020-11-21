@@ -7,8 +7,8 @@
         public string Fuel => "Hydrogen";
 
         public override object Clone()
-            => new TurboReactiveEngine(Index);
+            => new TurboReactiveEngine(Index) { Power = Power };
 
-        public override IEngine BaseEngine => new Engine(Index);
+        public override IEngine BaseEngine => new Engine(Index) { Power = Power };
     }
 }

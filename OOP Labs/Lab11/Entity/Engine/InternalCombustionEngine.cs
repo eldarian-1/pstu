@@ -7,8 +7,8 @@
         public override string Fuel => "Bensin";
 
         public override object Clone()
-            => new InternalCombustionEngine(Index);
+            => new InternalCombustionEngine(Index) { Power = Power };
 
-        public override IEngine BaseEngine => new Engine(Index);
+        public override IEngine BaseEngine => new Engine(Index) { Power = Power };
     }
 }

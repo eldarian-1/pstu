@@ -1,56 +1,68 @@
-var ConvertArray = function(arr){
-	var result = arr.slice(0, 3)
-	for(var i = 0, n = arr.length; i < n; ++i){
-		result(i) = parseInt(arr(i), 10)
-		WScript.Echo(result(i))
-	}
+var Alert = function(str){
+	WScript.Echo(str)
+}
+
+var ArrayClone = function(arr){
+	var result = []
+	for(var i = 0, n = arr.length; i < n; ++i)
+		result.push(arr(i))
 	return result
 }
 
-var SummEven = function(arr){
+var ListClone = function(arr){
+	var result = []
+	for(var i = 0, n = arr.length; i < n; ++i)
+		result.push(arr[i])
+	return result
+}
+
+var ConvertArray = function(arr){
+	var result = ArrayClone(arr)
+	for(var i = 0, n = result.length; i < n; ++i)
+		result[i] = parseInt(result[i])
+	return result
+}
+
+var SummOdd = function(arr){
 	var result = 0;
 	for(var i = 0, n = arr.length; i < n; ++i)
 		if(i % 2 == 0)
-			result += arr(i)
+			result += arr[i]
 	return result
 }
 
 var MaxEven = function(arr){
-	var max = 0;
+	var max = arr[1];
 	for(var i = 0, n = arr.length; i < n; ++i)
-		if(i % 2 == 0 && arr(i) > max)
-			max = arr(i)
+		if(i % 2 == 1 && arr[i] > max)
+			max = arr[i]
 	return max
 }
 
 var MaxItem = function(arr){
-	var max = 0;
+	var max = arr[0];
 	for(var i = 0, n = arr.length; i < n; ++i)
-		if(arr(i) > max)
-			max = arr(i)
+		if(arr[i] > max)
+			max = arr[i]
 	return max
 }
 
 var MinEven = function(arr){
-	var min = 0;
+	var min = arr[1];
 	for(var i = 0, n = arr.length; i < n; ++i)
-		if(i % 2 == 0 && arr(i) < min)
-			min = arr(i)
+		if(i % 2 == 1 && arr[i] < min)
+			min = arr[i]
 	return min
 }
 
-var ArrayClone = function(arr){
-	return arr.slice(0, arr.length)
-}
-
 var Sorting = function(arr){
-	var temp, result = ArrayClone(arr);
+	var temp, result = ListClone(arr);
 	for(var i = 0, n = result.length; i < n; ++i)
 		for(var j = i; j < n; ++j)
-			if(result(i) < result(j)){
-				temp = result(i)
-				result(i) = result(j)
-				result(j) = temp
+			if(result[i] > result[j]){
+				temp = result[i]
+				result[i] = result[j]
+				result[j] = temp
 			}
 	return result
 }
@@ -59,17 +71,13 @@ var SortEven = function(arr){
 	var temp = Sorting(arr)
 	var result = ""
 	for(var i = 0, n = temp.length; i < n; ++i)
-		if(i % 2 == 0)
-			result += temp(i) + " "
+		if(i % 2 == 1)
+			result += temp[i] + " "
 	return result
 }
 
-var Alert = function(str){
-	WScript.Echo(str)
-}
-
 var Task1 = function(arr){
-	return "1. Summ even: " + SummEven(arr)
+	return "1. Summ odd: " + SummOdd(arr)
 }
 
 var Task2 = function(arr){
@@ -89,8 +97,8 @@ var Task5 = function(arr){
 }
 
 var Main = function(arr){
-	ConvertArray(arr)
 	var result = ""
+	arr = ConvertArray(arr)
 	result += Task1(arr) + "\n"
 	result += Task2(arr) + "\n"
 	result += Task3(arr) + "\n"

@@ -1,7 +1,9 @@
+// Вывод сообщения
 var Alert = function(str){
 	WScript.Echo(str)
 }
 
+// Клонирование массива список
 var ArrayClone = function(arr){
 	var result = []
 	for(var i = 0, n = arr.length; i < n; ++i)
@@ -9,6 +11,7 @@ var ArrayClone = function(arr){
 	return result
 }
 
+// Клонирование списка в список
 var ListClone = function(arr){
 	var result = []
 	for(var i = 0, n = arr.length; i < n; ++i)
@@ -16,6 +19,7 @@ var ListClone = function(arr){
 	return result
 }
 
+// Конвертация списка строк в список чисел
 var ConvertArray = function(arr){
 	var result = ArrayClone(arr)
 	for(var i = 0, n = result.length; i < n; ++i)
@@ -23,6 +27,7 @@ var ConvertArray = function(arr){
 	return result
 }
 
+// Сумма нечетных аргументов
 var SummOdd = function(arr){
 	var result = 0;
 	for(var i = 0, n = arr.length; i < n; ++i)
@@ -31,6 +36,7 @@ var SummOdd = function(arr){
 	return result
 }
 
+// Максимальный четный аргумент
 var MaxEven = function(arr){
 	var max = arr[1];
 	for(var i = 0, n = arr.length; i < n; ++i)
@@ -39,6 +45,7 @@ var MaxEven = function(arr){
 	return max
 }
 
+// Максимальный аргумент
 var MaxItem = function(arr){
 	var max = arr[0];
 	for(var i = 0, n = arr.length; i < n; ++i)
@@ -47,6 +54,7 @@ var MaxItem = function(arr){
 	return max
 }
 
+// Минимальный четный аргумент
 var MinEven = function(arr){
 	var min = arr[1];
 	for(var i = 0, n = arr.length; i < n; ++i)
@@ -55,6 +63,7 @@ var MinEven = function(arr){
 	return min
 }
 
+// Сортировка списка
 var Sorting = function(arr){
 	var temp, result = ListClone(arr);
 	for(var i = 0, n = result.length; i < n; ++i)
@@ -67,6 +76,7 @@ var Sorting = function(arr){
 	return result
 }
 
+// Отсортированные четные аргументы
 var SortEven = function(arr){
 	var temp = Sorting(arr)
 	var result = ""

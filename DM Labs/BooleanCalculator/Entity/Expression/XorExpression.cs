@@ -16,6 +16,6 @@
             }
         }
 
-        public override AbstractExpression Next => new ShefferExpression();
+        public override AbstractExpression Next => new SchaefferExpression();
     }
 }

@@ -10,7 +10,7 @@
             Value = false;
         }
 
-        public void InvertValue() => Value = !Value;
+        public void Invert() => Value = !Value;
 
         public string Name { get; }
 

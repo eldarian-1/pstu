@@ -4,8 +4,8 @@
     {
         public ISymbol Original { get; }
 
-        public Inversion(ISymbol expression)
-            => Original = expression;
+        public Inversion(ISymbol original)
+            => Original = original;
 
         public const char Operator = '¬';
 

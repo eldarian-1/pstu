@@ -52,7 +52,7 @@ namespace BooleanCalculator
             ChangeSymbolLeft.InvalidateMeasure();
             ChangeSymbolRight.Content = m_Facade.ActiveFunction.Right.Name;
             ChangeSymbolRight.InvalidateMeasure();
-            ChangeOperator.Content = m_Facade.ActiveFunction.Symbol;
+            ChangeOperator.Content = m_Facade.ActiveFunction.Operator;
             ChangeOperator.InvalidateMeasure();
             RunFunction.Content = m_Facade.ActiveFunction.ToString();
             RunFunction.InvalidateMeasure();
@@ -63,7 +63,7 @@ namespace BooleanCalculator
 
         private void InvertValueClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.InvertSymbol((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
+            m_Facade.InvertVariable((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
             VariablesBox.Items.Refresh();
         }
 
@@ -86,14 +86,14 @@ namespace BooleanCalculator
 
         private void InvertSymbolLeftClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.InvertExpression(true);
+            m_Facade.InvertSymbol(true);
             SetActiveFunction(sender);
             UpdateActiveFunction();
         }
 
         private void InvertSymbolRightClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.InvertExpression(false);
+            m_Facade.InvertSymbol(false);
             SetActiveFunction(sender);
             UpdateActiveFunction();
         }

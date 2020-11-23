@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    class PearsExpression : AbstractExpression
+    class PierseExpression : AbstractExpression
     {
         public override char Operator => '↓';
 

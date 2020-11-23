@@ -25,12 +25,12 @@ namespace Logic
             NewFunction(A, B);
         }
 
-        public void InvertSymbol(string name)
+        public void InvertVariable(string name)
         {
             foreach(VariableAdapter item in Variables)
                 if(item.Name == name)
                 {
-                    item.InvertValue();
+                    item.Invert();
                     break;
                 }
         }
@@ -48,7 +48,7 @@ namespace Logic
             ActiveFunction = F;
         }
 
-        public void InvertExpression(bool isLeft) => ActiveFunction.Invert(isLeft);
+        public void InvertSymbol(bool isLeft) => ActiveFunction.Invert(isLeft);
 
         public void SetActiveFunction(string name)
         {

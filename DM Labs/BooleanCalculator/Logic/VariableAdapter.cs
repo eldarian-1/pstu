@@ -6,6 +6,6 @@ namespace Logic
     {
         public VariableAdapter() : base() { }
 
-        public string Data => Value ? "1" : "0";
+        public char Data => Value ? '1' : '0';
     }
 }

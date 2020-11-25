@@ -1,49 +1,61 @@
 ﻿using Entity;
-using System.Collections.ObjectModel;
 
 namespace Logic
 {
     public class LogicFacade
     {
-        public ObservableCollection<VariableAdapter> Variables { get; protected set; }
-        public ObservableCollection<FunctionAdapter> Functions { get; protected set; }
-        public FunctionAdapter ResultFunction { get; protected set; }
-        public FunctionAdapter ActiveFunction { get; protected set; }
+        public VariableCollection Variables { get; protected set; }
+        public FunctionCollection Functions { get; protected set; }
+        public string Expressions => Variables + ", " + Functions;
+        public FunctionVisual ResultFunction { get; protected set; }
+        public FunctionVisual ActiveFunction { get; protected set; }
 
         public LogicFacade()
         {
-            Variables = new ObservableCollection<VariableAdapter>();
-            Functions = new ObservableCollection<FunctionAdapter>();
+            Variables = new VariableCollection();
+            Functions = new FunctionCollection();
             Initialize();
         }
 
         private void Initialize()
         {
-            VariableAdapter A = new VariableAdapter();
-            VariableAdapter B = new VariableAdapter();
-            ResultFunction = new FunctionAdapter() { Left = A, Right = B, Name = "G" };
+            VariableVisual A = new VariableVisual(true);
+            VariableVisual B = new VariableVisual();
+            ResultFunction = new FunctionVisual() { Left = B, Right = B, Name = "G" };
             Variables.Add(A);
             Variables.Add(B);
             NewFunction(A, B);
+            ActiveFunction.Change();
+            ActiveFunction.Change();
         }
 
-        public void InvertVariable(string name)
+        public void ChangeVisibleVariable(string name)
         {
-            foreach(VariableAdapter item in Variables)
-                if(item.Name == name)
+            foreach (VariableVisual item in Variables)
+                if (item.Name == name)
                 {
-                    item.Invert();
+                    item.ChangeVisible();
                     break;
                 }
         }
 
-        public void AddVariable() => Variables.Add(new VariableAdapter());
+        public void ChangeVisibleFunction(string name)
+        {
+            foreach (FunctionVisual item in Functions)
+                if (item.Name == name)
+                {
+                    item.ChangeVisible();
+                    break;
+                }
+        }
+
+        public void AddVariable() => Variables.Add(new VariableVisual());
 
         public void ChangeSymbol(string name, bool isLeft) => new SymbolChanger(this, isLeft, name).Execute();
 
         private void NewFunction(Variable A, Variable B)
         {
-            FunctionAdapter F = new FunctionAdapter();
+            FunctionVisual F = new FunctionVisual();
             F.Left = A;
             F.Right = B;
             Functions.Add(F);
@@ -59,7 +71,7 @@ namespace Logic
                 ActiveFunction = ResultFunction;
                 return;
             }
-            foreach (FunctionAdapter item in Functions)
+            foreach (FunctionVisual item in Functions)
                 if (item.Name == name)
                 {
                     ActiveFunction = item;

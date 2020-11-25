@@ -20,7 +20,7 @@
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Text="{Binding Path=Name}"/>
-                            <Button Click="IsVisibleVariableClick" Content="{Binding Path=Visual}"/>
+                            <Button Click="ChangeVisibleVariableClick" Content="{Binding Path=Visual}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -47,16 +47,28 @@
                     <StackPanel Orientation="Horizontal">
                         <Button Click="ChooseFunctionClick" Content="{Binding Path=Name}"/>
                         <TextBlock Text="{Binding Path=Briefly}"/>
-                        <Button Click="IsVisibleFunctionClick" Content="{Binding Path=Visual}"/>
+                        <Button Click="ChangeVisibleFunctionClick" Content="{Binding Path=Visual}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <StackPanel x:Name="ResultFunction" Orientation="Horizontal">
-            <Button Click="ChooseFunctionClick" Content="{Binding Path=Name}"/>
-            <TextBlock Text="{Binding Path=Briefly}"/>
-        </StackPanel>
+        <ListBox>
+            <ListBoxItem>
+                <StackPanel x:Name="ResultFunction" Orientation="Horizontal">
+                    <Button Click="ChooseFunctionClick" Content="{Binding Path=Name}"/>
+                    <TextBlock Text="{Binding Path=Briefly}"/>
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
+
+        <Button x:Name="RunResulution" Click="RunResulutionClick">
+            <StackPanel>
+                <Label Name="ExpressionsLabel" Content="{Binding Path=Expressions}"/>
+                <Line X1="0" X2="780" Y1="0" Y2="0" Stroke="Black"/>
+                <Label Name="ResultFunctionLabel" Content="{Binding Path=ResultFunction}"/>
+            </StackPanel>
+        </Button>
 
     </StackPanel>
 </Window>

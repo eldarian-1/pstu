@@ -42,6 +42,15 @@ namespace BooleanCalculator
             }
         }
 
+        private void UpdateResulFunction()
+        {
+            ExpressionsLabel.Content = m_Facade.Expressions;
+            ExpressionsLabel.InvalidateMeasure();
+            ResultFunctionLabel.Content = m_Facade.ResultFunction.ToString();
+            ResultFunctionLabel.InvalidateMeasure();
+            RunResulution.InvalidateMeasure();
+        }
+
         private void UpdateActiveFunction()
         {
             FunctionConstructor.DataContext = m_Facade.ActiveFunction;
@@ -57,15 +66,17 @@ namespace BooleanCalculator
             ChangeOperator.InvalidateMeasure();
             RunFunction.Content = m_Facade.ActiveFunction.ToString();
             RunFunction.InvalidateMeasure();
+            UpdateResulFunction();
         }
 
         private void SetActiveFunction(object sender)
             => m_Facade.SetActiveFunction((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
 
-        private void IsVisibleVariableClick(object sender, RoutedEventArgs e)
+        private void ChangeVisibleVariableClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.InvertVariable((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
+            m_Facade.ChangeVisibleVariable((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
             VariablesBox.Items.Refresh();
+            UpdateResulFunction();
         }
 
         private void AddVariableClick(object sender, RoutedEventArgs e)
@@ -115,16 +126,19 @@ namespace BooleanCalculator
         private void RunFunctionClick(object sender, RoutedEventArgs e)
             => MessageBox.Show(m_Facade.RunFunction());
 
+        private void RunResulutionClick(object sender, RoutedEventArgs e)
+            => MessageBox.Show(m_Facade.RunFunction());
+
         private void ChooseFunctionClick(object sender, RoutedEventArgs e)
         {
             m_Facade.SetActiveFunction((sender as Button).Content.ToString());
             UpdateActiveFunction();
         }
 
-        private void IsVisibleFunctionClick(object sender, RoutedEventArgs e)
+        private void ChangeVisibleFunctionClick(object sender, RoutedEventArgs e)
         {
-            m_Facade.InvertVariable((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
-            VariablesBox.Items.Refresh();
+            m_Facade.ChangeVisibleFunction((((sender as Button).Parent as StackPanel).Children[0] as Button).Content.ToString());
+            UpdateActiveFunction();
         }
     }
 }

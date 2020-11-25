@@ -5,34 +5,16 @@ namespace Logic
 {
     internal class ResultFormater
     {
-        private ObservableCollection<VariableAdapter> m_Variables;
+        private ObservableCollection<VariableVisual> m_Variables;
         private Function m_Function;
         private TruthTable m_TruthTable;
-        private bool[] m_Reserv;
 
         public ResultFormater(LogicFacade facade)
         {
             m_Function = facade.ActiveFunction;
             m_Variables = facade.Variables;
             m_TruthTable = new TruthTable(m_Variables.Count);
-            PackReserv();
             Calculate();
-            UnpackReserv();
-        }
-
-        private void PackReserv()
-        {
-            int variables = m_TruthTable.Variables;
-            m_Reserv = new bool[variables];
-            for (int i = 0; i < variables; ++i)
-                m_Reserv[i] = m_Variables[i].Value;
-        }
-
-        private void UnpackReserv()
-        {
-            int variables = m_TruthTable.Variables;
-            for (int i = 0; i < variables; ++i)
-                m_Variables[i].Value = m_Reserv[i];
         }
 
         private void Calculate()
@@ -51,10 +33,7 @@ namespace Logic
 
         public string Execute()
         {
-            string result
-                = "Результат на заданном наборе: "
-                + GetNum(m_Function.Value)
-                + "\n\nТаблица истинности:\n";
+            string result = "Таблица истинности:\n";
 
             for (int i = 0, n = m_TruthTable.Variables; i < n; ++i)
                 result += ((char)('A' + i)).ToString();

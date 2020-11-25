@@ -46,17 +46,24 @@
             {
                 string result = "";
 
-                if (Left is Function && State.Priority > (Left as Function).State.Priority)
-                    result += "(" + Left.Wholly + ") ";
+                if (Left == Right && (State is AndExpression || State is OrExpression))
+                {
+                    result = Left.Name;
+                }
                 else
-                    result += Left.Wholly;
+                {
+                    if (Left is Function && State.Priority > (Left as Function).State.Priority)
+                        result += "(" + Left.Wholly + ") ";
+                    else
+                        result += Left.Wholly;
 
-                result += " " + State.Operator + " ";
+                    result += " " + State.Operator + " ";
 
-                if (Right is Function && State.Priority > (Right as Function).State.Priority)
-                    result += "(" + Right.Wholly + ") ";
-                else
-                    result += Right.Wholly;
+                    if (Right is Function && State.Priority > (Right as Function).State.Priority)
+                        result += "(" + Right.Wholly + ") ";
+                    else
+                        result += Right.Wholly;
+                }
 
                 return result;
             }

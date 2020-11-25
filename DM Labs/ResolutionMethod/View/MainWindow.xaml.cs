@@ -127,7 +127,7 @@ namespace BooleanCalculator
             => MessageBox.Show(m_Facade.RunFunction());
 
         private void RunResulutionClick(object sender, RoutedEventArgs e)
-            => MessageBox.Show(m_Facade.RunFunction());
+            => MessageBox.Show(m_Facade.RunResulution());
 
         private void ChooseFunctionClick(object sender, RoutedEventArgs e)
         {

@@ -4,16 +4,16 @@ namespace Logic
 {
     public class LogicFacade
     {
-        public VariableCollection Variables { get; protected set; }
-        public FunctionCollection Functions { get; protected set; }
+        public VariableList Variables { get; protected set; }
+        public FunctionList Functions { get; protected set; }
         public string Expressions => Variables + ", " + Functions;
         public FunctionVisual ResultFunction { get; protected set; }
         public FunctionVisual ActiveFunction { get; protected set; }
 
         public LogicFacade()
         {
-            Variables = new VariableCollection();
-            Functions = new FunctionCollection();
+            Variables = new VariableList();
+            Functions = new FunctionList();
             Initialize();
         }
 
@@ -84,5 +84,14 @@ namespace Logic
         public void ChangeOperator() => ActiveFunction.Change();
 
         public string RunFunction() => new ResultFormater(this).Execute();
+
+        public string RunResulution()
+        {
+            ResolventList list = new ResolventList();
+            list.Add(Variables);
+            list.Add(Functions);
+            list.Fill();
+            return list.Solve();
+        }
     }
 }

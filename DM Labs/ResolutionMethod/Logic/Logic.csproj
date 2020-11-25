@@ -41,11 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FunctionCollection.cs" />
+    <Compile Include="FunctionList.cs" />
     <Compile Include="FunctionVisual.cs" />
     <Compile Include="LogicFacade.cs" />
+    <Compile Include="Resolvent.cs" />
+    <Compile Include="ResolventList.cs" />
     <Compile Include="ResultFormater.cs" />
-    <Compile Include="VariableCollection.cs" />
+    <Compile Include="VariableList.cs" />
     <Compile Include="VariableVisual.cs" />
     <Compile Include="SymbolChanger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

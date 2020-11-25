@@ -2,16 +2,16 @@
 
 namespace Logic
 {
-    public class VariableCollection : ObservableCollection<VariableVisual>
+    public class FunctionList : ObservableCollection<FunctionVisual>
     {
-        public VariableCollection() : base() { }
+        public FunctionList() : base() { }
 
         public override string ToString()
         {
             string result = "";
             for (int i = 0, n = Count; i < n; ++i)
-                if (this[i].IsVisible)
-                    result += (i > 0 ? ", " : "") + this[i];
+                if(this[i].IsVisible)
+                    result += (i > 0 ? ", " : "")  + this[i];
             return result;
         }
     }

@@ -75,6 +75,8 @@ namespace Logic
             }
         }
 
+        public int Count => m_Symbols.Count;
+
         public string Name => throw new System.NotImplementedException();
 
         public string Briefly => throw new System.NotImplementedException();
@@ -86,6 +88,20 @@ namespace Logic
             string result = "";
             for (int i = 0, n = m_Symbols.Count; i < n; ++i)
                 result += (i > 0 ? ", " : "") + m_Symbols[i];
+            return result;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Resolvent temp = obj as Resolvent;
+            bool result = temp.Count == Count;
+            if(result)
+                foreach (ISymbol item in m_Symbols)
+                    if (!temp.m_Symbols.Contains(item))
+                    {
+                        result = false;
+                        break;
+                    }
             return result;
         }
     }

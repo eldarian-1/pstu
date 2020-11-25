@@ -38,7 +38,7 @@ namespace Logic
                 bool isAdded = false;
                 while(!isAdded && i < Count)
                     isAdded = newResolvent.Add(this[i++]);
-                if (isAdded)
+                if (isAdded && !Contains(newResolvent))
                     Add(newResolvent);
                 i = j;
             }

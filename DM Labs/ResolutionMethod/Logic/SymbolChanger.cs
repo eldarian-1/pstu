@@ -7,7 +7,7 @@ namespace Logic
     {
         private Function m_ActiveFunction;
         private ObservableCollection<VariableAdapter> m_Variables;
-        private ObservableCollection<Function> m_Functions;
+        private ObservableCollection<FunctionAdapter> m_Functions;
         private bool m_IsLeft;
         private bool m_IsInversion;
         private string m_Name;
@@ -89,7 +89,7 @@ namespace Logic
             bool isFound = false;
             if (Find<ObservableCollection<VariableAdapter>, VariableAdapter>(m_Variables, ref isFound))
                 return;
-            if (Find<ObservableCollection<Function>, Function>(m_Functions, ref isFound))
+            if (Find<ObservableCollection<FunctionAdapter>, FunctionAdapter>(m_Functions, ref isFound))
                 return;
             if (isFound)
                 Change(m_Variables[0]);

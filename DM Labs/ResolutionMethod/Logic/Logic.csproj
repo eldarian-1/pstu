@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FunctionAdapter.cs" />
     <Compile Include="LogicFacade.cs" />
     <Compile Include="ResultFormater.cs" />
     <Compile Include="VariableAdapter.cs" />

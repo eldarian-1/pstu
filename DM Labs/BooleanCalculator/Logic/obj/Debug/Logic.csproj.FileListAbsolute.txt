@@ -1,9 +1,0 @@
-D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Logic\bin\Debug\Logic.dll
-D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Logic\bin\Debug\Logic.pdb
-D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Logic\bin\Debug\Entity.dll
-D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Logic\bin\Debug\Entity.pdb
-D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Logic\obj\Debug\Logic.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Logic\obj\Debug\Logic.csproj.CoreCompileInputs.cache
-D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Logic\obj\Debug\Logic.csproj.CopyComplete
-D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Logic\obj\Debug\Logic.dll
-D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Logic\obj\Debug\Logic.pdb

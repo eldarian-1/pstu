@@ -46,6 +46,7 @@ namespace BooleanCalculator
         {
             FunctionConstructor.DataContext = m_Facade.ActiveFunction;
             RunFunction.DataContext = m_Facade.ActiveFunction;
+            ResultFunction.DataContext = m_Facade.ResultFunction;
             FunctionsBox.DataContext = m_Facade.Functions;
             FunctionsBox.Items.Refresh();
             ChangeSymbolLeft.Content = m_Facade.ActiveFunction.Left.Name;
@@ -61,7 +62,7 @@ namespace BooleanCalculator
         private void SetActiveFunction(object sender)
             => m_Facade.SetActiveFunction((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
 
-        private void InvertValueClick(object sender, RoutedEventArgs e)
+        private void IsVisibleVariableClick(object sender, RoutedEventArgs e)
         {
             m_Facade.InvertVariable((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
             VariablesBox.Items.Refresh();
@@ -118,6 +119,12 @@ namespace BooleanCalculator
         {
             m_Facade.SetActiveFunction((sender as Button).Content.ToString());
             UpdateActiveFunction();
+        }
+
+        private void IsVisibleFunctionClick(object sender, RoutedEventArgs e)
+        {
+            m_Facade.InvertVariable((((sender as Button).Parent as StackPanel).Children[0] as TextBlock).Text);
+            VariablesBox.Items.Refresh();
         }
     }
 }

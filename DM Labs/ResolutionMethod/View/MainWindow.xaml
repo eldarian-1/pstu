@@ -20,7 +20,7 @@
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Text="{Binding Path=Name}"/>
-                            <Button Click="InvertValueClick" Content="{Binding Path=Data}"/>
+                            <Button Click="IsVisibleVariableClick" Content="{Binding Path=Visual}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -47,10 +47,16 @@
                     <StackPanel Orientation="Horizontal">
                         <Button Click="ChooseFunctionClick" Content="{Binding Path=Name}"/>
                         <TextBlock Text="{Binding Path=Briefly}"/>
+                        <Button Click="IsVisibleFunctionClick" Content="{Binding Path=Visual}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
+
+        <StackPanel x:Name="ResultFunction" Orientation="Horizontal">
+            <Button Click="ChooseFunctionClick" Content="{Binding Path=Name}"/>
+            <TextBlock Text="{Binding Path=Briefly}"/>
+        </StackPanel>
+
     </StackPanel>
 </Window>

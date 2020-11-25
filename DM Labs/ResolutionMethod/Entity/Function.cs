@@ -11,7 +11,7 @@
         public Function()
         {
             State = new AndExpression();
-            Name = "F" + s_Count++;
+            Name = "S" + s_Count++;
         }
 
         public ISymbol Left

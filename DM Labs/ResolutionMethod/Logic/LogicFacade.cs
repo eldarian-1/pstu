@@ -6,13 +6,14 @@ namespace Logic
     public class LogicFacade
     {
         public ObservableCollection<VariableAdapter> Variables { get; protected set; }
-        public ObservableCollection<Function> Functions { get; protected set; }
-        public Function ActiveFunction { get; protected set; }
+        public ObservableCollection<FunctionAdapter> Functions { get; protected set; }
+        public FunctionAdapter ResultFunction { get; protected set; }
+        public FunctionAdapter ActiveFunction { get; protected set; }
 
         public LogicFacade()
         {
             Variables = new ObservableCollection<VariableAdapter>();
-            Functions = new ObservableCollection<Function>();
+            Functions = new ObservableCollection<FunctionAdapter>();
             Initialize();
         }
 
@@ -20,6 +21,7 @@ namespace Logic
         {
             VariableAdapter A = new VariableAdapter();
             VariableAdapter B = new VariableAdapter();
+            ResultFunction = new FunctionAdapter() { Left = A, Right = B, Name = "G" };
             Variables.Add(A);
             Variables.Add(B);
             NewFunction(A, B);
@@ -41,7 +43,7 @@ namespace Logic
 
         private void NewFunction(Variable A, Variable B)
         {
-            Function F = new Function();
+            FunctionAdapter F = new FunctionAdapter();
             F.Left = A;
             F.Right = B;
             Functions.Add(F);
@@ -52,7 +54,12 @@ namespace Logic
 
         public void SetActiveFunction(string name)
         {
-            foreach (Function item in Functions)
+            if(name == ResultFunction.Name)
+            {
+                ActiveFunction = ResultFunction;
+                return;
+            }
+            foreach (FunctionAdapter item in Functions)
                 if (item.Name == name)
                 {
                     ActiveFunction = item;

@@ -2,7 +2,7 @@
 
 namespace Logic
 {
-    public class FunctionVisual : Function
+    public class FunctionVisual : Function, IResolvent
     {
         public FunctionVisual() : base()
         {

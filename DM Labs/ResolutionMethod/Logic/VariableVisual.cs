@@ -2,7 +2,7 @@
 
 namespace Logic
 {
-    public class VariableVisual : Variable
+    public class VariableVisual : Variable, IResolvent
     {
         public VariableVisual(bool isVisible = false) : base()
         {

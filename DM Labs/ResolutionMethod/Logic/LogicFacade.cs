@@ -90,6 +90,7 @@ namespace Logic
             ResolventList list = new ResolventList();
             list.Add(Variables);
             list.Add(Functions);
+            list.Set(ResultFunction);
             list.Fill();
             return list.Solve();
         }

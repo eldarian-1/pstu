@@ -27,14 +27,16 @@ namespace Logic
             Next();
         }
 
+        public int Size => m_TruthTable.Changes;
+
         public void Next()
         {
-            if (m_Index == Count)
+            if (m_Index == m_TruthTable.Changes)
             {
                 Reset();
                 return;
             }
-            for (int i = 0, n = Count; i < n; ++i)
+            for (int i = 0, n = m_TruthTable.Variables; i < n; ++i)
                 Variables[i].Value = m_TruthTable[m_Index, i];
             ++m_Index;
         }

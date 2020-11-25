@@ -5,29 +5,42 @@ namespace Logic
 {
     public class ResolventList : List<Resolvent>
     {
-        public ResolventList() : base() { }
+        private bool m_IsSetted;
+
+        public ResolventList() : base()
+        {
+            m_IsSetted = false;
+        }
+
+        public void Set(ISymbol symbol)
+        {
+            if(!m_IsSetted)
+            {
+                Add(new Resolvent(new Inversion(symbol)));
+                m_IsSetted = true;
+            }
+        }
 
         public void Add<TSymbol>(IEnumerable<TSymbol> symbols)
-            where TSymbol : ISymbol
+            where TSymbol : ISymbol, IResolvent
         {
             foreach (TSymbol item in symbols)
-                Add(new Resolvent(item));
+                if(item.IsVisible)
+                    Add(new Resolvent(item));
         }
 
         public void Fill()
         {
-            bool flag = true;
-            for(IEnumerator<Resolvent> iter = GetEnumerator(); flag; flag = iter.MoveNext())
+            for (int i = 0; i < Count; ++i)
             {
-                Resolvent newResolvent = new Resolvent(iter.Current);
-                bool isAdded = false, isEnded = false;
-                while(!isAdded && !isEnded)
-                {
-                    isAdded = newResolvent.Add(iter.Current);
-                    isEnded = !iter.MoveNext();
-                }
+                int j = i;
+                Resolvent newResolvent = new Resolvent(this[i++]);
+                bool isAdded = false;
+                while(!isAdded && i < Count)
+                    isAdded = newResolvent.Add(this[i++]);
                 if (isAdded)
                     Add(newResolvent);
+                i = j;
             }
         }
 
@@ -36,8 +49,7 @@ namespace Logic
             string result = "Список резольвент:\n";
             int index = 1;
             foreach (Resolvent item in this)
-                if (item.Solve)
-                    result += index + ") " + item + "\n";
+                result += (item.Solve ? "(+) " : "") + index++ + ") " + item + "\n";
             return result;
         }
     }

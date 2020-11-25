@@ -66,12 +66,12 @@ namespace Logic
             {
                 bool result = false;
                 VariableList.Variables.Reset();
-                for (int i = 0, n = VariableList.Variables.Count; i < n && !result; ++i)
+                for (int i = 0, n = VariableList.Variables.Size; i < n && !result; ++i)
                 {
                     result = Value;
                     VariableList.Variables.Next();
                 }
-                return result;
+                return !result;
             }
         }
 
@@ -80,5 +80,13 @@ namespace Logic
         public string Briefly => throw new System.NotImplementedException();
 
         public string Wholly => throw new System.NotImplementedException();
+
+        public override string ToString()
+        {
+            string result = "";
+            for (int i = 0, n = m_Symbols.Count; i < n; ++i)
+                result += (i > 0 ? ", " : "") + m_Symbols[i];
+            return result;
+        }
     }
 }

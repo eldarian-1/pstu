@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="FunctionList.cs" />
     <Compile Include="FunctionVisual.cs" />
+    <Compile Include="IResolvent.cs" />
     <Compile Include="LogicFacade.cs" />
     <Compile Include="Resolvent.cs" />
     <Compile Include="ResolventList.cs" />

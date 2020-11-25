@@ -1,4 +1,0 @@
-C:\Users\Администратор\pstu\OOP Labs\Lab11\Collection\bin\Debug\Collection.dll
-C:\Users\Администратор\pstu\OOP Labs\Lab11\Collection\bin\Debug\Collection.pdb
-C:\Users\Администратор\pstu\OOP Labs\Lab11\Collection\obj\Debug\Collection.dll
-C:\Users\Администратор\pstu\OOP Labs\Lab11\Collection\obj\Debug\Collection.pdb

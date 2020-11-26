@@ -76,6 +76,10 @@
 
                     if (Right is Function && State.Priority > (Right as Function).State.Priority)
                         result += "(" + Right.Wholly + ") ";
+                    else if(Right is Function && State.Priority == (Right as Function).State.Priority
+                        && !((Right as Function).State is AndExpression)
+                        && !((Right as Function).State is OrExpression))
+                        result += "(" + Right.Wholly + ") ";
                     else
                         result += Right.Wholly;
                 }

@@ -23,5 +23,14 @@
         public override string ToString() => Wholly;
 
         public bool Value => !Original.Value;
+
+        public override bool Equals(object obj)
+        {
+            bool result = obj is Inversion;
+            if(result)
+                result = Original.Equals((obj as Inversion).Original);
+            return result;
+        }
+
     }
 }

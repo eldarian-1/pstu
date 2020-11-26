@@ -6,7 +6,15 @@ namespace Logic
     {
         public VariableList Variables { get; protected set; }
         public FunctionList Functions { get; protected set; }
-        public string Expressions => Variables + ", " + Functions;
+        public string Expressions
+        {
+            get
+            {
+                string result = Variables.ToString();
+                result = (result != "" ? ", " : "") + Functions;
+                return result;
+            }
+        }
         public FunctionVisual ResultFunction { get; protected set; }
         public FunctionVisual ActiveFunction { get; protected set; }
 

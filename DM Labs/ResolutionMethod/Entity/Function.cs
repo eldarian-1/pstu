@@ -38,7 +38,22 @@
 
         public string Name { get; set; }
         
-        public string Briefly => State.Briefly;
+        public string Briefly
+        {
+            get
+            {
+                string result = "";
+                if (Left.Equals(Right) && (State is AndExpression || State is OrExpression))
+                {
+                    result = Left.Name;
+                }
+                else
+                {
+                    result = State.Briefly;
+                }
+                return result;
+            }
+        }
 
         public string Wholly
         {
@@ -46,9 +61,9 @@
             {
                 string result = "";
 
-                if (Left == Right && (State is AndExpression || State is OrExpression))
+                if (Left.Equals(Right) && (State is AndExpression || State is OrExpression))
                 {
-                    result = Left.Name;
+                    result = Left.Wholly;
                 }
                 else
                 {

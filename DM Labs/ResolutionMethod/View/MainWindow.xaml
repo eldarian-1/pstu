@@ -57,7 +57,7 @@
             <ListBoxItem>
                 <StackPanel x:Name="ResultFunction" Orientation="Horizontal">
                     <Button Click="ChooseFunctionClick" Content="{Binding Path=Name}"/>
-                    <TextBlock Text="{Binding Path=Briefly}"/>
+                    <TextBlock x:Name="ResultFunctionText" Text="{Binding Path=Briefly}"/>
                 </StackPanel>
             </ListBoxItem>
         </ListBox>
@@ -65,7 +65,7 @@
         <Button x:Name="RunResulution" Click="RunResulutionClick">
             <StackPanel>
                 <Label Name="ExpressionsLabel" Content="{Binding Path=Expressions}"/>
-                <Line X1="0" X2="780" Y1="0" Y2="0" Stroke="Black"/>
+                <Line X1="0" X2="750" Y1="0" Y2="0" Stroke="Black"/>
                 <Label Name="ResultFunctionLabel" Content="{Binding Path=ResultFunction}"/>
             </StackPanel>
         </Button>

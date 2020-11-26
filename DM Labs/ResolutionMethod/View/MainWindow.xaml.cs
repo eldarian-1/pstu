@@ -44,6 +44,8 @@ namespace BooleanCalculator
 
         private void UpdateResulFunction()
         {
+            ResultFunctionText.Text = m_Facade.ResultFunction.Briefly;
+            ResultFunctionText.InvalidateMeasure();
             ExpressionsLabel.Content = m_Facade.Expressions;
             ExpressionsLabel.InvalidateMeasure();
             ResultFunctionLabel.Content = m_Facade.ResultFunction.ToString();

@@ -10,9 +10,10 @@ namespace Logic
         {
             get
             {
-                string result = Variables.ToString();
-                result = (result != "" ? ", " : "") + Functions;
-                return result;
+                string variables = Variables.ToString();
+                string functions = Functions.ToString();
+                string middle = (variables != "" && functions != "" ? ", " : "");
+                return variables + middle + functions;
             }
         }
         public FunctionVisual ResultFunction { get; protected set; }

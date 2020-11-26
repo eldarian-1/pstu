@@ -55,22 +55,29 @@ namespace Logic
 
         public string Solve()
         {
-            string part1 = "Список резольвент:\n";
-            string part2 = "Список противоречий:\n";
+            string part1 = "", part2 = "";
             int i0 = 1, i1 = 1;
             foreach (Resolvent item in this)
             {
                 if(item.Solve)
                 {
-                    part1 += "(+) " + i0++ + ") " + item + "\n";
-                    part2 += i1++ + ") " + item + "\n";
+                    part1 += "\n" + "(+) " + i0++ + ") " + item;
+                    part2 += "\n" + i1++ + ") " + item;
                 }
                 else
                 {
-                    part1 += i0++ + ") " + item + "\n";
+                    part1 += "\n" + i0++ + ") " + item;
                 }
             }
-            return part1 + "\n" + part2;
+            if (part1 != "")
+                part1 = "Список резольвент:" + part1;
+            else
+                part1 = "Список резольвент пуст.";
+            if (part2 != "")
+                part2 = "Список противоречий:" + part2;
+            else
+                part2 = "Список противоречий пуст.";
+            return part1 + "\n\n" + part2;
         }
     }
 }

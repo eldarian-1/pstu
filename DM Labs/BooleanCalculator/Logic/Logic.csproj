@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="LogicFacade.cs" />
     <Compile Include="ResultFormater.cs" />
-    <Compile Include="VariableAdapter.cs" />
+    <Compile Include="VariableVisual.cs" />
     <Compile Include="SymbolChanger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TruthTable.cs" />

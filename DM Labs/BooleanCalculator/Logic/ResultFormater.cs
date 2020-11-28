@@ -5,7 +5,7 @@ namespace Logic
 {
     internal class ResultFormater
     {
-        private ObservableCollection<VariableAdapter> m_Variables;
+        private ObservableCollection<VariableVisual> m_Variables;
         private Function m_Function;
         private TruthTable m_TruthTable;
         private bool[] m_Reserv;

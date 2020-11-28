@@ -6,7 +6,7 @@ namespace Logic
     internal class SymbolChanger
     {
         private Function m_ActiveFunction;
-        private ObservableCollection<VariableAdapter> m_Variables;
+        private ObservableCollection<VariableVisual> m_Variables;
         private ObservableCollection<Function> m_Functions;
         private bool m_IsLeft;
         private bool m_IsInversion;
@@ -87,7 +87,7 @@ namespace Logic
         public void Execute()
         {
             bool isFound = false;
-            if (Find<ObservableCollection<VariableAdapter>, VariableAdapter>(m_Variables, ref isFound))
+            if (Find<ObservableCollection<VariableVisual>, VariableVisual>(m_Variables, ref isFound))
                 return;
             if (Find<ObservableCollection<Function>, Function>(m_Functions, ref isFound))
                 return;

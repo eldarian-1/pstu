@@ -2,9 +2,9 @@
 
 namespace Logic
 {
-    public class VariableAdapter : Variable
+    public class VariableVisual : Variable
     {
-        public VariableAdapter() : base() { }
+        public VariableVisual() : base() { }
 
         public char Data => Value ? '1' : '0';
     }

@@ -5,21 +5,21 @@ namespace Logic
 {
     public class LogicFacade
     {
-        public ObservableCollection<VariableAdapter> Variables { get; protected set; }
+        public ObservableCollection<VariableVisual> Variables { get; protected set; }
         public ObservableCollection<Function> Functions { get; protected set; }
         public Function ActiveFunction { get; protected set; }
 
         public LogicFacade()
         {
-            Variables = new ObservableCollection<VariableAdapter>();
+            Variables = new ObservableCollection<VariableVisual>();
             Functions = new ObservableCollection<Function>();
             Initialize();
         }
 
         private void Initialize()
         {
-            VariableAdapter A = new VariableAdapter();
-            VariableAdapter B = new VariableAdapter();
+            VariableVisual A = new VariableVisual();
+            VariableVisual B = new VariableVisual();
             Variables.Add(A);
             Variables.Add(B);
             NewFunction(A, B);
@@ -27,7 +27,7 @@ namespace Logic
 
         public void InvertVariable(string name)
         {
-            foreach(VariableAdapter item in Variables)
+            foreach(VariableVisual item in Variables)
                 if(item.Name == name)
                 {
                     item.Invert();
@@ -35,7 +35,7 @@ namespace Logic
                 }
         }
 
-        public void AddVariable() => Variables.Add(new VariableAdapter());
+        public void AddVariable() => Variables.Add(new VariableVisual());
 
         public void ChangeSymbol(string name, bool isLeft) => new SymbolChanger(this, isLeft, name).Execute();
 

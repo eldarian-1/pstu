@@ -4,3 +4,9 @@ D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Entity\obj\Debug\Entit
 D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
 D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Entity\obj\Debug\Entity.dll
 D:\Lester\Политех\Master\DM Labs\BooleanCalculator\Entity\obj\Debug\Entity.pdb
+D:\Lester\Политех\Master\DM Labs\ResolutionMethod\Entity\bin\Debug\Entity.dll
+D:\Lester\Политех\Master\DM Labs\ResolutionMethod\Entity\bin\Debug\Entity.pdb
+D:\Lester\Политех\Master\DM Labs\ResolutionMethod\Entity\obj\Debug\Entity.csprojAssemblyReference.cache
+D:\Lester\Политех\Master\DM Labs\ResolutionMethod\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
+D:\Lester\Политех\Master\DM Labs\ResolutionMethod\Entity\obj\Debug\Entity.dll
+D:\Lester\Политех\Master\DM Labs\ResolutionMethod\Entity\obj\Debug\Entity.pdb

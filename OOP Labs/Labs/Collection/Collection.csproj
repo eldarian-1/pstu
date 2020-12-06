@@ -41,12 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dictionary.cs" />
-    <Compile Include="Queue.cs" />
+    <Compile Include="DoublyLinkedList\DoublyLinkedList.cs" />
+    <Compile Include="SinglyLinkedList\Enumerator.cs" />
+    <Compile Include="SinglyLinkedList\Node.cs" />
+    <Compile Include="SinglyLinkedList\SinglyLinkedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <Folder Include="BinaryTree\" />
+    <Folder Include="Stack\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

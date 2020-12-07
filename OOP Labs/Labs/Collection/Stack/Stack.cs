@@ -2,13 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Collection.DoublyList
+namespace Collection.Stack
 {
-    public class DoublyLinkedList<T> : IList<T>
+    class Stack<T> : ICollection<T>, ICloneable
     {
-        public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        System.Collections.Generic.Stack<T> stack;
 
         public int Count => throw new NotImplementedException();
+
+        public object SyncRoot => throw new NotImplementedException();
+
+        public bool IsSynchronized => throw new NotImplementedException();
 
         public bool IsReadOnly => throw new NotImplementedException();
 
@@ -22,7 +26,17 @@ namespace Collection.DoublyList
             throw new NotImplementedException();
         }
 
+        public object Clone()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Contains(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(Array array, int index)
         {
             throw new NotImplementedException();
         }
@@ -32,17 +46,7 @@ namespace Collection.DoublyList
             throw new NotImplementedException();
         }
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int IndexOf(T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(int index, T item)
+        public IEnumerator GetEnumerator()
         {
             throw new NotImplementedException();
         }
@@ -52,12 +56,7 @@ namespace Collection.DoublyList
             throw new NotImplementedException();
         }
 
-        public void RemoveAt(int index)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             throw new NotImplementedException();
         }

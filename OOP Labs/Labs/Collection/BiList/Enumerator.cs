@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Collection.SinglyLinkedList
+namespace Collection.BiList
 {
     internal class Enumerator<T> : IEnumerator<T>
     {
-        private SinglyLinkedList<T> m_List;
+        private BiList<T> m_List;
         private Node<T> m_Current;
 
         object IEnumerator.Current => m_Current.Data;
 
         public T Current => m_Current.Data;
 
-        public Enumerator(SinglyLinkedList<T> list)
+        public Enumerator(BiList<T> list)
         {
             m_List = list;
             m_Current = list.Head;

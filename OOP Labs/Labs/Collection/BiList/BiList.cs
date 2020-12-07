@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Collection.SinglyLinkedList
+namespace Collection.BiList
 {
-    public class SinglyLinkedList<T> : IList<T>
+    public class BiList<T> : IList<T>
     {
         internal Node<T> Head { get; private set; }
+        internal Node<T> Tail { get; private set; }
 
         public int Count { get; private set; }
 
@@ -34,7 +35,7 @@ namespace Collection.SinglyLinkedList
             }
         }
 
-        public SinglyLinkedList() {}
+        public BiList() { }
 
         public T this[int index]
         {
@@ -87,7 +88,7 @@ namespace Collection.SinglyLinkedList
         {
             if (index >= Count || index < 0)
                 throw new Exception();
-            if(index == 0)
+            if (index == 0)
                 Head = Head.Next;
             else
             {
@@ -140,7 +141,7 @@ namespace Collection.SinglyLinkedList
             bool flag = false;
             Node<T> prev = null;
             Node<T> curr = Head;
-            while(!flag && curr != null)
+            while (!flag && curr != null)
             {
                 flag = item.Equals(curr);
                 if (flag)
@@ -152,7 +153,7 @@ namespace Collection.SinglyLinkedList
                     prev = curr;
                 curr = curr.Next;
             }
-            return flag;   
+            return flag;
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -160,4 +161,5 @@ namespace Collection.SinglyLinkedList
             return new Enumerator<T>(this);
         }
     }
+}
 }

@@ -1,6 +1,6 @@
-﻿namespace Collection.SinglyLinkedList
+﻿namespace Collection.UniList
 {
-    class Node<T>
+    internal class Node<T>
     {
         public Node<T> Next { get; set; }
 

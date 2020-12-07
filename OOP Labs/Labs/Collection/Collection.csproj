@@ -41,15 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DoublyLinkedList\DoublyLinkedList.cs" />
-    <Compile Include="SinglyLinkedList\Enumerator.cs" />
-    <Compile Include="SinglyLinkedList\Node.cs" />
-    <Compile Include="SinglyLinkedList\SinglyLinkedList.cs" />
+    <Compile Include="BiList\BiList.cs" />
+    <Compile Include="BiList\Enumerator.cs" />
+    <Compile Include="BiList\Node.cs" />
+    <Compile Include="BiTree\BiTree.cs" />
+    <Compile Include="UniList\Enumerator.cs" />
+    <Compile Include="UniList\Node.cs" />
+    <Compile Include="UniList\UniList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stack\Stack.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BinaryTree\" />
-    <Folder Include="Stack\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -56,8 +56,5 @@
     <Compile Include="Query\Query2.cs" />
     <Compile Include="Query\Query3.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

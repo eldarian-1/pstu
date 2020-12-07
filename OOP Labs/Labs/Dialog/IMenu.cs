@@ -2,10 +2,10 @@
 
 namespace Dialog
 {
-    public interface IWaiter
+    public interface IMenu
     {
         string Menu { get; }
-        MyList<Task> Tasks { get; }
+        MyList<Action> Tasks { get; }
         MyList<Exception> Reactions { get; }
     }
 }

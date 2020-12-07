@@ -2,23 +2,23 @@
 
 namespace Dialog
 {
-    public class TaskRunner
+    public class Waiter
     {
         private static readonly Exception ProgramEnd = new ApplicationException();
 
-        private static TaskRunner s_Instance;
+        private static Waiter s_Instance;
         private static int s_Level = 0;
 
-        private IWaiter Waiter { get; set; }
+        private IMenu Menu { get; set; }
 
-        private TaskRunner() { }
+        private Waiter() { }
 
-        public static TaskRunner Instance
+        public static Waiter Instance
         {
             get
             {
                 if (s_Instance == null)
-                    s_Instance = new TaskRunner();
+                    s_Instance = new Waiter();
                 return s_Instance;
             }
         }
@@ -26,13 +26,13 @@ namespace Dialog
         public static void Write(string text)
             => Console.WriteLine(text + "\n");
 
-        public Task GetTask()
+        public Action GetTask()
         {
             while (true)
             {
-                Input.ReadNum(out int i, Waiter.Menu);
-                if (Waiter.Tasks.Count >= i && i > 0)
-                    return Waiter.Tasks[i - 1];
+                Input.ReadNum(out int i, Menu.Menu);
+                if (Menu.Tasks.Count >= i && i > 0)
+                    return Menu.Tasks[i - 1];
                 else if (i == 0)
                     throw ProgramEnd;
                 else
@@ -59,7 +59,7 @@ namespace Dialog
                 }
                 catch (Exception exeption)
                 {
-                    if (Waiter.Reactions.Contains(exeption))
+                    if (Menu.Reactions.Contains(exeption))
                         Write(exeption.Message);
                     else
                         Write(Output.UnknownError);
@@ -67,13 +67,13 @@ namespace Dialog
             }
         }
 
-        public void Run(IWaiter waiter)
+        public void Run(IMenu waiter)
         {
             ++s_Level;
-            IWaiter tWaiter = Waiter;
-            Waiter = waiter;
+            IMenu tWaiter = Menu;
+            Menu = waiter;
             Run();
-            Waiter = tWaiter;
+            Menu = tWaiter;
             --s_Level;
         }
     }

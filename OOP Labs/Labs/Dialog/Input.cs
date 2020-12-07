@@ -15,7 +15,7 @@ namespace Dialog
                 flag = int.TryParse(sNum, out number);
                 Console.WriteLine();
                 if (!flag)
-                    TaskRunner.Write(Output.IncorrectValue);
+                    Waiter.Write(Output.IncorrectValue);
             }
         }
 

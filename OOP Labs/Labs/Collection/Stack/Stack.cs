@@ -12,5 +12,36 @@ namespace Collection.Stack
 
         public Stack(Stack<T> stack) { }
 
+        public virtual T this[int index]
+        {
+            get
+            {
+                return default(T);
+            }
+            set
+            {
+
+            }
+        }
+
+        public virtual void Push(T item)
+        {
+
+        }
+
+        public T Peek()
+        {
+            return default(T);
+        }
+
+        public void Pop()
+        {
+
+        }
+
+        public void Clear()
+        {
+
+        }
     }
 }

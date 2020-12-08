@@ -43,13 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainMenu.cs" />
+    <Compile Include="Agregator\StackAgregator.cs" />
+    <Compile Include="Menu\MainMenu.cs" />
+    <Compile Include="Menu\StackConstructMenu.cs" />
+    <Compile Include="Menu\StackOperationMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BiListMenu.cs" />
-    <Compile Include="BiTreeMenu.cs" />
-    <Compile Include="StackMenu.cs" />
-    <Compile Include="UniListMenu.cs" />
+    <Compile Include="Menu\BiListMenu.cs" />
+    <Compile Include="Menu\BiTreeMenu.cs" />
+    <Compile Include="Menu\StackMenu.cs" />
+    <Compile Include="Menu\UniListMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

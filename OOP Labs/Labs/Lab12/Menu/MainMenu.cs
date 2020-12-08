@@ -1,7 +1,7 @@
 ﻿using Dialog;
 using System;
 
-namespace Lab12
+namespace Lab12.Menu
 {
     class MainMenu : IMenu
     {
@@ -39,22 +39,22 @@ namespace Lab12
 
         private void UniList()
         {
-            Waiter.Instance.Run();
+            Waiter.Instance.Run(UniListMenu.Instance);
         }
 
         private void BiList()
         {
-            Waiter.Instance.Run();
+            Waiter.Instance.Run(BiListMenu.Instance);
         }
 
         private void BiTree()
         {
-            Waiter.Instance.Run();
+            Waiter.Instance.Run(BiTreeMenu.Instance);
         }
 
         private void Stack()
         {
-            Waiter.Instance.Run();
+            Waiter.Instance.Run(StackMenu.Instance);
         }
 
     }

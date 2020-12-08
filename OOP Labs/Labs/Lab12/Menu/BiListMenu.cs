@@ -1,7 +1,7 @@
 ﻿using Dialog;
 using System;
 
-namespace Lab12
+namespace Lab12.Menu
 {
     class BiListMenu : IMenu
     {
@@ -22,19 +22,45 @@ namespace Lab12
 
         private BiListMenu()
         {
-            m_Tasks = new MyList<Action>();
+            m_Tasks = new MyList<Action>(
+                ConstructList,
+                PrintList,
+                RemoveEvenNumber,
+                RemoveList);
             m_Reactions = new MyList<Exception>();
         }
 
         public string Menu =>
-            "Главное меню\n" +
-            "1. Односвязный список\n" +
-            "2. Двусвязный список\n" +
-            "3. Бинарное дерево\n" +
-            "4. Стек на основе односвязного списка\n" +
+            "Меню двусвзного списка\n" +
+            "1. Сформировать список\n" +
+            "2. Распечатать список\n" +
+            "3. Удалить четные номера\n" +
+            "4. Удалить список\n" +
             "0. Выход\n";
 
         public MyList<Action> Tasks => m_Tasks;
+
         public MyList<Exception> Reactions => m_Reactions;
+
+        public void ConstructList()
+        {
+
+        }
+
+        public void PrintList()
+        {
+
+        }
+
+        public void RemoveEvenNumber()
+        {
+
+        }
+
+        public void RemoveList()
+        {
+
+        }
+
     }
 }

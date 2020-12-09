@@ -1,6 +1,6 @@
 ﻿using Dialog;
 using System;
-using Lab12.Agregator;
+using Lab12.Additionally;
 
 namespace Lab12.Menu
 {

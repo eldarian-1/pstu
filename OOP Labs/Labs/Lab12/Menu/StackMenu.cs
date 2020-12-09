@@ -1,6 +1,6 @@
 ﻿using Dialog;
 using System;
-using Lab12.Agregator;
+using Lab12.Additionally;
 using System.Collections.Generic;
 
 namespace Lab12.Menu
@@ -8,11 +8,16 @@ namespace Lab12.Menu
     class StackMenu : IMenu
     {
         private static IMenu s_Instance;
+        private static Exception s_NullDictionary = new Exception("Словарь стеков пуст");
+        private static Exception s_NullStack = new Exception("Стек не создан");
+
+        private const string c_EnterKey = "Введите имя стека: ";
+        private const string c_EnterNum = "Введите номер стека: ";
 
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
         private IDictionary<string, StackAgregator<int>> m_Stacks;
-        private StackAgregator<int> m_ActiveStack;
+        private string m_ActiveKey;
 
         public static IMenu Instance
         {
@@ -26,6 +31,7 @@ namespace Lab12.Menu
 
         private StackMenu()
         {
+            m_Stacks = new Dictionary<string, StackAgregator<int>>();
             m_Tasks = new MyList<Action>(
                 CreateLink,
                 ChoiceLink,
@@ -33,7 +39,9 @@ namespace Lab12.Menu
                 PrintStack,
                 StackOperation,
                 RemoveLink);
-            m_Reactions = new MyList<Exception>();
+            m_Reactions = new MyList<Exception>(
+                s_NullDictionary,
+                s_NullStack);
         }
 
         public string Menu =>
@@ -50,34 +58,75 @@ namespace Lab12.Menu
 
         public MyList<Exception> Reactions => m_Reactions;
 
+        private void CheckDictionary()
+        {
+            if (m_Stacks.Count == 0)
+                throw s_NullDictionary;
+        }
+
+        private void CheckStack()
+        {
+            if (m_ActiveKey == "")
+                throw s_NullStack;
+        }
+
         public void CreateLink()
         {
-
+            Input.ReadWord(out string key, c_EnterKey);
+            m_Stacks.Add(key, new StackAgregator<int>());
         }
 
         public void ChoiceLink()
         {
-
+            CheckDictionary();
+            int index = 0;
+            int number;
+            string query = "";
+            foreach (var item in m_Stacks)
+                query += ++index + item.Key + "\n";
+            query += c_EnterNum;
+            do Input.ReadNum(out number, query);
+            while (number < 0 || number >= index);
+            index = 0;
+            foreach(var item in m_Stacks)
+            {
+                ++index;
+                if(index == number)
+                {
+                    m_ActiveKey = item.Key;
+                    break;
+                }
+            }
         }
 
         public void ConstructStack()
         {
-            Waiter.Instance.Run(new StackConstructMenu(m_ActiveStack));
+            CheckDictionary();
+            Waiter.Instance.Run(new StackConstructMenu(m_Stacks[m_ActiveKey]));
         }
 
         public void PrintStack()
         {
-
+            CheckStack();
+            Waiter.Write(m_Stacks[m_ActiveKey].ToString());
         }
 
         public void StackOperation()
         {
-            Waiter.Instance.Run(new StackOperationMenu(m_ActiveStack));
+            CheckDictionary();
+            Waiter.Instance.Run(new StackOperationMenu(m_Stacks[m_ActiveKey]));
         }
 
         public void RemoveLink()
         {
-
+            CheckStack();
+            m_Stacks.Remove(m_ActiveKey);
+            CheckDictionary();
+            foreach(var item in m_Stacks)
+            {
+                m_ActiveKey = item.Key;
+                break;
+            }
         }
     }
 }

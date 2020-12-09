@@ -1,6 +1,6 @@
 ﻿using Dialog;
 using System;
-using Lab12.Agregator;
+using Lab12.Additionally;
 
 namespace Lab12.Menu
 {
@@ -9,6 +9,9 @@ namespace Lab12.Menu
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
         private StackAgregator<int> m_Stack;
+
+        private const int c_Limit = 30;
+        private const string c_EnterCount = "Введите количество элементов: ";
 
         public StackConstructMenu(StackAgregator<int> stack)
         {
@@ -35,13 +38,15 @@ namespace Lab12.Menu
 
         public void ConstructByCount()
         {
-            m_Stack.ConstructByCount(13);
+            int count;
+            do Input.ReadNum(out count, c_EnterCount);
+            while (count < 0 || count >= c_Limit);
+            m_Stack.ConstructByCount(count);
         }
 
         public void CopyConstruct()
         {
             m_Stack.CopyConstruct(new StackAgregator<int>());
         }
-
     }
 }

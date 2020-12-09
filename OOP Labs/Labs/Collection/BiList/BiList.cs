@@ -7,31 +7,48 @@ namespace Collection.BiList
     public class BiList<T> : IList<T>
     {
         internal Node<T> Head { get; private set; }
+
         internal Node<T> Tail { get; private set; }
 
         public int Count { get; private set; }
 
         public bool IsReadOnly => true;
 
+        private void CheckIndex(int index)
+        {
+            if (index >= Count || index < 0)
+                throw new Exception();
+        }
+
+        private void Find(int leftIndex, out Node<T> item)
+        {
+            CheckIndex(leftIndex);
+            int rightIndex = Count - leftIndex;
+            if (leftIndex <= rightIndex)
+            {
+                item = Head;
+                for (int i = 0; i < leftIndex; ++i)
+                    item = item.Next;
+            }
+            else
+            {
+                item = Tail;
+                for (int i = 0; i < rightIndex; ++i)
+                    item = item.Prev;
+            }
+        }
+
         T IList<T>.this[int index]
         {
             get
             {
-                if (index >= Count || index < 0)
-                    throw new Exception();
-                Node<T> temp = Head;
-                for (int i = 0; i < index; ++i)
-                    temp = temp.Next;
-                return temp.Data;
+                Find(index, out Node<T> item);
+                return item.Data;
             }
             set
             {
-                if (index >= Count || index < 0)
-                    throw new Exception();
-                Node<T> temp = Head;
-                for (int i = 0; i < index; ++i)
-                    temp = temp.Next;
-                temp.Data = value;
+                Find(index, out Node<T> item);
+                item.Data = value;
             }
         }
 
@@ -41,12 +58,8 @@ namespace Collection.BiList
         {
             get
             {
-                if (index >= Count || index < 0)
-                    throw new Exception();
-                Node<T> temp = Head;
-                for (int i = 0; i < index; ++i)
-                    temp = temp.Next;
-                return temp.Data;
+                Find(index, out Node<T> item);
+                return item.Data;
             }
         }
 
@@ -75,9 +88,7 @@ namespace Collection.BiList
             {
                 if (index > Count || index < 0)
                     throw new Exception();
-                Node<T> temp = Head;
-                for (int i = 0; i < index; ++i)
-                    temp = temp.Next;
+                Find(index, out Node<T> temp);
                 Node<T> newItem = new Node<T>() { Data = item, Next = temp.Next };
                 temp.Next = newItem;
                 ++Count;
@@ -86,15 +97,12 @@ namespace Collection.BiList
 
         public void RemoveAt(int index)
         {
-            if (index >= Count || index < 0)
-                throw new Exception();
+            CheckIndex(index);
             if (index == 0)
                 Head = Head.Next;
             else
             {
-                Node<T> temp = Head;
-                for (int i = 0; i < index - 1; ++i)
-                    temp = temp.Next;
+                Find(index - 1, out Node<T> temp);
                 temp.Next = temp.Next.Next;
             }
             ++Count;
@@ -104,13 +112,15 @@ namespace Collection.BiList
         {
             Node<T> newItem = new Node<T>() { Data = item };
             if (Head == null)
+            {
                 Head = newItem;
+                Tail = newItem;
+            }
             else
             {
-                Node<T> temp = Head;
-                for (int i = 0; i < Count; ++i)
-                    temp = temp.Next;
-                temp.Next = newItem;
+                Tail.Next = newItem;
+                newItem.Prev = Tail;
+                Tail = newItem;
             }
             ++Count;
         }

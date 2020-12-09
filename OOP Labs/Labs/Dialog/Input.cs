@@ -4,6 +4,12 @@ namespace Dialog
 {
     public static class Input
     {
+        public static void ReadSymbol(out char symbol, string thing)
+        {
+            Console.Write(thing);
+            symbol = Console.ReadLine()[0];
+        }
+
         public static void ReadNum(out int number, string thing)
         {
             bool flag = false;

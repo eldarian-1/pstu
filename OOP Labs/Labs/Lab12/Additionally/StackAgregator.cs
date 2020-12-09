@@ -1,6 +1,6 @@
 ﻿using Collection.Stack;
 
-namespace Lab12.Agregator
+namespace Lab12.Additionally
 {
     public class StackAgregator<T>
     {

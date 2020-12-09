@@ -1,5 +1,7 @@
 ﻿using Dialog;
 using System;
+using Collection.UniList;
+using System.Collections.Generic;
 
 namespace Lab12.Menu
 {
@@ -7,8 +9,11 @@ namespace Lab12.Menu
     {
         private static IMenu s_Instance;
 
+        private static Exception s_NullList = new Exception("Список не создан");
+
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
+        private IList<double> m_List;
 
         public static IMenu Instance
         {
@@ -27,7 +32,7 @@ namespace Lab12.Menu
                 PrintList,
                 AddZeroAfterNegative,
                 RemoveList);
-            m_Reactions = new MyList<Exception>();
+            m_Reactions = new MyList<Exception>(s_NullList);
         }
 
         public string Menu =>
@@ -42,25 +47,35 @@ namespace Lab12.Menu
 
         public MyList<Exception> Reactions => m_Reactions;
 
-        public void ConstructList()
+        private void CheckList()
         {
-
+            if (m_List == null)
+                throw s_NullList;
         }
 
-        public void PrintList()
+        private void ConstructList()
         {
-
+            m_List = new UniList<double>();
         }
 
-        public void AddZeroAfterNegative()
+        private void PrintList()
         {
-
+            CheckList();
+            Waiter.Write(m_List.ToString());
         }
 
-        public void RemoveList()
+        private void AddZeroAfterNegative()
         {
-
+            CheckList();
+            for (int i = 0; i < m_List.Count; ++i)
+                if (m_List[i] < 0)
+                    m_List.Insert(++i, 0);
         }
 
+        private void RemoveList()
+        {
+            CheckList();
+            m_List = null;
+        }
     }
 }

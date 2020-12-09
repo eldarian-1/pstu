@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Journal.cs" />
     <Compile Include="JournalEntry.cs" />
+    <Compile Include="MainMenu.cs" />
     <Compile Include="ObservableStack.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -22,20 +22,58 @@ namespace Lab14
 
         private MainMenu()
         {
-            m_Tasks = new MyList<Action>();
+            m_Tasks = new MyList<Action>(
+                Formation,
+                Selection,
+                GetCount,
+                Intersection,
+                Union,
+                Difference);
             m_Reactions = new MyList<Exception>();
         }
 
         public string Menu =>
             "Главное меню\n" +
-            "1. Односвязный список\n" +
-            "2. Двусвязный список\n" +
-            "3. Бинарное дерево\n" +
-            "4. Стек на основе односвязного списка\n" +
+            "1. Сформировать коллекцию\n" +
+            "2. Запрос на выборку данных\n" +
+            "3. Запрос на получение счетчика\n" +
+            "4. Пересечение множеств\n" +
+            "5. Объединение множеств\n" +
+            "6. Вычитание множеств\n" +
             "0. Выход\n";
 
         public MyList<Action> Tasks => m_Tasks;
+
         public MyList<Exception> Reactions => m_Reactions;
 
+        private void Formation()
+        {
+
+        }
+
+        private void Selection()
+        {
+
+        }
+
+        private void GetCount()
+        {
+
+        }
+
+        private void Intersection()
+        {
+
+        }
+
+        private void Union()
+        {
+
+        }
+
+        private void Difference()
+        {
+
+        }
     }
 }

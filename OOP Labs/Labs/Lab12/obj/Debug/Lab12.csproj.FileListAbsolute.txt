@@ -1,0 +1,2 @@
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\obj\Debug\Lab12.csprojAssemblyReference.cache
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\obj\Debug\Lab12.csproj.CoreCompileInputs.cache

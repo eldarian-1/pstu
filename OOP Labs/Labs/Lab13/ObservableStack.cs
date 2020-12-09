@@ -31,15 +31,27 @@ namespace Lab13
             }
         }
 
-        public override void Add()
+        public override void Add(IEngine engine)
         {
-            base.Add();
+            base.Add(engine);
+            OnCountChanged(this, null);
+        }
+
+        public override void Insert(int index, IEngine engine)
+        {
+            base.Insert(index, engine);
             OnCountChanged(this, null);
         }
 
         public override void Remove()
         {
             base.Remove();
+            OnCountChanged(this, null);
+        }
+
+        public override void Erase(int index)
+        {
+            base.Erase(index);
             OnCountChanged(this, null);
         }
 

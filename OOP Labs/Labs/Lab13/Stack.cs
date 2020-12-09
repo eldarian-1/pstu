@@ -7,14 +7,24 @@
 
         }
 
-        public virtual void Add()
+        public virtual void Add(T item)
+        {
+
+        }
+
+        public virtual void Insert(int index, T item)
         {
 
         }
 
         public virtual void Remove()
         {
+            Pop();
+        }
 
+        public virtual void Erase(int index)
+        {
+            Pop();
         }
 
         public virtual void Sort()

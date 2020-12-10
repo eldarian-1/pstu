@@ -15,14 +15,22 @@ namespace Collection.UniList
         public Enumerator(UniList<T> list)
         {
             m_List = list;
-            m_Current = list.Head;
         }
 
         public bool MoveNext()
         {
-            bool flag = m_Current != null;
-            if (flag)
-                m_Current = m_Current.Next;
+            bool flag;
+            if (m_Current == null)
+            {
+                m_Current = m_List.Head;
+                flag = true;
+            }
+            else
+            {
+                flag = m_Current.Next != null;
+                if (flag)
+                    m_Current = m_Current.Next;
+            }
             return flag;
         }
 

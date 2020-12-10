@@ -1,6 +1,7 @@
-﻿using Collection.BiList;
-using Dialog;
+﻿using Dialog;
+using Entity;
 using System;
+using Collection.BiList;
 using System.Collections.Generic;
 
 namespace Lab12.Menu
@@ -9,6 +10,8 @@ namespace Lab12.Menu
     {
         private static IMenu s_Instance;
         private static Exception s_NullList = new Exception("Список не создан");
+
+        private const string c_EnterCount = "Введите количество элементов: ";
 
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
@@ -55,6 +58,10 @@ namespace Lab12.Menu
         public void ConstructList()
         {
             m_List = new BiList<int>();
+            Input.ReadNum(out int count, c_EnterCount);
+            int[] array = EngineFacade.Instance.GenerateInt(count);
+            foreach (int item in array)
+                m_List.Add(item);
         }
 
         public void PrintList()
@@ -65,8 +72,9 @@ namespace Lab12.Menu
 
         public void RemoveEvenNumber()
         {
-            for (int i = 0, j = 0, n = m_List.Count; j < n; ++i, ++j)
-                if (i % 2 == 0)
+            CheckList();
+            for (int i = 0, j = 0; j < m_List.Count; ++i, ++j)
+                if (i % 2 == 1)
                     m_List.RemoveAt(j--);
         }
 

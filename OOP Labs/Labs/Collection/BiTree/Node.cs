@@ -13,14 +13,15 @@ namespace Collection.BiTree
 
         public void Add(Node<T> node)
         {
-            if (node.Data.CompareTo(Data) < 0)
+            int compareResult = node.Data.CompareTo(Data);
+            if (compareResult < 0)
             {
                 if (Left == null)
                     Left = node;
                 else
                     Left.Add(node);
             }
-            else
+            else if (compareResult > 0)
             {
                 if (Right == null)
                     Right = node;

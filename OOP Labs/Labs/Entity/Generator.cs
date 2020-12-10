@@ -21,6 +21,20 @@ namespace Entity
         private const int c_iReactiveMin = 300;
         private const int c_iReactiveMax = 900;
 
+        public void Run(out double[] array, int count)
+        {
+            array = new double[count];
+            for (int i = 0; i < count; ++i)
+                array[i] = rand.NextDouble() - 0.5;
+        }
+
+        public void Run(out int[] array, int count)
+        {
+            array = new int[count];
+            for (int i = 0; i < count; ++i)
+                array[i] = rand.Next();
+        }
+
         public void Run(out IEngine engine)
         {
             engine = null;

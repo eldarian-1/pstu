@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Additionally\BiTree.cs" />
     <Compile Include="Additionally\StackAgregator.cs" />
+    <Compile Include="Additionally\TreeAgregator.cs" />
     <Compile Include="Menu\MainMenu.cs" />
     <Compile Include="Menu\StackConstructMenu.cs" />
     <Compile Include="Menu\StackOperationMenu.cs" />

@@ -1,10 +1,13 @@
 ﻿using Collection.Stack;
+using System;
 
 namespace Lab12.Additionally
 {
     public class StackAgregator<T>
     {
         private Stack<T> m_Stack;
+
+        public bool Empty => m_Stack == null;
 
         public void EmptyConstruct()
         {
@@ -25,7 +28,7 @@ namespace Lab12.Additionally
 
         public void AddItem(T item)
         {
-            m_Stack.Add(item);
+            m_Stack.Push(item);
         }
 
         public void AddMultipleItems(T[] items)
@@ -41,13 +44,20 @@ namespace Lab12.Additionally
 
         public void RemoveMultipleItems(int[] indexes)
         {
+            Array.Sort(indexes);
+            int i = 0;
             foreach (int index in indexes)
-                RemoveItem(index);
+            {
+                RemoveItem(index - i++);
+            }
         }
 
         public void Clear()
         {
             m_Stack.Clear();
         }
+
+        public override string ToString()
+            => m_Stack.ToString();
     }
 }

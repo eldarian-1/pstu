@@ -23,7 +23,7 @@ namespace Collection.BiList
         private void Find(int leftIndex, out Node<T> item)
         {
             CheckIndex(leftIndex);
-            int rightIndex = Count - leftIndex;
+            int rightIndex = Count - leftIndex - 1;
             if (leftIndex <= rightIndex)
             {
                 item = Head;
@@ -99,13 +99,22 @@ namespace Collection.BiList
         {
             CheckIndex(index);
             if (index == 0)
+            {
                 Head = Head.Next;
+                Head.Prev = null;
+            }
+            else if(index == Count - 1)
+            {
+                Tail = Tail.Prev;
+                Tail.Next = null;
+            }
             else
             {
-                Find(index - 1, out Node<T> temp);
-                temp.Next = temp.Next.Next;
+                Find(index, out Node<T> temp);
+                temp.Prev.Next = temp.Next;
+                temp.Next.Prev = temp.Prev;
             }
-            ++Count;
+            --Count;
         }
 
         public void Add(T item)
@@ -128,6 +137,7 @@ namespace Collection.BiList
         public void Clear()
         {
             Head = null;
+            Count = 0;
         }
 
         public bool Contains(T item)
@@ -163,12 +173,21 @@ namespace Collection.BiList
                     prev = curr;
                 curr = curr.Next;
             }
+            --Count;
             return flag;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
             return new Enumerator<T>(this);
+        }
+
+        public override string ToString()
+        {
+            string result = "";
+            foreach (T item in this)
+                result += item + " ";
+            return result;
         }
     }
 }

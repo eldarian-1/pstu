@@ -40,6 +40,18 @@ namespace Entity
 
         public bool IsReactive(IEngine engine) => engine is TurboReactiveEngine;
 
+        public double[] GenerateDouble(int count)
+        {
+            m_Generator.Run(out double[] array, count);
+            return array;
+        }
+
+        public int[] GenerateInt(int count)
+        {
+            m_Generator.Run(out int[] array, count);
+            return array;
+        }
+
         public IEngine Generate()
         {
             m_Generator.Run(out IEngine engine);

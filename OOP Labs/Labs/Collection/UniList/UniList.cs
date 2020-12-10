@@ -74,11 +74,19 @@ namespace Collection.UniList
             {
                 if (index > Count || index < 0)
                     throw new Exception();
-                Node<T> temp = Head;
-                for (int i = 0; i < index; ++i)
-                    temp = temp.Next;
-                Node<T> newItem = new Node<T>() { Data = item, Next = temp.Next };
-                temp.Next = newItem;
+                if (index == 0)
+                {
+                    Node<T> newItem = new Node<T>() { Data = item, Next = Head };
+                    Head = newItem;
+                }
+                else
+                {
+                    Node<T> temp = Head;
+                    for (int i = 0; i < index - 1; ++i)
+                        temp = temp.Next;
+                    Node<T> newItem = new Node<T>() { Data = item, Next = temp.Next };
+                    temp.Next = newItem;
+                }
                 ++Count;
             }
         }
@@ -107,7 +115,7 @@ namespace Collection.UniList
             else
             {
                 Node<T> temp = Head;
-                for (int i = 0; i < Count; ++i)
+                for (int i = 0; i < Count - 1; ++i)
                     temp = temp.Next;
                 temp.Next = newItem;
             }
@@ -117,6 +125,7 @@ namespace Collection.UniList
         public void Clear()
         {
             Head = null;
+            Count = 0;
         }
 
         public bool Contains(T item)
@@ -142,7 +151,7 @@ namespace Collection.UniList
             Node<T> curr = Head;
             while(!flag && curr != null)
             {
-                flag = item.Equals(curr);
+                flag = item.Equals(curr.Data);
                 if (flag)
                     if (prev == null)
                         Head = curr.Next;
@@ -158,6 +167,14 @@ namespace Collection.UniList
         public IEnumerator<T> GetEnumerator()
         {
             return new Enumerator<T>(this);
+        }
+
+        public override string ToString()
+        {
+            string result = "";
+            foreach (T item in this)
+                result += item + " ";
+            return result;
         }
     }
 }

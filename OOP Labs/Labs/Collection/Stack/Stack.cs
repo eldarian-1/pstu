@@ -1,47 +1,73 @@
 ﻿using Collection.UniList;
+using System.Collections.Generic;
 
 namespace Collection.Stack
 {
     public class Stack<T>
     {
-        private UniList<T> m_List;
+        private const string c_EmptyStack = "Стек пуст.";
+        
+        private IList<T> m_List;
 
-        public Stack() { }
+        public Stack()
+        {
+            m_List = new UniList<T>();
+        }
 
-        public Stack(int count) { }
+        public Stack(int count) : this()
+        {
+            for (int i = 0; i < count; ++i)
+                m_List.Add(default(T));
+        }
 
-        public Stack(Stack<T> stack) { }
+        public Stack(Stack<T> stack) : this()
+        {
+            foreach (T item in stack.m_List)
+                Push(item);
+        }
+
+        public int Count => m_List.Count;
 
         public virtual T this[int index]
         {
-            get
-            {
-                return default(T);
-            }
-            set
-            {
-
-            }
+            get => m_List[index];
+            set => m_List[index] = value;
         }
 
         public virtual void Push(T item)
         {
-
+            m_List.Add(item);
         }
 
-        public T Peek()
+        public virtual T Peek()
         {
             return default(T);
         }
 
-        public void Pop()
+        public virtual void Pop()
         {
-
+            m_List.Remove(m_List[m_List.Count - 1]);
         }
 
-        public void Clear()
+        public virtual void Remove(T item)
         {
+            m_List.Remove(item);
+        }
 
+        public virtual void Clear()
+        {
+            m_List.Clear();
+        }
+
+        public override string ToString()
+        {
+            string result = "";
+            if (m_List.Count != 0)
+                foreach (T item in m_List)
+                    result += item + " ";
+            else
+                result = c_EmptyStack;
+            return result;
         }
     }
 }

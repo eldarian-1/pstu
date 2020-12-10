@@ -1,5 +1,6 @@
 ﻿using Dialog;
 using System;
+using Entity;
 using Lab12.Additionally;
 
 namespace Lab12.Menu
@@ -9,11 +10,13 @@ namespace Lab12.Menu
         private static IMenu s_Instance;
         private static Exception s_NullTree = new Exception("Дерево не создано");
 
+        private const string c_EnterCount = "Введите количество узлов: ";
         private const string c_EnterSymbol = "Введите символ: ";
+        private const string c_CountOnSymbol = "Число начинающихся на \"{0}\": {1}";
 
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
-        private BiTree m_Tree;
+        private TreeAgregator m_Tree;
 
         public static IMenu Instance
         {
@@ -27,22 +30,25 @@ namespace Lab12.Menu
 
         private BiTreeMenu()
         {
+            m_Tree = new TreeAgregator();
             m_Tasks = new MyList<Action>(
                 ConstructTree,
                 PrintTree,
-                CountStartedOnSymbol,
+                TransformToBalanceTree,
                 TransformToSearchTree,
+                CountStartedOnSymbol,
                 RemoveTree);
-            m_Reactions = new MyList<Exception>();
+            m_Reactions = new MyList<Exception>(s_NullTree);
         }
 
         public string Menu =>
             "Меню бинарного дерева\n" +
-            "1. Сформировать идеально сбалансированное дерево\n" +
+            "1. Сформировать бинарное дерево\n" +
             "2. Распечатать бинарное дерево\n" +
-            "3. Сосчитать начинающиеся на заданный символ\n" +
+            "3. Преобразовать в сбалансированное дерево\n" +
             "4. Преобразовать в берево поиска\n" +
-            "5. Удалить бинарное дерево\n" +
+            "5. Сосчитать начинающиеся на заданный символ\n" +
+            "6. Удалить бинарное дерево\n" +
             "0. Выход\n";
 
         public MyList<Action> Tasks => m_Tasks;
@@ -51,37 +57,48 @@ namespace Lab12.Menu
 
         private void CheckTree()
         {
-            if (m_Tree == null)
+            if (m_Tree.Empty)
                 throw s_NullTree;
         }
 
-        public void ConstructTree()
+        private void ConstructTree()
         {
-            m_Tree = new BiTree();
+            Input.ReadNum(out int count, c_EnterCount);
+            string[] array = EngineFacade.Instance.GeneratePseudonymArray(count);
+            m_Tree.Formation(array);
         }
 
-        public void PrintTree()
+        private void PrintTree()
         {
             CheckTree();
             Waiter.Write(m_Tree.ToString());
         }
 
-        public void CountStartedOnSymbol()
+        private void TransformToBalanceTree()
+        {
+            CheckTree();
+            m_Tree.ToBalance();
+        }
+
+        private void TransformToSearchTree()
+        {
+            CheckTree();
+            m_Tree.ToSearch();
+        }
+
+        private void CountStartedOnSymbol()
         {
             CheckTree();
             Input.ReadSymbol(out char symbol, c_EnterSymbol);
-            Waiter.Write(m_Tree.CountOnChar(symbol).ToString());
+            int count = m_Tree.CountOnChar(symbol);
+            string result = string.Format(c_CountOnSymbol, symbol, count);
+            Waiter.Write(result);
         }
 
-        public void TransformToSearchTree()
+        private void RemoveTree()
         {
             CheckTree();
-        }
-
-        public void RemoveTree()
-        {
-            CheckTree();
-            m_Tree = null;
+            m_Tree.Remove();
         }
     }
 }

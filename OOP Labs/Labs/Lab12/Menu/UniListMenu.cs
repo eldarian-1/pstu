@@ -1,5 +1,6 @@
 ﻿using Dialog;
 using System;
+using Entity;
 using Collection.UniList;
 using System.Collections.Generic;
 
@@ -8,8 +9,9 @@ namespace Lab12.Menu
     class UniListMenu : IMenu
     {
         private static IMenu s_Instance;
-
         private static Exception s_NullList = new Exception("Список не создан");
+
+        private const string c_EnterCount = "Введите количество элементов: ";
 
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
@@ -56,6 +58,10 @@ namespace Lab12.Menu
         private void ConstructList()
         {
             m_List = new UniList<double>();
+            Input.ReadNum(out int count, c_EnterCount);
+            double[] array = EngineFacade.Instance.GenerateDouble(count);
+            foreach (double item in array)
+                m_List.Add(item);
         }
 
         private void PrintList()

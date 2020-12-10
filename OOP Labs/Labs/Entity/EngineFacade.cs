@@ -34,6 +34,12 @@ namespace Entity
             m_EngineFinder = new EngineFinder();
         }
 
+        public bool IsInternal(IEngine engine) => engine is InternalCombustionEngine;
+
+        public bool IsDiesel(IEngine engine) => engine is DieselEngine;
+
+        public bool IsReactive(IEngine engine) => engine is TurboReactiveEngine;
+
         public IEngine Generate()
         {
             m_Generator.Run(out IEngine engine);

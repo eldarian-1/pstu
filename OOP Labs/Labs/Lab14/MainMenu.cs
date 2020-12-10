@@ -3,12 +3,13 @@ using System;
 
 namespace Lab14
 {
-    class MainMenu : IMenu
+    internal class MainMenu : IMenu
     {
         private static IMenu s_Instance;
 
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
+        private TestCollections m_Collection;
 
         public static IMenu Instance
         {
@@ -24,22 +25,24 @@ namespace Lab14
         {
             m_Tasks = new MyList<Action>(
                 Formation,
+                Output,
                 Selection,
                 GetCount,
-                Intersection,
-                Union,
-                Difference);
+                AveragePower,
+                MedianPower,
+                Union);
             m_Reactions = new MyList<Exception>();
         }
 
         public string Menu =>
             "Главное меню\n" +
             "1. Сформировать коллекцию\n" +
-            "2. Запрос на выборку данных\n" +
-            "3. Запрос на получение счетчика\n" +
-            "4. Пересечение множеств\n" +
-            "5. Объединение множеств\n" +
-            "6. Вычитание множеств\n" +
+            "2. Вывести коллекцию\n" +
+            "3. Запрос на выборку данных\n" +
+            "4. Запрос на получение счетчика\n" +
+            "5. Средняя мощность\n" +
+            "6. Медианная мощность\n" +
+            "7. Объединение множеств\n" +
             "0. Выход\n";
 
         public MyList<Action> Tasks => m_Tasks;
@@ -48,32 +51,37 @@ namespace Lab14
 
         private void Formation()
         {
+            m_Collection = new TestCollections(10);
+        }
 
+        private void Output()
+        {
+            Waiter.Write(m_Collection.ToString());
         }
 
         private void Selection()
         {
-
+            Waiter.Write(m_Collection.SelectPseudonym());
         }
 
         private void GetCount()
         {
-
+            Waiter.Write(m_Collection.CountDiesel().ToString());
         }
 
-        private void Intersection()
+        private void AveragePower()
         {
+            Waiter.Write(m_Collection.AveragePower().ToString());
+        }
 
+        private void MedianPower()
+        {
+            Waiter.Write(m_Collection.MedianPower().ToString());
         }
 
         private void Union()
         {
-
-        }
-
-        private void Difference()
-        {
-
+            Waiter.Write(m_Collection.InternalReactive());
         }
     }
 }

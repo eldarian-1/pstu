@@ -4,7 +4,7 @@ using System;
 
 namespace Lab13
 {
-    class MainMenu : IMenu
+    internal class MainMenu : IMenu
     {
         private static IMenu s_Instance;
 

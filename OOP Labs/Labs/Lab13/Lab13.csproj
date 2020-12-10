@@ -49,7 +49,7 @@
     <Compile Include="ObservableStack.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stack.cs" />
+    <Compile Include="StackAgregator.cs" />
     <Compile Include="StackHandlerEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>

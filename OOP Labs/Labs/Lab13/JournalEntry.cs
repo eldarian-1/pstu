@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lab13
+﻿namespace Lab13
 {
-    class JournalEntry
+    internal class JournalEntry
     {
+        public string Collection { get; set; }
+
+        public string EditionType { get; set; }
     }
 }

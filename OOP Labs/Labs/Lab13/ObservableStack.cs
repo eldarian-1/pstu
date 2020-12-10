@@ -2,9 +2,9 @@
 
 namespace Lab13
 {
-    public delegate void StackHandler(object source, StackHandlerEventArgs args);
+    internal delegate void StackHandler(object source, StackHandlerEventArgs args);
 
-    class ObservableStack : Stack<IEngine>
+    internal class ObservableStack : StackAgregator<IEngine>
     {
         public event StackHandler CountChanged;
         public event StackHandler ReferenceChanged;

@@ -2,7 +2,7 @@
 
 namespace Lab13
 {
-    class Program
+    internal static class Program
     {
         static void Main(string[] args)
         {

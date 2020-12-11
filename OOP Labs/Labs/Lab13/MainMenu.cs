@@ -37,9 +37,8 @@ namespace Lab13
             m_Tasks = new MyList<Action>(
                 ChoiseCollection,
                 Add,
-                Insert,
+                Pop,
                 Remove,
-                Erase,
                 Edit,
                 OutCollection,
                 OutJournal);
@@ -49,13 +48,12 @@ namespace Lab13
         public string Menu =>
             "Главное меню\n" +
             "1. Выбрать коллекцию (сейчас: " + (m_IsLeftStack ? c_LeftStack : c_RightStack) + ")\n" +
-            "2. Добавить элемент\n" +
-            "3. Добавить по индексу\n" +
-            "4. Удалить элемент\n" +
-            "5. Удалить по индексу\n" +
-            "6. Присвоить по индексу\n" +
-            "7. Вывести коллекцию\n" +
-            "8. Вывести журнал\n" +
+            "2. Добавить в конец\n" +
+            "3. Удалить с конца\n" +
+            "4. Удалить по индексу\n" +
+            "5. Присвоить по индексу\n" +
+            "6. Вывести коллекцию\n" +
+            "7. Вывести журнал\n" +
             "0. Выход\n" +
             "Введите номер задачи: ";
 
@@ -83,28 +81,20 @@ namespace Lab13
         {
             CheckCollection();
             IEngine engine = EngineFacade.Instance.Generate();
-            ActiveStack.Add(engine);
+            ActiveStack.Push(engine);
         }
 
-        private void Insert()
+        private void Pop()
         {
             CheckCollection();
-            Input.ReadNum(out int index, c_EnterIndex);
-            IEngine engine = EngineFacade.Instance.Generate();
-            ActiveStack.Insert(index, engine);
+            ActiveStack.Pop();
         }
 
         private void Remove()
         {
             CheckCollection();
-            ActiveStack.Remove();
-        }
-
-        private void Erase()
-        {
-            CheckCollection();
             Input.ReadNum(out int index, c_EnterIndex);
-            ActiveStack.Erase(index);
+            ActiveStack.Remove(index);
         }
 
         private void Edit()

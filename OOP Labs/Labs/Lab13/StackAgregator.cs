@@ -22,30 +22,19 @@ namespace Lab13
             set => m_Stack[index] = value;
         }
 
-        public virtual void Add(T item)
+        public virtual void Push(T item)
         {
-
+            m_Stack.Push(item);
         }
 
-        public virtual void Add(T[] items)
-        {
-            foreach (T item in items)
-                Add(item);
-        }
-
-        public virtual void Insert(int index, T item)
-        {
-
-        }
-
-        public virtual void Remove()
+        public virtual void Pop()
         {
             m_Stack.Pop();
         }
 
-        public virtual void Erase(int index)
+        public virtual void Remove(int index)
         {
-            m_Stack.Pop();
+            m_Stack.Remove(m_Stack[index]);
         }
 
         public virtual void Sort()
@@ -60,7 +49,10 @@ namespace Lab13
 
         public override string ToString()
         {
-            return m_Stack.ToString();
+            string result = "";
+            foreach (T item in m_Stack)
+                result += item + "\n";
+            return result;
         }
     }
 }

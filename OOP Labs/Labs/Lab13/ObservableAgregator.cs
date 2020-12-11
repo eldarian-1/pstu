@@ -7,10 +7,9 @@ namespace Lab13
     internal class ObservableAgregator : StackAgregator<IEngine>
     {
         private const string c_EditByIndex = "Edit by index";
-        private const string c_AddItem = "Add item";
-        private const string c_InsertItem = "Insert item";
+        private const string c_PushItem = "Push item";
+        private const string c_PopItem = "Pop item";
         private const string c_RemoveItem = "Remove item";
-        private const string c_EraseItem = "Erase item";
         private const string c_Sorting = "Sorting collection";
         private const string c_Clear = "Clear collection";
 
@@ -46,28 +45,22 @@ namespace Lab13
             }
         }
 
-        public override void Add(IEngine engine)
+        public override void Push(IEngine engine)
         {
-            base.Add(engine);
-            OnCountChanged(this, CreateEvent(c_AddItem));
+            base.Push(engine);
+            OnCountChanged(this, CreateEvent(c_PushItem));
         }
 
-        public override void Insert(int index, IEngine engine)
+        public override void Pop()
         {
-            base.Insert(index, engine);
-            OnCountChanged(this, CreateEvent(c_InsertItem));
+            base.Pop();
+            OnCountChanged(this, CreateEvent(c_PopItem));
         }
 
-        public override void Remove()
+        public override void Remove(int index)
         {
-            base.Remove();
+            base.Remove(index);
             OnCountChanged(this, CreateEvent(c_RemoveItem));
-        }
-
-        public override void Erase(int index)
-        {
-            base.Erase(index);
-            OnCountChanged(this, CreateEvent(c_EraseItem));
         }
 
         public override void Sort()

@@ -1,9 +1,10 @@
 ﻿using Collection.UniList;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Collection.Stack
 {
-    public class Stack<T>
+    public class Stack<T> : IEnumerable<T>
     {
         private const string c_EmptyStack = "Стек пуст.";
         
@@ -41,7 +42,7 @@ namespace Collection.Stack
 
         public virtual T Peek()
         {
-            return default(T);
+            return m_List[m_List.Count - 1];
         }
 
         public virtual void Pop()
@@ -68,6 +69,16 @@ namespace Collection.Stack
             else
                 result = c_EmptyStack;
             return result;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return m_List.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return m_List.GetEnumerator();
         }
     }
 }

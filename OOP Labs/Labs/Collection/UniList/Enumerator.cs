@@ -36,7 +36,7 @@ namespace Collection.UniList
 
         public void Reset()
         {
-            m_Current = m_List.Head;
+            m_Current = null;
         }
 
         public void Dispose() {}

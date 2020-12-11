@@ -104,7 +104,7 @@ namespace Collection.UniList
                     temp = temp.Next;
                 temp.Next = temp.Next.Next;
             }
-            ++Count;
+            --Count;
         }
 
         public void Add(T item)
@@ -161,6 +161,8 @@ namespace Collection.UniList
                     prev = curr;
                 curr = curr.Next;
             }
+            if (flag)
+                --Count;
             return flag;   
         }
 

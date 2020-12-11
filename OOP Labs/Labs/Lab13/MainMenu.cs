@@ -6,8 +6,6 @@ namespace Lab13
 {
     internal class MainMenu : IMenu
     {
-        private static IMenu s_Instance;
-
         private const string c_EnterStack = "1. Левый стек\n2. Правый стек\nВыберете стек: ";
         private const string c_EnterJournal = "1. Левый журнал\n2. Правый журнал\nВыберете журнал: ";
         private const string c_EnterIndex = "Введите индекс: ";
@@ -20,17 +18,7 @@ namespace Lab13
         private Journal m_LeftJournal;
         private Journal m_RightJournal;
 
-        public static IMenu Instance
-        {
-            get
-            {
-                if (s_Instance == null)
-                    s_Instance = new MainMenu();
-                return s_Instance;
-            }
-        }
-
-        private MainMenu()
+        public MainMenu()
         {
             m_Tasks = new MyList<Action>(
                 Formation,

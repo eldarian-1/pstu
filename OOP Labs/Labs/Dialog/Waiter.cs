@@ -9,6 +9,10 @@ namespace Dialog
         private static Waiter s_Instance;
         private static int s_Level = 0;
 
+        private const string c_UnknownError = "Неизвестная ошибка: ";
+        private const string c_IncorrectValue = "Некорректное значение!";
+        private const string c_EndProgram = "Спасибо за работу!";
+
         private IMenu Menu { get; set; }
 
         private Waiter() { }
@@ -37,7 +41,7 @@ namespace Dialog
                     throw ProgramEnd;
                 else
                 {
-                    Write(Output.IncorrectValue);
+                    Write(c_IncorrectValue);
                     continue;
                 }
             }
@@ -54,7 +58,7 @@ namespace Dialog
                 catch(ApplicationException)
                 {
                     if(s_Level == 1)
-                        Write(Output.EndProgram);
+                        Write(c_EndProgram);
                     break;
                 }
                 catch (Exception exeption)
@@ -62,7 +66,7 @@ namespace Dialog
                     if (Menu.Reactions.Contains(exeption))
                         Write(exeption.Message);
                     else
-                        Write(Output.UnknownError);
+                        Write(c_UnknownError + exeption.Message);
                 }
             }
         }

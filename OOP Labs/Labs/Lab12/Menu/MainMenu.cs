@@ -3,24 +3,12 @@ using System;
 
 namespace Lab12.Menu
 {
-    class MainMenu : IMenu
+    public class MainMenu : IMenu
     {
-        private static IMenu s_Instance;
-
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
 
-        public static IMenu Instance
-        {
-            get
-            {
-                if (s_Instance == null)
-                    s_Instance = new MainMenu();
-                return s_Instance;
-            }
-        }
-
-        private MainMenu()
+        public MainMenu()
         {
             m_Tasks = new MyList<Action>(UniList, BiList, BiTree, Stack);
             m_Reactions = new MyList<Exception>();

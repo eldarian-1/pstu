@@ -46,7 +46,6 @@
     <Compile Include="Input.cs" />
     <Compile Include="IMenu.cs" />
     <Compile Include="MyList.cs" />
-    <Compile Include="Output.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Waiter.cs" />
   </ItemGroup>

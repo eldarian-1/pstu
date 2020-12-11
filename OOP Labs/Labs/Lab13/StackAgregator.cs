@@ -6,8 +6,13 @@ namespace Lab13
     {
         protected Stack<T> m_Stack;
 
-        public StackAgregator()
+        protected string Name { get; }
+
+        public bool IsNull => m_Stack == null;
+
+        public StackAgregator(string name)
         {
+            Name = name;
             m_Stack = new Stack<T>();
         }
 
@@ -53,5 +58,9 @@ namespace Lab13
             m_Stack.Clear();
         }
 
+        public override string ToString()
+        {
+            return m_Stack.ToString();
+        }
     }
 }

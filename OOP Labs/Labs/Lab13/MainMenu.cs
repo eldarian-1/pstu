@@ -6,22 +6,36 @@ namespace Lab13
 {
     internal class MainMenu : IMenu
     {
-        private const string c_EnterStack = "1. Левый стек\n2. Правый стек\nВыберете стек: ";
-        private const string c_EnterJournal = "1. Левый журнал\n2. Правый журнал\nВыберете журнал: ";
+        private static Exception s_NullCollection = new Exception("Коллекция не создана!");
+
+        private const string c_LeftStack = "левая";
+        private const string c_RightStack = "правая";
         private const string c_EnterIndex = "Введите индекс: ";
+        private const string c_ActiveStack = "Выбрана {0} коллекция";
+        private const string c_EnterJournal = "1. Левый журнал\n2. Правый журнал\nВыберете журнал: ";
 
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
 
-        private ObservableStack m_LeftStack;
-        private ObservableStack m_RightStack;
+        private bool m_IsLeftStack;
         private Journal m_LeftJournal;
         private Journal m_RightJournal;
+        private ObservableAgregator m_LeftStack;
+        private ObservableAgregator m_RightStack;
 
         public MainMenu()
         {
+            m_IsLeftStack = true;
+            m_LeftJournal = new Journal();
+            m_RightJournal = new Journal();
+            m_LeftStack = new ObservableAgregator(c_LeftStack);
+            m_RightStack = new ObservableAgregator(c_RightStack);
+            m_LeftStack.CountChanged += new StackHandler(m_LeftJournal.CountChange);
+            m_LeftStack.ReferenceChanged += new StackHandler(m_LeftJournal.ReferenceChange);
+            m_LeftStack.CountChanged += new StackHandler(m_RightJournal.CountChange);
+            m_RightStack.CountChanged += new StackHandler(m_RightJournal.CountChange);
             m_Tasks = new MyList<Action>(
-                Formation,
+                ChoiseCollection,
                 Add,
                 Insert,
                 Remove,
@@ -29,12 +43,12 @@ namespace Lab13
                 Edit,
                 OutCollection,
                 OutJournal);
-            m_Reactions = new MyList<Exception>();
+            m_Reactions = new MyList<Exception>(s_NullCollection);
         }
 
         public string Menu =>
             "Главное меню\n" +
-            "1. Сформировать коллекцию\n" +
+            "1. Выбрать коллекцию (сейчас: " + (m_IsLeftStack ? c_LeftStack : c_RightStack) + ")\n" +
             "2. Добавить элемент\n" +
             "3. Добавить по индексу\n" +
             "4. Удалить элемент\n" +
@@ -49,89 +63,71 @@ namespace Lab13
 
         public MyList<Exception> Reactions => m_Reactions;
 
-        private bool IsLeft(string thing)
+        private ObservableAgregator ActiveStack => m_IsLeftStack ? m_LeftStack : m_RightStack;
+
+        private void CheckCollection()
         {
-            int number;
-            do Input.ReadNum(out number, thing);
-            while (number != 1 && number != 2);
-            return number == 1;
+            if ((m_IsLeftStack && m_LeftStack == null)
+                || (!m_IsLeftStack && m_RightStack == null))
+                throw s_NullCollection;
         }
 
-        private void Formation()
+        private void ChoiseCollection()
         {
-            m_LeftStack = new ObservableStack();
-            m_RightStack = new ObservableStack();
-            m_LeftJournal = new Journal();
-            m_RightJournal = new Journal();
-            m_LeftStack.CountChanged += new StackHandler(m_LeftJournal.CountChange);
-            m_LeftStack.ReferenceChanged += new StackHandler(m_LeftJournal.ReferenceChange);
-            m_LeftStack.CountChanged += new StackHandler(m_RightJournal.CountChange);
-            m_RightStack.CountChanged += new StackHandler(m_RightJournal.CountChange);
+            m_IsLeftStack = !m_IsLeftStack;
+            Waiter.Write(string.Format(c_ActiveStack,
+                m_IsLeftStack ? c_LeftStack : c_RightStack));
         }
 
         private void Add()
         {
+            CheckCollection();
             IEngine engine = EngineFacade.Instance.Generate();
-            if (IsLeft(c_EnterStack))
-                m_LeftStack.Add(engine);
-            else
-                m_RightStack.Add(engine);
+            ActiveStack.Add(engine);
         }
 
         private void Insert()
         {
-            bool isLeft = IsLeft(c_EnterStack);
+            CheckCollection();
             Input.ReadNum(out int index, c_EnterIndex);
             IEngine engine = EngineFacade.Instance.Generate();
-            if (isLeft)
-                m_LeftStack.Insert(index, engine);
-            else
-                m_RightStack.Insert(index, engine);
+            ActiveStack.Insert(index, engine);
         }
 
         private void Remove()
         {
-            if (IsLeft(c_EnterStack))
-                m_LeftStack.Remove();
-            else
-                m_RightStack.Remove();
+            CheckCollection();
+            ActiveStack.Remove();
         }
 
         private void Erase()
         {
-            bool isLeft = IsLeft(c_EnterStack);
+            CheckCollection();
             Input.ReadNum(out int index, c_EnterIndex);
-            if (isLeft)
-                m_LeftStack.Erase(index);
-            else
-                m_RightStack.Erase(index);
+            ActiveStack.Erase(index);
         }
 
         private void Edit()
         {
-            bool isLeft = IsLeft(c_EnterStack);
+            CheckCollection();
             Input.ReadNum(out int index, c_EnterIndex);
             IEngine engine = EngineFacade.Instance.Generate();
-            if (isLeft)
-                m_LeftStack[index] = engine;
-            else
-                m_RightStack[index] = engine;
+            ActiveStack[index] = engine;
         }
 
         private void OutCollection()
         {
-            if (IsLeft(c_EnterStack))
-                Waiter.Write(m_LeftStack.ToString());
-            else
-                Waiter.Write(m_RightStack.ToString());
+            CheckCollection();
+            Waiter.Write(ActiveStack.ToString());
         }
 
         private void OutJournal()
         {
-            if (IsLeft(c_EnterJournal))
-                Waiter.Write(m_LeftJournal.ToString());
-            else
-                Waiter.Write(m_RightJournal.ToString());
+            int number;
+            do Input.ReadNum(out number, c_EnterJournal);
+            while (number != 1 && number != 2);
+            bool isLeft = number == 1;
+            Waiter.Write((isLeft ? m_LeftJournal : m_RightJournal).ToString());
         }
     }
 }

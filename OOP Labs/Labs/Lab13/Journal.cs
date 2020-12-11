@@ -4,6 +4,8 @@ namespace Lab13
 {
     internal class Journal
     {
+        private const string c_EmptyJournal = "Журнал пуст.";
+
         private IList<JournalEntry> m_Entries;
 
         public Journal()
@@ -13,21 +15,24 @@ namespace Lab13
 
         public void CountChange(object source, StackHandlerEventArgs args)
         {
-            JournalEntry entry = new JournalEntry();
+            JournalEntry entry = new JournalEntry(args.Collection, args.EditionType);
             m_Entries.Add(entry);
         }
 
         public void ReferenceChange(object source, StackHandlerEventArgs args)
         {
-            JournalEntry entry = new JournalEntry();
+            JournalEntry entry = new JournalEntry(args.Collection, args.EditionType);
             m_Entries.Add(entry);
         }
 
         public override string ToString()
         {
             string result = "";
-            foreach (JournalEntry item in m_Entries)
-                result += item + "\n";
+            if (m_Entries.Count == 0)
+                result = c_EmptyJournal;
+            else
+                foreach (JournalEntry item in m_Entries)
+                    result += item + "\n";
             return result;
         }
     }

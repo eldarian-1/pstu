@@ -42,7 +42,8 @@ namespace Lab13
             "6. Присвоить по индексу\n" +
             "7. Вывести коллекцию\n" +
             "8. Вывести журнал\n" +
-            "0. Выход\n";
+            "0. Выход\n" +
+            "Введите номер задачи: ";
 
         public MyList<Action> Tasks => m_Tasks;
 
@@ -91,9 +92,9 @@ namespace Lab13
         private void Remove()
         {
             if (IsLeft(c_EnterStack))
-                m_LeftStack.Pop();
+                m_LeftStack.Remove();
             else
-                m_RightStack.Pop();
+                m_RightStack.Remove();
         }
 
         private void Erase()

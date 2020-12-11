@@ -20,7 +20,8 @@ namespace Lab12.Menu
             "2. Двусвязный список\n" +
             "3. Бинарное дерево\n" +
             "4. Стек на основе односвязного списка\n" +
-            "0. Выход\n";
+            "0. Выход\n" +
+            "Введите номер задачи: ";
 
         public MyList<Action> Tasks => m_Tasks;
         public MyList<Exception> Reactions => m_Reactions;

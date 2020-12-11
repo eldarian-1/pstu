@@ -6,46 +6,58 @@ namespace Lab14
 {
     internal class MainMenu : IMenu
     {
-        private const string c_Linq = "Linq-запросом?";
+        private static Exception s_NullCollections = new Exception("Коллекции не созданы!");
+
+        private const string c_Linq = "LINQ";
+        private const string c_Extension = "Методы расширения";
+        private const string c_Engines = "Двигатели:\n";
+        private const string c_Pseudonyms = "Псевдонимы двигателей:\n";
+        private const string c_Diesels = "Количество дизельных двигателей: ";
+        private const string c_AveragePower = "Средняя мощность двигателей: ";
+        private const string c_MedianPower = "Медианная мощность двигателей: ";
+        private const string c_InternalTurboreactive
+            = "Множество двигателей внутреннего сгорания и турбореактивных двигателей:\n";
         private const string c_EnterCount = "Введите количество элементов коллекции: ";
 
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
         private TestCollections m_Collection;
+        private bool m_Linq;
 
         public MainMenu()
         {
+            m_Linq = true;
             m_Tasks = new MyList<Action>(
                 Formation,
                 Output,
+                ChangeType,
                 Selection,
                 GetCount,
                 AveragePower,
                 MedianPower,
                 Union);
-            m_Reactions = new MyList<Exception>();
+            m_Reactions = new MyList<Exception>(s_NullCollections);
         }
 
         public string Menu =>
             "Главное меню\n" +
             "1. Сформировать коллекцию\n" +
             "2. Вывести коллекцию\n" +
-            "3. Запрос на выборку псевдонимов коллекций\n" +
-            "4. Запрос на получение счетчика дизельных двигателей\n" +
-            "5. Средняя мощность всех двигателей\n" +
-            "6. Медианная мощность всех двигателей\n" +
-            "7. Объединение множеств двигателей внутреннего сгорания и турбореактивных\n" +
-            "0. Выход\n";
+            "3. Изменить тип запросов (сейчас " + (m_Linq ? c_Linq : c_Extension) + ")\n" +
+            "4. Запрос на выборку псевдонимов коллекций\n" +
+            "5. Запрос на получение счетчика дизельных двигателей\n" +
+            "6. Средняя мощность всех двигателей\n" +
+            "7. Медианная мощность всех двигателей\n" +
+            "8. Объединение множеств двигателей внутреннего сгорания и турбореактивных\n" +
+            "0. Выход\n" +
+            "Введите номер задачи: ";
 
         public MyList<Action> Tasks => m_Tasks;
 
         public MyList<Exception> Reactions => m_Reactions;
 
         private IQueryCollections QueryCollections()
-        {
-            Input.ReadBoolean(out bool linq, c_Linq);
-            return m_Collection.QueryCollections(linq);
-        }
+            => m_Collection.QueryCollections(m_Linq);
 
         private string EnginesToString(IEnumerable<string> engines)
         {
@@ -53,6 +65,12 @@ namespace Lab14
             foreach (var item in engines)
                 result += item + "\n";
             return result;
+        }
+
+        private void CheckCollections()
+        {
+            if (m_Collection == null)
+                throw s_NullCollections;
         }
 
         private void Formation()
@@ -63,32 +81,49 @@ namespace Lab14
 
         private void Output()
         {
-            Waiter.Write(m_Collection.ToString());
+            CheckCollections();
+            Waiter.Write(c_Engines + m_Collection.ToString());
+        }
+
+        private void ChangeType()
+        {
+            m_Linq = !m_Linq;
+            Waiter.Write("Тип запросов изменен на " + (m_Linq ? c_Linq : c_Extension));
         }
 
         private void Selection()
         {
-            Waiter.Write(EnginesToString(QueryCollections().SelectPseudonym()));
+            CheckCollections();
+            Waiter.Write(c_Pseudonyms +
+                EnginesToString(QueryCollections().SelectPseudonym()));
         }
 
         private void GetCount()
         {
-            Waiter.Write(QueryCollections().CountDiesel().ToString());
+            CheckCollections();
+            Waiter.Write(c_Diesels +
+                QueryCollections().CountDiesel().ToString());
         }
 
         private void AveragePower()
         {
-            Waiter.Write(QueryCollections().AveragePower().ToString());
+            CheckCollections();
+            Waiter.Write(c_AveragePower +
+                QueryCollections().AveragePower().ToString());
         }
 
         private void MedianPower()
         {
-            Waiter.Write(QueryCollections().MedianPower().ToString());
+            CheckCollections();
+            Waiter.Write(c_MedianPower +
+                QueryCollections().MedianPower().ToString());
         }
 
         private void Union()
         {
-            Waiter.Write(EnginesToString(QueryCollections().InternalReactive()));
+            CheckCollections();
+            Waiter.Write(c_InternalTurboreactive +
+                EnginesToString(QueryCollections().InternalReactive()));
         }
     }
 }

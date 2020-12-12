@@ -70,13 +70,13 @@ namespace Lab12.Menu
             Input.ReadNum(out int count, c_EnterCount, i => i >= 0 && i <= c_MaxCount);
             string[] array = EngineFacade.Instance.GeneratePseudonymArray(count);
             m_Tree.Formation(array);
-            Waiter.Write(string.Format(c_BuildTree, count));
+            MenuManager.Write(string.Format(c_BuildTree, count));
         }
 
         private void PrintTree()
         {
             CheckTree();
-            Waiter.Write(m_Tree.ToString());
+            MenuManager.Write(m_Tree.ToString());
         }
 
         private void TransformToBalanceTree()
@@ -90,7 +90,7 @@ namespace Lab12.Menu
         {
             CheckTree();
             m_Tree.ToSearch();
-            Waiter.Write("Действие не разработано.");
+            MenuManager.Write("Действие не разработано.");
         }
 
         private void CountStartedOnSymbol()
@@ -99,14 +99,14 @@ namespace Lab12.Menu
             Input.ReadSymbol(out char symbol, c_EnterSymbol);
             int count = m_Tree.CountOnChar(symbol);
             string result = string.Format(c_CountOnSymbol, symbol, count);
-            Waiter.Write(result);
+            MenuManager.Write(result);
         }
 
         private void RemoveTree()
         {
             CheckTree();
             m_Tree.Remove();
-            Waiter.Write(c_RemovedTree);
+            MenuManager.Write(c_RemovedTree);
         }
     }
 }

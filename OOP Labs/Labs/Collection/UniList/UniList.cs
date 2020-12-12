@@ -49,11 +49,6 @@ namespace Collection.UniList
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
         public int IndexOf(T item)
         {
             int index = 0;
@@ -169,6 +164,11 @@ namespace Collection.UniList
         public IEnumerator<T> GetEnumerator()
         {
             return new Enumerator<T>(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
         public override string ToString()

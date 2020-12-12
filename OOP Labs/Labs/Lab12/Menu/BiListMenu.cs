@@ -67,13 +67,13 @@ namespace Lab12.Menu
             int[] array = EngineFacade.Instance.GenerateInt(count);
             foreach (int item in array)
                 m_List.Add(item);
-            Waiter.Write(string.Format(c_BuildList, count));
+            MenuManager.Write(string.Format(c_BuildList, count));
         }
 
         public void PrintList()
         {
             CheckList();
-            Waiter.Write(m_List.ToString());
+            MenuManager.Write(m_List.ToString());
         }
 
         public void RemoveEvenNumber()
@@ -82,14 +82,14 @@ namespace Lab12.Menu
             for (int i = 0, j = 0; j < m_List.Count; ++i, ++j)
                 if (i % 2 == 1)
                     m_List.RemoveAt(j--);
-            Waiter.Write(c_RemovedEven);
+            MenuManager.Write(c_RemovedEven);
         }
 
         public void RemoveList()
         {
             CheckList();
             m_List = null;
-            Waiter.Write(c_RemovedList);
+            MenuManager.Write(c_RemovedList);
         }
     }
 }

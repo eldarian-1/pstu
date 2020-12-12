@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Collection.BiTree
 {
-    public class BiTree<T>
+    public class BiTree<T> : IEnumerable<T>
         where T : IComparable
     {
-        protected Node<T> Root { get; set; }
+        public Node<T> Root { get; set; }
 
         public void Add(T item)
         {
@@ -37,6 +38,16 @@ namespace Collection.BiTree
         public void Clear()
         {
             Root = null;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return ToList().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

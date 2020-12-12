@@ -116,21 +116,21 @@ namespace Lab12.Menu
         {
             CheckDictionary();
             CheckStack(true);
-            Waiter.Instance.Run(new StackConstructMenu(m_Stacks, m_ActiveKey));
+            MenuManager.Instance.Run(new StackConstructMenu(m_Stacks, m_ActiveKey));
         }
 
         public void PrintStack()
         {
             CheckDictionary();
             CheckStack();
-            Waiter.Write(m_Stacks[m_ActiveKey].ToString());
+            MenuManager.Write(m_Stacks[m_ActiveKey].ToString());
         }
 
         public void StackOperation()
         {
             CheckDictionary();
             CheckStack();
-            Waiter.Instance.Run(new StackOperationMenu(m_Stacks[m_ActiveKey], m_ActiveKey));
+            MenuManager.Instance.Run(new StackOperationMenu(m_Stacks[m_ActiveKey], m_ActiveKey));
         }
 
         public void RemoveLink()
@@ -149,7 +149,7 @@ namespace Lab12.Menu
             catch(Exception e)
             {
                 if (e == s_NullDictionary)
-                    Waiter.Write(c_EmptyDictionary);
+                    MenuManager.Write(c_EmptyDictionary);
                 else
                     throw e;
             }

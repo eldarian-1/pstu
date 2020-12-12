@@ -84,47 +84,47 @@ namespace Lab14
         private void Output()
         {
             CheckCollections();
-            Waiter.Write(c_Engines + m_Collection.ToString());
+            MenuManager.Write(c_Engines + m_Collection.ToString());
         }
 
         private void ChangeType()
         {
             m_Linq = !m_Linq;
-            Waiter.Write("Тип запросов изменен на " + (m_Linq ? c_Linq : c_Extension));
+            MenuManager.Write("Тип запросов изменен на " + (m_Linq ? c_Linq : c_Extension));
         }
 
         private void Selection()
         {
             CheckCollections();
-            Waiter.Write(c_Pseudonyms +
+            MenuManager.Write(c_Pseudonyms +
                 EnginesToString(QueryCollections().SelectPseudonym()));
         }
 
         private void GetCount()
         {
             CheckCollections();
-            Waiter.Write(c_Diesels +
+            MenuManager.Write(c_Diesels +
                 QueryCollections().CountDiesel().ToString());
         }
 
         private void AveragePower()
         {
             CheckCollections();
-            Waiter.Write(c_AveragePower +
+            MenuManager.Write(c_AveragePower +
                 QueryCollections().AveragePower().ToString());
         }
 
         private void MedianPower()
         {
             CheckCollections();
-            Waiter.Write(c_MedianPower +
+            MenuManager.Write(c_MedianPower +
                 QueryCollections().MedianPower().ToString());
         }
 
         private void Union()
         {
             CheckCollections();
-            Waiter.Write(c_InternalTurboreactive +
+            MenuManager.Write(c_InternalTurboreactive +
                 EnginesToString(QueryCollections().InternalReactive()));
         }
     }

@@ -80,7 +80,7 @@ namespace Lab12.Menu
         private void OutputStack()
         {
             CheckStack(m_ActiveKey);
-            Waiter.Write(m_Stacks[m_ActiveKey].ToString());
+            MenuManager.Write(m_Stacks[m_ActiveKey].ToString());
         }
     }
 }

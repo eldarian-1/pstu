@@ -67,13 +67,13 @@ namespace Lab12.Menu
             double[] array = EngineFacade.Instance.GenerateDouble(count);
             foreach (double item in array)
                 m_List.Add(item);
-            Waiter.Write(string.Format(c_BuildList, count));
+            MenuManager.Write(string.Format(c_BuildList, count));
         }
 
         private void PrintList()
         {
             CheckList();
-            Waiter.Write(m_List.ToString());
+            MenuManager.Write(m_List.ToString());
         }
 
         private void AddZeroAfterNegative()
@@ -82,14 +82,14 @@ namespace Lab12.Menu
             for (int i = 0; i < m_List.Count; ++i)
                 if (m_List[i] < 0)
                     m_List.Insert(++i, 0);
-            Waiter.Write(c_ZeroAdded);
+            MenuManager.Write(c_ZeroAdded);
         }
 
         private void RemoveList()
         {
             CheckList();
             m_List = null;
-            Waiter.Write(c_RemovedList);
+            MenuManager.Write(c_RemovedList);
         }
     }
 }

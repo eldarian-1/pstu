@@ -56,10 +56,12 @@ namespace Lab13
             OnCountChanged(this, CreateEvent(c_PopItem));
         }
 
-        public override void Remove(int index)
+        public override bool Remove(int index)
         {
-            base.Remove(index);
-            OnCountChanged(this, CreateEvent(c_RemoveItem));
+            bool result = base.Remove(index);
+            if(result)
+                OnCountChanged(this, CreateEvent(c_RemoveItem));
+            return result;
         }
 
         public override void Clear()

@@ -16,7 +16,7 @@ namespace Dialog
                 word = Console.ReadLine();
                 flag = word != "";
                 if (!flag)
-                    Waiter.Write(c_IncorrectValue);
+                    MenuManager.Write(c_IncorrectValue);
             }
             while (!flag);
             symbol = word[0];
@@ -47,7 +47,7 @@ namespace Dialog
                 if (flag && func != null)
                     flag = func(number);
                 if (!flag)
-                    Waiter.Write(c_IncorrectValue);
+                    MenuManager.Write(c_IncorrectValue);
             }
             while (!flag);
         }
@@ -61,7 +61,7 @@ namespace Dialog
                 word = Console.ReadLine();
                 flag = word != "";
                 if (!flag)
-                    Waiter.Write(c_IncorrectValue);
+                    MenuManager.Write(c_IncorrectValue);
             }
             while (!flag);
         }

@@ -28,22 +28,22 @@ namespace Lab12.Menu
 
         private void UniList()
         {
-            Waiter.Instance.Run(UniListMenu.Instance);
+            MenuManager.Instance.Run(UniListMenu.Instance);
         }
 
         private void BiList()
         {
-            Waiter.Instance.Run(BiListMenu.Instance);
+            MenuManager.Instance.Run(BiListMenu.Instance);
         }
 
         private void BiTree()
         {
-            Waiter.Instance.Run(BiTreeMenu.Instance);
+            MenuManager.Instance.Run(BiTreeMenu.Instance);
         }
 
         private void Stack()
         {
-            Waiter.Instance.Run(StackMenu.Instance);
+            MenuManager.Instance.Run(StackMenu.Instance);
         }
 
     }

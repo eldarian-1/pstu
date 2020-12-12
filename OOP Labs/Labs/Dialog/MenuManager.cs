@@ -2,11 +2,11 @@
 
 namespace Dialog
 {
-    public class Waiter
+    public class MenuManager
     {
         private static readonly Exception ProgramEnd = new ApplicationException();
 
-        private static Waiter s_Instance;
+        private static MenuManager s_Instance;
         private static int s_Level = 0;
 
         private const string c_UnknownError = "Неизвестная ошибка: ";
@@ -15,14 +15,14 @@ namespace Dialog
 
         private IMenu Menu { get; set; }
 
-        private Waiter() { }
+        private MenuManager() { }
 
-        public static Waiter Instance
+        public static MenuManager Instance
         {
             get
             {
                 if (s_Instance == null)
-                    s_Instance = new Waiter();
+                    s_Instance = new MenuManager();
                 return s_Instance;
             }
         }

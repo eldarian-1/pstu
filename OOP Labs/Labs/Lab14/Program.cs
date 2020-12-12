@@ -6,7 +6,7 @@ namespace Lab14
     {
         static void Main(string[] args)
         {
-            Waiter.Instance.Run(new MainMenu());
+            MenuManager.Instance.Run(new MainMenu());
         }
     }
 }

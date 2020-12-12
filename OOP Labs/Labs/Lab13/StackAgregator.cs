@@ -10,6 +10,8 @@ namespace Lab13
 
         public bool IsNull => m_Stack == null;
 
+        public int Count => m_Stack.Count;
+
         public StackAgregator(string name)
         {
             Name = name;
@@ -32,9 +34,12 @@ namespace Lab13
             m_Stack.Pop();
         }
 
-        public virtual void Remove(int index)
+        public virtual bool Remove(int index)
         {
-            m_Stack.Remove(m_Stack[index]);
+            bool result = index >= 0 && index < Count;
+            if(result)
+                m_Stack.Remove(m_Stack[index]);
+            return result;
         }
 
         public virtual void Clear()

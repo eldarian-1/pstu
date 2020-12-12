@@ -55,19 +55,19 @@ namespace Lab12.Menu
 
         private void OutputStack()
         {
-            Waiter.Write(m_Stack.ToString());
+            MenuManager.Write(m_Stack.ToString());
         }
 
         private void OutputCount()
         {
-            Waiter.Write(string.Format(c_CountStack, m_Stack.Count));
+            MenuManager.Write(string.Format(c_CountStack, m_Stack.Count));
         }
 
         private void AddItem()
         {
             Input.ReadNum(out int num, c_EnterNumber);
             m_Stack.AddItem(num);
-            Waiter.Write(string.Format(c_AddedItem, num));
+            MenuManager.Write(string.Format(c_AddedItem, num));
         }
 
         private void AddMultipleItems()
@@ -78,14 +78,14 @@ namespace Lab12.Menu
                 Input.ReadNum(out int num, string.Format(c_EnterNumberA, i + 1));
                 m_Stack.AddItem(num);
             }
-            Waiter.Write(c_AddedItems);
+            MenuManager.Write(c_AddedItems);
         }
 
         private void RemoveItem()
         {
             Input.ReadNum(out int index, c_EnterNumber, i => i >= 0 && i < m_Stack.Count);
             m_Stack.RemoveItem(index);
-            Waiter.Write(string.Format(c_RemovedItem, index));
+            MenuManager.Write(string.Format(c_RemovedItem, index));
         }
 
         private void RemoveMultipleItems()
@@ -95,13 +95,13 @@ namespace Lab12.Menu
             for (int i = 0; i < count; ++i)
                 Input.ReadNum(out indexes[i], string.Format(c_EnterNumberA, i + 1));
             m_Stack.RemoveMultipleItems(indexes);
-            Waiter.Write(c_RemovedItems);
+            MenuManager.Write(c_RemovedItems);
         }
 
         private void ClearStack()
         {
             m_Stack.Clear();
-            Waiter.Write(c_ClearStack);
+            MenuManager.Write(c_ClearStack);
         }
     }
 }

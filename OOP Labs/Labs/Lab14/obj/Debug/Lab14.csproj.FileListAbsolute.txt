@@ -1,0 +1,14 @@
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\bin\Debug\Lab14.exe.config
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\bin\Debug\Lab14.exe
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\bin\Debug\Lab14.pdb
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\bin\Debug\Collection.dll
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\bin\Debug\Dialog.dll
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\bin\Debug\Entity.dll
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\bin\Debug\Collection.pdb
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\bin\Debug\Dialog.pdb
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\bin\Debug\Entity.pdb
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\obj\Debug\Lab14.csprojAssemblyReference.cache
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\obj\Debug\Lab14.csproj.CoreCompileInputs.cache
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\obj\Debug\Lab14.csproj.CopyComplete
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\obj\Debug\Lab14.exe
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab14\obj\Debug\Lab14.pdb

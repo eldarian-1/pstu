@@ -35,7 +35,7 @@ namespace Dialog
             while (flag);
         }
 
-        public static void ReadNum(out int number, string thing)
+        public static void ReadNum(out int number, string thing, Func<int, bool> func = null)
         {
             bool flag;
             do
@@ -44,6 +44,8 @@ namespace Dialog
                 string sNum = Console.ReadLine();
                 flag = int.TryParse(sNum, out number);
                 Console.WriteLine();
+                if (flag && func != null)
+                    flag = func(number);
                 if (!flag)
                     Waiter.Write(c_IncorrectValue);
             }

@@ -8,6 +8,7 @@ namespace Lab14
     {
         private static Exception s_NullCollections = new Exception("Коллекции не созданы!");
 
+        private const int c_MaxCount = 10000;
         private const string c_Linq = "LINQ";
         private const string c_Extension = "Методы расширения";
         private const string c_Engines = "Двигатели:\n";
@@ -75,8 +76,9 @@ namespace Lab14
 
         private void Formation()
         {
-            Input.ReadNum(out int count, c_EnterCount);
+            Input.ReadNum(out int count, c_EnterCount, i => i >= 0 && i <= c_MaxCount);
             m_Collection = new TestCollections(count);
+            Output();
         }
 
         private void Output()

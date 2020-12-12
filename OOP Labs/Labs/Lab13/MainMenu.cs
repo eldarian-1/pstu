@@ -8,9 +8,13 @@ namespace Lab13
     {
         private static Exception s_NullCollection = new Exception("Коллекция не создана!");
 
-        private const string c_LeftStack = "левая";
-        private const string c_RightStack = "правая";
+        private const string c_LeftStack = "Левая";
+        private const string c_RightStack = "Правая";
         private const string c_EnterIndex = "Введите индекс: ";
+        private const string c_AddedItem = "Добавлен элемент: {0}";
+        private const string c_PopItem = "Последний элемент в стеке удален.";
+        private const string c_RemovedItem = "Элемент по индексу {0} удален.";
+        private const string c_EditedItem = "Элемент по индексу {0} изменен.";
         private const string c_ActiveStack = "Выбрана {0} коллекция";
         private const string c_EnterJournal = "1. Левый журнал\n2. Правый журнал\nВыберете журнал: ";
 
@@ -82,12 +86,14 @@ namespace Lab13
             CheckCollection();
             IEngine engine = EngineFacade.Instance.Generate();
             ActiveStack.Push(engine);
+            Waiter.Write(string.Format(c_AddedItem, engine));
         }
 
         private void Pop()
         {
             CheckCollection();
             ActiveStack.Pop();
+            Waiter.Write(c_PopItem);
         }
 
         private void Remove()
@@ -95,6 +101,7 @@ namespace Lab13
             CheckCollection();
             Input.ReadNum(out int index, c_EnterIndex);
             ActiveStack.Remove(index);
+            Waiter.Write(string.Format(c_RemovedItem, index));
         }
 
         private void Edit()
@@ -103,6 +110,7 @@ namespace Lab13
             Input.ReadNum(out int index, c_EnterIndex);
             IEngine engine = EngineFacade.Instance.Generate();
             ActiveStack[index] = engine;
+            Waiter.Write(string.Format(c_EditedItem, index));
         }
 
         private void OutCollection()

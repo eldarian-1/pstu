@@ -8,3 +8,9 @@ C:\Users\Администратор\pstu\OOP Labs\Lab11\Entity\bin\Debug\Entity.
 C:\Users\Администратор\pstu\OOP Labs\Lab11\Entity\bin\Debug\Entity.pdb
 C:\Users\Администратор\pstu\OOP Labs\Lab11\Entity\obj\Debug\Entity.dll
 C:\Users\Администратор\pstu\OOP Labs\Lab11\Entity\obj\Debug\Entity.pdb
+D:\Lester\Политех\Master\OOP Labs\Labs\Entity\bin\Debug\Entity.dll
+D:\Lester\Политех\Master\OOP Labs\Labs\Entity\bin\Debug\Entity.pdb
+D:\Lester\Политех\Master\OOP Labs\Labs\Entity\obj\Debug\Entity.csprojAssemblyReference.cache
+D:\Lester\Политех\Master\OOP Labs\Labs\Entity\obj\Debug\Entity.csproj.CoreCompileInputs.cache
+D:\Lester\Политех\Master\OOP Labs\Labs\Entity\obj\Debug\Entity.dll
+D:\Lester\Политех\Master\OOP Labs\Labs\Entity\obj\Debug\Entity.pdb

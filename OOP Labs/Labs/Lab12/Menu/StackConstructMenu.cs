@@ -10,6 +10,7 @@ namespace Lab12.Menu
         private static Exception s_NullStack = new Exception("Стек не создан");
         private static Exception s_ThisStack = new Exception("Выбран этот же стек");
 
+        private const int c_MaxCount = 10000;
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
         private IDictionary<string, StackAgregator<int>> m_Stacks;
@@ -54,14 +55,16 @@ namespace Lab12.Menu
         public void EmptyConstruct()
         {
             m_Stacks[m_ActiveKey].EmptyConstruct();
+            OutputStack();
         }
 
         public void ConstructByCount()
         {
             int count;
-            do Input.ReadNum(out count, c_EnterCount);
+            do Input.ReadNum(out count, c_EnterCount, i => i >= 0 && i <= c_MaxCount);
             while (count < 0 || count >= c_Limit);
             m_Stacks[m_ActiveKey].ConstructByCount(count);
+            OutputStack();
         }
 
         public void CopyConstruct()
@@ -71,6 +74,7 @@ namespace Lab12.Menu
                 throw s_ThisStack;
             CheckStack(stack);
             m_Stacks[m_ActiveKey].CopyConstruct(m_Stacks[stack]);
+            OutputStack();
         }
 
         private void OutputStack()

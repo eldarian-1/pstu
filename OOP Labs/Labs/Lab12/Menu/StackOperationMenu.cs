@@ -6,9 +6,16 @@ namespace Lab12.Menu
 {
     class StackOperationMenu : IMenu
     {
+        private const int c_MaxCount = 10000;
         private const string c_EnterNumber = "Введите число: ";
         private const string c_EnterNumberA = "Введите число {0}: ";
         private const string c_EnterCount = "Введите количество новых элементов: ";
+        private const string c_CountStack = "Количество элементов: ";
+        private const string c_AddedItem = "Число {0} добавлено в стек.";
+        private const string c_AddedItems = "Числа добавлены в стек.";
+        private const string c_RemovedItem = "Элемент по индексу {0} удален.";
+        private const string c_RemovedItems = "Элементы по заданным индексам удалены.";
+        private const string c_ClearStack = "Стек очищен.";
 
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
@@ -53,43 +60,48 @@ namespace Lab12.Menu
 
         private void OutputCount()
         {
-            Waiter.Write(m_Stack.Count.ToString());
+            Waiter.Write(string.Format(c_CountStack, m_Stack.Count));
         }
 
         private void AddItem()
         {
             Input.ReadNum(out int num, c_EnterNumber);
             m_Stack.AddItem(num);
+            Waiter.Write(string.Format(c_AddedItem, num));
         }
 
         private void AddMultipleItems()
         {
-            Input.ReadNum(out int count, c_EnterCount);
+            Input.ReadNum(out int count, c_EnterCount, i => i >= 0 && i <= c_MaxCount - m_Stack.Count);
             for(int i = 0; i < count; ++i)
             {
                 Input.ReadNum(out int num, string.Format(c_EnterNumberA, i + 1));
                 m_Stack.AddItem(num);
             }
+            Waiter.Write(c_AddedItems);
         }
 
         private void RemoveItem()
         {
-            Input.ReadNum(out int index, c_EnterNumber);
+            Input.ReadNum(out int index, c_EnterNumber, i => i >= 0 && i < m_Stack.Count);
             m_Stack.RemoveItem(index);
+            Waiter.Write(string.Format(c_RemovedItem, index));
         }
 
         private void RemoveMultipleItems()
         {
-            Input.ReadNum(out int count, c_EnterCount);
+            Input.ReadNum(out int count, c_EnterCount, i => i >= 0 && i <= c_MaxCount);
             int[] indexes = new int[count];
             for (int i = 0; i < count; ++i)
                 Input.ReadNum(out indexes[i], string.Format(c_EnterNumberA, i + 1));
             m_Stack.RemoveMultipleItems(indexes);
+            Waiter.Write(c_RemovedItems);
         }
 
         private void ClearStack()
         {
             m_Stack.Clear();
+            Waiter.Write(c_ClearStack);
         }
     }
 }

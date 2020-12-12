@@ -1,0 +1,14 @@
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\bin\Debug\Lab12.exe.config
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\bin\Debug\Lab12.exe
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\bin\Debug\Lab12.pdb
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\bin\Debug\Collection.dll
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\bin\Debug\Dialog.dll
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\bin\Debug\Entity.dll
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\bin\Debug\Collection.pdb
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\bin\Debug\Dialog.pdb
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\bin\Debug\Entity.pdb
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\obj\Debug\Lab12.csprojAssemblyReference.cache
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\obj\Debug\Lab12.csproj.CoreCompileInputs.cache
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\obj\Debug\Lab12.csproj.CopyComplete
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\obj\Debug\Lab12.exe
+D:\Lester\Политех\Master\OOP Labs\Labs\Lab12\obj\Debug\Lab12.pdb

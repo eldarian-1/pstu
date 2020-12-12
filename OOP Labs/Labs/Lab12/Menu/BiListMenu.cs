@@ -11,7 +11,11 @@ namespace Lab12.Menu
         private static IMenu s_Instance;
         private static Exception s_NullList = new Exception("Список не создан");
 
+        private const int c_MaxCount = 10000;
         private const string c_EnterCount = "Введите количество элементов: ";
+        private const string c_BuildList = "Список из {0} элементов построен.";
+        private const string c_RemovedEven = "Четные элементы удалены.";
+        private const string c_RemovedList = "Список удален.";
 
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
@@ -59,10 +63,11 @@ namespace Lab12.Menu
         public void ConstructList()
         {
             m_List = new BiList<int>();
-            Input.ReadNum(out int count, c_EnterCount);
+            Input.ReadNum(out int count, c_EnterCount, i => i >= 0 && i <= c_MaxCount);
             int[] array = EngineFacade.Instance.GenerateInt(count);
             foreach (int item in array)
                 m_List.Add(item);
+            Waiter.Write(string.Format(c_BuildList, count));
         }
 
         public void PrintList()
@@ -77,12 +82,14 @@ namespace Lab12.Menu
             for (int i = 0, j = 0; j < m_List.Count; ++i, ++j)
                 if (i % 2 == 1)
                     m_List.RemoveAt(j--);
+            Waiter.Write(c_RemovedEven);
         }
 
         public void RemoveList()
         {
             CheckList();
             m_List = null;
+            Waiter.Write(c_RemovedList);
         }
     }
 }

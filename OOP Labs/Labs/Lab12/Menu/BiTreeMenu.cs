@@ -10,9 +10,12 @@ namespace Lab12.Menu
         private static IMenu s_Instance;
         private static Exception s_NullTree = new Exception("Дерево не создано");
 
+        private const int c_MaxCount = 10000;
         private const string c_EnterCount = "Введите количество узлов: ";
         private const string c_EnterSymbol = "Введите символ: ";
         private const string c_CountOnSymbol = "Число начинающихся на \"{0}\": {1}";
+        private const string c_BuildTree = "Дерево из {0} элементов построено.";
+        private const string c_RemovedTree = "Дерево удалено.";
 
         private MyList<Action> m_Tasks;
         private MyList<Exception> m_Reactions;
@@ -64,9 +67,10 @@ namespace Lab12.Menu
 
         private void ConstructTree()
         {
-            Input.ReadNum(out int count, c_EnterCount);
+            Input.ReadNum(out int count, c_EnterCount, i => i >= 0 && i <= c_MaxCount);
             string[] array = EngineFacade.Instance.GeneratePseudonymArray(count);
             m_Tree.Formation(array);
+            Waiter.Write(string.Format(c_BuildTree, count));
         }
 
         private void PrintTree()
@@ -79,12 +83,14 @@ namespace Lab12.Menu
         {
             CheckTree();
             m_Tree.ToBalance();
+            PrintTree();
         }
 
         private void TransformToSearchTree()
         {
             CheckTree();
             m_Tree.ToSearch();
+            Waiter.Write("Действие не разработано.");
         }
 
         private void CountStartedOnSymbol()
@@ -100,6 +106,7 @@ namespace Lab12.Menu
         {
             CheckTree();
             m_Tree.Remove();
+            Waiter.Write(c_RemovedTree);
         }
     }
 }

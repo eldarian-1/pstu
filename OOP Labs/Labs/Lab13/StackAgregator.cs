@@ -37,11 +37,6 @@ namespace Lab13
             m_Stack.Remove(m_Stack[index]);
         }
 
-        public virtual void Sort()
-        {
-
-        }
-
         public virtual void Clear()
         {
             m_Stack.Clear();

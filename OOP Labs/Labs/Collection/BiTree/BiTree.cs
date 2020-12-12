@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Collection.BiTree
 {
@@ -14,6 +15,28 @@ namespace Collection.BiTree
                 Root = node;
             else
                 Root.Add(node);
+        }
+
+        private void ListAdder(IList<T> list, Node<T> node)
+        {
+            if(node != null)
+            {
+                list.Add(node.Data);
+                ListAdder(list, node.Left);
+                ListAdder(list, node.Right);
+            }
+        }
+
+        public IList<T> ToList()
+        {
+            IList<T> list = new List<T>();
+            ListAdder(list, Root);
+            return list;
+        }
+
+        public void Clear()
+        {
+            Root = null;
         }
     }
 }

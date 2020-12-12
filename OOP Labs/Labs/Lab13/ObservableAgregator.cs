@@ -6,12 +6,11 @@ namespace Lab13
 
     internal class ObservableAgregator : StackAgregator<IEngine>
     {
-        private const string c_EditByIndex = "Edit by index";
-        private const string c_PushItem = "Push item";
         private const string c_PopItem = "Pop item";
+        private const string c_PushItem = "Push item";
         private const string c_RemoveItem = "Remove item";
-        private const string c_Sorting = "Sorting collection";
         private const string c_Clear = "Clear collection";
+        private const string c_EditByIndex = "Edit by index";
 
         public event StackHandler CountChanged;
         public event StackHandler ReferenceChanged;
@@ -61,12 +60,6 @@ namespace Lab13
         {
             base.Remove(index);
             OnCountChanged(this, CreateEvent(c_RemoveItem));
-        }
-
-        public override void Sort()
-        {
-            base.Sort();
-            OnReferenceChanged(this, CreateEvent(c_Sorting));
         }
 
         public override void Clear()

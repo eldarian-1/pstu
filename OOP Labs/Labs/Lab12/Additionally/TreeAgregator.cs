@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Lab12.Additionally
 {
-    internal class TreeAgregator
+    internal class TreeAgregator : IEnumerable
     {
         private BiTree m_Tree;
 
@@ -51,5 +52,10 @@ namespace Lab12.Additionally
 
         public override string ToString()
             => m_Tree.ToString();
+
+        public IEnumerator GetEnumerator()
+        {
+            return m_Tree.GetEnumerator();
+        }
     }
 }

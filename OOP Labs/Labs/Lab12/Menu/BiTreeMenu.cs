@@ -37,6 +37,7 @@ namespace Lab12.Menu
             m_Tasks = new MyList<Action>(
                 ConstructTree,
                 PrintTree,
+                PrintTreeLine,
                 TransformToBalanceTree,
                 TransformToSearchTree,
                 CountStartedOnSymbol,
@@ -48,10 +49,11 @@ namespace Lab12.Menu
             "Меню бинарного дерева\n" +
             "1. Сформировать бинарное дерево\n" +
             "2. Распечатать бинарное дерево\n" +
-            "3. Преобразовать в сбалансированное дерево\n" +
-            "4. Преобразовать в берево поиска\n" +
-            "5. Сосчитать начинающиеся на заданный символ\n" +
-            "6. Удалить бинарное дерево\n" +
+            "3. Распечатать элементы в строку\n" +
+            "4. Преобразовать в сбалансированное дерево\n" +
+            "5. Преобразовать в берево поиска\n" +
+            "6. Сосчитать начинающиеся на заданный символ\n" +
+            "7. Удалить бинарное дерево\n" +
             "0. Выход\n" +
             "Введите номер задачи: ";
 
@@ -77,6 +79,15 @@ namespace Lab12.Menu
         {
             CheckTree();
             MenuManager.Write(m_Tree.ToString());
+        }
+
+        private void PrintTreeLine()
+        {
+            CheckTree();
+            string tree = "";
+            foreach (var item in m_Tree)
+                tree += item + " ";
+            MenuManager.Write(tree);
         }
 
         private void TransformToBalanceTree()

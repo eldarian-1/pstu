@@ -27,7 +27,7 @@ namespace Lab12.Menu
         {
             m_Stack = stack;
             m_StackName = stackName;
-            m_Tasks = new List<Action>().Add(
+            m_Tasks = new List<Action>().Append(
                 OutputStack,
                 OutputCount,
                 AddItem,

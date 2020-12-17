@@ -33,14 +33,14 @@ namespace Lab12.Menu
         private StackMenu()
         {
             m_Stacks = new Dictionary<string, StackAgregator<int>>();
-            m_Tasks = new List<Action>().Add(
+            m_Tasks = new List<Action>().Append(
                 CreateLink,
                 ChoiceLink,
                 ConstructStack,
                 PrintStack,
                 StackOperation,
                 RemoveLink);
-            m_Reactions = new List<Exception>().Add(
+            m_Reactions = new List<Exception>().Append(
                 s_NullDictionary,
                 s_NullStack);
         }

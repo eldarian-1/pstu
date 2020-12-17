@@ -41,7 +41,7 @@ namespace Lab13
             m_LeftStack.ReferenceChanged += new StackHandler(m_LeftJournal.ReferenceChange);
             m_LeftStack.CountChanged += new StackHandler(m_RightJournal.CountChange);
             m_RightStack.CountChanged += new StackHandler(m_RightJournal.CountChange);
-            m_Tasks = new List<Action>().Add(
+            m_Tasks = new List<Action>().Append(
                 ChoiseCollection,
                 Add,
                 Pop,
@@ -49,7 +49,7 @@ namespace Lab13
                 Edit,
                 OutCollection,
                 OutJournal);
-            m_Reactions = new List<Exception>().Add(s_EmptyCollection, null);
+            m_Reactions = new List<Exception>().Append(s_EmptyCollection);
         }
 
         public string Menu =>

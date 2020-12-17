@@ -33,12 +33,12 @@ namespace Lab12.Menu
 
         private BiListMenu()
         {
-            m_Tasks = new List<Action>().Add(
+            m_Tasks = new List<Action>().Append(
                 ConstructList,
                 PrintList,
                 RemoveEvenNumber,
                 RemoveList);
-            m_Reactions = new List<Exception>().Add(s_NullList, null);
+            m_Reactions = new List<Exception>().Append(s_NullList);
         }
 
         public string Menu =>

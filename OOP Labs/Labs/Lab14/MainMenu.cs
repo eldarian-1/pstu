@@ -28,7 +28,7 @@ namespace Lab14
         public MainMenu()
         {
             m_Linq = true;
-            m_Tasks = new List<Action>().Add(
+            m_Tasks = new List<Action>().Append(
                 Formation,
                 Output,
                 ChangeType,
@@ -37,7 +37,7 @@ namespace Lab14
                 AveragePower,
                 MedianPower,
                 Union);
-            m_Reactions = new List<Exception>().Add(s_NullCollections, null);
+            m_Reactions = new List<Exception>().Append(s_NullCollections);
         }
 
         public string Menu =>

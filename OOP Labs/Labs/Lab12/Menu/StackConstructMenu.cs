@@ -23,12 +23,12 @@ namespace Lab12.Menu
         {
             m_Stacks = stacks;
             m_ActiveKey = activeKey;
-            m_Tasks = new List<Action>().Add(
+            m_Tasks = new List<Action>().Append(
                 EmptyConstruct,
                 ConstructByCount,
                 CopyConstruct,
                 OutputStack);
-            m_Reactions = new List<Exception>().Add(
+            m_Reactions = new List<Exception>().Append(
                 s_NullStack,
                 s_ThisStack);
         }

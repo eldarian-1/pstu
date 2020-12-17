@@ -35,7 +35,7 @@ namespace Lab12.Menu
         private BiTreeMenu()
         {
             m_Tree = new TreeAgregator();
-            m_Tasks = new List<Action>().Add(
+            m_Tasks = new List<Action>().Append(
                 ConstructTree,
                 PrintTree,
                 PrintTreeLine,
@@ -43,7 +43,7 @@ namespace Lab12.Menu
                 TransformToSearchTree,
                 CountStartedOnSymbol,
                 RemoveTree);
-            m_Reactions = new List<Exception>().Add(s_NullTree, null);
+            m_Reactions = new List<Exception>().Append(s_NullTree);
         }
 
         public string Menu =>

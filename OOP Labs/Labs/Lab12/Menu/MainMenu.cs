@@ -11,7 +11,11 @@ namespace Lab12.Menu
 
         public MainMenu()
         {
-            m_Tasks = new List<Action>().Add(UniList, BiList, BiTree, Stack);
+            m_Tasks = new List<Action>().Append(
+                UniList,
+                BiList,
+                BiTree,
+                Stack);
             m_Reactions = new List<Exception>();
         }
 

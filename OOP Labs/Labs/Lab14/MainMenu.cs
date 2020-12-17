@@ -20,15 +20,15 @@ namespace Lab14
             = "Множество двигателей внутреннего сгорания и турбореактивных двигателей:\n";
         private const string c_EnterCount = "Введите количество элементов коллекции: ";
 
-        private MyList<Action> m_Tasks;
-        private MyList<Exception> m_Reactions;
-        private TestCollections m_Collection;
+        private IList<Action> m_Tasks;
+        private IList<Exception> m_Reactions;
+        private TestCollection m_Collection;
         private bool m_Linq;
 
         public MainMenu()
         {
             m_Linq = true;
-            m_Tasks = new MyList<Action>(
+            m_Tasks = new List<Action>().Add(
                 Formation,
                 Output,
                 ChangeType,
@@ -37,7 +37,7 @@ namespace Lab14
                 AveragePower,
                 MedianPower,
                 Union);
-            m_Reactions = new MyList<Exception>(s_NullCollections);
+            m_Reactions = new List<Exception>().Add(s_NullCollections, null);
         }
 
         public string Menu =>
@@ -53,11 +53,11 @@ namespace Lab14
             "0. Выход\n" +
             "Введите номер задачи: ";
 
-        public MyList<Action> Tasks => m_Tasks;
+        public IList<Action> Tasks => m_Tasks;
 
-        public MyList<Exception> Reactions => m_Reactions;
+        public IList<Exception> Reactions => m_Reactions;
 
-        private IQueryCollections QueryCollections()
+        private IQuery QueryCollections()
             => m_Collection.QueryCollections(m_Linq);
 
         private string EnginesToString(IEnumerable<string> engines)
@@ -77,7 +77,7 @@ namespace Lab14
         private void Formation()
         {
             Input.ReadNum(out int count, c_EnterCount, i => i >= 0 && i <= c_MaxCount);
-            m_Collection = new TestCollections(count);
+            m_Collection = new TestCollection(count);
             Output();
         }
 

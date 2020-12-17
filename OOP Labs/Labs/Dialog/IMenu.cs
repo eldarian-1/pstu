@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Dialog
 {
     public interface IMenu
     {
         string Menu { get; }
-        MyList<Action> Tasks { get; }
-        MyList<Exception> Reactions { get; }
+
+        IList<Action> Tasks { get; }
+
+        IList<Exception> Reactions { get; }
     }
 }

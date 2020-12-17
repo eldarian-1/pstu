@@ -1,6 +1,7 @@
 ﻿using Dialog;
 using Entity;
 using System;
+using System.Collections.Generic;
 
 namespace Lab13
 {
@@ -20,8 +21,8 @@ namespace Lab13
         private const string c_ActiveStack = "Выбрана {0} коллекция";
         private const string c_EnterJournal = "1. Левый журнал\n2. Правый журнал\nВыберете журнал: ";
 
-        private MyList<Action> m_Tasks;
-        private MyList<Exception> m_Reactions;
+        private IList<Action> m_Tasks;
+        private IList<Exception> m_Reactions;
 
         private bool m_IsLeftStack;
         private Journal m_LeftJournal;
@@ -40,7 +41,7 @@ namespace Lab13
             m_LeftStack.ReferenceChanged += new StackHandler(m_LeftJournal.ReferenceChange);
             m_LeftStack.CountChanged += new StackHandler(m_RightJournal.CountChange);
             m_RightStack.CountChanged += new StackHandler(m_RightJournal.CountChange);
-            m_Tasks = new MyList<Action>(
+            m_Tasks = new List<Action>().Add(
                 ChoiseCollection,
                 Add,
                 Pop,
@@ -48,7 +49,7 @@ namespace Lab13
                 Edit,
                 OutCollection,
                 OutJournal);
-            m_Reactions = new MyList<Exception>(s_EmptyCollection);
+            m_Reactions = new List<Exception>().Add(s_EmptyCollection, null);
         }
 
         public string Menu =>
@@ -63,9 +64,9 @@ namespace Lab13
             "0. Выход\n" +
             "Введите номер задачи: ";
 
-        public MyList<Action> Tasks => m_Tasks;
+        public IList<Action> Tasks => m_Tasks;
 
-        public MyList<Exception> Reactions => m_Reactions;
+        public IList<Exception> Reactions => m_Reactions;
 
         private ObservableAgregator ActiveStack => m_IsLeftStack ? m_LeftStack : m_RightStack;
 

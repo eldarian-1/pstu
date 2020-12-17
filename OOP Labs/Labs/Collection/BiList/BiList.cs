@@ -179,7 +179,12 @@ namespace Collection.BiList
 
         public IEnumerator<T> GetEnumerator()
         {
-            return new Enumerator<T>(this);
+            Node<T> temp = Head;
+            while (temp != null)
+            {
+                yield return temp.Data;
+                temp = temp.Next;
+            }
         }
 
         public override string ToString()

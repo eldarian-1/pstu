@@ -11,8 +11,8 @@ namespace Lab12.Menu
         private static Exception s_ThisStack = new Exception("Выбран этот же стек");
 
         private const int c_MaxCount = 10000;
-        private MyList<Action> m_Tasks;
-        private MyList<Exception> m_Reactions;
+        private IList<Action> m_Tasks;
+        private IList<Exception> m_Reactions;
         private IDictionary<string, StackAgregator<int>> m_Stacks;
         private string m_ActiveKey;
 
@@ -23,12 +23,12 @@ namespace Lab12.Menu
         {
             m_Stacks = stacks;
             m_ActiveKey = activeKey;
-            m_Tasks = new MyList<Action>(
+            m_Tasks = new List<Action>().Add(
                 EmptyConstruct,
                 ConstructByCount,
                 CopyConstruct,
                 OutputStack);
-            m_Reactions = new MyList<Exception>(
+            m_Reactions = new List<Exception>().Add(
                 s_NullStack,
                 s_ThisStack);
         }
@@ -42,9 +42,9 @@ namespace Lab12.Menu
             "0. Выход\n" +
             "Введите номер задачи: ";
 
-        public MyList<Action> Tasks => m_Tasks;
+        public IList<Action> Tasks => m_Tasks;
 
-        public MyList<Exception> Reactions => m_Reactions;
+        public IList<Exception> Reactions => m_Reactions;
 
         private void CheckStack(string name)
         {

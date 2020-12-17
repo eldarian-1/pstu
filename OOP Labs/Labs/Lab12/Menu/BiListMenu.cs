@@ -17,8 +17,8 @@ namespace Lab12.Menu
         private const string c_RemovedEven = "Четные элементы удалены.";
         private const string c_RemovedList = "Список удален.";
 
-        private MyList<Action> m_Tasks;
-        private MyList<Exception> m_Reactions;
+        private IList<Action> m_Tasks;
+        private IList<Exception> m_Reactions;
         private IList<int> m_List;
 
         public static IMenu Instance
@@ -33,12 +33,12 @@ namespace Lab12.Menu
 
         private BiListMenu()
         {
-            m_Tasks = new MyList<Action>(
+            m_Tasks = new List<Action>().Add(
                 ConstructList,
                 PrintList,
                 RemoveEvenNumber,
                 RemoveList);
-            m_Reactions = new MyList<Exception>(s_NullList);
+            m_Reactions = new List<Exception>().Add(s_NullList, null);
         }
 
         public string Menu =>
@@ -50,9 +50,9 @@ namespace Lab12.Menu
             "0. Выход\n" +
             "Введите номер задачи: ";
 
-        public MyList<Action> Tasks => m_Tasks;
+        public IList<Action> Tasks => m_Tasks;
 
-        public MyList<Exception> Reactions => m_Reactions;
+        public IList<Exception> Reactions => m_Reactions;
 
         private void CheckList()
         {

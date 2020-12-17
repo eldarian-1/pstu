@@ -1,6 +1,7 @@
 ﻿using Dialog;
 using System;
 using Lab12.Additionally;
+using System.Collections.Generic;
 
 namespace Lab12.Menu
 {
@@ -17,8 +18,8 @@ namespace Lab12.Menu
         private const string c_RemovedItems = "Элементы по заданным индексам удалены.";
         private const string c_ClearStack = "Стек очищен.";
 
-        private MyList<Action> m_Tasks;
-        private MyList<Exception> m_Reactions;
+        private IList<Action> m_Tasks;
+        private IList<Exception> m_Reactions;
         private StackAgregator<int> m_Stack;
         private string m_StackName;
 
@@ -26,7 +27,7 @@ namespace Lab12.Menu
         {
             m_Stack = stack;
             m_StackName = stackName;
-            m_Tasks = new MyList<Action>(
+            m_Tasks = new List<Action>().Add(
                 OutputStack,
                 OutputCount,
                 AddItem,
@@ -34,7 +35,7 @@ namespace Lab12.Menu
                 RemoveItem,
                 RemoveMultipleItems,
                 ClearStack);
-            m_Reactions = new MyList<Exception>();
+            m_Reactions = new List<Exception>();
         }
 
         public string Menu =>
@@ -49,9 +50,9 @@ namespace Lab12.Menu
             "0. Выход\n" +
             "Введите номер задачи: ";
 
-        public MyList<Action> Tasks => m_Tasks;
+        public IList<Action> Tasks => m_Tasks;
 
-        public MyList<Exception> Reactions => m_Reactions;
+        public IList<Exception> Reactions => m_Reactions;
 
         private void OutputStack()
         {

@@ -1,17 +1,18 @@
 ﻿using Dialog;
 using System;
+using System.Collections.Generic;
 
 namespace Lab12.Menu
 {
     public class MainMenu : IMenu
     {
-        private MyList<Action> m_Tasks;
-        private MyList<Exception> m_Reactions;
+        private IList<Action> m_Tasks;
+        private IList<Exception> m_Reactions;
 
         public MainMenu()
         {
-            m_Tasks = new MyList<Action>(UniList, BiList, BiTree, Stack);
-            m_Reactions = new MyList<Exception>();
+            m_Tasks = new List<Action>().Add(UniList, BiList, BiTree, Stack);
+            m_Reactions = new List<Exception>();
         }
 
         public string Menu =>
@@ -23,8 +24,9 @@ namespace Lab12.Menu
             "0. Выход\n" +
             "Введите номер задачи: ";
 
-        public MyList<Action> Tasks => m_Tasks;
-        public MyList<Exception> Reactions => m_Reactions;
+        public IList<Action> Tasks => m_Tasks;
+
+        public IList<Exception> Reactions => m_Reactions;
 
         private void UniList()
         {

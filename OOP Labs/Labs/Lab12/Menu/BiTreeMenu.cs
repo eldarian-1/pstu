@@ -2,6 +2,7 @@
 using System;
 using Entity;
 using Lab12.Additionally;
+using System.Collections.Generic;
 
 namespace Lab12.Menu
 {
@@ -17,8 +18,8 @@ namespace Lab12.Menu
         private const string c_BuildTree = "Дерево из {0} элементов построено.";
         private const string c_RemovedTree = "Дерево удалено.";
 
-        private MyList<Action> m_Tasks;
-        private MyList<Exception> m_Reactions;
+        private IList<Action> m_Tasks;
+        private IList<Exception> m_Reactions;
         private TreeAgregator m_Tree;
 
         public static IMenu Instance
@@ -34,7 +35,7 @@ namespace Lab12.Menu
         private BiTreeMenu()
         {
             m_Tree = new TreeAgregator();
-            m_Tasks = new MyList<Action>(
+            m_Tasks = new List<Action>().Add(
                 ConstructTree,
                 PrintTree,
                 PrintTreeLine,
@@ -42,7 +43,7 @@ namespace Lab12.Menu
                 TransformToSearchTree,
                 CountStartedOnSymbol,
                 RemoveTree);
-            m_Reactions = new MyList<Exception>(s_NullTree);
+            m_Reactions = new List<Exception>().Add(s_NullTree, null);
         }
 
         public string Menu =>
@@ -57,9 +58,9 @@ namespace Lab12.Menu
             "0. Выход\n" +
             "Введите номер задачи: ";
 
-        public MyList<Action> Tasks => m_Tasks;
+        public IList<Action> Tasks => m_Tasks;
 
-        public MyList<Exception> Reactions => m_Reactions;
+        public IList<Exception> Reactions => m_Reactions;
 
         private void CheckTree()
         {

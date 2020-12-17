@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Input.cs" />
     <Compile Include="IMenu.cs" />
-    <Compile Include="MyList.cs" />
+    <Compile Include="ExtensionList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MenuManager.cs" />
   </ItemGroup>

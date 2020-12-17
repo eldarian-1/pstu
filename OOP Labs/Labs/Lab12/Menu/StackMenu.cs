@@ -15,8 +15,8 @@ namespace Lab12.Menu
         private const string c_EnterKey = "Введите имя стека: ";
         private const string c_EnterNum = "Введите номер стека: ";
 
-        private MyList<Action> m_Tasks;
-        private MyList<Exception> m_Reactions;
+        private IList<Action> m_Tasks;
+        private IList<Exception> m_Reactions;
         private IDictionary<string, StackAgregator<int>> m_Stacks;
         private string m_ActiveKey;
 
@@ -33,14 +33,14 @@ namespace Lab12.Menu
         private StackMenu()
         {
             m_Stacks = new Dictionary<string, StackAgregator<int>>();
-            m_Tasks = new MyList<Action>(
+            m_Tasks = new List<Action>().Add(
                 CreateLink,
                 ChoiceLink,
                 ConstructStack,
                 PrintStack,
                 StackOperation,
                 RemoveLink);
-            m_Reactions = new MyList<Exception>(
+            m_Reactions = new List<Exception>().Add(
                 s_NullDictionary,
                 s_NullStack);
         }
@@ -56,9 +56,9 @@ namespace Lab12.Menu
             "0. Выход\n" +
             "Введите номер задачи: ";
 
-        public MyList<Action> Tasks => m_Tasks;
+        public IList<Action> Tasks => m_Tasks;
 
-        public MyList<Exception> Reactions => m_Reactions;
+        public IList<Exception> Reactions => m_Reactions;
 
         private void CheckDictionary()
         {

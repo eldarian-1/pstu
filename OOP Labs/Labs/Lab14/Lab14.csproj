@@ -43,13 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtensionCollections.cs" />
-    <Compile Include="IQueryCollections.cs" />
-    <Compile Include="LinqCollections.cs" />
+    <Compile Include="ExtensionQuery.cs" />
+    <Compile Include="IQuery.cs" />
+    <Compile Include="LinqQuery.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestCollections.cs" />
+    <Compile Include="TestCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -18,9 +18,14 @@ namespace Collection.BiTree
                 Root.Add(node);
         }
 
+        public void Clear()
+        {
+            Root = null;
+        }
+
         private void ListAdder(IList<T> list, Node<T> node)
         {
-            if(node != null)
+            if (node != null)
             {
                 list.Add(node.Data);
                 ListAdder(list, node.Left);
@@ -33,11 +38,6 @@ namespace Collection.BiTree
             IList<T> list = new List<T>();
             ListAdder(list, Root);
             return list;
-        }
-
-        public void Clear()
-        {
-            Root = null;
         }
 
         public IEnumerator<T> GetEnumerator()

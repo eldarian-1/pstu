@@ -1,6 +1,7 @@
 ﻿using Entity;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace Lab14
 {
@@ -37,6 +38,7 @@ namespace Lab14
             var powers = (from item in DictionaryPseudonym
                           orderby item.Value.Index
                           select item.Value.Power).ToArray();
+            Array.Sort(powers);
             int median = powers.Count() / 2;
             return powers[median];
         }

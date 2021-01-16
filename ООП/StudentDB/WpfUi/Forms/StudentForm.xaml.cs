@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfUi
+namespace WpfUi.Forms
 {
     /// <summary>
-    /// Логика взаимодействия для StudentControl.xaml
+    /// Логика взаимодействия для StudentForm.xaml
     /// </summary>
-    public partial class StudentControl : UserControl
+    public partial class StudentForm : UserControl
     {
-        public StudentControl()
+        public StudentForm()
         {
             InitializeComponent();
         }

@@ -3,21 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfUi"
+        xmlns:table="clr-namespace:WpfUi.Tables"
+        xmlns:form="clr-namespace:WpfUi.Forms"
         mc:Ignorable="d"
-        Title="База дисциплин, студентов и оценок" Height="450" Width="800">
+        Title="База дисциплин, студентов и оценок" Height="960" Width="1280">
     <TabControl>
 
         <TabItem Header="Предметы">
-            <local:SubjectControll />
+            <StackPanel>
+                <table:SubjectTable />
+                <form:SubjectForm />
+            </StackPanel>
         </TabItem>
 
         <TabItem Header="Студенты">
-            <local:StudentControl />
+            <StackPanel>
+                <table:StudentTable />
+                <form:StudentForm />
+            </StackPanel>
         </TabItem>
 
         <TabItem Header="Оценки">
-            <local:MarkControl />
+            <StackPanel>
+                <table:MarkTable />
+                <form:MarkForm />
+            </StackPanel>
         </TabItem>
 
     </TabControl>

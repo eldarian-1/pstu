@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfUi
+namespace WpfUi.Forms
 {
     /// <summary>
-    /// Логика взаимодействия для SubjectControll.xaml
+    /// Логика взаимодействия для SubjectForm.xaml
     /// </summary>
-    public partial class SubjectControll : UserControl
+    public partial class SubjectForm : UserControl
     {
-        public SubjectControll()
+        public SubjectForm()
         {
             InitializeComponent();
         }

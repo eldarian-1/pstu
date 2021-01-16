@@ -7,27 +7,45 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="MarkControl.xaml.cs">
+    <Compile Update="Forms\MarkForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="StudentControl.xaml.cs">
+    <Compile Update="Forms\StudentForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SubjectControll.xaml.cs">
+    <Compile Update="Forms\SubjectForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Tables\MarkTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Tables\StudentTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Tables\SubjectTable.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Forms\MarkForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Forms\StudentForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Forms\SubjectForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MarkControl.xaml">
+    <Page Update="Tables\MarkTable.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="StudentControl.xaml">
+    <Page Update="Tables\StudentTable.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SubjectControll.xaml">
+    <Page Update="Tables\SubjectTable.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Eldarian\source\repos\StudentDB\WpfUi\obj\Debug\netcoreapp3.1\
+D:\Lester\Политех\Master\ООП\StudentDB\WpfUi\obj\Debug\netcoreapp3.1\
 WpfUi
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\Eldarian\source\repos\StudentDB\WpfUi\App.xaml
-41928337123
+D:\Lester\Политех\Master\ООП\StudentDB\WpfUi\App.xaml
+7192126333
 
-8799239996
-196768016782
-MainWindow.xaml;MarkControl.xaml;StudentControl.xaml;SubjectControll.xaml;
+11-314291011
+1961374386902
+Forms\MarkForm.xaml;Forms\StudentForm.xaml;Forms\SubjectForm.xaml;MainWindow.xaml;Tables\MarkTable.xaml;Tables\StudentTable.xaml;Tables\SubjectTable.xaml;
 
-True
+False
 

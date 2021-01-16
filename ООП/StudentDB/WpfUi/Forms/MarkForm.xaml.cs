@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfUi
+namespace WpfUi.Forms
 {
     /// <summary>
-    /// Логика взаимодействия для MarkControl.xaml
+    /// Логика взаимодействия для MarkForm.xaml
     /// </summary>
-    public partial class MarkControl : UserControl
+    public partial class MarkForm : UserControl
     {
-        public MarkControl()
+        public MarkForm()
         {
             InitializeComponent();
         }

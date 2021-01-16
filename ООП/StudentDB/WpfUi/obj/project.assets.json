@@ -1,0 +1,149 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "ADO/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Entity": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ADO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ADO.dll": {}
+        }
+      },
+      "Controller/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "ADO": "1.0.0",
+          "EF": "1.0.0",
+          "Entity": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Controller.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Controller.dll": {}
+        }
+      },
+      "EF/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Entity": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/EF.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EF.dll": {}
+        }
+      },
+      "Entity/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Entity.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entity.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ADO/1.0.0": {
+      "type": "project",
+      "path": "../ADO/ADO.csproj",
+      "msbuildProject": "../ADO/ADO.csproj"
+    },
+    "Controller/1.0.0": {
+      "type": "project",
+      "path": "../Controller/Controller.csproj",
+      "msbuildProject": "../Controller/Controller.csproj"
+    },
+    "EF/1.0.0": {
+      "type": "project",
+      "path": "../EF/EF.csproj",
+      "msbuildProject": "../EF/EF.csproj"
+    },
+    "Entity/1.0.0": {
+      "type": "project",
+      "path": "../Entity/Entity.csproj",
+      "msbuildProject": "../Entity/Entity.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "Controller >= 1.0.0",
+      "Entity >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Eldarian\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\WpfUi\\WpfUi.csproj",
+      "projectName": "WpfUi",
+      "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\WpfUi\\WpfUi.csproj",
+      "packagesPath": "C:\\Users\\Eldarian\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\WpfUi\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Eldarian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "projectReferences": {
+            "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Controller\\Controller.csproj": {
+              "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Controller\\Controller.csproj"
+            },
+            "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj": {
+              "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

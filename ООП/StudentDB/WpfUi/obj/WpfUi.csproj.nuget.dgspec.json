@@ -1,0 +1,145 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\WpfUi\\WpfUi.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\ADO\\ADO.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\ADO\\ADO.csproj",
+        "projectName": "ADO",
+        "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\ADO\\ADO.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Controller\\Controller.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Controller\\Controller.csproj",
+        "projectName": "Controller",
+        "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Controller\\Controller.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\ADO\\ADO.csproj": {
+                "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\ADO\\ADO.csproj"
+              },
+              "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\EF\\EF.csproj": {
+                "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\EF\\EF.csproj"
+              },
+              "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\EF\\EF.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\EF\\EF.csproj",
+        "projectName": "EF",
+        "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\EF\\EF.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj",
+        "projectName": "Entity",
+        "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\WpfUi\\WpfUi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\WpfUi\\WpfUi.csproj",
+        "projectName": "WpfUi",
+        "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\WpfUi\\WpfUi.csproj",
+        "packagesPath": "C:\\Users\\Eldarian\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\WpfUi\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Eldarian\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Controller\\Controller.csproj": {
+                "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Controller\\Controller.csproj"
+              },
+              "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj": {
+                "projectPath": "C:\\Users\\Eldarian\\source\\repos\\StudentDB\\Entity\\Entity.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 ﻿namespace EF
 {
-    public class EfProxyContext : AProxyContext
+    public class EfProxyContext : AContext
     {
         public EfProxyContext() : base(new EfContext()) { }
     }

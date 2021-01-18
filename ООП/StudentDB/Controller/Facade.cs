@@ -4,22 +4,30 @@ using EF;
 
 namespace Controller
 {
-    public class Facade
+    public class Facade : AContext
     {
         private bool m_IsEF;
-        private IDBContext m_Context;
 
-        public Facade()
+        public Facade() : base(new EfProxyContext())
         {
             m_IsEF = true;
-            m_Context = new EfProxyContext();
         }
 
         public void ChangeContext()
         {
             m_IsEF = !m_IsEF;
-            m_Context = m_IsEF ? new EfProxyContext()
-                : new AdoProxyContext() as IDBContext;
+            Operation = m_IsEF ? new EfProxyContext()
+                : new AdoProxyContext() as IOperations;
+        }
+
+        public void UpdateStudent(Student student)
+        {
+
+        }
+
+        public void DeleteStudent(Student student)
+        {
+
         }
     }
 }

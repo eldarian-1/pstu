@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ADO
 {
-    public class AdoContext : IDBContext
+    public class AdoContext : IOperations
     {
         private const string ConnectionString
             = "Database=" + Const.Database

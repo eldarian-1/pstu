@@ -2,7 +2,7 @@
 
 namespace ADO
 {
-    public class AdoProxyContext : AProxyContext
+    public class AdoProxyContext : AContext
     {
         public AdoProxyContext() : base(new AdoContext()) { }
     }

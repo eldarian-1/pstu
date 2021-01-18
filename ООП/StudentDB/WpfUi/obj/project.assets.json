@@ -5,7 +5,7 @@
       "ADO/1.0.0": {
         "type": "project",
         "dependencies": {
-          "Entity": "1.0.0"
+          "Model": "1.0.0"
         },
         "compile": {
           "bin/placeholder/ADO.dll": {}
@@ -19,7 +19,7 @@
         "dependencies": {
           "ADO": "1.0.0",
           "EF": "1.0.0",
-          "Entity": "1.0.0"
+          "Model": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Controller.dll": {}
@@ -31,7 +31,7 @@
       "EF/1.0.0": {
         "type": "project",
         "dependencies": {
-          "Entity": "1.0.0"
+          "Model": "1.0.0"
         },
         "compile": {
           "bin/placeholder/EF.dll": {}
@@ -40,13 +40,13 @@
           "bin/placeholder/EF.dll": {}
         }
       },
-      "Entity/1.0.0": {
+      "Model/1.0.0": {
         "type": "project",
         "compile": {
-          "bin/placeholder/Entity.dll": {}
+          "bin/placeholder/Model.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Entity.dll": {}
+          "bin/placeholder/Model.dll": {}
         }
       }
     }
@@ -67,16 +67,16 @@
       "path": "../EF/EF.csproj",
       "msbuildProject": "../EF/EF.csproj"
     },
-    "Entity/1.0.0": {
+    "Model/1.0.0": {
       "type": "project",
-      "path": "../Entity/Entity.csproj",
-      "msbuildProject": "../Entity/Entity.csproj"
+      "path": "../Entity/Model.csproj",
+      "msbuildProject": "../Entity/Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Controller >= 1.0.0",
-      "Entity >= 1.0.0"
+      "Model >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -109,8 +109,8 @@
             "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Controller\\Controller.csproj": {
               "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Controller\\Controller.csproj"
             },
-            "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj": {
-              "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj"
+            "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj": {
+              "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
             }
           }
         }

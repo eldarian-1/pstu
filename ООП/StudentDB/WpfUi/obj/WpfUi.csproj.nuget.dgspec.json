@@ -12,8 +12,8 @@
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj": {
-                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj"
+              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj": {
+                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
               }
             }
           }
@@ -37,8 +37,8 @@
               "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF.csproj": {
                 "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF.csproj"
               },
-              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj": {
-                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj"
+              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj": {
+                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
               }
             }
           }
@@ -56,8 +56,8 @@
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj": {
-                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj"
+              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj": {
+                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
               }
             }
           }
@@ -67,11 +67,11 @@
         "net472": {}
       }
     },
-    "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj": {
+    "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj",
-        "projectName": "Entity",
-        "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj"
+        "projectUniqueName": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj",
+        "projectName": "Model",
+        "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
       },
       "frameworks": {
         "net472": {}
@@ -104,8 +104,8 @@
               "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Controller\\Controller.csproj": {
                 "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Controller\\Controller.csproj"
               },
-              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj": {
-                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Entity.csproj"
+              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj": {
+                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
               }
             }
           }

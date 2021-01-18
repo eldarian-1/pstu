@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfUi", "WpfUi\WpfUi.csproj", "{161F95C4-A8FB-4048-94F5-8D40716667C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfUi", "WpfUi\WpfUi.csproj", "{161F95C4-A8FB-4048-94F5-8D40716667C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{30CE188C-221D-4B4D-845A-CE7F98B576E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Entity\Model.csproj", "{30CE188C-221D-4B4D-845A-CE7F98B576E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF", "EF\EF.csproj", "{83EC71F6-1DB3-4135-AD0B-50E9FF7B0D5A}"
 EndProject

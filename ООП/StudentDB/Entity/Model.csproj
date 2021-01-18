@@ -42,12 +42,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Const.cs" />
-    <Compile Include="ProxyContext.cs" />
-    <Compile Include="IDBContext.cs" />
-    <Compile Include="Mark.cs" />
-    <Compile Include="MarkEntry.cs" />
-    <Compile Include="Student.cs" />
-    <Compile Include="Subject.cs" />
+    <Compile Include="DBCollection.cs" />
+    <Compile Include="Entities\AEntity.cs" />
+    <Compile Include="AContext.cs" />
+    <Compile Include="IOperateable.cs" />
+    <Compile Include="Entities\Mark.cs" />
+    <Compile Include="Entities\MarkEntry.cs" />
+    <Compile Include="Entities\Student.cs" />
+    <Compile Include="Entities\Subject.cs" />
+    <Compile Include="IQueryable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

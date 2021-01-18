@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EF
 {
-    public class EfContext : DbContext, IDBContext
+    public class EfContext : DbContext, IOperations
     {
         private const string ConnectionString
             = "server=" + Const.Host

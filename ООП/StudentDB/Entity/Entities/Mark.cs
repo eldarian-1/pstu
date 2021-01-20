@@ -2,7 +2,7 @@
 
 namespace Model.Entities
 {
-    public class Mark : AEntity
+    public class Mark : IEntity<Mark>
     {
         public virtual long MarkId { get; set; }
 
@@ -12,27 +12,27 @@ namespace Model.Entities
 
         public virtual byte Value { get; set; }
 
-        public sealed override IEnumerable<AEntity> SelectAll(IOperateable operation)
+        public IEnumerable<Mark> SelectAll(IOperateable operation)
         {
             return operation.SelectMarks();
         }
 
-        public sealed override AEntity SelectOne(IOperateable operation, int id)
+        public Mark SelectOne(IOperateable operation, int id)
         {
             return operation.SelectOneMark(id);
         }
 
-        public sealed override void Insert(IOperateable operatorr)
+        public void Insert(IOperateable operatorr)
         {
             operatorr.InsertMark(this);
         }
 
-        public sealed override void Update(IOperateable operatorr)
+        public void Update(IOperateable operatorr)
         {
             operatorr.UpdateMark(this);
         }
 
-        public sealed override void Delete(IOperateable operatorr)
+        public void Delete(IOperateable operatorr)
         {
             operatorr.DeleteMark(this);
         }

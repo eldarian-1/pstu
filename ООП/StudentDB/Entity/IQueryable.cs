@@ -3,16 +3,17 @@ using System.Collections.Generic;
 
 namespace Model
 {
-    interface IQueryable
+    public interface IQueryable<TEntity>
+        where TEntity : IEntity<TEntity>
     {
-        IEnumerable<AEntity> SelectAll(AEntity entity);
+        IEnumerable<TEntity> SelectAll(TEntity entity);
 
-        AEntity SelectOne(AEntity entity, int id);
+        TEntity SelectOne(TEntity entity, int id);
 
-        void Insert(AEntity entity);
+        void Insert(TEntity entity);
 
-        void Update(AEntity entity);
+        void Update(TEntity entity);
 
-        void Delete(AEntity entity);
+        void Delete(TEntity entity);
     }
 }

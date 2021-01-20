@@ -1,6 +1,7 @@
 ﻿using Model;
 using Model.Entities;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Mock
 {
@@ -12,9 +13,9 @@ namespace Mock
 
         public MockOperation()
         {
-            _Students = new List<Student>();
-            _Subjects = new List<Subject>();
-            _Marks = new List<MarkEntry>();
+            _Students = new ObservableCollection<Student>();
+            _Subjects = new ObservableCollection<Subject>();
+            _Marks = new ObservableCollection<MarkEntry>();
         }
 
         public Student SelectOneStudent(int id)
@@ -49,16 +50,19 @@ namespace Mock
 
         public void InsertStudent(Student student)
         {
+            student.StudentId = _Students.Count;
             _Students.Add(student);
         }
 
         public void InsertSubject(Subject subject)
         {
+            subject.SubjectId = _Subjects.Count;
             _Subjects.Add(subject);
         }
 
         public void InsertMark(Mark mark)
         {
+            mark.MarkId = _Marks.Count;
             //_Marks.Add(mark);
         }
 

@@ -2,33 +2,33 @@
 
 namespace Model.Entities
 {
-    public class Subject : AEntity
+    public class Subject : IEntity<Subject>
     {
-        public virtual long SubjectId { get; }
+        public virtual long SubjectId { get; set; }
 
-        public virtual string Name { get; }
+        public virtual string Name { get; set; }
 
-        public sealed override IEnumerable<AEntity> SelectAll(IOperateable operation)
+        public IEnumerable<Subject> SelectAll(IOperateable operation)
         {
             return operation.SelectSubjects();
         }
 
-        public sealed override AEntity SelectOne(IOperateable operation, int id)
+        public Subject SelectOne(IOperateable operation, int id)
         {
             return operation.SelectOneSubject(id);
         }
 
-        public sealed override void Insert(IOperateable operatorr)
+        public void Insert(IOperateable operatorr)
         {
             operatorr.InsertSubject(this);
         }
 
-        public sealed override void Update(IOperateable operatorr)
+        public void Update(IOperateable operatorr)
         {
             operatorr.UpdateSubject(this);
         }
 
-        public sealed override void Delete(IOperateable operatorr)
+        public void Delete(IOperateable operatorr)
         {
             operatorr.DeleteSubject(this);
         }

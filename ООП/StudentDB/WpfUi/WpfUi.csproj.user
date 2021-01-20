@@ -16,7 +16,7 @@
     <Compile Update="Blocks\Forms\SubjectForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Blocks\Settings.xaml.cs">
+    <Compile Update="Blocks\Setting.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Blocks\Tables\MarkTable.xaml.cs">
@@ -42,7 +42,7 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Blocks\Settings.xaml">
+    <Page Update="Blocks\Setting.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Blocks\Tables\MarkTable.xaml">

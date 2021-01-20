@@ -3,38 +3,37 @@ using System.Collections.Generic;
 
 namespace Model
 {
-    public class DBCollection<TEntity>
-        : List<TEntity>, IQueryable
-        where TEntity : AEntity
+    public class Requester<TEntity> : IQueryable<TEntity>
+        where TEntity : IEntity<TEntity>
     {
         private IOperateable _Operation;
 
-        public DBCollection(IOperateable operation)
+        public Requester(IOperateable operation)
         {
             _Operation = operation;
         }
 
-        public IEnumerable<AEntity> SelectAll(AEntity entity)
+        public IEnumerable<TEntity> SelectAll(TEntity entity)
         {
             return entity.SelectAll(_Operation);
         }
 
-        public AEntity SelectOne(AEntity entity, int id)
+        public TEntity SelectOne(TEntity entity, int id)
         {
             return entity.SelectOne(_Operation, id);
         }
 
-        public void Insert(AEntity entity)
+        public void Insert(TEntity entity)
         {
             entity.Insert(_Operation);
         }
 
-        public void Update(AEntity entity)
+        public void Update(TEntity entity)
         {
             entity.Update(_Operation);
         }
 
-        public void Delete(AEntity entity)
+        public void Delete(TEntity entity)
         {
             entity.Delete(_Operation);
         }

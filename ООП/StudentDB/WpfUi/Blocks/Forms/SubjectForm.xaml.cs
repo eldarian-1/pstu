@@ -8,5 +8,12 @@ namespace WpfUi.Blocks.Forms
         {
             InitializeComponent();
         }
+
+        public new MainWindow Parent { get; set; }
+
+        private void AddButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Parent.AddSubject(SubjectName.Text);
+        }
     }
 }

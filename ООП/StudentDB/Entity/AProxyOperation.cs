@@ -7,13 +7,6 @@ namespace Model
     {
         public IOperateable Current { get; set; }
 
-        public AProxyOperation() { }
-
-        public AProxyOperation(IOperateable operation)
-        {
-            Current = operation;
-        }
-
         public Student SelectOneStudent(int id) => Current.SelectOneStudent(id);
 
         public Subject SelectOneSubject(int id) => Current.SelectOneSubject(id);

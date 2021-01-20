@@ -4,6 +4,9 @@ namespace EF
 {
     public class EfProxyOperation : AProxyOperation
     {
-        public EfProxyOperation() : base(new EfOperation()) { }
+        public EfProxyOperation()
+        {
+            Current = new EfOperation();
+        }
     }
 }

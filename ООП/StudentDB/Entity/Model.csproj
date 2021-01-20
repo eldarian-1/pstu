@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="AProxyOperation.cs" />
     <Compile Include="Const.cs" />
-    <Compile Include="DBCollection.cs" />
-    <Compile Include="Entities\AEntity.cs" />
-    <Compile Include="DBContext.cs" />
+    <Compile Include="Requester.cs" />
+    <Compile Include="Entities\IEntity.cs" />
+    <Compile Include="DataAccessor.cs" />
     <Compile Include="IOperateable.cs" />
     <Compile Include="Entities\Mark.cs" />
     <Compile Include="Entities\MarkEntry.cs" />

@@ -2,35 +2,35 @@
 
 namespace Model.Entities
 {
-    public class Student : AEntity
+    public class Student : IEntity<Student>
     {
-        public virtual long StudentId { get; }
+        public virtual long StudentId { get; set; }
 
-        public virtual string FirstName { get; }
+        public virtual string FirstName { get; set; }
 
-        public virtual string LastName { get; }
+        public virtual string LastName { get; set; }
 
-        public sealed override IEnumerable<AEntity> SelectAll(IOperateable operation)
+        public IEnumerable<Student> SelectAll(IOperateable operation)
         {
             return operation.SelectStudents();
         }
 
-        public sealed override AEntity SelectOne(IOperateable operation, int id)
+        public Student SelectOne(IOperateable operation, int id)
         {
             return operation.SelectOneStudent(id);
         }
 
-        public sealed override void Insert(IOperateable operation)
+        public void Insert(IOperateable operation)
         {
             operation.InsertStudent(this);
         }
 
-        public sealed override void Update(IOperateable operation)
+        public void Update(IOperateable operation)
         {
             operation.UpdateStudent(this);
         }
 
-        public sealed override void Delete(IOperateable operation)
+        public void Delete(IOperateable operation)
         {
             operation.DeleteStudent(this);
         }

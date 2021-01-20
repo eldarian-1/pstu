@@ -12,27 +12,27 @@
 
         <TabItem Header="Предметы">
             <StackPanel>
-                <table:SubjectTable />
-                <form:SubjectForm />
+                <table:SubjectTable x:Name="SubjectTableItem" />
+                <form:SubjectForm x:Name="SubjectFormItem" />
             </StackPanel>
         </TabItem>
 
         <TabItem Header="Студенты">
             <StackPanel>
-                <table:StudentTable />
-                <form:StudentForm />
+                <table:StudentTable x:Name="StudentTableItem" />
+                <form:StudentForm x:Name="StudentFormItem" />
             </StackPanel>
         </TabItem>
 
         <TabItem Header="Оценки">
             <StackPanel>
-                <table:MarkTable />
-                <form:MarkForm />
+                <table:MarkTable x:Name="MarkTableItem" />
+                <form:MarkForm x:Name="MarkFormItem" />
             </StackPanel>
         </TabItem>
 
         <TabItem Header="Настройки">
-            <block:Settings />
+            <block:Setting x:Name="SettingItem" />
         </TabItem>
 
     </TabControl>

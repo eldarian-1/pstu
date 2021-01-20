@@ -4,6 +4,9 @@ namespace ADO
 {
     public class AdoProxyOperation : AProxyOperation
     {
-        public AdoProxyOperation() : base(new AdoOperation()) { }
+        public AdoProxyOperation()
+        {
+            Current = new AdoOperation();
+        }
     }
 }

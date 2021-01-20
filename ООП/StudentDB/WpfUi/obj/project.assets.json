@@ -19,6 +19,7 @@
         "dependencies": {
           "ADO": "1.0.0",
           "EF": "1.0.0",
+          "Mock": "1.0.0",
           "Model": "1.0.0"
         },
         "compile": {
@@ -38,6 +39,18 @@
         },
         "runtime": {
           "bin/placeholder/EF.dll": {}
+        }
+      },
+      "Mock/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Mock.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mock.dll": {}
         }
       },
       "Model/1.0.0": {
@@ -66,6 +79,11 @@
       "type": "project",
       "path": "../EF/EF.csproj",
       "msbuildProject": "../EF/EF.csproj"
+    },
+    "Mock/1.0.0": {
+      "type": "project",
+      "path": "../Mock/Mock.csproj",
+      "msbuildProject": "../Mock/Mock.csproj"
     },
     "Model/1.0.0": {
       "type": "project",
@@ -142,7 +160,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

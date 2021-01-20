@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace WpfUi.Tables
+namespace WpfUi.Blocks.Tables
 {
     public partial class MarkTable : UserControl
     {

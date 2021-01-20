@@ -1,10 +1,10 @@
 ﻿using System.Windows.Controls;
 
-namespace WpfUi.Tables
+namespace WpfUi.Blocks.Forms
 {
-    public partial class SubjectTable : UserControl
+    public partial class MarkForm : UserControl
     {
-        public SubjectTable()
+        public MarkForm()
         {
             InitializeComponent();
         }

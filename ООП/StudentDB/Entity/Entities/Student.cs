@@ -1,4 +1,6 @@
-﻿namespace Model.Entities
+﻿using System.Collections.Generic;
+
+namespace Model.Entities
 {
     public class Student : AEntity
     {
@@ -8,19 +10,29 @@
 
         public virtual string LastName { get; }
 
-        public sealed override void Insert(IOperateable operatorr)
+        public sealed override IEnumerable<AEntity> SelectAll(IOperateable operation)
         {
-            operatorr.InsertStudent(this);
+            return operation.SelectStudents();
         }
 
-        public sealed override void Update(IOperateable operatorr)
+        public sealed override AEntity SelectOne(IOperateable operation, int id)
         {
-            operatorr.UpdateStudent(this);
+            return operation.SelectOneStudent(id);
         }
 
-        public sealed override void Delete(IOperateable operatorr)
+        public sealed override void Insert(IOperateable operation)
         {
-            operatorr.DeleteStudent(this);
+            operation.InsertStudent(this);
+        }
+
+        public sealed override void Update(IOperateable operation)
+        {
+            operation.UpdateStudent(this);
+        }
+
+        public sealed override void Delete(IOperateable operation)
+        {
+            operation.DeleteStudent(this);
         }
     }
 }

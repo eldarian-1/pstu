@@ -130,9 +130,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EfContext.cs" />
+    <Compile Include="EfOperation.cs" />
     <Compile Include="EfMark.cs" />
-    <Compile Include="EfProxyContext.cs" />
+    <Compile Include="EfProxyOperation.cs" />
     <Compile Include="EfStudent.cs" />
     <Compile Include="EfSubject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

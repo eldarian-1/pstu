@@ -1,10 +1,13 @@
 ﻿using Model.Entities;
+using System.Collections.Generic;
 
 namespace Model
 {
     interface IQueryable
     {
-        void Restart();
+        IEnumerable<AEntity> SelectAll(AEntity entity);
+
+        AEntity SelectOne(AEntity entity, int id);
 
         void Insert(AEntity entity);
 

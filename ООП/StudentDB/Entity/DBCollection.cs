@@ -7,38 +7,36 @@ namespace Model
         : List<TEntity>, IQueryable
         where TEntity : AEntity
     {
-        private IOperateable _Operator;
+        private IOperateable _Operation;
 
-        public DBCollection(IOperateable operatorr)
+        public DBCollection(IOperateable operation)
         {
-            _Operator = operatorr;
-            Initialize();
+            _Operation = operation;
         }
 
-        protected void Initialize()
+        public IEnumerable<AEntity> SelectAll(AEntity entity)
         {
-            _Operator.FillData(this as List<AEntity>);
+            return entity.SelectAll(_Operation);
         }
 
-        public void Restart()
+        public AEntity SelectOne(AEntity entity, int id)
         {
-            Clear();
-            Initialize();
+            return entity.SelectOne(_Operation, id);
         }
 
         public void Insert(AEntity entity)
         {
-            entity.Insert(_Operator);
+            entity.Insert(_Operation);
         }
 
         public void Update(AEntity entity)
         {
-            entity.Update(_Operator);
+            entity.Update(_Operation);
         }
 
         public void Delete(AEntity entity)
         {
-            entity.Delete(_Operator);
+            entity.Delete(_Operation);
         }
     }
 }

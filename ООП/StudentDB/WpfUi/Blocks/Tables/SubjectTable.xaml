@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WpfUi.Tables.SubjectTable"
+﻿<UserControl x:Class="WpfUi.Blocks.Tables.SubjectTable"
              x:Name="SubjectTableItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

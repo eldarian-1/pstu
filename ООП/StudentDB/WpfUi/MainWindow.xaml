@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:table="clr-namespace:WpfUi.Tables"
-        xmlns:form="clr-namespace:WpfUi.Forms"
+        xmlns:block="clr-namespace:WpfUi.Blocks"
+        xmlns:table="clr-namespace:WpfUi.Blocks.Tables"
+        xmlns:form="clr-namespace:WpfUi.Blocks.Forms"
         mc:Ignorable="d"
         Title="База дисциплин, студентов и оценок" Height="960" Width="1280">
     <TabControl>
@@ -28,6 +29,10 @@
                 <table:MarkTable />
                 <form:MarkForm />
             </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Настройки">
+            <block:Settings />
         </TabItem>
 
     </TabControl>

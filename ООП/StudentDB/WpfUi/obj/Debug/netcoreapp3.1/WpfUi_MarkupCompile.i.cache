@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 D:\Lester\Политех\Master\ООП\StudentDB\WpfUi\App.xaml
-7192126333
+8-225080525
 
-11-314291011
-1961374386902
-Forms\MarkForm.xaml;Forms\StudentForm.xaml;Forms\SubjectForm.xaml;MainWindow.xaml;Tables\MarkTable.xaml;Tables\StudentTable.xaml;Tables\SubjectTable.xaml;
+1262495097
+197-357976087
+Blocks\Forms\MarkForm.xaml;Blocks\Forms\StudentForm.xaml;Blocks\Forms\SubjectForm.xaml;Blocks\Settings.xaml;Blocks\Tables\MarkTable.xaml;Blocks\Tables\StudentTable.xaml;Blocks\Tables\SubjectTable.xaml;MainWindow.xaml;
 
 True
 

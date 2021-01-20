@@ -1,33 +1,20 @@
-﻿using Entity;
+﻿using EF;
 using ADO;
-using EF;
+using Mock;
+using Model;
+using System.Collections.Generic;
 
 namespace Controller
 {
-    public class Facade : AContext
+    public class Facade : AProxyOperation
     {
-        private bool m_IsEF;
+        public IList<IOperateable> Operations { get; }
 
-        public Facade() : base(new EfProxyContext())
+        public Facade() 
         {
-            m_IsEF = true;
-        }
-
-        public void ChangeContext()
-        {
-            m_IsEF = !m_IsEF;
-            Operation = m_IsEF ? new EfProxyContext()
-                : new AdoProxyContext() as IOperations;
-        }
-
-        public void UpdateStudent(Student student)
-        {
-
-        }
-
-        public void DeleteStudent(Student student)
-        {
-
+            Current = new MockOperation();
+            Operations = new List<IOperateable>();
+            Operations.Add(Current);
         }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Model
 {
-    public abstract class AContext
+    public class DBContext
     {
-        public AContext(IOperateable operatorr)
+        public DBContext(IOperateable operatorr)
         {
             Subjects = new DBCollection<Subject>(operatorr);
             Students = new DBCollection<Student>(operatorr);

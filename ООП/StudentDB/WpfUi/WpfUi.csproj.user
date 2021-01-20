@@ -7,45 +7,51 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Forms\MarkForm.xaml.cs">
+    <Compile Update="Blocks\Forms\MarkForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Forms\StudentForm.xaml.cs">
+    <Compile Update="Blocks\Forms\StudentForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Forms\SubjectForm.xaml.cs">
+    <Compile Update="Blocks\Forms\SubjectForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Tables\MarkTable.xaml.cs">
+    <Compile Update="Blocks\Settings.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Tables\StudentTable.xaml.cs">
+    <Compile Update="Blocks\Tables\MarkTable.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Tables\SubjectTable.xaml.cs">
+    <Compile Update="Blocks\Tables\StudentTable.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Blocks\Tables\SubjectTable.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Forms\MarkForm.xaml">
+    <Page Update="Blocks\Forms\MarkForm.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Forms\StudentForm.xaml">
+    <Page Update="Blocks\Forms\StudentForm.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Forms\SubjectForm.xaml">
+    <Page Update="Blocks\Forms\SubjectForm.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Tables\MarkTable.xaml">
+    <Page Update="Blocks\Settings.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Tables\StudentTable.xaml">
+    <Page Update="Blocks\Tables\MarkTable.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Tables\SubjectTable.xaml">
+    <Page Update="Blocks\Tables\StudentTable.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Blocks\Tables\SubjectTable.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

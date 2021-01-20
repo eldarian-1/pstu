@@ -1,4 +1,6 @@
-﻿namespace Model.Entities
+﻿using System.Collections.Generic;
+
+namespace Model.Entities
 {
     public class Mark : AEntity
     {
@@ -9,6 +11,16 @@
         public virtual long SubjectId { get; set; }
 
         public virtual byte Value { get; set; }
+
+        public sealed override IEnumerable<AEntity> SelectAll(IOperateable operation)
+        {
+            return operation.SelectMarks();
+        }
+
+        public sealed override AEntity SelectOne(IOperateable operation, int id)
+        {
+            return operation.SelectOneMark(id);
+        }
 
         public sealed override void Insert(IOperateable operatorr)
         {

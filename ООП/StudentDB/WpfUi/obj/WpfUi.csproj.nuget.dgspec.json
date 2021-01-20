@@ -39,6 +39,9 @@
               },
               "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj": {
                 "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
+              },
+              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Mock\\Mock.csproj": {
+                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Mock\\Mock.csproj"
               }
             }
           }
@@ -72,6 +75,25 @@
         "projectUniqueName": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj",
         "projectName": "Model",
         "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Mock\\Mock.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Mock\\Mock.csproj",
+        "projectName": "Mock",
+        "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Mock\\Mock.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj": {
+                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
+              }
+            }
+          }
+        }
       },
       "frameworks": {
         "net472": {}
@@ -137,7 +159,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

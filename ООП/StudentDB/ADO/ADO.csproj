@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdoContext.cs" />
-    <Compile Include="AdoProxyContext.cs" />
+    <Compile Include="AdoOperation.cs" />
+    <Compile Include="AdoProxyOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

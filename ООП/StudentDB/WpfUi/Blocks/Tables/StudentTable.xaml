@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WpfUi.Tables.StudentTable"
+﻿<UserControl x:Class="WpfUi.Blocks.Tables.StudentTable"
              x:Name="StudentTableItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

@@ -57,6 +57,10 @@
       <Project>{30ce188c-221d-4b4d-845a-ce7f98b576e2}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mock\Mock.csproj">
+      <Project>{16f46a1a-bb49-4949-8913-bc6e0cc937dd}</Project>
+      <Name>Mock</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

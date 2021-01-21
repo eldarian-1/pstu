@@ -25,7 +25,7 @@ namespace ADO
             return null;
         }
 
-        public MarkEntry SelectOneMark(int id)
+        public Mark SelectOneMark(int id)
         {
             return null;
         }
@@ -40,7 +40,7 @@ namespace ADO
             return null;
         }
 
-        public IEnumerable<MarkEntry> SelectMarks()
+        public IEnumerable<Mark> SelectMarks()
         {
             return null;
         }

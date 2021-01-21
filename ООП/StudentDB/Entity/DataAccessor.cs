@@ -14,7 +14,7 @@ namespace Model
                 _Current = value;
                 Subjects = new Requester<Subject>(value);
                 Students = new Requester<Student>(value);
-                Marks = new Requester<MarkEntry>(value);
+                Marks = new Requester<Mark>(value);
             }
         }
 
@@ -22,6 +22,6 @@ namespace Model
 
         public IQueryable<Student> Students { get; private set; }
 
-        public IQueryable<MarkEntry> Marks { get; private set; }
+        public IQueryable<Mark> Marks { get; private set; }
     }
 }

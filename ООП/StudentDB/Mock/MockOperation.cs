@@ -13,13 +13,13 @@ namespace Mock
 
         private IList<Student> _Students;
         private IList<Subject> _Subjects;
-        private IList<MarkEntry> _Marks;
+        private IList<Mark> _Marks;
 
         public MockOperation()
         {
             _Students = new ObservableCollection<Student>();
             _Subjects = new ObservableCollection<Subject>();
-            _Marks = new ObservableCollection<MarkEntry>();
+            _Marks = new ObservableCollection<Mark>();
         }
 
         public Student SelectOneStudent(int id)
@@ -38,7 +38,7 @@ namespace Mock
             return null;
         }
 
-        public MarkEntry SelectOneMark(int id)
+        public Mark SelectOneMark(int id)
         {
             foreach (var item in _Marks)
                 if (item.MarkId == id)
@@ -56,7 +56,7 @@ namespace Mock
             return _Subjects;
         }
 
-        public IEnumerable<MarkEntry> SelectMarks()
+        public IEnumerable<Mark> SelectMarks()
         {
             return _Marks;
         }
@@ -76,7 +76,7 @@ namespace Mock
         public void InsertMark(Mark mark)
         {
             mark.MarkId = ++_MarkIndex;
-            //_Marks.Add(mark);
+            _Marks.Add(mark);
         }
 
         public void UpdateStudent(Student student)
@@ -91,7 +91,7 @@ namespace Mock
 
         public void UpdateMark(Mark mark)
         {
-            //_Marks[(int)mark.MarkId] = mark;
+            _Marks[(int)mark.MarkId] = mark;
         }
 
         public void DeleteStudent(Student student)

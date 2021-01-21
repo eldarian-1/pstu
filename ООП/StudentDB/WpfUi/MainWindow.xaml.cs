@@ -18,18 +18,21 @@ namespace WpfUi
         {
             SubjectFormItem.Parent = this;
             StudentFormItem.Parent = this;
+            MarkFormItem.Parent = this;
+            SettingItem.Parent = this;
         }
 
         private void SetData()
         {
             IEnumerable<Subject> subjects = _Facade.Subjects.SelectAll();
             IEnumerable<Student> students = _Facade.Students.SelectAll();
-            IEnumerable<MarkEntry> marks = _Facade.Marks.SelectAll();
+            IEnumerable<Mark> marks = _Facade.Marks.SelectAll();
             SubjectTableItem.SubjectList.ItemsSource = subjects;
             StudentTableItem.StudentList.ItemsSource = students;
             MarkTableItem.MarkList.ItemsSource = marks;
             MarkFormItem.StudentsBox.ItemsSource = students;
             MarkFormItem.SubjectsBox.ItemsSource = subjects;
+            SettingItem.UseCasesBox.ItemsSource = _Facade.GetOperations();
         }
 
         public MainWindow()
@@ -54,10 +57,16 @@ namespace WpfUi
 
         public void AddMark(long studentId, long subjectId, byte value)
         {
-            _Facade.Marks.Insert(new MarkEntry {
+            _Facade.Marks.Insert(new Mark {
                 StudentId = studentId,
                 SubjectId = subjectId,
                 Value = value });
+        }
+
+        public void SetUseCase(string key)
+        {
+            _Facade.SetOperation(key);
+            SetData();
         }
     }
 }

@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Предмет" />
-        <ComboBox Grid.Row="0" Grid.Column="1" Name="SubjectsBox">
+        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="SubjectsBox">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <ComboBoxItem>
@@ -35,7 +35,7 @@
         </ComboBox>
 
         <Label Grid.Row="1" Grid.Column="0" Content="Студент" />
-        <ComboBox Grid.Row="1" Grid.Column="1" Name="StudentsBox">
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="StudentsBox">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <ComboBoxItem>
@@ -52,14 +52,14 @@
         </ComboBox>
 
         <Label Grid.Row="2" Grid.Column="0" Content="Оценка" />
-        <ComboBox Grid.Row="2" Grid.Column="1" Name="MarksBox">
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="MarksBox">
             <ComboBoxItem Content="5"/>
             <ComboBoxItem Content="4"/>
             <ComboBoxItem Content="3"/>
             <ComboBoxItem Content="2"/>
         </ComboBox>
 
-        <Button x:Name="ButtonClient" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Добавить" />
+        <Button Click="AddButton_Click" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Добавить" />
 
     </Grid>
 </UserControl>

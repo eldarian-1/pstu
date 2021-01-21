@@ -22,6 +22,11 @@ namespace Controller
             _Operations.Add("MockOperation", _Current);
         }
 
+        public IEnumerable<string> GetOperations()
+        {
+            return _Operations.Keys;
+        }
+
         public void SetOperation(string key)
         {
             _Current = _Operations[key];
@@ -31,6 +36,6 @@ namespace Controller
 
         public IQueryable<Subject> Subjects => _Accessor.Subjects;
 
-        public IQueryable<MarkEntry> Marks => _Accessor.Marks;
+        public IQueryable<Mark> Marks => _Accessor.Marks;
     }
 }

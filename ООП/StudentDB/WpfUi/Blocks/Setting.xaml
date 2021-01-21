@@ -6,5 +6,8 @@
              xmlns:local="clr-namespace:WpfUi"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Button Content="Обновить данные" Click="UpdateButton_Click" />
+    <StackPanel>
+        <ComboBox x:Name="UseCasesBox" SelectedIndex="0" />
+        <Button Content="Установить" Click="SetButton_Click" />
+    </StackPanel>
 </UserControl>

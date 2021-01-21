@@ -9,13 +9,13 @@ namespace Model
 
         Subject SelectOneSubject(int id);
 
-        MarkEntry SelectOneMark(int id);
+        Mark SelectOneMark(int id);
 
         IEnumerable<Student> SelectStudents();
 
         IEnumerable<Subject> SelectSubjects();
 
-        IEnumerable<MarkEntry> SelectMarks();
+        IEnumerable<Mark> SelectMarks();
 
         void InsertStudent(Student student);
 

@@ -11,13 +11,13 @@ namespace Model
 
         public Subject SelectOneSubject(int id) => Current.SelectOneSubject(id);
 
-        public MarkEntry SelectOneMark(int id) => Current.SelectOneMark(id);
+        public Mark SelectOneMark(int id) => Current.SelectOneMark(id);
 
         public IEnumerable<Student> SelectStudents() => Current.SelectStudents();
 
         public IEnumerable<Subject> SelectSubjects() => Current.SelectSubjects();
 
-        public IEnumerable<MarkEntry> SelectMarks() => Current.SelectMarks();
+        public IEnumerable<Mark> SelectMarks() => Current.SelectMarks();
 
         public void InsertStudent(Student student) => Current.InsertStudent(student);
 

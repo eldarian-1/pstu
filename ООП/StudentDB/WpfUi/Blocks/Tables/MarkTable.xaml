@@ -7,23 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ListView Name="MarkList">
+        
         <ListView.View>
             <GridView>
                 <GridViewColumn DisplayMemberBinding="{Binding Path=MarkId}">ID</GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding Path=Subject}">Предмет</GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding Path=Student}">Студент</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectId}">Предмет</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=StudentId}">Студент</GridViewColumn>
                 <GridViewColumn DisplayMemberBinding="{Binding Path=Value}">Оценка</GridViewColumn>
             </GridView>
         </ListView.View>
+        
         <ListView.ItemTemplate>
             <DataTemplate>
                 <StackPanel Margin="5">
                     <TextBlock FontSize="16" Text="{Binding Path=MarkId}" HorizontalAlignment="Center" />
-                    <TextBlock FontSize="16" Text="{Binding Path=Subject}" HorizontalAlignment="Center" />
-                    <TextBlock FontSize="16" Text="{Binding Path=Student}" HorizontalAlignment="Center" />
+                    <TextBlock FontSize="16" Text="{Binding Path=SubjectId}" HorizontalAlignment="Center" />
+                    <TextBlock FontSize="16" Text="{Binding Path=StudentId}" HorizontalAlignment="Center" />
                     <TextBlock FontSize="16" Text="{Binding Path=Value}" HorizontalAlignment="Center" />
                 </StackPanel>
             </DataTemplate>
         </ListView.ItemTemplate>
+        
     </ListView>
 </UserControl>

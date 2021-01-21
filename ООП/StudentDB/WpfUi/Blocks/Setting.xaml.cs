@@ -10,9 +10,11 @@ namespace WpfUi.Blocks
             InitializeComponent();
         }
 
-        private void UpdateButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        public new MainWindow Parent { get; set; }
+
+        private void SetButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hello Eldarian!!!");
+            Parent.SetUseCase(UseCasesBox.SelectedItem as string);
         }
     }
 }

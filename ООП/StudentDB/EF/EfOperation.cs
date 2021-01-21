@@ -29,7 +29,7 @@ namespace EF
             return null;
         }
 
-        public MarkEntry SelectOneMark(int id)
+        public Mark SelectOneMark(int id)
         {
             return null;
         }
@@ -44,7 +44,7 @@ namespace EF
             return null;
         }
 
-        public IEnumerable<MarkEntry> SelectMarks()
+        public IEnumerable<Mark> SelectMarks()
         {
             return null;
         }

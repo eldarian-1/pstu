@@ -48,7 +48,6 @@
     <Compile Include="DataAccessor.cs" />
     <Compile Include="IOperateable.cs" />
     <Compile Include="Entities\Mark.cs" />
-    <Compile Include="Entities\MarkEntry.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\Subject.cs" />
     <Compile Include="IQueryable.cs" />

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Model
 {
     public class Requester<TEntity> : IQueryable<TEntity>
-        where TEntity : IEntity<TEntity>
+        where TEntity : IEntity<TEntity>, new()
     {
         private IOperateable _Operation;
 
@@ -13,14 +13,14 @@ namespace Model
             _Operation = operation;
         }
 
-        public IEnumerable<TEntity> SelectAll(TEntity entity)
+        public IEnumerable<TEntity> SelectAll()
         {
-            return entity.SelectAll(_Operation);
+            return new TEntity().SelectAll(_Operation);
         }
 
-        public TEntity SelectOne(TEntity entity, int id)
+        public TEntity SelectOne(int id)
         {
-            return entity.SelectOne(_Operation, id);
+            return new TEntity().SelectOne(_Operation, id);
         }
 
         public void Insert(TEntity entity)

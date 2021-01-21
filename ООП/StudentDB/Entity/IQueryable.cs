@@ -6,9 +6,9 @@ namespace Model
     public interface IQueryable<TEntity>
         where TEntity : IEntity<TEntity>
     {
-        IEnumerable<TEntity> SelectAll(TEntity entity);
+        IEnumerable<TEntity> SelectAll();
 
-        TEntity SelectOne(TEntity entity, int id);
+        TEntity SelectOne(int id);
 
         void Insert(TEntity entity);
 

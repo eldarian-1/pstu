@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Model.Entities;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace WpfUi
@@ -21,9 +22,14 @@ namespace WpfUi
 
         private void SetData()
         {
-            SubjectTableItem.SubjectList.ItemsSource = _Facade.Subjects.SelectAll(new Subject());
-            StudentTableItem.StudentList.ItemsSource = _Facade.Students.SelectAll(new Student());
-            MarkTableItem.MarkList.ItemsSource = _Facade.Marks.SelectAll(new MarkEntry());
+            IEnumerable<Subject> subjects = _Facade.Subjects.SelectAll();
+            IEnumerable<Student> students = _Facade.Students.SelectAll();
+            IEnumerable<MarkEntry> marks = _Facade.Marks.SelectAll();
+            SubjectTableItem.SubjectList.ItemsSource = subjects;
+            StudentTableItem.StudentList.ItemsSource = students;
+            MarkTableItem.MarkList.ItemsSource = marks;
+            MarkFormItem.StudentsBox.ItemsSource = students;
+            MarkFormItem.SubjectsBox.ItemsSource = subjects;
         }
 
         public MainWindow()

@@ -52,14 +52,9 @@
         </ComboBox>
 
         <Label Grid.Row="2" Grid.Column="0" Content="Оценка" />
-        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="MarksBox">
-            <ComboBoxItem Content="5"/>
-            <ComboBoxItem Content="4"/>
-            <ComboBoxItem Content="3"/>
-            <ComboBoxItem Content="2"/>
-        </ComboBox>
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="MarksBox" />
 
-        <Button Click="AddButton_Click" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Добавить" />
+        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" x:Name="ActionButton" Click="AddButton_Click" Content="Добавить" />
 
     </Grid>
 </UserControl>

@@ -11,8 +11,8 @@
         <ListView.View>
             <GridView>
                 <GridViewColumn DisplayMemberBinding="{Binding Path=MarkId}">ID</GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectId}">Предмет</GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding Path=StudentId}">Студент</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectDescription}">Предмет</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=StudentDescription}">Студент</GridViewColumn>
                 <GridViewColumn DisplayMemberBinding="{Binding Path=Value}">Оценка</GridViewColumn>
             </GridView>
         </ListView.View>
@@ -21,8 +21,8 @@
             <DataTemplate>
                 <StackPanel Margin="5">
                     <TextBlock FontSize="16" Text="{Binding Path=MarkId}" HorizontalAlignment="Center" />
-                    <TextBlock FontSize="16" Text="{Binding Path=SubjectId}" HorizontalAlignment="Center" />
-                    <TextBlock FontSize="16" Text="{Binding Path=StudentId}" HorizontalAlignment="Center" />
+                    <TextBlock FontSize="16" Text="{Binding Path=SubjectDescription}" HorizontalAlignment="Center" />
+                    <TextBlock FontSize="16" Text="{Binding Path=StudentDescription}" HorizontalAlignment="Center" />
                     <TextBlock FontSize="16" Text="{Binding Path=Value}" HorizontalAlignment="Center" />
                 </StackPanel>
             </DataTemplate>

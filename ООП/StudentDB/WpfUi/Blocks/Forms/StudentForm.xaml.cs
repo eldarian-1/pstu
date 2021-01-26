@@ -24,9 +24,31 @@ namespace WpfUi.Blocks.Forms
             LastName.Text = student.LastName;
         }
 
+        public void Clear()
+        {
+            _IsEdit = false;
+            FirstName.Text = "";
+            LastName.Text = "";
+        }
+
+        public void SetAddListener()
+        {
+            ActionButton.Click -= EditButton_Click;
+            ActionButton.Click += AddButton_Click;
+            ActionButton.Content = "Добавить";
+        }
+
+        public void SetEditListener()
+        {
+            ActionButton.Click -= AddButton_Click;
+            ActionButton.Click += EditButton_Click;
+            ActionButton.Content = "Обновить";
+        }
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             Parent.AddStudent(FirstName.Text, LastName.Text);
+            Clear();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -35,8 +57,9 @@ namespace WpfUi.Blocks.Forms
             {
                 StudentId = _EditId,
                 FirstName = FirstName.Text,
-                LastName = LastName.Text
-            });
+                LastName = LastName.Text});
+            Clear();
+            SetAddListener();
         }
     }
 }

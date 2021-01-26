@@ -23,9 +23,30 @@ namespace WpfUi.Blocks.Forms
             SubjectName.Text = subject.Name;
         }
 
+        public void Clear()
+        {
+            _IsEdit = false;
+            SubjectName.Text = "";
+        }
+
+        public void SetAddListener()
+        {
+            ActionButton.Click -= EditButton_Click;
+            ActionButton.Click += AddButton_Click;
+            ActionButton.Content = "Добавить";
+        }
+
+        public void SetEditListener()
+        {
+            ActionButton.Click -= AddButton_Click;
+            ActionButton.Click += EditButton_Click;
+            ActionButton.Content = "Обновить";
+        }
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             Parent.AddSubject(SubjectName.Text);
+            Clear();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -33,8 +54,9 @@ namespace WpfUi.Blocks.Forms
             Parent.UpdateSubject(new Subject
             {
                 SubjectId = _EditId,
-                Name = SubjectName.Text
-            });
+                Name = SubjectName.Text});
+            Clear();
+            SetAddListener();
         }
     }
 }

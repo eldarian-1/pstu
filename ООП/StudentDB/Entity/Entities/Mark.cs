@@ -36,5 +36,10 @@ namespace Model.Entities
         {
             operatorr.DeleteMark(this);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Mark && (obj as Mark).MarkId == MarkId;
+        }
     }
 }

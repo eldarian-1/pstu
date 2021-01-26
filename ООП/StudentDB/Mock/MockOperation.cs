@@ -79,19 +79,46 @@ namespace Mock
             _Marks.Add(mark);
         }
 
+        private long FindById(object obj)
+        {
+            long index = 0;
+            if (obj is Student)
+                foreach (var item in _Students)
+                {
+                    if (item.StudentId == (obj as Student).StudentId)
+                        break;
+                    ++index;
+                }
+            else if (obj is Subject)
+                foreach (var item in _Subjects)
+                {
+                    if (item.SubjectId == (obj as Subject).SubjectId)
+                        break;
+                    ++index;
+                }
+            else if (obj is Mark)
+                foreach (var item in _Marks)
+                {
+                    if (item.MarkId == (obj as Mark).MarkId)
+                        break;
+                    ++index;
+                }
+            return index;
+        }
+
         public void UpdateStudent(Student student)
         {
-            _Students[(int)student.StudentId] = student;
+            _Students[(int)FindById(student)] = student;
         }
 
         public void UpdateSubject(Subject subject)
         {
-            _Subjects[(int)subject.SubjectId] = subject;
+            _Subjects[(int)FindById(subject)] = subject;
         }
 
         public void UpdateMark(Mark mark)
         {
-            _Marks[(int)mark.MarkId] = mark;
+            _Marks[(int)FindById(mark)] = mark;
         }
 
         public void DeleteStudent(Student student)
@@ -106,7 +133,7 @@ namespace Mock
 
         public void DeleteMark(Mark mark)
         {
-            _Marks.RemoveAt((int)mark.MarkId);
+            _Marks.Remove(mark);
         }
     }
 }

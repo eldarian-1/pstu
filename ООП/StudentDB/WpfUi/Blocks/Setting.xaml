@@ -7,7 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <ComboBox x:Name="UseCasesBox" SelectedIndex="0" />
-        <Button Content="Установить" Click="SetButton_Click" />
+        <StackPanel Orientation="Horizontal">
+            <ComboBox x:Name="UseCasesBox" SelectedIndex="0" />
+            <Button Content="Установить" Click="SetButton_Click" />
+        </StackPanel>
+        <Label Margin="15" Content="Инструкция" />
+        <Label Content="Для выполнения действий с записями необходимо выбрать запись в таблице, а затем нажать клавищу соответствующего действия:" />
+        <Label Content="E - Редактирование записи" />
+        <Label Content="D - Удаление записи" />
     </StackPanel>
 </UserControl>

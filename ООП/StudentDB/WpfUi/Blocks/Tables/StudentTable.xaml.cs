@@ -11,7 +11,7 @@ namespace WpfUi.Blocks.Tables
             InitializeComponent();
         }
 
-        public new MainWindow Parent { get; set; }
+        public Mediator Mediator { get; set; }
 
         public Student SelectedStudent => StudentList.SelectedItem as Student;
 
@@ -23,10 +23,10 @@ namespace WpfUi.Blocks.Tables
                 switch (e.Key)
                 {
                     case Key.E:
-                        Parent.EditStudent(obj);
+                        Mediator.EditStudent(obj);
                         break;
                     case Key.D:
-                        Parent.RemoveStudent(obj);
+                        Mediator.RemoveStudent(obj);
                         break;
                 }
             }

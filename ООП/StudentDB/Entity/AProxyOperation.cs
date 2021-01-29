@@ -5,36 +5,41 @@ namespace Model
 {
     public abstract class AProxyOperation : IOperateable
     {
-        public IOperateable Current { get; set; }
+        private IOperateable _Current;
 
-        public Student SelectOneStudent(int id) => Current.SelectOneStudent(id);
+        public AProxyOperation(IOperateable operation)
+        {
+            _Current = operation;
+        }
 
-        public Subject SelectOneSubject(int id) => Current.SelectOneSubject(id);
+        public Student SelectOneStudent(int id) => _Current.SelectOneStudent(id);
 
-        public Mark SelectOneMark(int id) => Current.SelectOneMark(id);
+        public Subject SelectOneSubject(int id) => _Current.SelectOneSubject(id);
 
-        public IEnumerable<Student> SelectStudents() => Current.SelectStudents();
+        public Mark SelectOneMark(int id) => _Current.SelectOneMark(id);
 
-        public IEnumerable<Subject> SelectSubjects() => Current.SelectSubjects();
+        public IEnumerable<Student> SelectStudents() => _Current.SelectStudents();
 
-        public IEnumerable<Mark> SelectMarks() => Current.SelectMarks();
+        public IEnumerable<Subject> SelectSubjects() => _Current.SelectSubjects();
 
-        public void InsertStudent(Student student) => Current.InsertStudent(student);
+        public IEnumerable<Mark> SelectMarks() => _Current.SelectMarks();
 
-        public void InsertSubject(Subject subject) => Current.InsertSubject(subject);
+        public void InsertStudent(Student student) => _Current.InsertStudent(student);
 
-        public void InsertMark(Mark mark) => Current.InsertMark(mark);
+        public void InsertSubject(Subject subject) => _Current.InsertSubject(subject);
 
-        public void UpdateStudent(Student student) => Current.UpdateStudent(student);
+        public void InsertMark(Mark mark) => _Current.InsertMark(mark);
 
-        public void UpdateSubject(Subject subject) => Current.UpdateSubject(subject);
+        public void UpdateStudent(Student student) => _Current.UpdateStudent(student);
 
-        public void UpdateMark(Mark mark) => Current.UpdateMark(mark);
+        public void UpdateSubject(Subject subject) => _Current.UpdateSubject(subject);
 
-        public void DeleteStudent(Student student) => Current.DeleteStudent(student);
+        public void UpdateMark(Mark mark) => _Current.UpdateMark(mark);
 
-        public void DeleteSubject(Subject subject) => Current.DeleteSubject(subject);
+        public void DeleteStudent(Student student) => _Current.DeleteStudent(student);
 
-        public void DeleteMark(Mark mark) => Current.DeleteMark(mark);
+        public void DeleteSubject(Subject subject) => _Current.DeleteSubject(subject);
+
+        public void DeleteMark(Mark mark) => _Current.DeleteMark(mark);
     }
 }

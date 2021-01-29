@@ -42,9 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AProxyOperation.cs" />
-    <Compile Include="Const.cs" />
+    <Compile Include="AEntity.cs" />
     <Compile Include="Requester.cs" />
-    <Compile Include="Entities\IEntity.cs" />
     <Compile Include="DataAccessor.cs" />
     <Compile Include="IOperateable.cs" />
     <Compile Include="Entities\Mark.cs" />

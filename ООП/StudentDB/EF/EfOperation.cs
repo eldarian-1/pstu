@@ -1,97 +1,112 @@
-﻿using Entity;
+﻿using EF.Entities;
 using Model;
 using Model.Entities;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 
 namespace EF
 {
-    public class EfOperation : IOperateable
+    internal class EfOperation : IOperateable
     {
-        private const string ConnectionString
-            = "server=" + Const.Host
-            + ";user=" + Const.User
-            + ";password=" + Const.Password
-            + ";database=" + Const.Database + ";";
-
-        public EfOperation()
-        {
-            
-        }
-
         public Student SelectOneStudent(int id)
         {
-            return null;
+            Student result;
+            using (EfContext context = new EfContext())
+                result = context.Students.Find(id);
+            return result;
         }
 
         public Subject SelectOneSubject(int id)
         {
-            return null;
+            Subject result;
+            using (EfContext context = new EfContext())
+                result = context.Subjects.Find(id);
+            return result;
         }
 
         public Mark SelectOneMark(int id)
         {
-            return null;
+            Mark result;
+            using (EfContext context = new EfContext())
+                result = context.Marks.Find(id);
+            return result;
         }
 
         public IEnumerable<Student> SelectStudents()
         {
-            return null;
+            IEnumerable<Student> result;
+            using (EfContext context = new EfContext())
+                result = context.Students;
+            return result;
         }
 
         public IEnumerable<Subject> SelectSubjects()
         {
-            return null;
+            IEnumerable<Subject> result;
+            using (EfContext context = new EfContext())
+                result = context.Subjects;
+            return result;
         }
 
         public IEnumerable<Mark> SelectMarks()
         {
-            return null;
+            IEnumerable<Mark> result;
+            using (EfContext context = new EfContext())
+                result = context.Marks;
+            return result;
         }
 
         public void InsertStudent(Student student)
         {
-
+            using (EfContext context = new EfContext())
+                context.Students.Add(new EfStudent(student));
         }
 
         public void InsertSubject(Subject subject)
         {
-
+            using (EfContext context = new EfContext())
+                context.Subjects.Add(new EfSubject(subject));
         }
 
         public void InsertMark(Mark mark)
         {
-
+            using (EfContext context = new EfContext())
+                context.Marks.Add(new EfMark(mark));
         }
 
         public void UpdateStudent(Student student)
         {
-
+            using (EfContext context = new EfContext())
+                context.Students.Update(new EfStudent(student));
         }
 
         public void UpdateSubject(Subject subject)
         {
-
+            using (EfContext context = new EfContext())
+                context.Subjects.Update(new EfSubject(subject));
         }
 
         public void UpdateMark(Mark mark)
         {
-
+            using (EfContext context = new EfContext())
+                context.Marks.Update(new EfMark(mark));
         }
 
         public void DeleteStudent(Student student)
         {
-
+            using (EfContext context = new EfContext())
+                context.Students.Remove(new EfStudent(student));
         }
 
         public void DeleteSubject(Subject subject)
         {
-
+            using (EfContext context = new EfContext())
+                context.Subjects.Remove(new EfSubject(subject));
         }
 
         public void DeleteMark(Mark mark)
         {
-
+            using (EfContext context = new EfContext())
+                context.Marks.Remove(new EfMark(mark));
         }
     }
 }

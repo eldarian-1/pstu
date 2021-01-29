@@ -1,10 +1,9 @@
-﻿using Model.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Model
 {
     public interface IQueryable<TEntity>
-        where TEntity : IEntity<TEntity>
+        where TEntity : AEntity<TEntity>
     {
         IEnumerable<TEntity> SelectAll();
 

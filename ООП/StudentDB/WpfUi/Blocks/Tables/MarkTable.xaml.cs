@@ -11,7 +11,7 @@ namespace WpfUi.Blocks.Tables
             InitializeComponent();
         }
 
-        public new MainWindow Parent { get; set; }
+        public Mediator Mediator { get; set; }
 
         public Mark SelectedMark => MarkList.SelectedItem as Mark;
 
@@ -23,10 +23,10 @@ namespace WpfUi.Blocks.Tables
                 switch (e.Key)
                 {
                     case Key.E:
-                        Parent.EditMark(obj);
+                        Mediator.EditMark(obj);
                         break;
                     case Key.D:
-                        Parent.RemoveMark(obj);
+                        Mediator.RemoveMark(obj);
                         break;
                 }
             }

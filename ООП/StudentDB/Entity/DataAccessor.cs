@@ -4,14 +4,14 @@ namespace Model
 {
     public class DataAccessor
     {
-        private IOperateable _Current;
+        private IOperateable _Operation;
 
-        public IOperateable Current
+        public IOperateable Operation
         {
-            get => _Current;
+            get => _Operation;
             set
             {
-                _Current = value;
+                _Operation = value;
                 Subjects = new Requester<Subject>(value);
                 Students = new Requester<Student>(value);
                 Marks = new Requester<Mark>(value);

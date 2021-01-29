@@ -17,9 +17,10 @@ namespace Controller
         {
             _Accessor = new DataAccessor();
             _Current = new MockOperation();
-            _Accessor.Current = _Current;
+            _Accessor.Operation = _Current;
             _Operations = new Dictionary<string, IOperateable>();
-            _Operations.Add("MockOperation", _Current);
+            _Operations.Add("Mock Operation", _Current);
+            _Operations.Add("Entity Framework", new EfProxyOperation());
         }
 
         public IEnumerable<string> GetOperations()
@@ -30,6 +31,7 @@ namespace Controller
         public void SetOperation(string key)
         {
             _Current = _Operations[key];
+            _Accessor.Operation = _Current;
         }
 
         public IQueryable<Student> Students => _Accessor.Students;

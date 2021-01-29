@@ -1,24 +1,24 @@
 ﻿using System.Linq;
 using Model.Entities;
 
-namespace WpfUi.Wrappers
+namespace WpfUi
 {
     class MarkEntry : Mark
     {
-        private MainWindow _Main;
+        private Mediator _Mediator;
 
-        public MarkEntry(Mark mark, MainWindow main)
+        public MarkEntry(Mark mark, Mediator mediator)
         {
             MarkId = mark.MarkId;
             SubjectId = mark.SubjectId;
             StudentId = mark.StudentId;
             Value = mark.Value;
-            _Main = main;
+            _Mediator = mediator;
         }
 
         public string SubjectDescription
         {
-            get => _Main.Subjects
+            get => _Mediator.Subjects
                 .Where(subject => subject.SubjectId == SubjectId)
                 .Select(subject => subject.SubjectId + ". " + subject.Name)
                 .ToArray()[0];
@@ -26,7 +26,7 @@ namespace WpfUi.Wrappers
 
         public string StudentDescription
         {
-            get => _Main.Students
+            get => _Mediator.Students
                 .Where(student => student.StudentId == StudentId)
                 .Select(student => student.StudentId + ". " + student.FirstName + " " + student.LastName)
                 .ToArray()[0];

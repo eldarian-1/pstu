@@ -39,7 +39,7 @@
     <Page Update="Blocks\Forms\SubjectForm.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MainWindow.xaml">
+    <Page Update="Blocks\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Blocks\Setting.xaml">

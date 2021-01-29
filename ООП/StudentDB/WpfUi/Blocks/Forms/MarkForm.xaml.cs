@@ -20,16 +20,16 @@ namespace WpfUi.Blocks.Forms
             MarksBox.ItemsSource = Enumerable.Range(c_Min, c_Max - c_Min + 1).Reverse();
         }
 
-        public new MainWindow Parent { get; set; }
+        public Mediator Mediator { get; set; }
 
         public void SetEditItem(Mark mark)
         {
             _IsEdit = true;
             _EditId = mark.MarkId;
-            SubjectsBox.SelectedItem = Parent.Subjects
+            SubjectsBox.SelectedItem = Mediator.Subjects
                 .Where(subject => subject.SubjectId == mark.SubjectId)
                 .ToArray()[0];
-            StudentsBox.SelectedItem = Parent.Students
+            StudentsBox.SelectedItem = Mediator.Students
                 .Where(student => student.StudentId == mark.StudentId)
                 .ToArray()[0];
             MarksBox.SelectedIndex = c_Max - mark.Value;
@@ -59,7 +59,7 @@ namespace WpfUi.Blocks.Forms
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Parent.AddMark(
+            Mediator.AddMark(
                 (StudentsBox.SelectedItem as Student).StudentId,
                 (SubjectsBox.SelectedItem as Subject).SubjectId,
                 byte.Parse(MarksBox.SelectedItem.ToString()));
@@ -68,7 +68,7 @@ namespace WpfUi.Blocks.Forms
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            Parent.UpdateMark(new Mark {
+            Mediator.UpdateMark(new Mark {
                 MarkId = _EditId,
                 SubjectId = (SubjectsBox.SelectedItem as Subject).SubjectId,
                 StudentId = (StudentsBox.SelectedItem as Student).StudentId,

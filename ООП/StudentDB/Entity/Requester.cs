@@ -1,14 +1,13 @@
-﻿using Model.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Model
 {
-    public class Requester<TEntity> : IQueryable<TEntity>
-        where TEntity : IEntity<TEntity>, new()
+    internal class Requester<TEntity> : IQueryable<TEntity>
+        where TEntity : AEntity<TEntity>, new()
     {
         private IOperateable _Operation;
 
-        public Requester(IOperateable operation)
+        internal Requester(IOperateable operation)
         {
             _Operation = operation;
         }

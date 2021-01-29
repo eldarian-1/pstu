@@ -1,9 +1,9 @@
-﻿<Window x:Class="WpfUi.MainWindow"
+﻿<Window x:Class="WpfUi.Blocks.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:block="clr-namespace:WpfUi.Blocks"
+        xmlns:local="clr-namespace:WpfUi.Blocks"
         xmlns:table="clr-namespace:WpfUi.Blocks.Tables"
         xmlns:form="clr-namespace:WpfUi.Blocks.Forms"
         mc:Ignorable="d"
@@ -32,7 +32,7 @@
         </TabItem>
 
         <TabItem Header="Настройки">
-            <block:Setting x:Name="SettingItem" />
+            <local:Setting x:Name="SettingItem" />
         </TabItem>
 
     </TabControl>

@@ -14,7 +14,7 @@ namespace WpfUi.Blocks.Forms
             InitializeComponent();
         }
 
-        public new MainWindow Parent { get; set; }
+        public Mediator Mediator { get; set; }
 
         public void SetEditItem(Student student)
         {
@@ -47,13 +47,13 @@ namespace WpfUi.Blocks.Forms
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Parent.AddStudent(FirstName.Text, LastName.Text);
+            Mediator.AddStudent(FirstName.Text, LastName.Text);
             Clear();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            Parent.UpdateStudent(new Student
+            Mediator.UpdateStudent(new Student
             {
                 StudentId = _EditId,
                 FirstName = FirstName.Text,

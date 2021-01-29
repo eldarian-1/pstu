@@ -10,11 +10,11 @@ namespace WpfUi.Blocks
             InitializeComponent();
         }
 
-        public new MainWindow Parent { get; set; }
+        public Mediator Mediator { get; set; }
 
         private void SetButton_Click(object sender, RoutedEventArgs e)
         {
-            Parent.SetUseCase(UseCasesBox.SelectedItem as string);
+            Mediator.SetUseCase(UseCasesBox.SelectedItem as string);
         }
     }
 }

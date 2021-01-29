@@ -2,7 +2,7 @@
 
 namespace Model.Entities
 {
-    public class Mark : IEntity<Mark>
+    public class Mark : AEntity<Mark>
     {
         public virtual long MarkId { get; set; }
 
@@ -12,27 +12,27 @@ namespace Model.Entities
 
         public virtual byte Value { get; set; }
 
-        public IEnumerable<Mark> SelectAll(IOperateable operation)
+        internal override IEnumerable<Mark> SelectAll(IOperateable operation)
         {
             return operation.SelectMarks();
         }
 
-        public Mark SelectOne(IOperateable operation, int id)
+        internal override Mark SelectOne(IOperateable operation, int id)
         {
             return operation.SelectOneMark(id);
         }
 
-        public void Insert(IOperateable operatorr)
+        internal override void Insert(IOperateable operatorr)
         {
             operatorr.InsertMark(this);
         }
 
-        public void Update(IOperateable operatorr)
+        internal override void Update(IOperateable operatorr)
         {
             operatorr.UpdateMark(this);
         }
 
-        public void Delete(IOperateable operatorr)
+        internal override void Delete(IOperateable operatorr)
         {
             operatorr.DeleteMark(this);
         }
@@ -40,6 +40,11 @@ namespace Model.Entities
         public override bool Equals(object obj)
         {
             return obj is Mark && (obj as Mark).MarkId == MarkId;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

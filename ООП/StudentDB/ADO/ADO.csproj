@@ -46,9 +46,9 @@
     <Compile Include="Definitions.cs" />
     <Compile Include="EntityRequester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Writers\MarkRequester.cs" />
-    <Compile Include="Writers\StudentRequester.cs" />
-    <Compile Include="Writers\SubjectRequester.cs" />
+    <Compile Include="Requesters\MarkRequester.cs" />
+    <Compile Include="Requesters\StudentRequester.cs" />
+    <Compile Include="Requesters\SubjectRequester.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity\Model.csproj">

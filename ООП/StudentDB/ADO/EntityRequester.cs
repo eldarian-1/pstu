@@ -51,7 +51,7 @@ namespace ADO
 
         protected abstract void SetData(MySqlCommand command);
 
-        protected void Execute(string query, params SetQueryData<TEntity>[] requesters)
+        protected void Execute(string query, params Action<MySqlCommand>[] requesters)
         {
             using (MySqlConnection connection = new MySqlConnection(Const.ConnectionString))
             {

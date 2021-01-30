@@ -1,9 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-
-namespace ADO
+﻿namespace ADO
 {
-    internal delegate void SetQueryData<TEntity>(MySqlCommand command);
-
     internal static class Const
     {
         public const string Host = "localhost";

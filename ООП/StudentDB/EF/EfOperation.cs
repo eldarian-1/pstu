@@ -1,5 +1,7 @@
-﻿using EF.Entities;
-using Model;
+﻿using Model;
+using System;
+using EF.Entities;
+using System.Linq;
 using Model.Entities;
 using System.Collections.Generic;
 
@@ -7,106 +9,90 @@ namespace EF
 {
     internal class EfOperation : IOperateable
     {
+        private T Execute<T>(Func<EfContext, T> func)
+        {
+            T result;
+            using (EfContext context = new EfContext())
+            {
+                result = func(context);
+                context.SaveChanges();
+            }
+            return result;
+        }
+
         public Student SelectOneStudent(long id)
         {
-            Student result;
-            using (EfContext context = new EfContext())
-                result = context.Students.Find(id);
-            return result;
+            return Execute(context => context.Students.Find(id));
         }
 
         public Subject SelectOneSubject(long id)
         {
-            Subject result;
-            using (EfContext context = new EfContext())
-                result = context.Subjects.Find(id);
-            return result;
+            return Execute(context => context.Subjects.Find(id));
         }
 
         public Mark SelectOneMark(long id)
         {
-            Mark result;
-            using (EfContext context = new EfContext())
-                result = context.Marks.Find(id);
-            return result;
+            return Execute(context => context.Marks.Find(id));
         }
 
         public IEnumerable<Student> SelectStudents()
         {
-            IEnumerable<Student> result;
-            using (EfContext context = new EfContext())
-                result = context.Students;
-            return result;
+            return Execute(context => context.Students.ToList());
         }
 
         public IEnumerable<Subject> SelectSubjects()
         {
-            IEnumerable<Subject> result;
-            using (EfContext context = new EfContext())
-                result = context.Subjects;
-            return result;
+            return Execute(context => context.Subjects.ToList());
         }
 
         public IEnumerable<Mark> SelectMarks()
         {
-            IEnumerable<Mark> result;
-            using (EfContext context = new EfContext())
-                result = context.Marks;
-            return result;
+            return Execute(context => context.Marks.ToList());
         }
 
         public void InsertStudent(Student student)
         {
-            using (EfContext context = new EfContext())
-                context.Students.Add(new EfStudent(student));
+            Execute(context => context.Students.Add(new EfStudent(student)));
         }
 
         public void InsertSubject(Subject subject)
         {
-            using (EfContext context = new EfContext())
-                context.Subjects.Add(new EfSubject(subject));
+            Execute(context => context.Subjects.Add(new EfSubject(subject)));
         }
 
         public void InsertMark(Mark mark)
         {
-            using (EfContext context = new EfContext())
-                context.Marks.Add(new EfMark(mark));
+            Execute(context => context.Marks.Add(new EfMark(mark)));
         }
 
         public void UpdateStudent(Student student)
         {
-            using (EfContext context = new EfContext())
-                context.Students.Update(new EfStudent(student));
+            Execute(context => context.Students.Update(new EfStudent(student)));
         }
 
         public void UpdateSubject(Subject subject)
         {
-            using (EfContext context = new EfContext())
-                context.Subjects.Update(new EfSubject(subject));
+            Execute(context => context.Subjects.Update(new EfSubject(subject)));
         }
 
         public void UpdateMark(Mark mark)
         {
-            using (EfContext context = new EfContext())
-                context.Marks.Update(new EfMark(mark));
+            Execute(context => context.Marks.Update(new EfMark(mark)));
         }
 
         public void DeleteStudent(Student student)
         {
-            using (EfContext context = new EfContext())
-                context.Students.Remove(new EfStudent(student));
+            Execute(context => context.Students.Remove(new EfStudent(student)));
         }
 
         public void DeleteSubject(Subject subject)
         {
-            using (EfContext context = new EfContext())
-                context.Subjects.Remove(new EfSubject(subject));
+            Execute(context => context.Subjects.Remove(new EfSubject(subject)));
         }
 
         public void DeleteMark(Mark mark)
         {
-            using (EfContext context = new EfContext())
-                context.Marks.Remove(new EfMark(mark));
+            Execute(context => context.Marks.Remove(new EfMark(mark)));
         }
     }
 }

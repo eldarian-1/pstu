@@ -2,23 +2,36 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "ADO/1.0.0": {
+      "AdoLibrary/1.0.0": {
         "type": "project",
         "dependencies": {
+          "Dialog": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AdoLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AdoLibrary.dll": {}
+        }
+      },
+      "AdoLibraryTest/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "AdoLibrary": "1.0.0",
           "Model": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/ADO.dll": {}
+          "bin/placeholder/AdoLibraryTest.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ADO.dll": {}
+          "bin/placeholder/AdoLibraryTest.dll": {}
         }
       },
       "Controller/1.0.0": {
         "type": "project",
         "dependencies": {
-          "ADO": "1.0.0",
-          "EF": "1.0.0",
+          "AdoLibraryTest": "1.0.0",
+          "EFLibraryTest": "1.0.0",
           "Mock": "1.0.0",
           "Model": "1.0.0"
         },
@@ -29,16 +42,25 @@
           "bin/placeholder/Controller.dll": {}
         }
       },
-      "EF/1.0.0": {
+      "Dialog/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/Dialog.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Dialog.dll": {}
+        }
+      },
+      "EFLibraryTest/1.0.0": {
         "type": "project",
         "dependencies": {
           "Model": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/EF.dll": {}
+          "bin/placeholder/EFLibraryTest.dll": {}
         },
         "runtime": {
-          "bin/placeholder/EF.dll": {}
+          "bin/placeholder/EFLibraryTest.dll": {}
         }
       },
       "Mock/1.0.0": {
@@ -65,20 +87,30 @@
     }
   },
   "libraries": {
-    "ADO/1.0.0": {
+    "AdoLibrary/1.0.0": {
       "type": "project",
-      "path": "../ADO/ADO.csproj",
-      "msbuildProject": "../ADO/ADO.csproj"
+      "path": "../AdoLibrary/AdoLibrary.csproj",
+      "msbuildProject": "../AdoLibrary/AdoLibrary.csproj"
+    },
+    "AdoLibraryTest/1.0.0": {
+      "type": "project",
+      "path": "../AdoLibraryTest/AdoLibraryTest.csproj",
+      "msbuildProject": "../AdoLibraryTest/AdoLibraryTest.csproj"
     },
     "Controller/1.0.0": {
       "type": "project",
       "path": "../Controller/Controller.csproj",
       "msbuildProject": "../Controller/Controller.csproj"
     },
-    "EF/1.0.0": {
+    "Dialog/1.0.0": {
       "type": "project",
-      "path": "../EF/EF.csproj",
-      "msbuildProject": "../EF/EF.csproj"
+      "path": "../Dialog/Dialog.csproj",
+      "msbuildProject": "../Dialog/Dialog.csproj"
+    },
+    "EFLibraryTest/1.0.0": {
+      "type": "project",
+      "path": "../EFLibraryTest/EFLibraryTest.csproj",
+      "msbuildProject": "../EFLibraryTest/EFLibraryTest.csproj"
     },
     "Mock/1.0.0": {
       "type": "project",

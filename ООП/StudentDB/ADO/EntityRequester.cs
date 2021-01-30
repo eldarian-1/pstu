@@ -8,7 +8,6 @@ namespace ADO
     internal abstract class EntityRequester<TEntity>
         where TEntity : AEntity<TEntity>
     {
-
         public EntityRequester() { }
 
         public EntityRequester(long id)

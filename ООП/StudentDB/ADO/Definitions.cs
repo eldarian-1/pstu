@@ -2,9 +2,7 @@
 
 namespace ADO
 {
-    internal delegate TEntity ReadEntity<TEntity>(MySqlDataReader reader);
-
-    internal delegate MySqlCommand WriteEntity<TEntity>(bool isInsert, MySqlConnection connection, TEntity entity);
+    internal delegate void SetQueryData<TEntity>(MySqlCommand command);
 
     internal static class Const
     {
@@ -12,6 +10,10 @@ namespace ADO
         public const string User = "root";
         public const string Password = "19841986";
         public const string Database = "mark_journal";
+
+        public const string SubjectTable = "";
+        public const string StudentTable = "";
+        public const string MarkTable = "";
 
         public const string ConnectionString
             = "Database=" + Database

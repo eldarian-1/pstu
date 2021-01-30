@@ -45,9 +45,11 @@
     <Compile Include="AdoOperation.cs" />
     <Compile Include="AdoProxyOperation.cs" />
     <Compile Include="Definitions.cs" />
-    <Compile Include="EntityReader.cs" />
-    <Compile Include="EntityWriter.cs" />
+    <Compile Include="EntityRequester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Writers\MarkRequester.cs" />
+    <Compile Include="Writers\StudentRequester.cs" />
+    <Compile Include="Writers\SubjectRequester.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entity\Model.csproj">

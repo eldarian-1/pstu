@@ -3,7 +3,7 @@ using Model.Entities;
 
 namespace ConsoleUi
 {
-    class MarkEntry : Mark
+    public class MarkEntry : Mark
     {
         private Mediator _Mediator;
 

@@ -1,5 +1,7 @@
 ﻿using Dialog;
 using System;
+using System.Linq;
+using Model.Entities;
 using System.Collections.Generic;
 
 namespace ConsoleUi.Menus
@@ -18,37 +20,49 @@ namespace ConsoleUi.Menus
         }
 
         public string Menu
-            => "Главное меню\n" +
-            "1. Дисциплины\n" +
-            "2. Студенты\n" +
-            "3. Оценки\n" +
-            "0. Выход\n";
+            => "Оценки\n" +
+            "1. Вывести\n" +
+            "2. Поиск\n" +
+            "3. Обновление\n" +
+            "4. Удаление\n" +
+            "0. Назад\n";
 
         public IList<Action> Tasks => _Tasks;
 
         public IList<Exception> Reactions => _Reactions;
 
-        public void Output()
+        private string MarkToString(MarkEntry mark)
+        {
+            return mark.MarkId + ". " + mark.SubjectDescription + " " + mark.StudentDescription + " " + mark.MarkValue;
+        }
+
+        private void Output()
         {
             string result = "";
             foreach (var item in _Mediator.Marks)
-                result += item.MarkId + ". " + item.SubjectId + " " + item.StudentId + " " + item.MarkValue + "\n";
+                result += MarkToString(item) + "\n";
             MenuManager.Write(result);
         }
 
-        public void Select()
+        private void Select()
         {
-
+            Input.ReadNum(out int id, "Введите id: ");
+            MenuManager.Write(MarkToString(_Mediator.Marks.Where(item => item.MarkId == id).ToList()[0]));
         }
 
-        public void Update()
+        private void Update()
         {
-
+            Input.ReadNum(out int markId, "Введите id оценки: ");
+            Input.ReadNum(out int studentId, "Введите id студента: ");
+            Input.ReadNum(out int subjectId, "Введите id предмета: ");
+            Input.ReadNum(out int value, "Введите оценку: ");
+            _Mediator.UpdateMark(new Mark { MarkId = markId, StudentId = studentId, SubjectId = subjectId, MarkValue = (byte)value });
         }
 
-        public void Delete()
+        private void Delete()
         {
-
+            Input.ReadNum(out int id, "Введите id: ");
+            _Mediator.RemoveMark(_Mediator.Marks.Where(item => item.MarkId == id).ToList()[0]);
         }
     }
 }

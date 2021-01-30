@@ -1,5 +1,7 @@
 ﻿using Dialog;
 using System;
+using System.Linq;
+using Model.Entities;
 using System.Collections.Generic;
 
 namespace ConsoleUi.Menus
@@ -18,34 +20,47 @@ namespace ConsoleUi.Menus
         }
 
         public string Menu
-            => "Главное меню\n" +
-            "1. Дисциплины\n" +
-            "2. Студенты\n" +
-            "3. Оценки\n" +
-            "0. Выход\n";
+            => "Дисциплины\n" +
+            "1. Вывести\n" +
+            "2. Поиск\n" +
+            "3. Обновление\n" +
+            "4. Удаление\n" +
+            "0. Назад\n";
 
         public IList<Action> Tasks => _Tasks;
 
         public IList<Exception> Reactions => _Reactions;
 
-        public void Output()
+        private string SubjectToString(Subject subject)
         {
-
+            return subject.SubjectId + ". " + subject.SubjectName;
         }
 
-        public void Select()
+        private void Output()
         {
-
+            string result = "";
+            foreach (var item in _Mediator.Subjects)
+                result += SubjectToString(item) + "\n";
+            MenuManager.Write(result);
         }
 
-        public void Update()
+        private void Select()
         {
-
+            Input.ReadNum(out int id, "Введите id: ");
+            MenuManager.Write(SubjectToString(_Mediator.Subjects.Where(item => item.SubjectId == id).ToList()[0]));
         }
 
-        public void Delete()
+        private void Update()
         {
+            Input.ReadNum(out int id, "Введите id: ");
+            Input.ReadWord(out string name, "Введите наименование: ");
+            _Mediator.UpdateSubject(new Subject { SubjectId = id, SubjectName = name });
+        }
 
+        private void Delete()
+        {
+            Input.ReadNum(out int id, "Введите id: ");
+            _Mediator.RemoveSubject(_Mediator.Subjects.Where(item => item.SubjectId == id).ToList()[0]);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ConsoleUi
 
         private IEnumerable<Subject> _Subjects;
         private IEnumerable<Student> _Students;
-        private IEnumerable<Mark> _Marks;
+        private IEnumerable<MarkEntry> _Marks;
 
         private void Initialize()
         {
@@ -31,11 +31,13 @@ namespace ConsoleUi
             UpdateCollections();
         }
 
+        public string Key => _Facade.Key;
+
         public IEnumerable<Subject> Subjects => _Subjects;
 
         public IEnumerable<Student> Students => _Students;
 
-        public IEnumerable<Mark> Marks => _Marks;
+        public IEnumerable<MarkEntry> Marks => _Marks;
 
         public void AddSubject(string name)
         {
@@ -102,6 +104,11 @@ namespace ConsoleUi
         {
             _Facade.Marks.Delete(mark);
             UpdateCollections();
+        }
+
+        public IEnumerable<string> GetUseCase()
+        {
+            return _Facade.GetOperations();
         }
 
         public void SetUseCase(string key)

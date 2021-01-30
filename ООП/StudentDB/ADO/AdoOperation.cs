@@ -1,5 +1,5 @@
-﻿using ADO.Writers;
-using Model;
+﻿using Model;
+using ADO.Writers;
 using Model.Entities;
 using System.Collections.Generic;
 
@@ -7,34 +7,34 @@ namespace ADO
 {
     public class AdoOperation : IOperateable
     {
-        public Student SelectOneStudent(int id)
+        public Student SelectOneStudent(long id)
         {
-            return new StudentRequester(null).SelectOne(id);
+            return new StudentRequester(id).SelectOne();
         }
 
-        public Subject SelectOneSubject(int id)
+        public Subject SelectOneSubject(long id)
         {
-            return new SubjectRequester(null).SelectOne(id);
+            return new SubjectRequester(id).SelectOne();
         }
 
-        public Mark SelectOneMark(int id)
+        public Mark SelectOneMark(long id)
         {
-            return new MarkRequester(null).SelectOne(id);
+            return new MarkRequester(id).SelectOne();
         }
 
         public IEnumerable<Student> SelectStudents()
         {
-            return new StudentRequester(null).SelectAll();
+            return new StudentRequester().SelectAll();
         }
 
         public IEnumerable<Subject> SelectSubjects()
         {
-            return new SubjectRequester(null).SelectAll();
+            return new SubjectRequester().SelectAll();
         }
 
         public IEnumerable<Mark> SelectMarks()
         {
-            return new MarkRequester(null).SelectAll();
+            return new MarkRequester().SelectAll();
         }
 
         public void InsertStudent(Student student)

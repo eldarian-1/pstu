@@ -12,7 +12,7 @@ namespace WpfUi
             MarkId = mark.MarkId;
             SubjectId = mark.SubjectId;
             StudentId = mark.StudentId;
-            Value = mark.Value;
+            MarkValue = mark.MarkValue;
             _Mediator = mediator;
         }
 
@@ -20,7 +20,7 @@ namespace WpfUi
         {
             get => _Mediator.Subjects
                 .Where(subject => subject.SubjectId == SubjectId)
-                .Select(subject => subject.SubjectId + ". " + subject.Name)
+                .Select(subject => subject.SubjectId + ". " + subject.SubjectName)
                 .ToArray()[0];
         }
 

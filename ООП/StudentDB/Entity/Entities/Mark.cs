@@ -10,14 +10,14 @@ namespace Model.Entities
 
         public virtual long SubjectId { get; set; }
 
-        public virtual byte Value { get; set; }
+        public virtual byte MarkValue { get; set; }
 
         internal override IEnumerable<Mark> SelectAll(IOperateable operation)
         {
             return operation.SelectMarks();
         }
 
-        internal override Mark SelectOne(IOperateable operation, int id)
+        internal override Mark SelectOne(IOperateable operation, long id)
         {
             return operation.SelectOneMark(id);
         }

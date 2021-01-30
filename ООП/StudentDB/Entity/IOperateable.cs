@@ -5,11 +5,11 @@ namespace Model
 {
     public interface IOperateable
     {
-        Student SelectOneStudent(int id);
+        Student SelectOneStudent(long id);
 
-        Subject SelectOneSubject(int id);
+        Subject SelectOneSubject(long id);
 
-        Mark SelectOneMark(int id);
+        Mark SelectOneMark(long id);
 
         IEnumerable<Student> SelectStudents();
 

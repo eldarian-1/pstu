@@ -86,7 +86,7 @@ namespace WpfUi
 
         public void AddSubject(string name)
         {
-            _Facade.Subjects.Insert(new Subject { Name = name });
+            _Facade.Subjects.Insert(new Subject { SubjectName = name });
             SetData();
         }
 
@@ -106,7 +106,7 @@ namespace WpfUi
             {
                 StudentId = studentId,
                 SubjectId = subjectId,
-                Value = value
+                MarkValue = value
             });
             SetData();
         }

@@ -6,14 +6,14 @@ namespace Model.Entities
     {
         public virtual long SubjectId { get; set; }
 
-        public virtual string Name { get; set; }
+        public virtual string SubjectName { get; set; }
 
         internal override IEnumerable<Subject> SelectAll(IOperateable operation)
         {
             return operation.SelectSubjects();
         }
 
-        internal override Subject SelectOne(IOperateable operation, int id)
+        internal override Subject SelectOne(IOperateable operation, long id)
         {
             return operation.SelectOneSubject(id);
         }

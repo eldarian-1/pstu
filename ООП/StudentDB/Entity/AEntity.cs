@@ -7,7 +7,7 @@ namespace Model
     {
         internal abstract IEnumerable<TEntity> SelectAll(IOperateable operation);
 
-        internal abstract TEntity SelectOne(IOperateable operation, int id);
+        internal abstract TEntity SelectOne(IOperateable operation, long id);
 
         internal abstract void Insert(IOperateable operation);
 

@@ -11,9 +11,9 @@ namespace ADO
         public const string Password = "19841986";
         public const string Database = "mark_journal";
 
-        public const string SubjectTable = "";
-        public const string StudentTable = "";
-        public const string MarkTable = "";
+        public const string SubjectTable = "subjects";
+        public const string StudentTable = "students";
+        public const string MarkTable = "marks";
 
         public const string ConnectionString
             = "Database=" + Database

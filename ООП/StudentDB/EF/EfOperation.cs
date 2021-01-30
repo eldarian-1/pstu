@@ -7,7 +7,7 @@ namespace EF
 {
     internal class EfOperation : IOperateable
     {
-        public Student SelectOneStudent(int id)
+        public Student SelectOneStudent(long id)
         {
             Student result;
             using (EfContext context = new EfContext())
@@ -15,7 +15,7 @@ namespace EF
             return result;
         }
 
-        public Subject SelectOneSubject(int id)
+        public Subject SelectOneSubject(long id)
         {
             Subject result;
             using (EfContext context = new EfContext())
@@ -23,7 +23,7 @@ namespace EF
             return result;
         }
 
-        public Mark SelectOneMark(int id)
+        public Mark SelectOneMark(long id)
         {
             Mark result;
             using (EfContext context = new EfContext())

@@ -20,7 +20,7 @@ namespace WpfUi.Blocks.Forms
         {
             _IsEdit = true;
             _EditId = subject.SubjectId;
-            SubjectName.Text = subject.Name;
+            SubjectName.Text = subject.SubjectName;
         }
 
         public void Clear()
@@ -54,7 +54,7 @@ namespace WpfUi.Blocks.Forms
             Mediator.UpdateSubject(new Subject
             {
                 SubjectId = _EditId,
-                Name = SubjectName.Text});
+                SubjectName = SubjectName.Text});
             Clear();
             SetAddListener();
         }

@@ -5,22 +5,24 @@ namespace ADO.Writers
 {
     class StudentRequester : EntityRequester<Student>
     {
+        public StudentRequester() : base() { }
+
+        public StudentRequester(long id) : base(id) { }
+
         public StudentRequester(Student student) : base(student) { }
 
-        protected override string Table => "";
+        protected override string Table => Const.StudentTable;
 
-        protected override string IdFieldName => "";
+        protected override string IdFieldName => "student_id";
 
-        protected override string InsertQuery => $"INSERT INTO {Const.StudentTable} (first_name, last_name) VALUES (@first_name, @last_name)";
+        protected override string InsertQuery => $"INSERT INTO {Table} (first_name, last_name) VALUES (@first_name, @last_name)";
 
-        protected override string UpdateQuery => "";
-
-        protected override string DeleteQuery => "";
+        protected override string UpdateQuery => $"UPDATE {Table} SET first_name=@first_name, last_name=@last_name WHERE {IdFieldName}={Id}";
 
         protected override Student ReadOne(MySqlDataReader reader)
         {
             Student student = new Student();
-            student.StudentId = reader.GetInt64("student_id");
+            student.StudentId = reader.GetInt64(IdFieldName);
             student.FirstName = reader.GetString("first_name");
             student.LastName = reader.GetString("last_name");
             return student;
@@ -28,12 +30,16 @@ namespace ADO.Writers
 
         protected override void SetId(MySqlCommand command)
         {
-            throw new System.NotImplementedException();
+            MySqlParameter idParam = new MySqlParameter($"@{IdFieldName}", Entity.StudentId);
+            command.Parameters.Add(idParam);
         }
 
         protected override void SetData(MySqlCommand command)
         {
-            throw new System.NotImplementedException();
+            MySqlParameter firstNameParam = new MySqlParameter("@first_name", Entity.FirstName);
+            MySqlParameter lastNameParam = new MySqlParameter("@last_name", Entity.LastName);
+            command.Parameters.Add(firstNameParam);
+            command.Parameters.Add(lastNameParam);
         }
     }
 }

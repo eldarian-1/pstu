@@ -12,7 +12,7 @@ namespace EF.Entities
             MarkId = mark.MarkId;
             StudentId = mark.StudentId;
             SubjectId = mark.SubjectId;
-            Value = mark.Value;
+            MarkValue = mark.MarkValue;
         }
 
         [Key]
@@ -25,7 +25,7 @@ namespace EF.Entities
         [Column("subject_id")]
         public override long SubjectId { get; set; }
 
-        [Column("value")]
-        public override byte Value { get; set; }
+        [Column("mark_value")]
+        public override byte MarkValue { get; set; }
     }
 }

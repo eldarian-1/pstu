@@ -32,7 +32,7 @@ namespace WpfUi.Blocks.Forms
             StudentsBox.SelectedItem = Mediator.Students
                 .Where(student => student.StudentId == mark.StudentId)
                 .ToArray()[0];
-            MarksBox.SelectedIndex = c_Max - mark.Value;
+            MarksBox.SelectedIndex = c_Max - mark.MarkValue;
         }
 
         public void Clear()
@@ -72,7 +72,7 @@ namespace WpfUi.Blocks.Forms
                 MarkId = _EditId,
                 SubjectId = (SubjectsBox.SelectedItem as Subject).SubjectId,
                 StudentId = (StudentsBox.SelectedItem as Student).StudentId,
-                Value = byte.Parse(MarksBox.SelectedItem.ToString())});
+                MarkValue = byte.Parse(MarksBox.SelectedItem.ToString())});
             Clear();
             SetAddListener();
         }

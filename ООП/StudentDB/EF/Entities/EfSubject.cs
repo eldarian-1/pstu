@@ -10,14 +10,14 @@ namespace EF.Entities
         public EfSubject(Subject subject)
         {
             SubjectId = subject.SubjectId;
-            Name = subject.Name;
+            SubjectName = subject.SubjectName;
         }
 
         [Key]
         [Column("subject_id")]
         public override long SubjectId { get; set; }
 
-        [Column("name")]
-        public override string Name { get; set; }
+        [Column("subject_name")]
+        public override string SubjectName { get; set; }
     }
 }

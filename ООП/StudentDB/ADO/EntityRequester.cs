@@ -1,6 +1,6 @@
 ﻿using Model;
-using MySql.Data.MySqlClient;
 using System;
+using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 
 namespace ADO
@@ -8,6 +8,9 @@ namespace ADO
     internal abstract class EntityRequester<TEntity>
         where TEntity : AEntity<TEntity>
     {
+
+        public EntityRequester() { }
+
         public EntityRequester(long id)
         {
             Id = id;
@@ -26,15 +29,15 @@ namespace ADO
 
         protected abstract string IdFieldName { get; }
 
-        protected string SelectAllQuery(long id) => $"SELECT * FROM {Table}";
+        protected string SelectAllQuery => $"SELECT * FROM {Table}";
 
-        protected string SelectOneQuery(long id) => SelectAllQuery(id) + $" WHERE {IdFieldName}={id}";
+        protected string SelectOneQuery => SelectAllQuery + $" WHERE {IdFieldName}={Id}";
 
         protected abstract string InsertQuery { get; }
 
         protected abstract string UpdateQuery { get; }
 
-        protected abstract string DeleteQuery { get; }
+        protected string DeleteQuery => $"DELETE FROM {Table} WHERE {IdFieldName}={Id}";
 
         protected abstract TEntity ReadOne(MySqlDataReader reader);
 
@@ -59,12 +62,12 @@ namespace ADO
             }
         }
 
-        protected T Execute<T>(Func<long, string> query, Func<MySqlDataReader, T> entityReader, long id = -1)
+        protected T Execute<T>(string query, Func<MySqlDataReader, T> entityReader)
         {
             T result = default(T);
             using (MySqlConnection connection = new MySqlConnection(Const.ConnectionString))
             {
-                MySqlCommand command = new MySqlCommand(query(id), connection);
+                MySqlCommand command = new MySqlCommand(query, connection);
                 connection.Open();
                 MySqlDataReader reader = command.ExecuteReader();
                 result = entityReader(reader);
@@ -77,9 +80,9 @@ namespace ADO
             return Execute(SelectAllQuery, ReadAll);
         }
 
-        public TEntity SelectOne(long id)
+        public TEntity SelectOne()
         {
-            return Execute(SelectOneQuery, ReadOne, id);
+            return Execute(SelectOneQuery, ReadOne);
         }
 
         public void Insert()

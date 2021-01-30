@@ -22,7 +22,7 @@ namespace Mock
             _Marks = new ObservableCollection<Mark>();
         }
 
-        public Student SelectOneStudent(int id)
+        public Student SelectOneStudent(long id)
         {
             foreach(var item in _Students)
                 if(item.StudentId == id)
@@ -30,7 +30,7 @@ namespace Mock
             return null;
         }
 
-        public Subject SelectOneSubject(int id)
+        public Subject SelectOneSubject(long id)
         {
             foreach (var item in _Subjects)
                 if (item.SubjectId == id)
@@ -38,7 +38,7 @@ namespace Mock
             return null;
         }
 
-        public Mark SelectOneMark(int id)
+        public Mark SelectOneMark(long id)
         {
             foreach (var item in _Marks)
                 if (item.MarkId == id)

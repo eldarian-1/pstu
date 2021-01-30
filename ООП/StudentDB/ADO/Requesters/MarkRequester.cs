@@ -1,7 +1,7 @@
 ﻿using Model.Entities;
 using MySql.Data.MySqlClient;
 
-namespace ADO.Writers
+namespace ADO.Requesters
 {
     class MarkRequester : EntityRequester<Mark>
     {

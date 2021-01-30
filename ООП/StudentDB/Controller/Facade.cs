@@ -21,6 +21,7 @@ namespace Controller
             _Operations = new Dictionary<string, IOperateable>();
             _Operations.Add("Mock Operation", _Current);
             _Operations.Add("Entity Framework", new EfProxyOperation());
+            _Operations.Add("ADO.NET", new AdoOperation());
         }
 
         public IEnumerable<string> GetOperations()

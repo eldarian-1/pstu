@@ -12,11 +12,11 @@ namespace Model
             _Current = operation;
         }
 
-        public Student SelectOneStudent(long id) => _Current.SelectOneStudent(TODO);
+        public Student SelectOneStudent(long id) => _Current.SelectOneStudent(id);
 
-        public Subject SelectOneSubject(long id) => _Current.SelectOneSubject(TODO);
+        public Subject SelectOneSubject(long id) => _Current.SelectOneSubject(id);
 
-        public Mark SelectOneMark(long id) => _Current.SelectOneMark(TODO);
+        public Mark SelectOneMark(long id) => _Current.SelectOneMark(id);
 
         public IEnumerable<Student> SelectStudents() => _Current.SelectStudents();
 

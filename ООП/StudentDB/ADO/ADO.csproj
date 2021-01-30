@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdoOperation.cs" />
-    <Compile Include="AdoProxyOperation.cs" />
     <Compile Include="Definitions.cs" />
     <Compile Include="EntityRequester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

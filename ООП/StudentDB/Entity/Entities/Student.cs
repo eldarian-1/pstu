@@ -15,9 +15,9 @@ namespace Model.Entities
             return operation.SelectStudents();
         }
 
-        internal override Student SelectOne(IOperateable operation, int id)
+        internal override Student SelectOne(IOperateable operation, long id)
         {
-            return operation.SelectOneStudent(TODO);
+            return operation.SelectOneStudent(id);
         }
 
         internal override void Insert(IOperateable operation)

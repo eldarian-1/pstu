@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EF.Entities
 {
     [Table("subjects")]
-    internal class EfSubject : Subject
+    internal class EfSubject : Subject, IEntity<Subject, EfSubject>
     {
         public EfSubject(Subject subject)
         {
@@ -19,5 +19,13 @@ namespace EF.Entities
 
         [Column("subject_name")]
         public override string SubjectName { get; set; }
+
+        public long Identificator() => SubjectId;
+
+        public EfSubject Update(EfSubject entity)
+        {
+            SubjectName = entity.SubjectName;
+            return this;
+        }
     }
 }

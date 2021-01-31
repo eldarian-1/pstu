@@ -1,13 +1,26 @@
 ﻿using EF.Entities;
-using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
+using System.Data.Entity;
 
 namespace EF
 {
     internal class EfContext : DbContext
     {
-        public EfContext()
+        public EfContext() : base("dataContext")
         {
-            Database.EnsureCreated();
+            Configure();
+        }
+
+        public EfContext(DbConnection connection, bool contextOwnsConnection)
+            : base(connection, contextOwnsConnection)
+        {
+            Configure();
+        }
+
+        private void Configure()
+        {
+            Configuration.ProxyCreationEnabled = true;
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public DbSet<EfSubject> Subjects { get; set; }
@@ -15,10 +28,5 @@ namespace EF
         public DbSet<EfStudent> Students { get; set; }
 
         public DbSet<EfMark> Marks { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseMySql(Const.ConnectionString);
-        }
     }
 }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EF.Entities
 {
     [Table("students")]
-    internal class EfStudent : Student
+    internal class EfStudent : Student, IEntity<Student, EfStudent>
     {
         public EfStudent(Student student)
         {
@@ -23,5 +23,14 @@ namespace EF.Entities
 
         [Column("last_name")]
         public override string LastName { get; set; }
+
+        public long Identificator() => StudentId;
+
+        public EfStudent Update(EfStudent entity)
+        {
+            FirstName = entity.FirstName;
+            LastName = entity.LastName;
+            return this;
+        }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using EF.Entities;
 using System.Linq;
 using Model.Entities;
+using System.Data.Entity;
 using System.Collections.Generic;
 
 namespace EF
@@ -14,8 +15,15 @@ namespace EF
             T result;
             using (EfContext context = new EfContext())
             {
-                result = func(context);
-                context.SaveChanges();
+                using (DbContextTransaction transaction = context.Database.BeginTransaction())
+                {
+                    context.Students.Load();
+                    context.Subjects.Load();
+                    context.Marks.Load();
+                    result = func(context);
+                    context.SaveChanges();
+                    transaction.Commit();
+                }
             }
             return result;
         }
@@ -67,17 +75,17 @@ namespace EF
 
         public void UpdateStudent(Student student)
         {
-            Execute(context => context.Students.Update(new EfStudent(student)));
+            Execute(context => context.Students.Update<Student, EfStudent>(new EfStudent(student)));
         }
 
         public void UpdateSubject(Subject subject)
         {
-            Execute(context => context.Subjects.Update(new EfSubject(subject)));
+            Execute(context => context.Subjects.Update<Subject, EfSubject>(new EfSubject(subject)));
         }
 
         public void UpdateMark(Mark mark)
         {
-            Execute(context => context.Marks.Update(new EfMark(mark)));
+            Execute(context => context.Marks.Update<Mark, EfMark>(new EfMark(mark)));
         }
 
         public void DeleteStudent(Student student)

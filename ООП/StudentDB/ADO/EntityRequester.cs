@@ -40,10 +40,12 @@ namespace ADO
 
         protected abstract TEntity ReadOne(MySqlDataReader reader);
 
-        protected IEnumerable<TEntity> ReadAll(MySqlDataReader reader)
+        protected ICollection<TEntity> ReadAll(MySqlDataReader reader)
         {
+            ICollection<TEntity> collection = new HashSet<TEntity>();
             while (reader.Read())
-                yield return ReadOne(reader);
+                collection.Add(ReadOne(reader));
+            return collection;
         }
 
         protected abstract void SetId(MySqlCommand command);

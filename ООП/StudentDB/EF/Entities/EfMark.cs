@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EF.Entities
 {
     [Table("marks")]
-    internal class EfMark : Mark
+    internal class EfMark : Mark, IEntity<Mark, EfMark>
     {
         public EfMark(Mark mark)
         {
@@ -27,5 +27,15 @@ namespace EF.Entities
 
         [Column("mark_value")]
         public override byte MarkValue { get; set; }
+
+        public long Identificator() => MarkId;
+
+        public EfMark Update(EfMark entity)
+        {
+            StudentId = entity.StudentId;
+            SubjectId = entity.SubjectId;
+            MarkValue = entity.MarkValue;
+            return this;
+        }
     }
 }

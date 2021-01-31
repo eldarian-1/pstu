@@ -1,4 +1,8 @@
-﻿namespace EF
+﻿using EF.Entities;
+using Model;
+using System.Data.Entity;
+
+namespace EF
 {
     internal static class Const
     {
@@ -12,5 +16,12 @@
             + ";user=" + User
             + ";password=" + Password
             + ";database=" + Database + ";";
+
+        public static TChild Update<TParent, TChild>(this DbSet<TChild> entities, TChild item)
+            where TChild : class, IEntity<TParent, TChild>
+            where TParent : AEntity<TParent>
+        {
+            return entities.Find(item.Identificator()).Update(item);
+        }
     }
 }

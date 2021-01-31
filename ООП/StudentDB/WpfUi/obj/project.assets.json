@@ -2,9 +2,23 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "ADOF/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ADOF.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ADOF.dll": {}
+        }
+      },
       "Controller/1.0.0": {
         "type": "project",
         "dependencies": {
+          "ADOF": "1.0.0",
+          "EF6": "1.0.0",
           "Mock": "1.0.0",
           "Model": "1.0.0"
         },
@@ -13,6 +27,18 @@
         },
         "runtime": {
           "bin/placeholder/Controller.dll": {}
+        }
+      },
+      "EF6/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/EF6.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EF6.dll": {}
         }
       },
       "Mock/1.0.0": {
@@ -39,10 +65,20 @@
     }
   },
   "libraries": {
+    "ADOF/1.0.0": {
+      "type": "project",
+      "path": "../ADO/ADOF.csproj",
+      "msbuildProject": "../ADO/ADOF.csproj"
+    },
     "Controller/1.0.0": {
       "type": "project",
       "path": "../Controller/Controller.csproj",
       "msbuildProject": "../Controller/Controller.csproj"
+    },
+    "EF6/1.0.0": {
+      "type": "project",
+      "path": "../EF/EF6.csproj",
+      "msbuildProject": "../EF/EF6.csproj"
     },
     "Mock/1.0.0": {
       "type": "project",

@@ -15,16 +15,17 @@ namespace ConsoleUi.Menus
         public StudentMenu(Mediator mediator)
         {
             _Mediator = mediator;
-            _Tasks = new List<Action>().Append(Output, Select, Update, Delete);
+            _Tasks = new List<Action>().Append(Output, Select, Insert, Update, Delete);
             _Reactions = new List<Exception>();
         }
 
         public string Menu
             => "Студенты\n" +
             "1. Вывести\n" +
-            "2. Поиск\n" +
-            "3. Обновление\n" +
-            "4. Удаление\n" +
+            "2. Поиск по ID\n" +
+            "3. Добавление\n" +
+            "4. Обновление\n" +
+            "5. Удаление\n" +
             "0. Назад\n";
 
         public IList<Action> Tasks => _Tasks;
@@ -48,6 +49,13 @@ namespace ConsoleUi.Menus
         {
             Input.ReadNum(out int id, "Введите id: ");
             MenuManager.Write(StudentToString(_Mediator.Students.Where(item => item.StudentId == id).ToList()[0]));
+        }
+
+        private void Insert()
+        {
+            Input.ReadWord(out string firstName, "Введите имя: ");
+            Input.ReadWord(out string lastName, "Введите фамилию: ");
+            _Mediator.AddStudent(firstName, lastName);
         }
 
         private void Update()

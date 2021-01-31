@@ -57,6 +57,7 @@ namespace ADO
             using (MySqlConnection connection = new MySqlConnection(Const.ConnectionString))
             {
                 MySqlCommand command = new MySqlCommand(query, connection);
+                connection.Open();
                 foreach (var requester in requesters)
                     requester(command);
                 command.ExecuteNonQuery();

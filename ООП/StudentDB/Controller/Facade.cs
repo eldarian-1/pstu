@@ -35,6 +35,7 @@ namespace Controller
 
         public void SetOperation(string key)
         {
+            _Key = key;
             _Current = _Operations[key];
             _Accessor.Operation = _Current;
         }

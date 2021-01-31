@@ -15,16 +15,17 @@ namespace ConsoleUi.Menus
         public MarkMenu(Mediator mediator)
         {
             _Mediator = mediator;
-            _Tasks = new List<Action>().Append(Output, Select, Update, Delete);
+            _Tasks = new List<Action>().Append(Output, Select, Insert, Update, Delete);
             _Reactions = new List<Exception>();
         }
 
         public string Menu
             => "Оценки\n" +
             "1. Вывести\n" +
-            "2. Поиск\n" +
-            "3. Обновление\n" +
-            "4. Удаление\n" +
+            "2. Поиск по ID\n" +
+            "3. Добавление\n" +
+            "4. Обновление\n" +
+            "5. Удаление\n" +
             "0. Назад\n";
 
         public IList<Action> Tasks => _Tasks;
@@ -48,6 +49,14 @@ namespace ConsoleUi.Menus
         {
             Input.ReadNum(out int id, "Введите id: ");
             MenuManager.Write(MarkToString(_Mediator.Marks.Where(item => item.MarkId == id).ToList()[0]));
+        }
+
+        private void Insert()
+        {
+            Input.ReadNum(out int studentId, "Введите id студента: ");
+            Input.ReadNum(out int subjectId, "Введите id дисциплины: ");
+            Input.ReadNum(out int value, "Введите оценку: ");
+            _Mediator.AddMark(studentId, subjectId, (byte)value);
         }
 
         private void Update()

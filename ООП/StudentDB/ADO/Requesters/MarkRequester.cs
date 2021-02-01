@@ -28,7 +28,7 @@ namespace ADO.Requesters
             mark.MarkId = reader.GetInt64(IdFieldName);
             mark.SubjectId = reader.GetInt64("subject_id");
             mark.StudentId = reader.GetInt64("student_id");
-            mark.MarkValue = reader.GetByte("mark_value");
+            mark.MarkValue = (byte)reader.GetInt64("mark_value");
             return mark;
         }
 

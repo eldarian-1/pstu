@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dialog", "Dialog\Dialog.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUi", "ConsoleUi\ConsoleUi.csproj", "{90C17561-EFE7-415E-922F-FAB1F024D798}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI", "GUI", "{D50A1799-B34B-4FB9-ACD5-9E680C778959}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{D50A1799-B34B-4FB9-ACD5-9E680C778959}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

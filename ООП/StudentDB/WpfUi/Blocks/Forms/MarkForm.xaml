@@ -27,7 +27,7 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Path=SubjectId}" />
                             <TextBlock Text=". " />
-                            <TextBlock Text="{Binding Path=Name}" />
+                            <TextBlock Text="{Binding Path=SubjectName}" />
                         </StackPanel>
                     </ComboBoxItem>
                 </DataTemplate>

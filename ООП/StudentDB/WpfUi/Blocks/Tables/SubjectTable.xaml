@@ -11,7 +11,7 @@
         <ListView.View>
             <GridView>
                 <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectId}">ID</GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Наименование</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Path=SubjectName}">Наименование</GridViewColumn>
             </GridView>
         </ListView.View>
         
@@ -19,7 +19,7 @@
             <DataTemplate>
                 <StackPanel Margin="5">
                     <TextBlock FontSize="16" Text="{Binding Path=SubjectId}" HorizontalAlignment="Center" />
-                    <TextBlock FontSize="16" Text="{Binding Path=Name}" HorizontalAlignment="Center" />
+                    <TextBlock FontSize="16" Text="{Binding Path=SubjectName}" HorizontalAlignment="Center" />
                 </StackPanel>
             </DataTemplate>
         </ListView.ItemTemplate>

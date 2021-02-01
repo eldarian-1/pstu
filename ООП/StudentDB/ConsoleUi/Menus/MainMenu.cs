@@ -51,9 +51,9 @@ namespace ConsoleUi.Menus
             string text = "";
             var providers = _Mediator.GetUseCase();
             foreach (var item in providers)
-                text += i++ + ". " + item + "\n";
-            Input.ReadNum(out int index, text + "Введите индекс провайдера: ");
-            _Mediator.SetUseCase(providers.ToList()[index]);
+                text += ++i + ". " + item + "\n";
+            Input.ReadNum(out int index, text + "Введите номер провайдера: ");
+            _Mediator.SetUseCase(providers.ToList()[--index]);
         }
     }
 }

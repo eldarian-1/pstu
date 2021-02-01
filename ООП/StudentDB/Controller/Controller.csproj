@@ -45,13 +45,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ADO\ADOF.csproj">
+    <ProjectReference Include="..\ADO\ADO.csproj">
       <Project>{a45f5f18-73c2-4e83-bb37-2b9c5cd59643}</Project>
-      <Name>ADOF</Name>
+      <Name>ADO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EF\EF6.csproj">
+    <ProjectReference Include="..\EF\EF.csproj">
       <Project>{83ec71f6-1db3-4135-ad0b-50e9ff7b0d5a}</Project>
-      <Name>EF6</Name>
+      <Name>EF</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entity\Model.csproj">
       <Project>{30ce188c-221d-4b4d-845a-ce7f98b576e2}</Project>

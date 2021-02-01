@@ -55,7 +55,7 @@ namespace Dialog
                 {
                     GetTask()();
                 }
-                catch(ApplicationException)
+                catch(ApplicationException exception)
                 {
                     if(s_Level == 1)
                         Write(c_EndProgram);

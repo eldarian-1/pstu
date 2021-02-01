@@ -90,17 +90,17 @@ namespace EF
 
         public void DeleteStudent(Student student)
         {
-            Execute(context => context.Students.Remove(new EfStudent(student)));
+            Execute(context => context.Students.Remove(context.Students.Single(item => item.StudentId == student.StudentId)));
         }
 
         public void DeleteSubject(Subject subject)
         {
-            Execute(context => context.Subjects.Remove(new EfSubject(subject)));
+            Execute(context => context.Subjects.Remove(context.Subjects.Single(item => item.SubjectId == subject.SubjectId)));
         }
 
         public void DeleteMark(Mark mark)
         {
-            Execute(context => context.Marks.Remove(new EfMark(mark)));
+            Execute(context => context.Marks.Remove(context.Marks.Single(item => item.MarkId == mark.MarkId)));
         }
     }
 }

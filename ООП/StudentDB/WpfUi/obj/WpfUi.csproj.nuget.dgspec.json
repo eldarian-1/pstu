@@ -4,11 +4,11 @@
     "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\WpfUi\\WpfUi.csproj": {}
   },
   "projects": {
-    "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\ADO\\ADOF.csproj": {
+    "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\ADO\\ADO.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\ADO\\ADOF.csproj",
-        "projectName": "ADOF",
-        "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\ADO\\ADOF.csproj",
+        "projectUniqueName": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\ADO\\ADO.csproj",
+        "projectName": "ADO",
+        "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\ADO\\ADO.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {
@@ -31,11 +31,11 @@
         "frameworks": {
           "net472": {
             "projectReferences": {
-              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\ADO\\ADOF.csproj": {
-                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\ADO\\ADOF.csproj"
+              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\ADO\\ADO.csproj": {
+                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\ADO\\ADO.csproj"
               },
-              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF6.csproj": {
-                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF6.csproj"
+              "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF.csproj": {
+                "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF.csproj"
               },
               "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj": {
                 "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
@@ -51,11 +51,11 @@
         "net472": {}
       }
     },
-    "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF6.csproj": {
+    "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF6.csproj",
-        "projectName": "EF6",
-        "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF6.csproj",
+        "projectUniqueName": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF.csproj",
+        "projectName": "EF",
+        "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\EF\\EF.csproj",
         "frameworks": {
           "net472": {
             "projectReferences": {

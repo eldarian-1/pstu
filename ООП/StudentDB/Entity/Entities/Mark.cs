@@ -41,10 +41,5 @@ namespace Model.Entities
         {
             return obj is Mark && (obj as Mark).MarkId == MarkId;
         }
-
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
     }
 }

@@ -9,7 +9,10 @@ namespace ADO.Requesters
 
         public MarkRequester(long id) : base(id) { }
 
-        public MarkRequester(Mark mark) : base(mark) { }
+        public MarkRequester(Mark mark) : base(mark)
+        {
+            Id = mark.MarkId;
+        }
 
         protected override string Table => Const.MarkTable;
 

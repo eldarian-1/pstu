@@ -7,6 +7,8 @@ namespace EF.Entities
     [Table("students")]
     internal class EfStudent : Student, IEntity<Student, EfStudent>
     {
+        public EfStudent() : base() { }
+
         public EfStudent(Student student)
         {
             StudentId = student.StudentId;

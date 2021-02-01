@@ -7,6 +7,8 @@ namespace EF.Entities
     [Table("marks")]
     internal class EfMark : Mark, IEntity<Mark, EfMark>
     {
+        public EfMark() : base() { }
+
         public EfMark(Mark mark)
         {
             MarkId = mark.MarkId;

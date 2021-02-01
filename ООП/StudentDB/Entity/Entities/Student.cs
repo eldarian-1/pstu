@@ -34,5 +34,10 @@ namespace Model.Entities
         {
             operation.DeleteStudent(this);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Student && (obj as Student).StudentId == StudentId;
+        }
     }
 }

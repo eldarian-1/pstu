@@ -9,7 +9,10 @@ namespace ADO.Requesters
 
         public SubjectRequester(long id) : base(id) { }
 
-        public SubjectRequester(Subject subject) : base(subject) { }
+        public SubjectRequester(Subject subject) : base(subject)
+        {
+            Id = subject.SubjectId;
+        }
 
         protected override string Table => Const.SubjectTable;
 

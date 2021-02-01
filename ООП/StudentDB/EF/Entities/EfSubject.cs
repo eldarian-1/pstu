@@ -7,6 +7,8 @@ namespace EF.Entities
     [Table("subjects")]
     internal class EfSubject : Subject, IEntity<Subject, EfSubject>
     {
+        public EfSubject() : base() { }
+
         public EfSubject(Subject subject)
         {
             SubjectId = subject.SubjectId;

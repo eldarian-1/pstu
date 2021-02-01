@@ -20,7 +20,7 @@ namespace ADO
             Entity = entity;
         }
 
-        protected long Id { get; }
+        protected long Id { get; set; }
 
         protected TEntity Entity { get; }
 

@@ -17,13 +17,13 @@ namespace Controller
         public Facade()
         {
             _Accessor = new DataAccessor();
-            _Key = "Mock Operation";
+            _Key = "Mock Object";
             _Current = new MockOperation();
             _Accessor.Operation = _Current;
             _Operations = new Dictionary<string, IOperateable>();
             _Operations.Add(_Key, _Current);
+            _Operations.Add("Clean ADO.NET", new AdoOperation());
             _Operations.Add("Entity Framework", new EfProxyOperation());
-            _Operations.Add("ADO.NET", new AdoOperation());
         }
 
         public string Key => _Key;

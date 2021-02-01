@@ -32,5 +32,10 @@ namespace Model.Entities
         {
             operatorr.DeleteSubject(this);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Subject && (obj as Subject).SubjectId == SubjectId;
+        }
     }
 }

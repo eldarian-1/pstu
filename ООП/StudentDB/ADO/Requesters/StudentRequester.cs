@@ -9,7 +9,10 @@ namespace ADO.Requesters
 
         public StudentRequester(long id) : base(id) { }
 
-        public StudentRequester(Student student) : base(student) { }
+        public StudentRequester(Student student) : base(student)
+        {
+            Id = student.StudentId;
+        }
 
         protected override string Table => Const.StudentTable;
 

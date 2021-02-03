@@ -1,1 +1,3 @@
-./ООП/StudentDB/packages
+./ООП/StudentDB/Debug/*
+./ООП/StudentDB/Release/*
+./ООП/StudentDB/packages/*

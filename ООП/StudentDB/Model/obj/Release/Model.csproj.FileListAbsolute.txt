@@ -1,4 +1,0 @@
-D:\Lester\Политех\Master\ООП\StudentDB\Entity\obj\Release\Model.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\ООП\StudentDB\Entity\obj\Release\Model.csproj.CoreCompileInputs.cache
-D:\Lester\Политех\Master\ООП\StudentDB\Entity\obj\Release\Entity.dll
-D:\Lester\Политех\Master\ООП\StudentDB\Entity\obj\Release\Entity.pdb

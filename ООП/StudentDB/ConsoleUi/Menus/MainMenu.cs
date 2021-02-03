@@ -1,5 +1,6 @@
 ﻿using Dialog;
 using System;
+using Controller;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -49,7 +50,7 @@ namespace ConsoleUi.Menus
         {
             int i = 0;
             string text = "";
-            var providers = _Mediator.GetUseCase();
+            var providers = _Mediator.GetUseCases();
             foreach (var item in providers)
                 text += ++i + ". " + item + "\n";
             Input.ReadNum(out int index, text + "Введите номер провайдера: ", j => 0 < j && j <= i);

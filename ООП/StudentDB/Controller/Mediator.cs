@@ -1,9 +1,8 @@
-﻿using Controller;
-using System.Linq;
+﻿using System.Linq;
 using Model.Entities;
 using System.Collections.Generic;
 
-namespace ConsoleUi
+namespace Controller
 {
     public class Mediator : IMediator
     {
@@ -13,12 +12,7 @@ namespace ConsoleUi
         private IEnumerable<Student> _Students;
         private IEnumerable<MarkEntry> _Marks;
 
-        private void Initialize()
-        {
-            _Facade = new Facade();
-        }
-
-        private void UpdateCollections()
+        protected virtual void UpdateCollections()
         {
             _Subjects = _Facade.Subjects.SelectAll();
             _Students = _Facade.Students.SelectAll();
@@ -27,11 +21,13 @@ namespace ConsoleUi
 
         public Mediator()
         {
-            Initialize();
-            UpdateCollections();
+            _Facade = new Facade();
         }
 
-        public string Key => _Facade.Key;
+        public string Key
+        {
+            get => _Facade.Key;
+        }
 
         public IEnumerable<Subject> Subjects
         {
@@ -93,7 +89,7 @@ namespace ConsoleUi
             UpdateCollections();
         }
 
-        public void RemoveSubject(Subject subject)
+        public virtual void RemoveSubject(Subject subject)
         {
             _Facade.Subjects.Delete(subject);
             Marks.Where(mark => mark.SubjectId == subject.SubjectId)
@@ -101,7 +97,7 @@ namespace ConsoleUi
             UpdateCollections();
         }
 
-        public void RemoveStudent(Student student)
+        public virtual void RemoveStudent(Student student)
         {
             _Facade.Students.Delete(student);
             Marks.Where(mark => mark.StudentId == student.StudentId)
@@ -109,13 +105,13 @@ namespace ConsoleUi
             UpdateCollections();
         }
 
-        public void RemoveMark(Mark mark)
+        public virtual void RemoveMark(Mark mark)
         {
             _Facade.Marks.Delete(mark);
             UpdateCollections();
         }
 
-        public IEnumerable<string> GetUseCase()
+        public IEnumerable<string> GetUseCases()
         {
             return _Facade.GetOperations();
         }

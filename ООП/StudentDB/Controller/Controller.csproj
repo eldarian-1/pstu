@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mediator.cs" />
     <Compile Include="Facade.cs" />
     <Compile Include="IMediator.cs" />
     <Compile Include="MarkEntry.cs" />

@@ -1,20 +1,14 @@
 ﻿using Controller;
-using System.Linq;
 using WpfUi.Blocks;
 using Model.Entities;
 using WpfUi.Blocks.Forms;
 using WpfUi.Blocks.Tables;
-using System.Collections.Generic;
 
 namespace WpfUi
 {
-    public class Mediator : IMediator
+    public class Mediator : Controller.Mediator
     {
         private Facade _Facade;
-
-        private IEnumerable<Subject> _Subjects;
-        private IEnumerable<Student> _Students;
-        private IEnumerable<MarkEntry> _Marks;
 
         private SubjectTable _SubjectTable;
         private StudentTable _StudentTable;
@@ -47,16 +41,9 @@ namespace WpfUi
             _Setting.Mediator = this;
         }
 
-        private void UpdateCollections()
+        protected override void UpdateCollections()
         {
-            _Subjects = _Facade.Subjects.SelectAll();
-            _Students = _Facade.Students.SelectAll();
-            _Marks = new MarkJournal(_Facade.Marks.SelectAll(), this);
-        }
-
-        private void SetData()
-        {
-            UpdateCollections();
+            base.UpdateCollections();
             _SubjectTable.SubjectList.ItemsSource = Subjects;
             _StudentTable.StudentList.ItemsSource = Students;
             _MarkTable.MarkList.ItemsSource = Marks;
@@ -65,26 +52,11 @@ namespace WpfUi
             _Setting.UseCasesBox.ItemsSource = _Facade.GetOperations();
         }
 
-        public Mediator(MainWindow mainWindow)
+        public Mediator(MainWindow mainWindow) : base()
         {
             Initialize(mainWindow);
             SetMediator();
-            SetData();
-        }
-
-        public IEnumerable<Subject> Subjects
-        {
-            get => _Subjects;
-        }
-
-        public IEnumerable<Student> Students
-        {
-            get => _Students;
-        }
-
-        public IEnumerable<MarkEntry> Marks
-        {
-            get => _Marks;
+            UpdateCollections();
         }
 
         public Subject SelectedSubject => _SubjectTable.SelectedSubject;
@@ -93,70 +65,25 @@ namespace WpfUi
 
         public Mark MarkSubject => _MarkTable.SelectedMark;
 
-        public void AddSubject(string name)
-        {
-            _Facade.Subjects.Insert(new Subject { SubjectName = name });
-            SetData();
-        }
-
-        public void AddStudent(string firstName, string lastName)
-        {
-            _Facade.Students.Insert(new Student
-            {
-                FirstName = firstName,
-                LastName = lastName
-            });
-            SetData();
-        }
-
-        public void AddMark(long studentId, long subjectId, byte value)
-        {
-            _Facade.Marks.Insert(new Mark
-            {
-                StudentId = studentId,
-                SubjectId = subjectId,
-                MarkValue = value
-            });
-            SetData();
-        }
-
         public void EditSubject(Subject subject)
         {
             _SubjectForm.SetEditItem(subject);
             _SubjectForm.SetEditListener();
-            SetData();
+            UpdateCollections();
         }
 
         public void EditStudent(Student student)
         {
             _StudentForm.SetEditItem(student);
             _StudentForm.SetEditListener();
-            SetData();
+            UpdateCollections();
         }
 
         public void EditMark(Mark mark)
         {
             _MarkForm.SetEditItem(mark);
             _MarkForm.SetEditListener();
-            SetData();
-        }
-
-        public void UpdateSubject(Subject subject)
-        {
-            _Facade.Subjects.Update(subject);
-            SetData();
-        }
-
-        public void UpdateStudent(Student student)
-        {
-            _Facade.Students.Update(student);
-            SetData();
-        }
-
-        public void UpdateMark(Mark mark)
-        {
-            _Facade.Marks.Update(mark);
-            SetData();
+            UpdateCollections();
         }
 
         private void ClearAllForm()
@@ -166,35 +93,22 @@ namespace WpfUi
             _MarkForm.Clear();
         }
 
-        public void RemoveSubject(Subject subject)
+        public override void RemoveSubject(Subject subject)
         {
-            _Facade.Subjects.Delete(subject);
-            Marks.Where(mark => mark.SubjectId == subject.SubjectId)
-                .ToList().ForEach(mark => RemoveMark(mark));
+            base.RemoveSubject(subject);
             ClearAllForm();
-            SetData();
         }
 
-        public void RemoveStudent(Student student)
+        public override void RemoveStudent(Student student)
         {
-            _Facade.Students.Delete(student);
-            Marks.Where(mark => mark.StudentId == student.StudentId)
-                .ToList().ForEach(mark => RemoveMark(mark));
+            base.RemoveStudent(student);
             ClearAllForm();
-            SetData();
         }
 
-        public void RemoveMark(Mark mark)
+        public override void RemoveMark(Mark mark)
         {
-            _Facade.Marks.Delete(mark);
+            base.RemoveMark(mark);
             ClearAllForm();
-            SetData();
-        }
-
-        public void SetUseCase(string key)
-        {
-            _Facade.SetOperation(key);
-            SetData();
         }
     }
 }

@@ -86,7 +86,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entity\Model.csproj">
+    <ProjectReference Include="..\Model\Model.csproj">
       <Project>{30ce188c-221d-4b4d-845a-ce7f98b576e2}</Project>
       <Name>Model</Name>
     </ProjectReference>

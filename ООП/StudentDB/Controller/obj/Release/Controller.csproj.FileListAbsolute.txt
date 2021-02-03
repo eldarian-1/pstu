@@ -1,8 +1,0 @@
-D:\Lester\Политех\Master\ООП\StudentDB\Release\Controller.dll.config
-D:\Lester\Политех\Master\ООП\StudentDB\Release\Controller.dll
-D:\Lester\Политех\Master\ООП\StudentDB\Release\Controller.pdb
-D:\Lester\Политех\Master\ООП\StudentDB\Controller\obj\Release\Controller.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\ООП\StudentDB\Controller\obj\Release\Controller.csproj.CoreCompileInputs.cache
-D:\Lester\Политех\Master\ООП\StudentDB\Controller\obj\Release\Controller.csproj.CopyComplete
-D:\Lester\Политех\Master\ООП\StudentDB\Controller\obj\Release\Controller.dll
-D:\Lester\Политех\Master\ООП\StudentDB\Controller\obj\Release\Controller.pdb

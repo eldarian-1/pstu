@@ -32,23 +32,18 @@ namespace ConsoleUi.Menus
 
         public IList<Exception> Reactions => _Reactions;
 
-        private string SubjectToString(Subject subject)
-        {
-            return subject.SubjectId + ". " + subject.SubjectName;
-        }
-
         private void Output()
         {
             string result = "";
             foreach (var item in _Mediator.Subjects)
-                result += SubjectToString(item) + "\n";
+                result += item + "\n";
             MenuManager.Write(result);
         }
 
         private void Select()
         {
             Input.ReadNum(out int id, "Введите id: ");
-            MenuManager.Write(SubjectToString(_Mediator.Subjects.Where(item => item.SubjectId == id).ToList()[0]));
+            MenuManager.Write(_Mediator.Subjects.Where(item => item.SubjectId == id).ToList()[0].ToString());
         }
 
         private void Insert()

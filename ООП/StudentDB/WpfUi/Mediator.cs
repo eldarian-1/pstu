@@ -8,13 +8,13 @@ using System.Collections.Generic;
 
 namespace WpfUi
 {
-    public class Mediator
+    public class Mediator : IMediator
     {
         private Facade _Facade;
 
         private IEnumerable<Subject> _Subjects;
         private IEnumerable<Student> _Students;
-        private IEnumerable<Mark> _Marks;
+        private IEnumerable<MarkEntry> _Marks;
 
         private SubjectTable _SubjectTable;
         private StudentTable _StudentTable;
@@ -72,11 +72,20 @@ namespace WpfUi
             SetData();
         }
 
-        public IEnumerable<Subject> Subjects => _Subjects;
+        public IEnumerable<Subject> Subjects
+        {
+            get => _Subjects;
+        }
 
-        public IEnumerable<Student> Students => _Students;
+        public IEnumerable<Student> Students
+        {
+            get => _Students;
+        }
 
-        public IEnumerable<Mark> Marks => _Marks;
+        public IEnumerable<MarkEntry> Marks
+        {
+            get => _Marks;
+        }
 
         public Subject SelectedSubject => _SubjectTable.SelectedSubject;
 

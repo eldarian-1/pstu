@@ -8,9 +8,14 @@ namespace ConsoleUi.Menus
 {
     class MarkMenu : IMenu
     {
+        private const int c_Min = 2;
+        private const int c_Max = 5;
+
         private Mediator _Mediator;
         private IList<Action> _Tasks;
         private IList<Exception> _Reactions;
+
+        private Func<int, bool> _Validate = mark => c_Min <= mark && mark <= c_Max;
 
         public MarkMenu(Mediator mediator)
         {
@@ -32,30 +37,31 @@ namespace ConsoleUi.Menus
 
         public IList<Exception> Reactions => _Reactions;
 
-        private string MarkToString(MarkEntry mark)
-        {
-            return mark.MarkId + ". " + mark.SubjectDescription + " " + mark.StudentDescription + " " + mark.MarkValue;
-        }
-
         private void Output()
         {
             string result = "";
             foreach (var item in _Mediator.Marks)
-                result += MarkToString(item) + "\n";
+                result += item + "\n";
             MenuManager.Write(result);
         }
 
         private void Select()
         {
             Input.ReadNum(out int id, "Введите id: ");
-            MenuManager.Write(MarkToString(_Mediator.Marks.Where(item => item.MarkId == id).ToList()[0]));
+            MenuManager.Write(_Mediator.Marks.Where(item => item.MarkId == id).ToList()[0].ToString());
         }
 
         private void Insert()
         {
-            Input.ReadNum(out int studentId, "Введите id студента: ");
-            Input.ReadNum(out int subjectId, "Введите id дисциплины: ");
-            Input.ReadNum(out int value, "Введите оценку: ");
+            string text = "";
+            foreach (var item in _Mediator.Students)
+                text += item + "\n";
+            Input.ReadNum(out int studentId, text + "Введите id студента: ");
+            text = "";
+            foreach (var item in _Mediator.Subjects)
+                text += item + "\n";
+            Input.ReadNum(out int subjectId, text + "Введите id дисциплины: ");
+            Input.ReadNum(out int value, "Введите оценку: ", _Validate);
             _Mediator.AddMark(studentId, subjectId, (byte)value);
         }
 
@@ -64,7 +70,7 @@ namespace ConsoleUi.Menus
             Input.ReadNum(out int markId, "Введите id оценки: ");
             Input.ReadNum(out int studentId, "Введите id студента: ");
             Input.ReadNum(out int subjectId, "Введите id предмета: ");
-            Input.ReadNum(out int value, "Введите оценку: ");
+            Input.ReadNum(out int value, "Введите оценку: ", _Validate);
             _Mediator.UpdateMark(new Mark { MarkId = markId, StudentId = studentId, SubjectId = subjectId, MarkValue = (byte)value });
         }
 

@@ -23,13 +23,7 @@
         <ComboBox Grid.Row="0" Grid.Column="1" x:Name="SubjectsBox">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <ComboBoxItem>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Path=SubjectId}" />
-                            <TextBlock Text=". " />
-                            <TextBlock Text="{Binding Path=SubjectName}" />
-                        </StackPanel>
-                    </ComboBoxItem>
+                    <ComboBoxItem Content="{Binding}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
@@ -38,15 +32,7 @@
         <ComboBox Grid.Row="1" Grid.Column="1" x:Name="StudentsBox">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <ComboBoxItem>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Path=StudentId}" />
-                            <TextBlock Text=". " />
-                            <TextBlock Text="{Binding Path=FirstName}" />
-                            <TextBlock Text=" " />
-                            <TextBlock Text="{Binding Path=LastName}" />
-                        </StackPanel>
-                    </ComboBoxItem>
+                    <ComboBoxItem Content="{Binding}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>

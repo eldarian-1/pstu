@@ -1,7 +1,0 @@
-D:\Lester\Политех\Master\ООП\StudentDB\Release\ADO.dll
-D:\Lester\Политех\Master\ООП\StudentDB\Release\ADO.pdb
-D:\Lester\Политех\Master\ООП\StudentDB\ADO\obj\Release\ADO.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\ООП\StudentDB\ADO\obj\Release\ADO.csproj.CoreCompileInputs.cache
-D:\Lester\Политех\Master\ООП\StudentDB\ADO\obj\Release\ADO.csproj.CopyComplete
-D:\Lester\Политех\Master\ООП\StudentDB\ADO\obj\Release\ADO.dll
-D:\Lester\Политех\Master\ООП\StudentDB\ADO\obj\Release\ADO.pdb

@@ -68,7 +68,7 @@ namespace WpfUi.Blocks.Tables {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WpfUi;component/blocks/tables/studenttable.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WpfUi;V1.0.0.0;component/blocks/tables/studenttable.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Blocks\Tables\StudentTable.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

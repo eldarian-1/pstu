@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ConsoleUi
 {
-    public class Mediator
+    public class Mediator : IMediator
     {
         private Facade _Facade;
 
@@ -33,11 +33,20 @@ namespace ConsoleUi
 
         public string Key => _Facade.Key;
 
-        public IEnumerable<Subject> Subjects => _Subjects;
+        public IEnumerable<Subject> Subjects
+        {
+            get => _Subjects;
+        }
 
-        public IEnumerable<Student> Students => _Students;
+        public IEnumerable<Student> Students
+        {
+            get => _Students;
+        }
 
-        public IEnumerable<MarkEntry> Marks => _Marks;
+        public IEnumerable<MarkEntry> Marks
+        {
+            get => _Marks;
+        }
 
         public void AddSubject(string name)
         {

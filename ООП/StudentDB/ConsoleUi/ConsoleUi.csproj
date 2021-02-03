@@ -63,8 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Menus\MainMenu.cs" />
-    <Compile Include="MarkEntry.cs" />
-    <Compile Include="MarkJournal.cs" />
     <Compile Include="Mediator.cs" />
     <Compile Include="Menus\MarkMenu.cs" />
     <Compile Include="Menus\StudentMenu.cs" />
@@ -88,7 +86,7 @@
       <Project>{9535dd5d-2f34-4a6e-a71d-364871d96118}</Project>
       <Name>Dialog</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Entity\Model.csproj">
+    <ProjectReference Include="..\Model\Model.csproj">
       <Project>{30ce188c-221d-4b4d-845a-ce7f98b576e2}</Project>
       <Name>Model</Name>
     </ProjectReference>

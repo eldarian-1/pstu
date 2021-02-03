@@ -111,7 +111,7 @@ namespace WpfUi.Blocks {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WpfUi;V1.0.0.0;component/blocks/mainwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WpfUi;component/blocks/mainwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Blocks\MainWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

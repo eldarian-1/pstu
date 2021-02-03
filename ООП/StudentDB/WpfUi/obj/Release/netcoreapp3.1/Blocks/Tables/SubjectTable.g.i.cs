@@ -68,7 +68,7 @@ namespace WpfUi.Blocks.Tables {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WpfUi;component/blocks/tables/subjecttable.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WpfUi;V1.0.0.0;component/blocks/tables/subjecttable.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Blocks\Tables\SubjectTable.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

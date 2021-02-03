@@ -6196,8 +6196,8 @@
     },
     "Model/1.0.0": {
       "type": "project",
-      "path": "../Entity/Model.csproj",
-      "msbuildProject": "../Entity/Model.csproj"
+      "path": "../Model/Model.csproj",
+      "msbuildProject": "../Model/Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6239,8 +6239,8 @@
             "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Controller\\Controller.csproj": {
               "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Controller\\Controller.csproj"
             },
-            "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj": {
-              "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Entity\\Model.csproj"
+            "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Model\\Model.csproj": {
+              "projectPath": "D:\\Lester\\Политех\\Master\\ООП\\StudentDB\\Model\\Model.csproj"
             }
           }
         }

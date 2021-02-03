@@ -1,8 +1,0 @@
-D:\Lester\Политех\Master\ООП\StudentDB\Release\EF.dll.config
-D:\Lester\Политех\Master\ООП\StudentDB\Release\EF.dll
-D:\Lester\Политех\Master\ООП\StudentDB\Release\EF.pdb
-D:\Lester\Политех\Master\ООП\StudentDB\EF\obj\Release\EF.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\ООП\StudentDB\EF\obj\Release\EF.csproj.CoreCompileInputs.cache
-D:\Lester\Политех\Master\ООП\StudentDB\EF\obj\Release\EF.csproj.CopyComplete
-D:\Lester\Политех\Master\ООП\StudentDB\EF\obj\Release\EF.dll
-D:\Lester\Политех\Master\ООП\StudentDB\EF\obj\Release\EF.pdb

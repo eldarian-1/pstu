@@ -1,7 +1,0 @@
-D:\Lester\Политех\Master\ООП\StudentDB\Release\Mock.dll
-D:\Lester\Политех\Master\ООП\StudentDB\Release\Mock.pdb
-D:\Lester\Политех\Master\ООП\StudentDB\Mock\obj\Release\Mock.csprojAssemblyReference.cache
-D:\Lester\Политех\Master\ООП\StudentDB\Mock\obj\Release\Mock.csproj.CoreCompileInputs.cache
-D:\Lester\Политех\Master\ООП\StudentDB\Mock\obj\Release\Mock.csproj.CopyComplete
-D:\Lester\Политех\Master\ООП\StudentDB\Mock\obj\Release\Mock.dll
-D:\Lester\Политех\Master\ООП\StudentDB\Mock\obj\Release\Mock.pdb

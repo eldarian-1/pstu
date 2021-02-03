@@ -1,7 +1,7 @@
 ﻿using Dialog;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ConsoleUi.Menus
 {
@@ -52,7 +52,7 @@ namespace ConsoleUi.Menus
             var providers = _Mediator.GetUseCase();
             foreach (var item in providers)
                 text += ++i + ". " + item + "\n";
-            Input.ReadNum(out int index, text + "Введите номер провайдера: ");
+            Input.ReadNum(out int index, text + "Введите номер провайдера: ", j => 0 < j && j <= i);
             _Mediator.SetUseCase(providers.ToList()[--index]);
         }
     }

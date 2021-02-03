@@ -1,6 +1,6 @@
-C:\Users\Eldarian\source\repos\TestApp\Dialog\bin\Release\Dialog.dll
-C:\Users\Eldarian\source\repos\TestApp\Dialog\bin\Release\Dialog.pdb
-C:\Users\Eldarian\source\repos\TestApp\Dialog\obj\Release\Dialog.csprojAssemblyReference.cache
-C:\Users\Eldarian\source\repos\TestApp\Dialog\obj\Release\Dialog.csproj.CoreCompileInputs.cache
-C:\Users\Eldarian\source\repos\TestApp\Dialog\obj\Release\Dialog.dll
-C:\Users\Eldarian\source\repos\TestApp\Dialog\obj\Release\Dialog.pdb
+D:\Lester\Политех\Master\ООП\StudentDB\Release\Dialog.dll
+D:\Lester\Политех\Master\ООП\StudentDB\Release\Dialog.pdb
+D:\Lester\Политех\Master\ООП\StudentDB\Dialog\obj\Release\Dialog.csprojAssemblyReference.cache
+D:\Lester\Политех\Master\ООП\StudentDB\Dialog\obj\Release\Dialog.csproj.CoreCompileInputs.cache
+D:\Lester\Политех\Master\ООП\StudentDB\Dialog\obj\Release\Dialog.dll
+D:\Lester\Политех\Master\ООП\StudentDB\Dialog\obj\Release\Dialog.pdb

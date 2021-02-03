@@ -2,6 +2,7 @@
 ./ООП/StudentDB/Release/**
 ./ООП/StudentDB/packages/**
 ./ООП/StudentDB/**/obj/**
+./ООП/StudentDB/.vs/**
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows,csharp

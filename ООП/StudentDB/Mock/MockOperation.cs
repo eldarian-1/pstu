@@ -2,6 +2,7 @@
 using Model.Entities;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Mock
 {
@@ -123,11 +124,15 @@ namespace Mock
 
         public void DeleteStudent(Student student)
         {
+            _Marks.Where(mark => mark.StudentId == student.StudentId)
+                .ToList().ForEach(mark => DeleteMark(mark));
             _Students.Remove(student);
         }
 
         public void DeleteSubject(Subject subject)
         {
+            _Marks.Where(mark => mark.SubjectId == subject.SubjectId)
+                .ToList().ForEach(mark => DeleteMark(mark));
             _Subjects.Remove(subject);
         }
 

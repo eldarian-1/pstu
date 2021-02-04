@@ -7,7 +7,7 @@
         xmlns:table="clr-namespace:WpfUi.Blocks.Tables"
         xmlns:form="clr-namespace:WpfUi.Blocks.Forms"
         mc:Ignorable="d"
-        Title="База дисциплин, студентов и оценок" Height="960" Width="1280">
+        Title="База дисциплин, студентов и оценок" Height="650" Width="720">
     <TabControl>
 
         <TabItem Header="Предметы">

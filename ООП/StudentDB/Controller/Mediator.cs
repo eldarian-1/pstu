@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Model.Entities;
+﻿using Model.Entities;
 using System.Collections.Generic;
 
 namespace Controller
@@ -92,16 +91,12 @@ namespace Controller
         public virtual void RemoveSubject(Subject subject)
         {
             _Facade.Subjects.Delete(subject);
-            Marks.Where(mark => mark.SubjectId == subject.SubjectId)
-                .ToList().ForEach(mark => RemoveMark(mark));
             UpdateCollections();
         }
 
         public virtual void RemoveStudent(Student student)
         {
             _Facade.Students.Delete(student);
-            Marks.Where(mark => mark.StudentId == student.StudentId)
-                .ToList().ForEach(mark => RemoveMark(mark));
             UpdateCollections();
         }
 

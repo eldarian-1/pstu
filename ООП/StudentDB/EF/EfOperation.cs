@@ -14,16 +14,14 @@ namespace EF
         {
             T result;
             using (EfContext context = new EfContext())
+            using (DbContextTransaction transaction = context.Database.BeginTransaction())
             {
-                using (DbContextTransaction transaction = context.Database.BeginTransaction())
-                {
-                    context.Students.Load();
-                    context.Subjects.Load();
-                    context.Marks.Load();
-                    result = func(context);
-                    context.SaveChanges();
-                    transaction.Commit();
-                }
+                context.Students.Load();
+                context.Subjects.Load();
+                context.Marks.Load();
+                result = func(context);
+                context.SaveChanges();
+                transaction.Commit();
             }
             return result;
         }

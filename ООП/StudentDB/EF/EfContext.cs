@@ -6,7 +6,7 @@ namespace EF
 {
     internal class EfContext : DbContext
     {
-        public EfContext() : base("dataContext")
+        public EfContext() : base("MarkJournalConnection")
         {
             Configure();
         }

@@ -43,13 +43,13 @@ namespace MySQL.EF.CRUD
             DataContext context = new DataContext();
             Console.WriteLine("Выборка всех пользователей:");
             SelectAllTest(context);
-            Console.WriteLine("\nВыборка пользователя по id 4:");
-            User user = SelectOneTest(context, 4);
+            Console.WriteLine("\nВыборка пользователя по id 1:");
+            User user = SelectOneTest(context, 1);
             Console.WriteLine("\nДобавление пользователя:");
             InsertTest(context, new User { Name = "Фридрих Ницше" });
             SelectAllTest(context);
             Console.WriteLine("\nОбновление пользователя:");
-            user.Name = "Абрахам Линкольн";
+            user.Name = "Чарльз Дарвин";
             UpdateTest(context, user);
             SelectAllTest(context);
             Console.WriteLine("\nУдаление пользователя:");

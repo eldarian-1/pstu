@@ -39,13 +39,13 @@ namespace MySQL.ADO.CRUD
             DataRequester requester = new DataRequester();
             Console.WriteLine("Выборка всех пользователей:");
             SelectAllTest(requester);
-            Console.WriteLine("\nВыборка пользователя по id 2:");
-            User user = SelectOneTest(requester, 2);
+            Console.WriteLine("\nВыборка пользователя по id 1:");
+            User user = SelectOneTest(requester, 1);
             Console.WriteLine("\nДобавление пользователя:");
             InsertTest(requester, new User { Name = "Фридрих Ницше" });
             SelectAllTest(requester);
             Console.WriteLine("\nОбновление пользователя:");
-            user.Name = "Абрахам Линкольн";
+            user.Name = "Чарльз Дарвин";
             UpdateTest(requester, user);
             SelectAllTest(requester);
             Console.WriteLine("\nУдаление пользователя:");

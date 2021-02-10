@@ -1,12 +1,12 @@
-﻿using Entity;
-using System.Collections.ObjectModel;
+﻿using Logic.Lists;
+using Logic.Visuals;
 
 namespace Logic
 {
-    internal class ResultFormater
+    public class ResultFormater
     {
-        private ObservableCollection<VariableVisual> m_Variables;
-        private Function m_Function;
+        private VariableList m_Variables;
+        private FunctionVisual m_Function;
         private TruthTable m_TruthTable;
         private bool[] m_Reserv;
 

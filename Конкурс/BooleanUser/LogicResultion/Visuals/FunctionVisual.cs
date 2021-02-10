@@ -1,8 +1,6 @@
-﻿using Resolution.Visuals;
-
-namespace Logic.Visuals
+﻿namespace Resolution.Visuals
 {
-    public partial class FunctionVisual : IVisible
+    public partial class FunctionVisual : Logic.Visuals.FunctionVisual, IVisible
     {
         public FunctionVisual()
         {

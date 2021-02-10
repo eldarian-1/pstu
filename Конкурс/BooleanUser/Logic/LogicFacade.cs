@@ -10,7 +10,7 @@ namespace Logic
 
         public FunctionList Functions { get; protected set; }
 
-        public Function ActiveFunction { get; protected set; }
+        public FunctionVisual ActiveFunction { get; protected set; }
 
         public LogicFacade()
         {
@@ -38,11 +38,11 @@ namespace Logic
                 }
         }
 
-        public void AddVariable() => Variables.Add(new VariableVisual());
+        public virtual void AddVariable() => Variables.Add(new VariableVisual());
 
         public void ChangeSymbol(string name, bool isLeft) => new SymbolChanger(this, isLeft, name).Execute();
 
-        private void NewFunction(Variable A, Variable B)
+        protected virtual void NewFunction(Variable A, Variable B)
         {
             FunctionVisual F = new FunctionVisual();
             F.Left = A;
@@ -55,7 +55,7 @@ namespace Logic
 
         public virtual void SetActiveFunction(string name)
         {
-            foreach (Function item in Functions)
+            foreach (var item in Functions)
                 if (item.Name == name)
                 {
                     ActiveFunction = item;

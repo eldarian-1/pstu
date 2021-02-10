@@ -2,5 +2,5 @@
 
 namespace Logic.Visuals
 {
-    public partial class FunctionVisual : Function { }
+    public class FunctionVisual : Function { }
 }

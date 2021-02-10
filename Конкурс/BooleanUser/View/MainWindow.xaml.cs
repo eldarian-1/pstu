@@ -1,4 +1,4 @@
-﻿using Logic;
+﻿using Resolution;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;

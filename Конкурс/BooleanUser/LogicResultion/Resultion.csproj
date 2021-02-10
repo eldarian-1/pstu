@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\ResultFormater.cs" />
-    <Compile Include="Commands\SymbolChanger.cs" />
+    <Compile Include="Definitions.cs" />
     <Compile Include="Lists\FunctionList.cs" />
     <Compile Include="Lists\ResolventList.cs" />
     <Compile Include="Lists\VariableList.cs" />

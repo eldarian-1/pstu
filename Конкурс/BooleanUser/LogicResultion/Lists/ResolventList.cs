@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Resolution.Visuals;
 using System.Collections.Generic;
 
 namespace Resolution.Lists

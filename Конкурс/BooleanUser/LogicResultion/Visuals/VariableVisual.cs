@@ -1,8 +1,6 @@
-﻿using Resolution.Visuals;
-
-namespace Logic.Visuals
+﻿namespace Resolution.Visuals
 {
-    public partial class VariableVisual : IVisible
+    public partial class VariableVisual : Logic.Visuals.VariableVisual, IVisible
     {
         public VariableVisual(bool isVisible = false) : base()
         {

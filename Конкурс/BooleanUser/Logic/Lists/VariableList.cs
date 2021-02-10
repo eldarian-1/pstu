@@ -3,5 +3,5 @@ using System.Collections.ObjectModel;
 
 namespace Logic.Lists
 {
-    public partial class VariableList : ObservableCollection<VariableVisual> { }
+    public class VariableList : ObservableCollection<VariableVisual> { }
 }

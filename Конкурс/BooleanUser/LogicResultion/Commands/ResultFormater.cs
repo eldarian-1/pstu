@@ -1,18 +1,19 @@
-﻿using Entity;
-using System.Collections.ObjectModel;
+﻿using Resultion;
+using Resolution.Lists;
+using Resolution.Visuals;
 
 namespace Resolution
 {
-    internal class ResultFormater
+    public class ResultFormater
     {
-        private ObservableCollection<VariableVisual> m_Variables;
-        private Function m_Function;
+        private VariableList m_Variables;
+        private FunctionVisual m_Function;
         private TruthTable m_TruthTable;
 
         public ResultFormater(LogicFacade facade)
         {
-            m_Function = facade.ActiveFunction;
-            m_Variables = facade.Variables;
+            m_Function = facade.ActiveFunction.Get();
+            m_Variables = facade.Variables.ToList();
             m_TruthTable = new TruthTable(m_Variables.Count);
             Calculate();
         }

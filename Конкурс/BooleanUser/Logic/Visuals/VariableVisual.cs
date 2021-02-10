@@ -2,7 +2,7 @@
 
 namespace Logic.Visuals
 {
-    public partial class VariableVisual : Variable
+    public class VariableVisual : Variable
     {
         public VariableVisual() : base() { }
 

@@ -1,16 +1,13 @@
 ﻿using Entity;
+using Resultion;
+using Resolution.Lists;
+using Resolution.Visuals;
 
 namespace Resolution
 {
     public partial class LogicFacade : Logic.LogicFacade
     {
-        public VariableList Variables { get; protected set; }
-
-        public FunctionList Functions { get; protected set; }
-
         public FunctionVisual ResultFunction { get; protected set; }
-
-        public FunctionVisual ActiveFunction { get; protected set; }
 
         public string Expressions
         {
@@ -42,6 +39,8 @@ namespace Resolution
             ActiveFunction.Change();
         }
 
+        public override void AddVariable() => Variables.Add(new VariableVisual());
+
         public void ChangeVisibleVariable(string name)
         {
             foreach (VariableVisual item in Variables)
@@ -62,7 +61,7 @@ namespace Resolution
                 }
         }
 
-        private void NewFunction(Variable A, Variable B)
+        protected override void NewFunction(Variable A, Variable B)
         {
             FunctionVisual F = new FunctionVisual();
             F.Left = A;
@@ -84,8 +83,8 @@ namespace Resolution
         public string RunResulution()
         {
             ResolventList list = new ResolventList();
-            list.Add(Variables);
-            list.Add(Functions);
+            list.Add(Variables.Get());
+            list.Add(Functions.Get());
             list.Set(ResultFunction);
             list.Fill();
             return list.Solve();

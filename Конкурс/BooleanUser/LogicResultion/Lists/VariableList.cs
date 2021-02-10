@@ -1,9 +1,9 @@
-﻿using Logic.Visuals;
-using System.Collections.ObjectModel;
+﻿using Resultion;
+using Resolution.Visuals;
 
-namespace Logic.Lists
+namespace Resolution.Lists
 {
-    public partial class VariableList
+    public class VariableList : Logic.Lists.VariableList
     {
         public static VariableList Variables { get; protected set; }
 
@@ -15,7 +15,7 @@ namespace Logic.Lists
             Variables = this;
         }
 
-        public new void Add(VariableVisual variable)
+        public void Add(VariableVisual variable)
         {
             base.Add(variable);
             m_TruthTable = new TruthTable(Count);
@@ -46,7 +46,7 @@ namespace Logic.Lists
         {
             string result = "";
             for (int i = 0, n = Count; i < n; ++i)
-                if (this[i].IsVisible)
+                if (this.Index(i).IsVisible)
                     result += (i > 0 ? ", " : "") + this[i];
             return result;
         }

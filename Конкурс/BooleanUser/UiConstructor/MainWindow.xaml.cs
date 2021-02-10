@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
 
-namespace BooleanCalculator
+namespace UiConstructor
 {
     public partial class MainWindow : Window
     {

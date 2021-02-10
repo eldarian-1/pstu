@@ -2,10 +2,11 @@
 using Resultion;
 using Resolution.Lists;
 using Resolution.Visuals;
+using Resolution.Commands;
 
 namespace Resolution
 {
-    public partial class LogicFacade : Logic.LogicFacade
+    public class LogicFacade : Logic.LogicFacade
     {
         public FunctionVisual ResultFunction { get; protected set; }
 
@@ -20,15 +21,10 @@ namespace Resolution
             }
         }
 
-        public LogicFacade()
+        protected override void Initialize()
         {
             Variables = new VariableList();
             Functions = new FunctionList();
-            Initialize();
-        }
-
-        private void Initialize()
-        {
             VariableVisual A = new VariableVisual(true);
             VariableVisual B = new VariableVisual();
             ResultFunction = new FunctionVisual() { Left = B, Right = B, Name = "G" };
@@ -89,5 +85,7 @@ namespace Resolution
             list.Fill();
             return list.Solve();
         }
+
+        public override string RunFunction() => new ResultFormater(this).Execute();
     }
 }

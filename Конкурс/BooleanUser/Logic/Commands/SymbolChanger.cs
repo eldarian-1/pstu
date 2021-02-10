@@ -3,7 +3,7 @@ using Logic.Lists;
 using Logic.Visuals;
 using System.Collections.ObjectModel;
 
-namespace Logic
+namespace Logic.Commands
 {
     internal class SymbolChanger
     {

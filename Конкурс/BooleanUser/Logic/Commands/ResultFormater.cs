@@ -1,7 +1,7 @@
 ﻿using Logic.Lists;
 using Logic.Visuals;
 
-namespace Logic
+namespace Logic.Commands
 {
     public class ResultFormater
     {
@@ -11,6 +11,11 @@ namespace Logic
         private bool[] m_Reserv;
 
         public ResultFormater(LogicFacade facade)
+        {
+            Initialize(facade);
+        }
+
+        protected virtual void Initialize(LogicFacade facade)
         {
             m_Function = facade.ActiveFunction;
             m_Variables = facade.Variables;
@@ -49,7 +54,7 @@ namespace Logic
 
         private string GetNum(bool val) => val ? "1" : "0";
 
-        public string Execute()
+        public virtual string Execute()
         {
             string result
                 = "Результат на заданном наборе: "

@@ -1,5 +1,5 @@
-﻿using Resultion;
-using Resolution.Visuals;
+﻿using Logic.Visuals;
+using Resultion;
 
 namespace Resolution.Lists
 {
@@ -15,7 +15,7 @@ namespace Resolution.Lists
             Variables = this;
         }
 
-        public void Add(VariableVisual variable)
+        public override void Add(VariableVisual variable)
         {
             base.Add(variable);
             m_TruthTable = new TruthTable(Count);

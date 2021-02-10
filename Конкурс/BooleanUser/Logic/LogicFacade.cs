@@ -1,10 +1,11 @@
 ﻿using Entity;
 using Logic.Lists;
 using Logic.Visuals;
+using Logic.Commands;
 
 namespace Logic
 {
-    public partial class LogicFacade
+    public class LogicFacade
     {
         public VariableList Variables { get; protected set; }
 
@@ -14,13 +15,13 @@ namespace Logic
 
         public LogicFacade()
         {
-            Variables = new VariableList();
-            Functions = new FunctionList();
             Initialize();
         }
 
-        private void Initialize()
+        protected virtual void Initialize()
         {
+            Variables = new VariableList();
+            Functions = new FunctionList();
             VariableVisual A = new VariableVisual();
             VariableVisual B = new VariableVisual();
             Variables.Add(A);
@@ -67,6 +68,6 @@ namespace Logic
 
         public void ChangeOperator() => ActiveFunction.Change();
 
-        public string RunFunction() => new ResultFormater(this).Execute();
+        public virtual string RunFunction() => new ResultFormater(this).Execute();
     }
 }

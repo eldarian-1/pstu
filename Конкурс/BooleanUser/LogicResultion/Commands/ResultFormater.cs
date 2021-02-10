@@ -2,15 +2,17 @@
 using Resolution.Lists;
 using Resolution.Visuals;
 
-namespace Resolution
+namespace Resolution.Commands
 {
-    public class ResultFormater
+    public class ResultFormater : Logic.Commands.ResultFormater
     {
         private VariableList m_Variables;
         private FunctionVisual m_Function;
         private TruthTable m_TruthTable;
 
-        public ResultFormater(LogicFacade facade)
+        public ResultFormater(LogicFacade facade) : base(facade) { }
+
+        protected override void Initialize(Logic.LogicFacade facade)
         {
             m_Function = facade.ActiveFunction.Get();
             m_Variables = facade.Variables.ToList();
@@ -32,7 +34,7 @@ namespace Resolution
 
         private string GetNum(bool val) => val ? "1" : "0";
 
-        public string Execute()
+        public override string Execute()
         {
             string result = "Таблица истинности:\n";
 

@@ -1,6 +1,8 @@
-﻿namespace Resolution.Visuals
+﻿using Entity;
+
+namespace Resolution.Visuals
 {
-    public partial class FunctionVisual : Logic.Visuals.FunctionVisual, IVisible
+    public partial class FunctionVisual : Function, IVisible
     {
         public FunctionVisual()
         {

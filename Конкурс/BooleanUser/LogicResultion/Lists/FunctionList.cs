@@ -1,8 +1,9 @@
-﻿using Resultion;
+﻿using Resolution.Visuals;
+using System.Collections.ObjectModel;
 
 namespace Resolution.Lists
 {
-    public partial class FunctionList : Logic.Lists.FunctionList
+    public partial class FunctionList : ObservableCollection<FunctionVisual>
     {
         public FunctionList() : base() { }
 
@@ -10,7 +11,7 @@ namespace Resolution.Lists
         {
             string result = "";
             for (int i = 0, n = Count; i < n; ++i)
-                if(this.Index(i).IsVisible)
+                if(this[i].IsVisible)
                     result += (result != "" ? ", " : "")  + this[i];
             return result;
         }

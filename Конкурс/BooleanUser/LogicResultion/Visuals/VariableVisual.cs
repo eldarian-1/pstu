@@ -1,8 +1,15 @@
-﻿namespace Resolution.Visuals
+﻿using Entity;
+
+namespace Resolution.Visuals
 {
-    public partial class VariableVisual : Logic.Visuals.VariableVisual, IVisible
+    public partial class VariableVisual : Variable, IVisible
     {
-        public VariableVisual(bool isVisible = false) : base()
+        public VariableVisual() : base()
+        {
+            IsVisible = false;
+        }
+
+        public VariableVisual(bool isVisible) : base()
         {
             IsVisible = isVisible;
         }

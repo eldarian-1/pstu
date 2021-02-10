@@ -1,17 +1,21 @@
 ﻿using Entity;
-using Logic.Lists;
-using Logic.Visuals;
+using System.Linq;
 using Logic.Commands;
+using System.Collections.Generic;
 
 namespace Logic
 {
-    public class LogicFacade
+    public class LogicFacade<TVariable, TFunction, TVariableList, TFunctionList>
+        where TVariable : Variable, ISymbol, new()
+        where TFunction : Function, ISymbol, new()
+        where TVariableList : ICollection<TVariable>, new()
+        where TFunctionList : ICollection<TFunction>, new()
     {
-        public VariableList Variables { get; protected set; }
+        public TVariableList Variables { get; protected set; }
 
-        public FunctionList Functions { get; protected set; }
+        public TFunctionList Functions { get; protected set; }
 
-        public FunctionVisual ActiveFunction { get; protected set; }
+        public TFunction ActiveFunction { get; protected set; }
 
         public LogicFacade()
         {
@@ -20,18 +24,20 @@ namespace Logic
 
         protected virtual void Initialize()
         {
-            Variables = new VariableList();
-            Functions = new FunctionList();
-            VariableVisual A = new VariableVisual();
-            VariableVisual B = new VariableVisual();
+            Variables = new TVariableList();
+            Functions = new TFunctionList();
+            TVariable A = new TVariable();
+            TVariable B = new TVariable();
             Variables.Add(A);
             Variables.Add(B);
             NewFunction(A, B);
         }
 
+        public void AddVariable() => Variables.Add(new TVariable());
+
         public void InvertVariable(string name)
         {
-            foreach(VariableVisual item in Variables)
+            foreach(var item in Variables)
                 if(item.Name == name)
                 {
                     item.Invert();
@@ -39,22 +45,13 @@ namespace Logic
                 }
         }
 
-        public virtual void AddVariable() => Variables.Add(new VariableVisual());
-
-        public void ChangeSymbol(string name, bool isLeft) => new SymbolChanger(this, isLeft, name).Execute();
-
-        protected virtual void NewFunction(Variable A, Variable B)
-        {
-            FunctionVisual F = new FunctionVisual();
-            F.Left = A;
-            F.Right = B;
-            Functions.Add(F);
-            ActiveFunction = F;
-        }
-
         public void InvertSymbol(bool isLeft) => ActiveFunction.Invert(isLeft);
 
-        public virtual void SetActiveFunction(string name)
+        public void ChangeSymbol(string name, bool isLeft)
+            => new SymbolChanger<TVariable, TFunction, TVariableList, TFunctionList>(this, isLeft, name)
+            .Execute();
+
+        public void SetActiveFunction(string name)
         {
             foreach (var item in Functions)
                 if (item.Name == name)
@@ -64,10 +61,25 @@ namespace Logic
                 }
         }
 
-        public void AddFunction() => NewFunction(Variables[0], Variables[1]);
+        protected void NewFunction(TVariable A, TVariable B)
+        {
+            TFunction F = new TFunction();
+            F.Left = A;
+            F.Right = B;
+            Functions.Add(F);
+            ActiveFunction = F;
+        }
+
+        public void AddFunction()
+        {
+            var list = Variables.ToList();
+            NewFunction(list[0], list[1]);
+        }
 
         public void ChangeOperator() => ActiveFunction.Change();
 
-        public virtual string RunFunction() => new ResultFormater(this).Execute();
+        protected string RunFunction<TResultFormater>()
+            where TResultFormater : ResultFormater<TVariable, TFunction, TVariableList, TFunctionList>, new()
+            => new TResultFormater().SetFacade(this).Execute();
     }
 }

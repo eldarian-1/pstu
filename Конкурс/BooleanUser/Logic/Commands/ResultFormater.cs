@@ -1,78 +1,37 @@
-﻿using Logic.Lists;
-using Logic.Visuals;
+﻿using Entity;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Logic.Commands
 {
-    public class ResultFormater
+    public abstract class ResultFormater<TVariable, TFunction, TVariableList, TFunctionList>
+        where TVariable : Variable, ISymbol, new()
+        where TFunction : Function, ISymbol, new()
+        where TVariableList : ICollection<TVariable>, new()
+        where TFunctionList : ICollection<TFunction>, new()
     {
-        private VariableList m_Variables;
-        private FunctionVisual m_Function;
-        private TruthTable m_TruthTable;
-        private bool[] m_Reserv;
+        public abstract ResultFormater<TVariable, TFunction, TVariableList, TFunctionList> SetFacade
+            (LogicFacade<TVariable, TFunction, TVariableList, TFunctionList> facade);
 
-        public ResultFormater(LogicFacade facade)
-        {
-            Initialize(facade);
-        }
+        protected TVariableList Variables { get; set; }
 
-        protected virtual void Initialize(LogicFacade facade)
-        {
-            m_Function = facade.ActiveFunction;
-            m_Variables = facade.Variables;
-            m_TruthTable = new TruthTable(m_Variables.Count);
-            PackReserv();
-            Calculate();
-            UnpackReserv();
-        }
+        protected TFunction Function { get; set; }
 
-        private void PackReserv()
-        {
-            int variables = m_TruthTable.Variables;
-            m_Reserv = new bool[variables];
-            for (int i = 0; i < variables; ++i)
-                m_Reserv[i] = m_Variables[i].Value;
-        }
+        protected TruthTable TruthTable { get; set; }
 
-        private void UnpackReserv()
+        protected void Calculate()
         {
-            int variables = m_TruthTable.Variables;
-            for (int i = 0; i < variables; ++i)
-                m_Variables[i].Value = m_Reserv[i];
-        }
-
-        private void Calculate()
-        {
-            int changes = m_TruthTable.Changes;
-            int variables = m_TruthTable.Variables;
+            int changes = TruthTable.Changes;
+            int variables = TruthTable.Variables;
+            var vars = Variables.ToList();
             for (int i = 0; i < changes; ++i)
             {
                 for (int j = 0; j < variables; ++j)
-                    m_Variables[j].Value = m_TruthTable[i, j];
-                m_TruthTable[i] = m_Function.Value;
+                    vars[j].Value = TruthTable[i, j];
+                TruthTable[i] = Function.Value;
             }
         }
 
-        private string GetNum(bool val) => val ? "1" : "0";
-
-        public virtual string Execute()
-        {
-            string result
-                = "Результат на заданном наборе: "
-                + GetNum(m_Function.Value)
-                + "\n\nТаблица истинности:\n";
-
-            for (int i = 0, n = m_TruthTable.Variables; i < n; ++i)
-                result += ((char)('A' + i)).ToString();
-            result += " Res\n";
-
-            for (int i = 0, n = m_TruthTable.Changes; i < n; ++i)
-            {
-                for (int j = 0, m = m_TruthTable.Variables; j < m; ++j)
-                    result += m_TruthTable[i, j] ? 1 : 0;
-                result += " " + GetNum(m_TruthTable[i]) + "\n";
-            }
-
-            return result;
-        }
+        public abstract string Execute();
     }
 }

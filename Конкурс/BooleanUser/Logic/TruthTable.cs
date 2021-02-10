@@ -6,8 +6,6 @@ namespace Logic
     {
         private bool[,] m_Values;
         private bool[] m_Results;
-        public int Variables { get; }
-        public int Changes { get; }
 
         public TruthTable(int variables)
         {
@@ -31,6 +29,10 @@ namespace Logic
                     this[i, j] = num == 1;
                 }
         }
+
+        public int Variables { get; }
+
+        public int Changes { get; }
 
         public bool this[int change]
         {

@@ -22,7 +22,7 @@ namespace Resolution.Lists
             }
         }
 
-        public void Add<TSymbol>(IEnumerable<TSymbol> symbols)
+        public void Add<TSymbol>(IList<TSymbol> symbols)
             where TSymbol : ISymbol, IVisible
         {
             foreach (TSymbol item in symbols)

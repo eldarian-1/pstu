@@ -1,20 +1,25 @@
 ﻿using Entity;
-using Logic.Lists;
-using Logic.Visuals;
-using System.Collections.ObjectModel;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Logic.Commands
 {
-    internal class SymbolChanger
+    internal class SymbolChanger<TVariable, TFunction, TVariableList, TFunctionList>
+        where TVariable : Variable, ISymbol, new()
+        where TFunction : Function, ISymbol, new()
+        where TVariableList : ICollection<TVariable>, new()
+        where TFunctionList : ICollection<TFunction>, new()
     {
-        private Function m_ActiveFunction;
-        private VariableList m_Variables;
-        private FunctionList m_Functions;
+        private TFunction m_ActiveFunction;
+        private TVariableList m_Variables;
+        private TFunctionList m_Functions;
         private bool m_IsLeft;
         private bool m_IsInversion;
         private string m_Name;
 
-        public SymbolChanger(LogicFacade facade, bool isLeft, string name)
+        public SymbolChanger(
+            LogicFacade<TVariable, TFunction, TVariableList, TFunctionList> facade,
+            bool isLeft, string name)
         {
             m_ActiveFunction = facade.ActiveFunction;
             m_Variables = facade.Variables;
@@ -68,18 +73,19 @@ namespace Logic.Commands
 
         private bool Find<TCollection, TValue>
             (TCollection collection, ref bool isFound)
-            where TCollection : ObservableCollection<TValue>
+            where TCollection : ICollection<TValue>
             where TValue : ISymbol
         {
-            for(int i = 0, n = collection.Count; i < n; ++i)
+            var coll = collection.ToList();
+            for (int i = 0, n = collection.Count; i < n; ++i)
             {
-                if (IsIt(collection[i]))
+                if (IsIt(coll[i]))
                     isFound = true;
                 else if (isFound)
                 {
-                    if (collection[i] is Function && IsExternal(collection[i] as Function))
+                    if (coll[i] is Function && IsExternal(coll[i] as Function))
                         continue;
-                    Change(collection[i]);
+                    Change(coll[i]);
                     return true;
                 }
             }
@@ -89,12 +95,12 @@ namespace Logic.Commands
         public void Execute()
         {
             bool isFound = false;
-            if (Find<ObservableCollection<VariableVisual>, VariableVisual>(m_Variables, ref isFound))
+            if (Find<TVariableList, TVariable>(m_Variables, ref isFound))
                 return;
-            if (Find<ObservableCollection<FunctionVisual>, FunctionVisual>(m_Functions, ref isFound))
+            if (Find<TFunctionList, TFunction>(m_Functions, ref isFound))
                 return;
             if (isFound)
-                Change(m_Variables[0]);
+                Change(m_Variables.ToList()[0]);
         }
     }
 }

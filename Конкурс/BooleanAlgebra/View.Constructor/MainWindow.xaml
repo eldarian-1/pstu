@@ -1,0 +1,56 @@
+﻿<Window x:Class="View.Constructor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Title="Калькулятор булевых выражений" Height="450" Width="800">
+    <StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+
+            <ListBox x:Name="VariablesBox">
+                
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=Name}"/>
+                            <Button Click="InvertValueClick" Content="{Binding Path=Data}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                
+            </ListBox>
+
+            <Button Click="AddVariableClick">+</Button>
+            
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" x:Name="FunctionConstructor">
+            <TextBlock Text="{Binding Path=Name}"/>
+            <Button x:Name="ChangeSymbolLeft" Click="ChangeSymbolLeftClick" Content="{Binding Path=Left.Name}"/>
+            <Button x:Name="ChangeOperator" Click="ChangeOperatorClick" Content="{Binding Path=Symbol}"/>
+            <Button x:Name="ChangeSymbolRight" Click="ChangeSymbolRightClick" Content="{Binding Path=Right.Name}"/>
+            <Button Click="AddFunctionClick">+</Button>
+        </StackPanel>
+
+        <Button x:Name="RunFunction" Click="RunFunctionClick" Content="{Binding Path=FullString}"/>
+
+        <ListBox x:Name="FunctionsBox">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="ChooseFunctionClick" Content="{Binding Path=Name}"/>
+                        <TextBlock Text="{Binding Path=Briefly}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+    </StackPanel>
+</Window>

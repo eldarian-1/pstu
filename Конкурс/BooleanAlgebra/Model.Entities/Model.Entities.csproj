@@ -49,7 +49,7 @@
     <Compile Include="Inversion.cs" />
     <Compile Include="Operations\LogicalOR.cs" />
     <Compile Include="Operations\PiercesArrow.cs" />
-    <Compile Include="Operations\SсhaefferExpression.cs" />
+    <Compile Include="Operations\SchaeffersWand.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="Variable.cs" />
     <Compile Include="Operations\LogicalXOR.cs" />

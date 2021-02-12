@@ -55,6 +55,16 @@ namespace UseCase.Resolution
                 }
         }
 
+        public override void SetActiveFunction(string name)
+        {
+            if (name == ResultFunction.Name)
+            {
+                ActiveFunction = ResultFunction;
+                return;
+            }
+            base.SetActiveFunction(name);
+        }
+
         public string RunFunction() => RunFunction<ResultFormater>();
 
         public string RunResulution()

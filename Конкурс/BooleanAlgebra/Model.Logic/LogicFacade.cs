@@ -50,7 +50,7 @@ namespace Model.Logic
             => new SymbolChanger<TVariable, TFunction, TVariableList, TFunctionList>(this, isLeft, name)
             .Execute();
 
-        public void SetActiveFunction(string name)
+        public virtual void SetActiveFunction(string name)
         {
             foreach (var item in Functions)
                 if (item.Name == name)

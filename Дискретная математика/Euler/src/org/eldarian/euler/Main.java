@@ -26,19 +26,11 @@ public class Main {
     }
 
     private static String IsConnection(int row, int column) {
-        return String.format("Is there a connection between %c and %c? (1 - true,0 - false): ", 'A' + row, 'A' + column);
+        return String.format("Is there a connection between %c and %c? (1 - true,0 - false): "
+                , 'A' + row, 'A' + column);
     }
 
     private static boolean[][] Matrix(int size) {
-        boolean[][] matrix = new boolean[size][size];
-        for(int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j)
-                matrix[i][j] = ReadBoolean(IsConnection(i, j));
-        }
-        return matrix;
-    }
-
-    private static boolean[][] FullMatrix(int size) {
         boolean[][] matrix = new boolean[size][size];
         for(int i = 0; i < size; ++i) {
             matrix[i][i] = false;
@@ -51,9 +43,18 @@ public class Main {
         return matrix;
     }
 
+    private static boolean[][] FullMatrix(int size) {
+        boolean[][] matrix = new boolean[size][size];
+        for(int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j)
+                matrix[i][j] = ReadBoolean(IsConnection(i, j));
+        }
+        return matrix;
+    }
+
     public static void main(String[] args) {
 	    int size = ReadInteger("Enter the number of vertices of the graph: ");
-	    //System.out.print(new EulerAlgorithm(Matrix(size)).Answer());
-	    System.out.print(new EulerAlgorithm(FullMatrix(size)).Answer());
+	    System.out.print(new EulerAlgorithm(Matrix(size)).Answer());
+	    //System.out.print(new EulerAlgorithm(FullMatrix(size)).Answer());
     }
 }

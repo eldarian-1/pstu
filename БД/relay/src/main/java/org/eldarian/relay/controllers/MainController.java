@@ -31,8 +31,37 @@ public class MainController {
 
     @GetMapping("/")
     public String home() {
-        //MySQLTest();
-        return "home";
+        return "general/home";
+    }
+
+    @GetMapping("/teams")
+    public String teams() {
+        return "general/teams";
+    }
+
+    @GetMapping("/players")
+    public String players() {
+        return "general/players";
+    }
+
+    @GetMapping("/subjects")
+    public String subjects() {
+        return "general/subjects";
+    }
+
+    @GetMapping("/workouts")
+    public String workouts() {
+        return "general/workouts";
+    }
+
+    @GetMapping("/relay_races")
+    public String relayRaces() {
+        return "general/relay_races";
+    }
+
+    @GetMapping("/authorization")
+    public String authorization() {
+        return "general/authorization";
     }
 
 }

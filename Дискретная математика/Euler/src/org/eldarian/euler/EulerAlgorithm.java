@@ -25,7 +25,7 @@ public class EulerAlgorithm {
     }
 
     public String Answer(){
-        String answer = "Данный граф не является Эйлеровым.";
+        String answer = "This graph is not Euler.";
         Stack<Integer> way = Calculate(0);
         if(way.size() == _matrix.GetDimension() + 1) {
             answer = "";

@@ -1,0 +1,17 @@
+div.box {
+    width: 1200px;
+    margin:0px auto;
+}
+
+div.menu {
+    width: 140px;
+    float: left;
+    text-align: center;
+}
+
+div.page {
+    width: 1050px;
+    margin-left: 150px;
+    border: 1px solid #000;
+    padding: 10px;
+}

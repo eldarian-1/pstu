@@ -31,7 +31,7 @@ public class MainController {
 
     @GetMapping("/")
     public String home() {
-        MySQLTest();
+        //MySQLTest();
         return "home";
     }
 

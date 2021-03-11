@@ -1,18 +1,18 @@
 package org.eldarian.relay.controllers;
 
 import org.eldarian.relay.DataContext;
-import org.eldarian.relay.queries.AddPlayerQuery;
+import org.eldarian.relay.queries.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class InsertController {
 
-    @GetMapping("/insert_team")
-    public String insertTeam() {
-        return "add_team";
+    @PostMapping("/insert_team")
+    public String insertTeam(@RequestParam(name = "team_name") String teamName,
+                             @RequestParam(name = "trainers") String trainers) {
+        new DataContext(new AddTeamQuery()).provide(new String[]{teamName, trainers});
+        return "redirect:/teams";
     }
 
     @PostMapping("/insert_player")

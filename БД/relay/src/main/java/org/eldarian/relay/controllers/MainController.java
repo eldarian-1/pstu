@@ -1,15 +1,12 @@
 package org.eldarian.relay.controllers;
 
 import org.eldarian.relay.DataContext;
-import org.eldarian.relay.entities.Player;
-import org.eldarian.relay.queries.PlayerListQuery;
+import org.eldarian.relay.entities.*;
+import org.eldarian.relay.queries.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.util.Collection;
 
 @Controller
@@ -21,14 +18,16 @@ public class MainController {
     }
 
     @GetMapping("/teams")
-    public String teams() {
+    public String teams(Model model) {
+        Collection<Team> teams = (Collection<Team>)(new DataContext(new TeamListQuery()).provide(null));
+        model.addAttribute("teams", teams);
         return "general/teams";
     }
 
     @GetMapping("/players")
     public String players(Model model) {
         Collection<Player> players = (Collection<Player>)(new DataContext(new PlayerListQuery()).provide(null));
-        model.addAllAttributes(players);
+        model.addAttribute("players", players);
         return "general/players";
     }
 

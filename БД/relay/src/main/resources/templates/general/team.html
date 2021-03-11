@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Команды | Эстафеты</title>
+    <title th:text="${team.teamName} + ' | Эстафеты'" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{/style.css}" rel="stylesheet" />
 </head>
@@ -15,13 +15,16 @@
                 <td>Название</td>
                 <td>Тренерский состав</td>
             </tr>
-            <tr th:each="team : ${teams}">
-                <td><a th:href="'/team?id='+${team.teamId}" th:text="${team.teamName}" /></td>
+            <tr>
+                <td th:text="${team.teamName}" />
                 <td th:text="${team.trainers}" />
             </tr>
         </table>
+        <br />
+        <ol th:each="player : ${players}">
+            <li><a th:href="'/player?id='+${player.playerId}" th:text="${player.playerName}" /></li>
+        </ol>
     </div>
-</div>
 
 </body>
 </html>

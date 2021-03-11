@@ -6,6 +6,7 @@ import org.eldarian.relay.queries.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
 
@@ -29,6 +30,22 @@ public class MainController {
         Collection<Player> players = (Collection<Player>)(new DataContext(new PlayerListQuery()).provide(null));
         model.addAttribute("players", players);
         return "general/players";
+    }
+
+    @GetMapping("/team")
+    public String team(@RequestParam(name = "id") String id, Model model) {
+        Team team = (Team)(new DataContext(new TeamQuery()).provide(id));
+        Collection<Player> players = (Collection<Player>)(new DataContext(new TeamPlayerListQuery()).provide(id));
+        model.addAttribute("team", team);
+        model.addAttribute("players", players);
+        return "general/team";
+    }
+
+    @GetMapping("/player")
+    public String player(@RequestParam(name = "id") String id, Model model) {
+        Player player = (Player)(new DataContext(new PlayerQuery()).provide(id));
+        model.addAttribute("player", player);
+        return "general/player";
     }
 
     @GetMapping("/subjects")

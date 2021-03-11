@@ -16,8 +16,9 @@ public class InsertController {
     }
 
     @PostMapping("/insert_player")
-    public String insertPlayer(@RequestParam(name = "player_name") String name) {
-        new DataContext(new AddPlayerQuery()).provide(name);
+    public String insertPlayer(@RequestParam(name = "player_name") String name,
+                               @RequestParam(name = "team_id") String team) {
+        new DataContext(new AddPlayerQuery()).provide(new String[]{name, team});
         return "redirect:/players";
     }
 

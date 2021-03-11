@@ -12,6 +12,11 @@
     <div class="page">
         <form method="post" action="/insert_player">
             <div><input name="player_name" type="text" value=""></div>
+            <div>
+                <select name="team_id">
+                    <option th:each="team : ${teams}" th:value="${team.teamId}" th:label="${team.teamName}">
+                </select>
+            </div>
             <div><input type="submit" value="Добавить"></div>
         </form>
     </div>

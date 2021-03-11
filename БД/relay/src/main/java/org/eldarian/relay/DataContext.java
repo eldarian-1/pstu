@@ -2,27 +2,30 @@ package org.eldarian.relay;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 
-public class DataContext {
+public class DataContext<TResult, TArgument> {
 
-    private void MySQLTest() {
+    private ISqlQueryable<TResult, TArgument> _query;
+
+    public DataContext(ISqlQueryable<TResult, TArgument> query) {
+        _query = query;
+    }
+
+    public TResult provide(TArgument argument) {
+        TResult result = null;
         try{
             String url = "jdbc:mysql://localhost/testdb?serverTimezone=Europe/Moscow&allowPublicKeyRetrieval=true&useSSL=false";
             String username = "eldarian";
             String password = "19841986";
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            String sqlCommand = "CREATE TABLE products (Id INT PRIMARY KEY AUTO_INCREMENT, ProductName VARCHAR(20), Price INT)";
-            try (Connection conn = DriverManager.getConnection(url, username, password)){
-                Statement statement = conn.createStatement();
-                statement.executeUpdate(sqlCommand);
-                System.out.println("Database has been created!");
+            try (Connection connection = DriverManager.getConnection(url, username, password)){
+                result = _query.execute(connection.createStatement(), argument);
             }
         }
         catch(Exception ex){
-            System.out.println("Connection failed...");
             System.out.println(ex);
         }
+        return result;
     }
 
 }

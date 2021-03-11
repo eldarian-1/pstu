@@ -1,5 +1,7 @@
 package org.eldarian.relay.controllers;
 
+import org.eldarian.relay.DataContext;
+import org.eldarian.relay.queries.AddPlayerQuery;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +17,8 @@ public class InsertController {
 
     @PostMapping("/insert_player")
     public String insertPlayer(@RequestParam(name = "player_name") String name) {
-        return "redirect:http://localhost:8081/";
+        new DataContext(new AddPlayerQuery()).provide(name);
+        return "redirect:/players";
     }
 
     @GetMapping("/insert_workout")

@@ -2,7 +2,7 @@ package org.eldarian.relay.controllers;
 
 import org.eldarian.relay.DataContext;
 import org.eldarian.relay.entities.*;
-import org.eldarian.relay.queries.*;
+import org.eldarian.relay.queries.select.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +32,13 @@ public class MainController {
         return "general/players";
     }
 
+    @GetMapping("/subjects")
+    public String subjects(Model model) {
+        Collection<Subject> subjects = (Collection<Subject>)(new DataContext(new SubjectListQuery()).provide(null));
+        model.addAttribute("subjects", subjects);
+        return "general/subjects";
+    }
+
     @GetMapping("/team")
     public String team(@RequestParam(name = "id") String id, Model model) {
         Team team = (Team)(new DataContext(new TeamQuery()).provide(id));
@@ -48,9 +55,11 @@ public class MainController {
         return "general/player";
     }
 
-    @GetMapping("/subjects")
-    public String subjects() {
-        return "general/subjects";
+    @GetMapping("/subject")
+    public String subject(@RequestParam(name = "id") String id, Model model) {
+        Subject subject = (Subject)(new DataContext(new SubjectQuery()).provide(id));
+        model.addAttribute("subject", subject);
+        return "general/subject";
     }
 
     @GetMapping("/workouts")

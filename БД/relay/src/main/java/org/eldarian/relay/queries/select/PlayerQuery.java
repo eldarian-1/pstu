@@ -1,4 +1,4 @@
-package org.eldarian.relay.queries;
+package org.eldarian.relay.queries.select;
 
 import org.eldarian.relay.ISqlQueryable;
 import org.eldarian.relay.entities.Player;
@@ -10,11 +10,11 @@ public class PlayerQuery implements ISqlQueryable<Player, String> {
     public Player execute(Statement statement, String id) throws SQLException {
         ResultSet set = statement.executeQuery(String.format("CALL find_player(%s);", id));
         set.next();
-        Player player = new Player();
-        player.setPlayerId(set.getInt("player_id"));
-        player.setTeamId(set.getInt("team_id"));
-        player.setPlayerName(set.getString("player_name"));
-        player.setTeamName(set.getString("team_name"));
-        return player;
+        Player item = new Player();
+        item.setPlayerId(set.getInt("player_id"));
+        item.setTeamId(set.getInt("team_id"));
+        item.setPlayerName(set.getString("player_name"));
+        item.setTeamName(set.getString("team_name"));
+        return item;
     }
 }

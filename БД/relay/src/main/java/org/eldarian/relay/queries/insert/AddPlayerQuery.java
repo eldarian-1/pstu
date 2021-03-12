@@ -1,4 +1,4 @@
-package org.eldarian.relay.queries;
+package org.eldarian.relay.queries.insert;
 
 import org.eldarian.relay.ISqlQueryable;
 

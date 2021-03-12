@@ -5,8 +5,8 @@
 </head>
 <body>
 
-<div th:fragment="menu" class="menu">
-    <div class="menu_header">
+<div th:fragment="menu(queries)" class="menu">
+    <div>
         <h2><a href="/">Эстафеты</a></h2>
         <h3>Данные</h3>
         <div><a href="/teams">Команды</a></div>
@@ -15,14 +15,7 @@
         <div><a href="/workouts">Тренировки</a></div>
         <div><a href="/relay_races">Эстафеты</a></div>
     </div>
-    <div class="menu_header">
-        <h3>Запросы</h3>
-        <div><a href="/add_team">+Команда</a></div>
-        <div><a href="/add_player">+Игрок</a></div>
-        <div><a href="/add_subject">+Дисциплин</a></div>
-        <div><a href="/add_workout">+Тренировка</a></div>
-        <div><a href="/add_relay_race">+Эстафета</a></div>
-    </div>
+    <div th:replace="${queries}" />
     <div class="auth_frame">
         <div>Вы вошли как <strong>гость</strong></div>
         <div><a href="/authorization">Авторизоваться</a></div>

@@ -1,4 +1,4 @@
-package org.eldarian.relay.queries;
+package org.eldarian.relay.queries.select;
 
 import org.eldarian.relay.ISqlQueryable;
 import org.eldarian.relay.entities.Player;
@@ -15,10 +15,10 @@ public class TeamPlayerListQuery implements ISqlQueryable<Collection<Player>, St
         ResultSet set = statement.executeQuery(String.format("CALL get_team_player_list(%s);", id));
         Collection<Player> list = new ArrayList<>();
         while(set.next()){
-            Player player = new Player();
-            player.setPlayerId(set.getInt("player_id"));
-            player.setPlayerName(set.getString("player_name"));
-            list.add(player);
+            Player item = new Player();
+            item.setPlayerId(set.getInt("player_id"));
+            item.setPlayerName(set.getString("player_name"));
+            list.add(item);
         }
         return list;
     }

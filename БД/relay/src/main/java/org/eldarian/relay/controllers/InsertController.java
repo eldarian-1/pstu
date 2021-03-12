@@ -1,7 +1,7 @@
 package org.eldarian.relay.controllers;
 
 import org.eldarian.relay.DataContext;
-import org.eldarian.relay.queries.*;
+import org.eldarian.relay.queries.insert.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +20,14 @@ public class InsertController {
                                @RequestParam(name = "team_id") String team) {
         new DataContext(new AddPlayerQuery()).provide(new String[]{name, team});
         return "redirect:/players";
+    }
+
+    @PostMapping("/insert_subject")
+    public String insertSubject(@RequestParam(name = "subject_name") String name,
+                                @RequestParam(name = "subject_unit") String unit,
+                                @RequestParam(name = "subject_multiplier") String multiplier) {
+        new DataContext(new AddSubjectQuery()).provide(new String[]{name, unit, multiplier});
+        return "redirect:/subjects";
     }
 
     @GetMapping("/insert_workout")

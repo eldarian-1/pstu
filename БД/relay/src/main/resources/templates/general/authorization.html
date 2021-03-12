@@ -8,7 +8,7 @@
 <body>
 
 <div class="box">
-    <div th:replace="/../fragments.html :: menu" />
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: home})" />
     <div class="page">
         <h1>Эстафеты</h1>
         <div>Дорогие друзья, консультация с профессионалами из IT обеспечивает широкому кругу специалистов участие в

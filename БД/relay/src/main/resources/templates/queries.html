@@ -8,11 +8,13 @@
 <div th:fragment="home">
 </div>
 
-<div th:fragment="player(id)">
+<div th:fragment="player(p)">
     <h3>Запросы</h3>
-    <div><a th:href="'/rename_player?id='+${id}">Переименовать</a></div>
-    <div><a th:href="'/change_player_team?id='+${id}">Сменить команду</a></div>
-    <div><a th:href="'/remove_player?id='+${id}">Удалить</a></div>
+    <div><a th:href="'/rename_player?id='+${p.playerId}">Переименовать</a></div>
+    <div><a th:if="${p.teamId == 0}" th:href="'/change_player_team?id='+${p.playerId}">Вступить в команду</a></div>
+    <div><a th:if="${p.teamId != 0}" th:href="'/change_player_team?id='+${p.playerId}">Сменить команду</a></div>
+    <div><a th:if="${p.teamId != 0}" th:href="'/leave_player_team?id='+${p.playerId}">Покинуть команду</a></div>
+    <div><a th:href="'/remove_player?id='+${p.playerId}">Удалить</a></div>
 </div>
 
 <div th:fragment="players">
@@ -27,8 +29,8 @@
 
 <div th:fragment="subject(id)">
     <h3>Запросы</h3>
-    <div><a href="'/edit_subject?id='+${id}">Изменить</a></div>
-    <div><a href="'/remove_subject?id='+${id}">Удалить</a></div>
+    <div><a th:href="'/edit_subject?id='+${id}">Изменить</a></div>
+    <div><a th:href="'/remove_subject?id='+${id}">Удалить</a></div>
 </div>
 
 <div th:fragment="subjects">

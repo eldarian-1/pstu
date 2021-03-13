@@ -30,12 +30,12 @@ public class InsertController {
         return "redirect:/subjects";
     }
 
-    @GetMapping("/insert_workout")
+    @PostMapping("/insert_workout")
     public String insertWorkout() {
         return "add_workout";
     }
 
-    @GetMapping("/insert_relay_race")
+    @PostMapping("/insert_relay_race")
     public String insertRelayRace() {
         return "add_relay_race";
     }

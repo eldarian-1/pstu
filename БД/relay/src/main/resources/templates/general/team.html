@@ -22,7 +22,8 @@
         </table>
         <br />
         <ol th:each="player : ${players}">
-            <li><a th:href="'/player?id='+${player.playerId}" th:text="${player.playerName}" /></li>
+            <li><a th:href="'/player?id='+${player.playerId}" th:text="${player.playerName}" />
+                | <a th:href="'/leave_player_team?from=team%3Fid%3D'+${team.teamId} + '&id=' + ${player.playerId}">Исключить</a></li>
         </ol>
     </div>
 

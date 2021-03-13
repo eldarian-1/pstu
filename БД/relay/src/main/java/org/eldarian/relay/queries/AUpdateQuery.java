@@ -4,7 +4,7 @@ import org.eldarian.relay.ISqlQueryable;
 
 import java.sql.*;
 
-public abstract class ADeleteQuery<TArgument> implements ISqlQueryable<Void, TArgument> {
+public abstract class AUpdateQuery<TArgument> implements ISqlQueryable<Void, TArgument> {
 
     protected abstract String query(TArgument arg);
 

@@ -29,6 +29,15 @@ CREATE PROCEDURE get_team_player_list(IN arg_team_id INT)
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE update_team(IN arg_id INT, IN arg_name VARCHAR(50), IN arg_trainer VARCHAR(50))
+    BEGIN
+        UPDATE teams
+        SET team_name = arg_name, trainers = arg_trainer
+        WHERE team_id = arg_id;
+    END //
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE remove_team(IN arg_id INT)
     BEGIN
         DELETE FROM teams WHERE team_id = arg_id;

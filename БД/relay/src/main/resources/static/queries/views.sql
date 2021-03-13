@@ -2,8 +2,10 @@ USE testdb;
 
 CREATE VIEW player_views
 (player_id, player_name, team_id, team_name)
-AS SELECT players.player_id, players.player_name, players.team_id, teams.team_name FROM players
-JOIN teams ON teams.team_id = players.team_id;
+AS SELECT players.player_id, players.player_name, players.team_id, teams.team_name
+FROM players JOIN teams ON players.team_id = teams.team_id
+UNION SELECT players.player_id, players.player_name, players.team_id, NULL AS team_name
+FROM players WHERE players.team_id IS NULL;
 
 CREATE VIEW player_result_views
 (player_id, result_list_id, result_list_name, subject_id, subject_name, result_value, subject_unit)

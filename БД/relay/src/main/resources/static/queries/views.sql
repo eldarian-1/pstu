@@ -6,8 +6,9 @@ AS SELECT players.player_id, players.player_name, players.team_id, teams.team_na
 JOIN teams ON teams.team_id = players.team_id;
 
 CREATE VIEW player_result_views
-(player_id, result_list_id, subject_id, subject_name, result_value, subject_unit)
-AS SELECT results.player_id, results.result_list_id, results.subject_id, subjects.subject_name, results.result_value,
+(player_id, result_list_id, result_list_name, subject_id, subject_name, result_value, subject_unit)
+AS SELECT results.player_id, results.result_list_id, get_list_name(results.result_list_id), results.subject_id,
+    subjects.subject_name, results.result_value,
     subjects.subject_unit FROM results
 JOIN subjects ON subjects.subject_id = results.subject_id;
 

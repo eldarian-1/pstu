@@ -8,7 +8,7 @@
 <body>
 
 <div class="box">
-    <div th:replace="/../fragments.html :: menu(~{queries.html :: home})" />
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: player(${player.playerId})})" />
     <div class="page">
         <table>
             <tr>
@@ -16,7 +16,7 @@
                 <td>Команда</td>
             </tr>
             <tr>
-                <td><a th:href="'/player?id='+${player.playerId}" th:text="${player.playerName}" /></td>
+                <td th:text="${player.playerName}" />
                 <td><a th:href="'/team?id='+${player.teamId}" th:text="${player.teamName}" /></td>
             </tr>
         </table>

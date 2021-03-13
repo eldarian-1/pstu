@@ -8,7 +8,7 @@
 <body>
 
 <div class="box">
-    <div th:replace="/../fragments.html :: menu(~{queries.html :: home})" />
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: team(${team.teamId})})" />
     <div class="page">
         <table>
             <tr>

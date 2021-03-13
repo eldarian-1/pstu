@@ -6,12 +6,50 @@
 <body>
 
 <div th:fragment="home">
+</div>
+
+<div th:fragment="player(id)">
     <h3>Запросы</h3>
-    <div><a href="/add_team">+Команда</a></div>
-    <div><a href="/add_player">+Игрок</a></div>
-    <div><a href="/add_subject">+Дисциплин</a></div>
-    <div><a href="/add_workout">+Тренировка</a></div>
-    <div><a href="/add_relay_race">+Эстафета</a></div>
+    <div><a th:href="'/rename_player?id='+${id}">Переименовать</a></div>
+    <div><a th:href="'/change_player_team?id='+${id}">Сменить команду</a></div>
+    <div><a th:href="'/remove_player?id='+${id}">Удалить</a></div>
+</div>
+
+<div th:fragment="players">
+    <h3>Запросы</h3>
+    <div><a href="/add_player">Зарегистрировать нового</a></div>
+</div>
+
+<div th:fragment="relay_races">
+    <h3>Запросы</h3>
+    <div><a href="/add_relay_race">Организовать эстафету</a></div>
+</div>
+
+<div th:fragment="subject(id)">
+    <h3>Запросы</h3>
+    <div><a href="'/edit_subject?id='+${id}">Изменить</a></div>
+    <div><a href="'/remove_subject?id='+${id}">Удалить</a></div>
+</div>
+
+<div th:fragment="subjects">
+    <h3>Запросы</h3>
+    <div><a href="/add_subject">Добавить</a></div>
+</div>
+
+<div th:fragment="team(id)">
+    <h3>Запросы</h3>
+    <div><a th:href="'/edit_team?id='+${id}">Изменить</a></div>
+    <div><a th:href="'/remove_team?id='+${id}">Удалить</a></div>
+</div>
+
+<div th:fragment="teams">
+    <h3>Запросы</h3>
+    <div><a href="/add_team">Добавить</a></div>
+</div>
+
+<div th:fragment="workouts">
+    <h3>Запросы</h3>
+    <div><a href="/add_workout">Начать</a></div>
 </div>
 
 </body>

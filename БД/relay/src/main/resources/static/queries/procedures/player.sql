@@ -8,9 +8,9 @@ CREATE PROCEDURE get_player_list()
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE find_player(IN arg_player_id INT)
+CREATE PROCEDURE find_player(IN arg_id INT)
     BEGIN
-        SELECT * FROM player_views WHERE player_id = arg_player_id;
+        SELECT * FROM player_views WHERE player_id = arg_id;
     END //
 DELIMITER ;
 
@@ -22,9 +22,9 @@ CREATE PROCEDURE add_player(IN arg_name VARCHAR(50), IN arg_team_id INT)
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE rename_player(IN arg_player_id INT, IN arg_player_name VARCHAR(50))
+CREATE PROCEDURE rename_player(IN arg_id INT, IN arg_name VARCHAR(50))
     BEGIN
-        UPDATE players SET player_name = arg_player_name WHERE player_id = arg_player_id;
+        UPDATE players SET player_name = arg_name WHERE player_id = arg_id;
     END //
 DELIMITER ;
 
@@ -32,6 +32,13 @@ DELIMITER //
 CREATE PROCEDURE change_player_team(IN arg_player_id INT, IN arg_team_id INT)
     BEGIN
         UPDATE players SET team_id = arg_team_id WHERE player_id = arg_player_id;
+    END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE player_results(IN arg_id INT)
+    BEGIN
+        SELECT * FROM player_result_views WHERE player_id = arg_id;
     END //
 DELIMITER ;
 

@@ -46,4 +46,16 @@ public class EntityBuilder {
         return item;
     }
 
+    public Result result() throws SQLException {
+        Result item = new Result();
+        item.setPlayerId(_set.getInt("player_id"));
+        item.setResultListId(_set.getInt("result_list_id"));
+        item.setResultListName(_set.getString("result_list_name"));
+        item.setSubjectId(_set.getInt("subject_id"));
+        item.setSubjectName(_set.getString("subject_name"));
+        item.setResultValue(_set.getDouble("result_value"));
+        item.setSubjectUnit(_set.getString("subject_unit"));
+        return item;
+    }
+
 }

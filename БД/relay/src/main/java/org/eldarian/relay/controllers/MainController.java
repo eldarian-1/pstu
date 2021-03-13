@@ -2,7 +2,13 @@ package org.eldarian.relay.controllers;
 
 import org.eldarian.relay.DataContext;
 import org.eldarian.relay.entities.*;
-import org.eldarian.relay.queries.select.*;
+import org.eldarian.relay.queries.select.item.PlayerQuery;
+import org.eldarian.relay.queries.select.item.SubjectQuery;
+import org.eldarian.relay.queries.select.item.TeamQuery;
+import org.eldarian.relay.queries.select.list.PlayerListQuery;
+import org.eldarian.relay.queries.select.list.SubjectListQuery;
+import org.eldarian.relay.queries.select.list.TeamListQuery;
+import org.eldarian.relay.queries.select.list.TeamPlayerListQuery;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

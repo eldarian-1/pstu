@@ -1,4 +1,4 @@
-package org.eldarian.relay.queries.select;
+package org.eldarian.relay.queries;
 
 import org.eldarian.relay.EntityBuilder;
 import org.eldarian.relay.ISqlQueryable;

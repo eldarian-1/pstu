@@ -28,6 +28,13 @@ CREATE PROCEDURE get_team_player_list(IN arg_team_id INT)
     END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE remove_team(IN arg_id INT)
+    BEGIN
+        DELETE FROM teams WHERE team_id = arg_id;
+    END //
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS get_team_list;
 DROP PROCEDURE IF EXISTS find_team;
 DROP PROCEDURE IF EXISTS add_team;

@@ -2,7 +2,7 @@ package org.eldarian.relay.queries.select.list;
 
 import org.eldarian.relay.EntityBuilder;
 import org.eldarian.relay.entities.Result;
-import org.eldarian.relay.queries.select.AListQuery;
+import org.eldarian.relay.queries.AListQuery;
 
 import java.sql.SQLException;
 

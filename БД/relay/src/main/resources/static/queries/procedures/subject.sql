@@ -31,6 +31,13 @@ CREATE PROCEDURE change_subject(IN arg_id INT,
     END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE remove_subject(IN arg_id INT)
+    BEGIN
+        DELETE FROM subjects WHERE subject_id = arg_id;
+    END //
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS get_subject_list;
 DROP PROCEDURE IF EXISTS find_subject;
 DROP PROCEDURE IF EXISTS add_subject;

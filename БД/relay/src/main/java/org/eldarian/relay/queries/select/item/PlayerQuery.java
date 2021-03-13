@@ -2,7 +2,7 @@ package org.eldarian.relay.queries.select.item;
 
 import org.eldarian.relay.EntityBuilder;
 import org.eldarian.relay.entities.Player;
-import org.eldarian.relay.queries.select.AItemQuery;
+import org.eldarian.relay.queries.AItemQuery;
 
 import java.sql.SQLException;
 

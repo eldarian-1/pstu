@@ -42,6 +42,13 @@ CREATE PROCEDURE player_results(IN arg_id INT)
     END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE remove_player(IN arg_id INT)
+    BEGIN
+        DELETE FROM players WHERE player_id = arg_id;
+    END //
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS get_player_list;
 DROP PROCEDURE IF EXISTS find_player;
 DROP PROCEDURE IF EXISTS add_player;

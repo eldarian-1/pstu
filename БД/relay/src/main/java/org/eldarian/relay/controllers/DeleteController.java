@@ -1,29 +1,30 @@
 package org.eldarian.relay.controllers;
 
+import org.eldarian.relay.DataContext;
+import org.eldarian.relay.queries.delete.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DeleteController {
 
-    @GetMapping("/delete_team")
-    public String deleteTeam() {
-        return "add_team";
+    @GetMapping("/remove_team")
+    public String deleteTeam(@RequestParam(name = "id") String id) {
+        new DataContext(new RemoveTeamQuery()).provide(id);
+        return "redirect:/teams";
     }
 
-    @GetMapping("/delete_player")
-    public String deletePlayer() {
-        return "add_player";
+    @GetMapping("/remove_player")
+    public String deletePlayer(@RequestParam(name = "id") String id) {
+        new DataContext(new RemovePlayerQuery()).provide(id);
+        return "redirect:/players";
     }
 
-    @GetMapping("/delete_workout")
-    public String deleteWorkout() {
-        return "add_workout";
-    }
-
-    @GetMapping("/delete_relay_race")
-    public String deleteRelayRace() {
-        return "add_relay_race";
+    @GetMapping("/remove_subject")
+    public String deleteWorkout(@RequestParam(name = "id") String id) {
+        new DataContext(new RemoveSubjectQuery()).provide(id);
+        return "redirect:/subjects";
     }
 
 }

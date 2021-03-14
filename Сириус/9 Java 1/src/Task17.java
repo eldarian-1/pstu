@@ -21,7 +21,7 @@ public class Task17 {
 
         @Override
         public String toString() {
-            return _name; //String.format("%s:\n\tAge: %d\n\t%Weight: %d\n\tMoney: %d", _name, _age, _weight, _money);
+            return String.format("%s:\n\tAge: %d\n\tWeight: %d\n\tMoney: %d", _name, _age, _weight, _money);
         }
     }
 }

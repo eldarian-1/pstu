@@ -3,9 +3,10 @@ package src;
 import java.io.*;
 
 public class Task28 {
+    
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static double edge(char edge) throws Throwable {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print(String.format("Введите сторону %c: ", edge));
         return Double.parseDouble(reader.readLine());
     }

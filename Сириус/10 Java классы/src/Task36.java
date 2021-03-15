@@ -3,9 +3,10 @@ package src;
 import java.io.*;
 
 public class Task36 {
+    
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static String name() throws Throwable {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Введите имя: ");
         return reader.readLine();
     }

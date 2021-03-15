@@ -3,9 +3,10 @@ package src;
 import java.io.*;
 
 public class Task30 {
+    
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static int number(char num) throws Throwable {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print(String.format("Введите число %c: ", num));
         return Integer.parseInt(reader.readLine());
     }

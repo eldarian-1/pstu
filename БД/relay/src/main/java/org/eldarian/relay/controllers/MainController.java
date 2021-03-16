@@ -5,10 +5,7 @@ import org.eldarian.relay.entities.*;
 import org.eldarian.relay.queries.select.item.PlayerQuery;
 import org.eldarian.relay.queries.select.item.SubjectQuery;
 import org.eldarian.relay.queries.select.item.TeamQuery;
-import org.eldarian.relay.queries.select.list.PlayerListQuery;
-import org.eldarian.relay.queries.select.list.SubjectListQuery;
-import org.eldarian.relay.queries.select.list.TeamListQuery;
-import org.eldarian.relay.queries.select.list.TeamPlayerListQuery;
+import org.eldarian.relay.queries.select.list.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,15 +46,20 @@ public class MainController {
     public String team(@RequestParam(name = "id") String id, Model model) {
         Team team = (Team)(new DataContext(new TeamQuery()).provide(id));
         Collection<Player> players = (Collection<Player>)(new DataContext(new TeamPlayerListQuery()).provide(id));
+        Collection<Subject> subjects = (Collection<Subject>)
+                (new DataContext(new NotIncludedSubjectListQuery()).provide(null));
         model.addAttribute("team", team);
         model.addAttribute("players", players);
+        model.addAttribute("subjects", subjects);
         return "general/team";
     }
 
     @GetMapping("/player")
     public String player(@RequestParam(name = "id") String id, Model model) {
         Player player = (Player)(new DataContext(new PlayerQuery()).provide(id));
+        Collection<Result> results = (Collection<Result>)(new DataContext(new PlayerResultListQuery()).provide(id));
         model.addAttribute("player", player);
+        model.addAttribute("results", results);
         return "general/player";
     }
 

@@ -53,4 +53,6 @@ DROP PROCEDURE IF EXISTS get_player_list;
 DROP PROCEDURE IF EXISTS find_player;
 DROP PROCEDURE IF EXISTS add_player;
 DROP PROCEDURE IF EXISTS rename_player;
+DROP PROCEDURE IF EXISTS player_results;
 DROP PROCEDURE IF EXISTS change_player_team;
+DROP PROCEDURE IF EXISTS remove_player;

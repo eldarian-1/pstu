@@ -38,20 +38,18 @@
     <div><a href="/add_subject">Добавить</a></div>
 </div>
 
-<div th:fragment="team(id)">
+<div th:fragment="team(team_id, workout_id)">
     <h3>Запросы</h3>
-    <div><a th:href="'/edit_team?id='+${id}">Изменить</a></div>
-    <div><a th:href="'/remove_team?id='+${id}">Удалить</a></div>
+    <div><a th:if="${workout_id == 0}" th:href="'/start_workout?id='+${team_id}">Начать тренировку</a></div>
+    <div><a th:if="${workout_id != 0}" th:href="'/workout?id='+${workout_id}">Продолжить тренировку</a></div>
+    <div><a th:href="'/add_team_subject?id='+${team_id}">Добавить дисциплину</a></div>
+    <div><a th:href="'/edit_team?id='+${team_id}">Изменить</a></div>
+    <div><a th:href="'/remove_team?id='+${team_id}">Удалить</a></div>
 </div>
 
 <div th:fragment="teams">
     <h3>Запросы</h3>
     <div><a href="/add_team">Добавить</a></div>
-</div>
-
-<div th:fragment="workouts">
-    <h3>Запросы</h3>
-    <div><a href="/add_workout">Начать</a></div>
 </div>
 
 </body>

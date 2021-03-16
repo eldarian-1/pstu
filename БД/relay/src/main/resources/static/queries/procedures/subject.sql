@@ -42,3 +42,4 @@ DROP PROCEDURE IF EXISTS get_subject_list;
 DROP PROCEDURE IF EXISTS find_subject;
 DROP PROCEDURE IF EXISTS add_subject;
 DROP PROCEDURE IF EXISTS update_subject;
+DROP PROCEDURE IF EXISTS remove_subject;

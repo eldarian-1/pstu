@@ -1,11 +1,12 @@
 package org.eldarian.relay.controllers;
 
 import org.eldarian.relay.DataContext;
-import org.eldarian.relay.entities.Team;
-import org.eldarian.relay.queries.select.list.TeamListQuery;
+import org.eldarian.relay.entities.*;
+import org.eldarian.relay.queries.select.list.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
 
@@ -27,6 +28,14 @@ public class AddController {
     @GetMapping("/add_subject")
     public String addSubject() {
         return "addition/add_subject";
+    }
+
+    @GetMapping("/add_team_subject")
+    public String addTeamSubject(@RequestParam(name = "id") String id, Model model) {
+        Collection<Subject> subjects = (Collection<Subject>)
+                (new DataContext(new NotIncludedSubjectListQuery()).provide(null));
+        model.addAttribute("subjects", subjects);
+        return "addition/add_team_subject";
     }
 
     @GetMapping("/add_workout")

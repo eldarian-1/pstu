@@ -20,6 +20,21 @@
                 <td><a th:href="'/team?id='+${player.teamId}" th:text="${player.teamName}" /></td>
             </tr>
         </table>
+
+        <table>
+            <tr>
+                <td>Событие</td>
+                <td>Дисциплина</td>
+                <td>Результат</td>
+                <td>Единица измерения</td>
+            </tr>
+            <tr th:each="result : ${results}">
+                <td><a th:href="'/result_list?id='+${result.resultListId}" th:text="${result.resultListName}" /></td>
+                <td><a th:href="'/subject?id='+${result.subjectId}" th:text="${result.subjectName}" /></td>
+                <td th:text="${result.teamName}" />
+                <td th:text="${result.teamName}" />
+            </tr>
+        </table>
     </div>
 
 </body>

@@ -10,7 +10,7 @@ CREATE TABLE players (
     player_id INT PRIMARY KEY AUTO_INCREMENT,
     team_id INT NULL,
     player_name VARCHAR(50) NOT NULL,
-    FOREIGN KEY (team_id) REFERENCES teams (team_id) ON DELETE CASCADE
+    FOREIGN KEY (team_id) REFERENCES teams (team_id)
 );
 
 CREATE TABLE subjects (
@@ -23,6 +23,7 @@ CREATE TABLE subjects (
 CREATE TABLE result_lists (
     result_list_id INT PRIMARY KEY AUTO_INCREMENT,
     team_id INT NOT NULL,
+    is_open BOOLEAN NOT NULL,
     result_list_date DATE NOT NULL,
     FOREIGN KEY (team_id) REFERENCES teams (team_id) ON DELETE CASCADE
 );

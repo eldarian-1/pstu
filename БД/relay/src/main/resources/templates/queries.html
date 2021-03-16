@@ -38,13 +38,20 @@
     <div><a href="/add_subject">Добавить</a></div>
 </div>
 
-<div th:fragment="team(team_id, workout_id)">
+<div th:fragment="team(team_id, result_list_id)">
     <h3>Запросы</h3>
-    <div><a th:if="${workout_id == 0}" th:href="'/start_workout?id='+${team_id}">Начать тренировку</a></div>
-    <div><a th:if="${workout_id != 0}" th:href="'/workout?id='+${workout_id}">Продолжить тренировку</a></div>
+    <div><a th:if="${result_list_id == 0}" th:href="'/start_workout?id='+${team_id}">Начать тренировку</a></div>
+    <div><a th:if="${result_list_id != 0}" th:href="'/result_list?id='+${result_list_id}">Продолжить занятие</a></div>
     <div><a th:href="'/add_team_subject?id='+${team_id}">Добавить дисциплину</a></div>
     <div><a th:href="'/edit_team?id='+${team_id}">Изменить</a></div>
     <div><a th:href="'/remove_team?id='+${team_id}">Удалить</a></div>
+</div>
+
+<div th:fragment="result_list(resultList)">
+    <h3>Запросы</h3>
+    <div><a th:href="'/add_result?id='+${resultList.teamId}">Добавить результат</a></div>
+    <div><a th:href="'/close_result_list?id='+${resultList.teamId}">Завершить</a></div>
+    <div><a th:href="'/remove_result_list?result_list_id=' + ${resultList.resultListId} + '&id='+${resultList.teamId}">Отменить</a></div>
 </div>
 
 <div th:fragment="teams">

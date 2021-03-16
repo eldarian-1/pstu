@@ -3,17 +3,26 @@ package org.eldarian.relay.entities;
 import java.util.Date;
 
 public class ResultList {
-    private int _resultId;
+    private int _resultListId;
+    private String _resultListName;
     private int _teamId;
     private boolean _isOpen;
     private Date _resultListDate;
 
-    public int getResultId() {
-        return _resultId;
+    public int getResultListId() {
+        return _resultListId;
     }
 
-    public void setResultId(int resultId) {
-        _resultId = resultId;
+    public void setResultListId(int resultListId) {
+        _resultListId = resultListId;
+    }
+
+    public String getResultListName() {
+        return _resultListName;
+    }
+
+    public void setResultListName(String resultListName) {
+        _resultListName = resultListName;
     }
 
     public int getTeamId() {

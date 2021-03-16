@@ -4,6 +4,7 @@ import org.eldarian.relay.DataContext;
 import org.eldarian.relay.entities.*;
 import org.eldarian.relay.queries.select.item.*;
 import org.eldarian.relay.queries.select.list.*;
+import org.eldarian.relay.queries.update.CloseResultListQuery;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,12 @@ public class EditController {
         Subject subject = (Subject)(new DataContext(new SubjectQuery()).provide(id));
         model.addAttribute("subject", subject);
         return "edition/edit_subject";
+    }
+
+    @GetMapping("/close_result_list")
+    public String closeResultList(@RequestParam(name = "id") String id) {
+        new DataContext(new CloseResultListQuery()).provide(id);
+        return "redirect:/team?id=" + id;
     }
 
     @GetMapping("/edit_workout")

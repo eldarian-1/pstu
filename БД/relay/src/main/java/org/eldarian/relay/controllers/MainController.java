@@ -2,9 +2,7 @@ package org.eldarian.relay.controllers;
 
 import org.eldarian.relay.DataContext;
 import org.eldarian.relay.entities.*;
-import org.eldarian.relay.queries.select.item.PlayerQuery;
-import org.eldarian.relay.queries.select.item.SubjectQuery;
-import org.eldarian.relay.queries.select.item.TeamQuery;
+import org.eldarian.relay.queries.select.item.*;
 import org.eldarian.relay.queries.select.list.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,12 +43,17 @@ public class MainController {
     @GetMapping("/team")
     public String team(@RequestParam(name = "id") String id, Model model) {
         Team team = (Team)(new DataContext(new TeamQuery()).provide(id));
+        ResultList resultList = (ResultList)(new DataContext(new OpenedResultListQuery()).provide(id));
         Collection<Player> players = (Collection<Player>)(new DataContext(new TeamPlayerListQuery()).provide(id));
         Collection<Subject> subjects = (Collection<Subject>)
                 (new DataContext(new IncludedSubjectListQuery()).provide(id));
+        Collection<ResultList> resultLists = (Collection<ResultList>)
+                (new DataContext(new ResultListsQuery()).provide(id));
         model.addAttribute("team", team);
         model.addAttribute("players", players);
         model.addAttribute("subjects", subjects);
+        model.addAttribute("resultLists", resultLists);
+        model.addAttribute("resultListId", resultList != null ? resultList.getResultListId() : 0);
         return "general/team";
     }
 
@@ -68,6 +71,13 @@ public class MainController {
         Subject subject = (Subject)(new DataContext(new SubjectQuery()).provide(id));
         model.addAttribute("subject", subject);
         return "general/subject";
+    }
+
+    @GetMapping("/result_list")
+    public String resultList(@RequestParam(name = "id") String id, Model model) {
+        ResultList resultList = (ResultList)(new DataContext(new ResultListQuery()).provide(id));
+        model.addAttribute("resultList", resultList);
+        return "general/result_list";
     }
 
     @GetMapping("/workouts")

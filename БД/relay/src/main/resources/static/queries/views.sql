@@ -14,6 +14,23 @@ AS SELECT results.player_id, results.result_list_id, get_list_name(results.resul
     subjects.subject_unit FROM results
 JOIN subjects ON subjects.subject_id = results.subject_id;
 
+CREATE VIEW result_list_views
+(result_list_id, result_list_name, team_id, team_name, is_open, result_list_date)
+AS SELECT result_lists.result_list_id,
+    CONCAT("Тренировка ", result_lists.result_list_date) AS relay_name,
+        result_lists.team_id, teams.team_name, result_lists.is_open,
+        result_lists.result_list_date FROM result_lists
+    JOIN teams ON teams.team_id = result_lists.team_id
+    UNION
+    SELECT team_participations.result_list_id,
+        CONCAT("Эстафета ", relay_races.relay_name) AS relay_name,
+        team_participations.team_id, teams.team_name,
+        result_lists.is_open, result_lists.result_list_date
+    FROM team_participations
+    JOIN result_lists ON result_lists.result_list_id = team_participations.result_list_id
+    JOIN teams ON teams.team_id = result_lists.team_id
+    JOIN relay_races ON team_participations.relay_id = relay_races.relay_id;
+
 CREATE VIEW team_views
 (team_id, player_id, player_name)
 AS SELECT teams.team_id, players.player_id, players.player_name FROM teams
@@ -39,6 +56,7 @@ ORDER BY relay_subjects.subject_position;
 
 DROP VIEW IF EXISTS player_views;
 DROP VIEW IF EXISTS player_result_views;
+DROP VIEW IF EXISTS result_list_views;
 DROP VIEW IF EXISTS team_views;
 DROP VIEW IF EXISTS team_result_views;
 DROP VIEW IF EXISTS team_subject_views;

@@ -34,4 +34,11 @@ public class DeleteController {
         return "redirect:/team?id=" + teamId;
     }
 
+    @GetMapping("/remove_result_list")
+    public String removeResultList(@RequestParam(name = "id") String teamId,
+                                @RequestParam(name = "result_list_id") String resultListId) {
+        new DataContext(new RemoveResultListQuery()).provide(resultListId);
+        return "redirect:/team?id=" + teamId;
+    }
+
 }

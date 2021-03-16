@@ -15,7 +15,9 @@ public abstract class AItemQuery<TResult, TArgument> implements ISqlQueryable<TR
     @Override
     public TResult execute(Statement statement, TArgument arg) throws SQLException {
         ResultSet set = statement.executeQuery(query(arg));
-        set.next();
-        return item(new EntityBuilder(set));
+        if(set.next())
+            return item(new EntityBuilder(set));
+        else
+            return null;
     }
 }

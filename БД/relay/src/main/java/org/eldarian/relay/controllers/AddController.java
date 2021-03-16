@@ -33,14 +33,10 @@ public class AddController {
     @GetMapping("/add_team_subject")
     public String addTeamSubject(@RequestParam(name = "id") String id, Model model) {
         Collection<Subject> subjects = (Collection<Subject>)
-                (new DataContext(new NotIncludedSubjectListQuery()).provide(null));
+                (new DataContext(new NotIncludedSubjectListQuery()).provide(id));
+        model.addAttribute("teamId", id);
         model.addAttribute("subjects", subjects);
         return "addition/add_team_subject";
-    }
-
-    @GetMapping("/add_workout")
-    public String addWorkout() {
-        return "addition/add_workout";
     }
 
     @GetMapping("/add_relay_race")

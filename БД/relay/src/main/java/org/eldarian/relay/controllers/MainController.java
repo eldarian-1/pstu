@@ -47,7 +47,7 @@ public class MainController {
         Team team = (Team)(new DataContext(new TeamQuery()).provide(id));
         Collection<Player> players = (Collection<Player>)(new DataContext(new TeamPlayerListQuery()).provide(id));
         Collection<Subject> subjects = (Collection<Subject>)
-                (new DataContext(new NotIncludedSubjectListQuery()).provide(null));
+                (new DataContext(new IncludedSubjectListQuery()).provide(id));
         model.addAttribute("team", team);
         model.addAttribute("players", players);
         model.addAttribute("subjects", subjects);

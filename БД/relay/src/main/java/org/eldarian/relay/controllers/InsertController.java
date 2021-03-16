@@ -30,9 +30,17 @@ public class InsertController {
         return "redirect:/subjects";
     }
 
-    @PostMapping("/insert_workout")
-    public String insertWorkout() {
-        return "add_workout";
+    @PostMapping("/insert_team_subject")
+    public String insertTeamSubject(@RequestParam(name = "id") String teamId,
+                                    @RequestParam(name = "subject_id") String subjectId) {
+        new DataContext(new AddTeamSubjectQuery()).provide(new String[]{teamId, subjectId});
+        return "redirect:/team?id=" + teamId;
+    }
+
+    @GetMapping("/start_workout")
+    public String addWorkout(@RequestParam(name = "id") String teamId) {
+        new DataContext(new AddResultListQuery()).provide(teamId);
+        return "redirect:/workout?id=" + teamId;
     }
 
     @PostMapping("/insert_relay_race")

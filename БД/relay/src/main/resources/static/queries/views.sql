@@ -25,8 +25,9 @@ AS SELECT result_lists.team_id, result_lists.result_list_id, get_list_name(resul
 FROM result_lists;
 
 CREATE VIEW team_subject_views
-(team_id, subject_id, subject_name)
-AS SELECT team_subjects.team_id, team_subjects.subject_id, subjects.subject_name FROM team_subjects
+(team_id,subject_id, subject_name, subject_unit, subject_multiplier)
+AS SELECT team_subjects.team_id, team_subjects.subject_id, subjects.subject_name, subjects.subject_unit,
+    subjects.subject_multiplier FROM team_subjects
 JOIN subjects ON team_subjects.subject_id = subjects.subject_id;
 
 CREATE VIEW relay_subject_views

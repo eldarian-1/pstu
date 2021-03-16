@@ -6,10 +6,10 @@ import org.eldarian.relay.queries.AListQuery;
 
 import java.sql.SQLException;
 
-public class IncludedSubjectListQuery extends AListQuery<Subject, Void> {
+public class IncludedSubjectListQuery extends AListQuery<Subject, String> {
     @Override
-    protected String query(Void arg) {
-        return "CALL get_subject_list();";
+    protected String query(String arg) {
+        return String.format("CALL get_team_subject_list(%s);", arg);
     }
 
     @Override

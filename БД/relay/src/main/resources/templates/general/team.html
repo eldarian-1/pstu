@@ -28,7 +28,7 @@
         <br />
         <ol th:each="subject : ${subjects}">
             <li><a th:href="'/subject?id='+${subject.subjectId}" th:text="${subject.subjectName}" />
-                | <a th:href="'/exclude_team_subject?from=team%3Fid%3D'+${team.teamId} + '&id=' + ${subject.subjectId}">Исключить</a></li>
+                | <a th:href="'/exclude_team_subject?id='+${team.teamId} + '&subject_id=' + ${subject.subjectId}">Исключить</a></li>
         </ol>
     </div>
 

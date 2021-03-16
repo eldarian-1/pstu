@@ -27,4 +27,11 @@ public class DeleteController {
         return "redirect:/subjects";
     }
 
+    @GetMapping("/exclude_team_subject")
+    public String deleteWorkout(@RequestParam(name = "id") String teamId,
+                                @RequestParam(name = "subject_id") String subjectId) {
+        new DataContext(new ExcludeTeamSubjectQuery()).provide(new String[]{teamId, subjectId});
+        return "redirect:/team?id=" + teamId;
+    }
+
 }

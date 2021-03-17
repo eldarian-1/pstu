@@ -44,4 +44,12 @@ public class AddController {
         return "addition/add_relay_race";
     }
 
+    @GetMapping("/add_relay_team")
+    public String addRelayTeam(@RequestParam(name = "id") String id, Model model) {
+        Collection<Team> teams = (Collection<Team>)(new DataContext(new TeamListQuery()).provide(null));
+        model.addAttribute("teams", teams);
+        model.addAttribute("relayId", id);
+        return "addition/add_relay_team";
+    }
+
 }

@@ -76,14 +76,17 @@ public class MainController {
     @GetMapping("/result_list")
     public String resultList(@RequestParam(name = "id") String id, Model model) {
         ResultList resultList = (ResultList)(new DataContext(new ResultListQuery()).provide(id));
+        Collection<Result> results = (Collection<Result>)(new DataContext(new EventResultsQuery()).provide(id));
         model.addAttribute("resultList", resultList);
+        model.addAttribute("results", results);
         return "general/result_list";
     }
 
     @GetMapping("/relay_race")
     public String relayRace(@RequestParam(name = "id") String id, Model model) {
         RelayRace relayRace = (RelayRace)(new DataContext(new RelayRaceQuery()).provide(id));
-        Collection<Team> teams = (Collection<Team>)(new DataContext(new IncludedRelayTeamQuery()).provide(id));
+        Collection<RelayTeam> teams = (Collection<RelayTeam>)(new DataContext(new IncludedRelayTeamQuery())
+                .provide(id));
         Collection<Subject> subjects = (Collection<Subject>)(new DataContext(new IncludedRelaySubjectQuery())
                 .provide(id));
         model.addAttribute("teams", teams);

@@ -39,7 +39,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE player_results(IN arg_id INT)
     BEGIN
-        SELECT * FROM player_result_views WHERE player_id = arg_id;
+        SELECT * FROM result_views WHERE player_id = arg_id;
     END //
 DELIMITER ;
 

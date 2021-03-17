@@ -31,11 +31,12 @@
             <tr th:each="result : ${results}">
                 <td><a th:href="'/result_list?id='+${result.resultListId}" th:text="${result.resultListName}" /></td>
                 <td><a th:href="'/subject?id='+${result.subjectId}" th:text="${result.subjectName}" /></td>
-                <td th:text="${result.teamName}" />
-                <td th:text="${result.teamName}" />
+                <td th:text="${result.resultValue}" />
+                <td th:text="${result.subjectUnit}" />
             </tr>
         </table>
     </div>
+</div>
 
 </body>
 </html>

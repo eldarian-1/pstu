@@ -46,15 +46,24 @@ public class EntityBuilder {
         return item;
     }
 
+    public RelayTeam relayTeam() throws SQLException {
+        RelayTeam item = new RelayTeam(team());
+        item.setResultListId(_set.getInt("result_list_id"));
+        return item;
+    }
+
     public Result result() throws SQLException {
         Result item = new Result();
-        item.setPlayerId(_set.getInt("player_id"));
         item.setResultListId(_set.getInt("result_list_id"));
         item.setResultListName(_set.getString("result_list_name"));
+        item.setPlayerId(_set.getInt("player_id"));
+        item.setPlayerName(_set.getString("player_name"));
         item.setSubjectId(_set.getInt("subject_id"));
         item.setSubjectName(_set.getString("subject_name"));
         item.setResultValue(_set.getDouble("result_value"));
         item.setSubjectUnit(_set.getString("subject_unit"));
+        item.setSubjectMultiplier(_set.getDouble("subject_multiplier"));
+        item.setResultDate(_set.getDate("result_date"));
         return item;
     }
 

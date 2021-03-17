@@ -40,10 +40,12 @@
             <tr>
                 <td>Название</td>
                 <td>Тренерский состав</td>
+                <td>Результаты</td>
             </tr>
             <tr th:each="team : ${teams}">
                 <td><a th:href="'/team?id='+${team.teamId}" th:text="${team.teamName}" /></td>
                 <td th:text="${team.trainers}" />
+                <td><a th:href="'/result_list?id='+${team.resultListId}" th:text="'Результаты'" /></td>
             </tr>
         </table>
     </div>

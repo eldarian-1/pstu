@@ -33,7 +33,7 @@ public class AddController {
     @GetMapping("/add_team_subject")
     public String addTeamSubject(@RequestParam(name = "id") String id, Model model) {
         Collection<Subject> subjects = (Collection<Subject>)
-                (new DataContext(new NotIncludedSubjectListQuery()).provide(id));
+                (new DataContext(new NotIncludedTeamSubjectQuery()).provide(id));
         model.addAttribute("teamId", id);
         model.addAttribute("subjects", subjects);
         return "addition/add_team_subject";
@@ -46,10 +46,20 @@ public class AddController {
 
     @GetMapping("/add_relay_team")
     public String addRelayTeam(@RequestParam(name = "id") String id, Model model) {
-        Collection<Team> teams = (Collection<Team>)(new DataContext(new TeamListQuery()).provide(null));
+        Collection<Team> teams = (Collection<Team>)(new DataContext(new NotIncludedRelayTeamQuery())
+                .provide(id));
         model.addAttribute("teams", teams);
         model.addAttribute("relayId", id);
         return "addition/add_relay_team";
+    }
+
+    @GetMapping("/add_relay_subject")
+    public String addRelaySubject(@RequestParam(name = "id") String id, Model model) {
+        Collection<Subject> subjects = (Collection<Subject>)(new DataContext(new NotIncludedRelaySubjectQuery())
+                .provide(id));
+        model.addAttribute("subjects", subjects);
+        model.addAttribute("relayId", id);
+        return "addition/add_relay_subject";
     }
 
 }

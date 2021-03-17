@@ -52,4 +52,18 @@ public class InsertController {
         return "redirect:/relay_race?id=" + id;
     }
 
+    @PostMapping("/insert_relay_team")
+    public String insertRelayTeam(@RequestParam(name = "id") String relayId,
+                                  @RequestParam(name = "team_id") String teamId) {
+        new DataContext(new AddRelayTeamQuery()).provide(new String[]{relayId, teamId});
+        return "redirect:/relay_race?id=" + relayId;
+    }
+
+    @PostMapping("/insert_relay_subject")
+    public String insertRelaySubject(@RequestParam(name = "id") String relayId,
+                                     @RequestParam(name = "subject_id") String subjectId) {
+        new DataContext(new AddRelaySubjectQuery()).provide(new String[]{relayId, subjectId});
+        return "redirect:/relay_race?id=" + relayId;
+    }
+
 }

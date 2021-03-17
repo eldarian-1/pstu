@@ -22,6 +22,30 @@
                 <td th:text="${relayRace.playerNumber}" />
             </tr>
         </table>
+
+        <table>
+            <tr>
+                <td>Наименование</td>
+                <td>Единица измерения</td>
+                <td>Множитель</td>
+            </tr>
+            <tr th:each="subject : ${subjects}">
+                <td><a th:href="'/subject?id='+${subject.subjectId}" th:text="${subject.subjectName}" /></td>
+                <td th:text="${subject.subjectUnit}" />
+                <td th:text="${subject.subjectMultiplier}" />
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td>Название</td>
+                <td>Тренерский состав</td>
+            </tr>
+            <tr th:each="team : ${teams}">
+                <td><a th:href="'/team?id='+${team.teamId}" th:text="${team.teamName}" /></td>
+                <td th:text="${team.trainers}" />
+            </tr>
+        </table>
     </div>
 </div>
 

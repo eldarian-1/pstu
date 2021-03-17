@@ -4,6 +4,7 @@ DELIMITER //
 CREATE PROCEDURE start_result_list(IN arg_team_id INT)
     BEGIN
         INSERT INTO result_lists (team_id, is_open, result_list_date) VALUES (arg_team_id, TRUE, CURRENT_DATE);
+        SELECT LAST_INSERT_ID() AS 'last_insert_id';
     END //
 DELIMITER ;
 

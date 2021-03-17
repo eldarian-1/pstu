@@ -1,11 +1,8 @@
 package org.eldarian.relay.controllers;
 
 import org.eldarian.relay.DataContext;
-import org.eldarian.relay.entities.ResultList;
 import org.eldarian.relay.queries.insert.*;
-import org.eldarian.relay.queries.select.item.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -41,16 +38,18 @@ public class InsertController {
     }
 
     @GetMapping("/start_workout")
-    public String addWorkout(@RequestParam(name = "id") String teamId, Model model) {
-        new DataContext(new AddResultListQuery()).provide(teamId);
-        ResultList resultList = (ResultList)(new DataContext(new OpenedResultListQuery()).provide(teamId));
-        model.addAttribute("resultList", resultList);
-        return "redirect:/result_list?id=" + resultList.getResultListId();
+    public String addWorkout(@RequestParam(name = "id") String teamId) {
+        int id = (Integer)new DataContext(new AddResultListQuery()).provide(teamId);
+        return "redirect:/result_list?id=" + id;
     }
 
     @PostMapping("/insert_relay_race")
-    public String insertRelayRace() {
-        return "add_relay_race";
+    public String insertRelayRace(@RequestParam(name = "relay_name") String relayName,
+                                  @RequestParam(name = "team_number") String teamNumber,
+                                  @RequestParam(name = "player_number") String playerNumber) {
+        int id = (Integer)new DataContext(new AddRelayRaceQuery())
+                .provide(new String[]{relayName, teamNumber, playerNumber});
+        return "redirect:/relay_race?id=" + id;
     }
 
 }

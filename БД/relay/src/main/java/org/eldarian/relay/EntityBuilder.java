@@ -68,4 +68,13 @@ public class EntityBuilder {
         return item;
     }
 
+    public RelayRace relayRace() throws SQLException {
+        RelayRace item = new RelayRace();
+        item.setRelayId(_set.getInt("relay_id"));
+        item.setRelayName(_set.getString("relay_name"));
+        item.setTeamNumber(_set.getInt("team_number"));
+        item.setPlayerNumber(_set.getInt("player_number"));
+        return item;
+    }
+
 }

@@ -80,14 +80,24 @@ public class MainController {
         return "general/result_list";
     }
 
-    @GetMapping("/workouts")
-    public String workouts() {
-        return "general/workouts";
+    @GetMapping("/relay_race")
+    public String relayRace(@RequestParam(name = "id") String id, Model model) {
+        RelayRace relayRace = (RelayRace)(new DataContext(new RelayRaceQuery()).provide(id));
+        model.addAttribute("relayRace", relayRace);
+        return "general/relay_race";
     }
 
     @GetMapping("/relay_races")
-    public String relayRaces() {
+    public String relayRaces(Model model) {
+        Collection<RelayRace> relayRaces = (Collection<RelayRace>)(new DataContext(new RelayRaceListQuery())
+                .provide(null));
+        model.addAttribute("relayRaces", relayRaces);
         return "general/relay_races";
+    }
+
+    @GetMapping("/workouts")
+    public String workouts() {
+        return "general/workouts";
     }
 
     @GetMapping("/authorization")

@@ -18,6 +18,7 @@ DELIMITER //
 CREATE PROCEDURE add_team(IN arg_name VARCHAR(50), IN arg_trainer VARCHAR(50))
     BEGIN
         INSERT INTO teams (team_name, trainers) VALUES (arg_name, arg_trainer);
+        SELECT LAST_INSERT_ID() AS 'last_insert_id';
     END //
 DELIMITER ;
 

@@ -18,6 +18,7 @@ DELIMITER //
 CREATE PROCEDURE add_player(IN arg_name VARCHAR(50), IN arg_team_id INT)
     BEGIN
         INSERT INTO players (player_name, team_id) VALUES (arg_name, arg_team_id);
+        SELECT LAST_INSERT_ID() AS 'last_insert_id';
     END //
 DELIMITER ;
 

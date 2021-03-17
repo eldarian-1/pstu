@@ -18,6 +18,7 @@ DELIMITER //
 CREATE PROCEDURE add_subject(IN arg_name VARCHAR(20), IN arg_unit VARCHAR(5), IN arg_multiplier DOUBLE)
     BEGIN
         INSERT INTO subjects (subject_name, subject_unit, subject_multiplier) VALUES (arg_name, arg_unit, arg_multiplier);
+        SELECT LAST_INSERT_ID() AS 'last_insert_id';
     END //
 DELIMITER ;
 

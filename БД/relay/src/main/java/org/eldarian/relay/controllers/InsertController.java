@@ -14,23 +14,23 @@ public class InsertController {
     @PostMapping("/insert_team")
     public String insertTeam(@RequestParam(name = "team_name") String teamName,
                              @RequestParam(name = "trainers") String trainers) {
-        new DataContext(new AddTeamQuery()).provide(new String[]{teamName, trainers});
-        return "redirect:/teams";
+        int id = (Integer)new DataContext(new AddTeamQuery()).provide(new String[]{teamName, trainers});
+        return "redirect:/team?id=" + id;
     }
 
     @PostMapping("/insert_player")
     public String insertPlayer(@RequestParam(name = "player_name") String name,
                                @RequestParam(name = "team_id") String team) {
-        new DataContext(new AddPlayerQuery()).provide(new String[]{name, team});
-        return "redirect:/players";
+        int id = (Integer)new DataContext(new AddPlayerQuery()).provide(new String[]{name, team});
+        return "redirect:/player?id=" + id;
     }
 
     @PostMapping("/insert_subject")
     public String insertSubject(@RequestParam(name = "subject_name") String name,
                                 @RequestParam(name = "subject_unit") String unit,
                                 @RequestParam(name = "subject_multiplier") String multiplier) {
-        new DataContext(new AddSubjectQuery()).provide(new String[]{name, unit, multiplier});
-        return "redirect:/subjects";
+        int id = (Integer)new DataContext(new AddSubjectQuery()).provide(new String[]{name, unit, multiplier});
+        return "redirect:/subject?id=" + id;
     }
 
     @PostMapping("/insert_team_subject")

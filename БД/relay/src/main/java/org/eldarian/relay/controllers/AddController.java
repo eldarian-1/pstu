@@ -64,12 +64,13 @@ public class AddController {
 
     @GetMapping("/add_result")
     public String addResult(@RequestParam(name = "id") String resultListId, Model model) {
-        Collection<Subject> subjects = (Collection<Subject>)(new DataContext(new IncludedRelaySubjectQuery())
+        Collection<Subject> subjects = (Collection<Subject>)(new DataContext(new PossibleSubjectListQuery())
                 .provide(resultListId));
         Collection<Player> players = (Collection<Player>)(new DataContext(new PossiblePlayerListQuery())
                 .provide(resultListId));
         model.addAttribute("subjects", subjects);
         model.addAttribute("players", players);
+        model.addAttribute("resultListId", resultListId);
         return "addition/add_result";
     }
 

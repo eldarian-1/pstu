@@ -51,6 +51,22 @@ CREATE PROCEDURE get_possible_player_list(IN arg_result_list_id INT)
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE get_possible_subject_list(IN arg_result_list_id INT)
+    BEGIN
+        IF (SELECT COUNT(*) AS cnt FROM team_participations WHERE result_list_id = arg_result_list_id) = 1
+        THEN
+            SELECT * FROM relay_subject_views WHERE result_list_id = arg_result_list_id;
+        ELSE
+            SELECT result_lists.result_list_id, result_lists.team_id, team_subjects.subject_id, subjects.subject_name,
+                subjects.subject_unit, subjects.subject_multiplier FROM result_lists
+            JOIN team_subjects ON team_subjects.team_id = result_lists.team_id
+            JOIN subjects ON subjects.subject_id = team_subjects.subject_id
+            WHERE result_lists.result_list_id = arg_result_list_id;
+        END if;
+    END //
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE remove_result_list(IN arg_result_list_id INT)
     BEGIN
         DELETE FROM result_lists WHERE result_list_id = arg_result_list_id;
@@ -64,4 +80,5 @@ DROP PROCEDURE IF EXISTS get_event_results;
 DROP PROCEDURE IF EXISTS get_team_result_lists;
 DROP PROCEDURE IF EXISTS get_open_result_list;
 DROP PROCEDURE IF EXISTS get_possible_player_list;
+DROP PROCEDURE IF EXISTS get_possible_subject_list;
 DROP PROCEDURE IF EXISTS remove_result_list;

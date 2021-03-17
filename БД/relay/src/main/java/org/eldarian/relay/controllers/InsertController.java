@@ -66,4 +66,14 @@ public class InsertController {
         return "redirect:/relay_race?id=" + relayId;
     }
 
+    @PostMapping("/insert_result")
+    public String insertResult(@RequestParam(name = "id") String resultListId,
+                               @RequestParam(name = "subject_id") String subjectId,
+                               @RequestParam(name = "player_id") String playerId,
+                               @RequestParam(name = "result_value") String resultValue) {
+        new DataContext(new AddResultQuery())
+                .provide(new String[]{resultListId, subjectId, playerId, resultValue});
+        return "redirect:/result_list?id=" + resultListId;
+    }
+
 }

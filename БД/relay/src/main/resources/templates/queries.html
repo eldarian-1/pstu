@@ -57,7 +57,7 @@
 
 <div th:fragment="result_list(resultList)">
     <h3>Запросы</h3>
-    <div><a th:href="'/add_result?id='+${resultList.teamId}">Добавить результат</a></div>
+    <div><a th:href="'/add_result?id='+${resultList.resultListId}">Добавить результат</a></div>
     <div><a th:href="'/close_result_list?id='+${resultList.teamId}">Завершить</a></div>
     <div><a th:href="'/remove_result_list?result_list_id=' + ${resultList.resultListId} + '&id='+${resultList.teamId}">Отменить</a></div>
 </div>

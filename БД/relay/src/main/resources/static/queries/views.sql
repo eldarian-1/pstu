@@ -70,25 +70,27 @@ AS SELECT team_subjects.team_id, team_subjects.subject_id, subjects.subject_name
 JOIN subjects ON team_subjects.subject_id = subjects.subject_id;
 
 CREATE VIEW relay_subject_views
-(relay_id, subject_id, subject_name, subject_unit, subject_multiplier, subject_position)
-AS SELECT relay_subjects.relay_id, relay_subjects.subject_id, subjects.subject_name, subjects.subject_unit,
-    subjects.subject_multiplier, relay_subjects.subject_position
+(result_list_id, relay_id, subject_id, subject_name, subject_unit, subject_multiplier, subject_position)
+AS SELECT team_participations.result_list_id, relay_subjects.relay_id, relay_subjects.subject_id,
+    subjects.subject_name, subjects.subject_unit, subjects.subject_multiplier, relay_subjects.subject_position
 FROM relay_subjects
 JOIN subjects ON relay_subjects.subject_id = subjects.subject_id
+JOIN team_participations ON team_participations.relay_id = relay_subjects.relay_id
 ORDER BY relay_subjects.subject_position;
 
 CREATE VIEW relay_team_views
 (relay_id, relay_name, team_id, team_name, trainers, result_list_id)
-AS SELECT team_participations.relay_id, relay_races.relay_name, team_participations.team_id, teams.team_name,
-    teams.trainers, team_participations.result_list_id
+AS SELECT team_participations.relay_id, relay_races.relay_name,
+    team_participations.team_id, teams.team_name, teams.trainers, team_participations.result_list_id
 FROM team_participations
 JOIN relay_races ON relay_races.relay_id = team_participations.relay_id
 JOIN teams ON teams.team_id = team_participations.team_id;
 
 CREATE VIEW result_list_player_views
-(result_list_id, team_id, player_id, player_name)
-AS SELECT result_lists.result_list_id, result_lists.team_id, players.player_id, players.player_name
+(result_list_id, team_id, team_name, player_id, player_name)
+AS SELECT result_lists.result_list_id, result_lists.team_id, teams.team_name, players.player_id, players.player_name
 FROM result_lists
+JOIN teams ON teams.team_id = result_lists.team_id
 JOIN players ON players.team_id = result_lists.team_id;
 
 DROP VIEW IF EXISTS player_views;

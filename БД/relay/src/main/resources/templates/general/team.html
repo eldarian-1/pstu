@@ -20,22 +20,22 @@
                 <td th:text="${team.trainers}" />
             </tr>
         </table>
-
         <br />
+
         <ol>
             <li th:each="player : ${players}">
                 <a th:href="'/player?id='+${player.playerId}" th:text="${player.playerName}" />
                 | <a th:href="'/leave_player_team?from=team%3Fid%3D'+${team.teamId} + '&id=' + ${player.playerId}">Исключить</a>
             </li>
         </ol>
-
         <br />
+
         <ol>
             <li th:each="subject : ${subjects}"><a th:href="'/subject?id='+${subject.subjectId}" th:text="${subject.subjectName}" />
                 | <a th:href="'/exclude_team_subject?id='+${team.teamId} + '&subject_id=' + ${subject.subjectId}">Исключить</a></li>
         </ol>
-
         <br />
+
         <ol>
             <li th:each="resultList : ${resultLists}"><a th:href="'/result_list?id='+${resultList.resultListId}" th:text="${resultList.resultListName}" /></li>
         </ol>

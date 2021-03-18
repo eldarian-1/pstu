@@ -11,13 +11,21 @@
     <div th:replace="/../fragments.html :: menu(~{queries.html :: home})" />
     <div class="page">
         <form method="post" action="/insert_player">
-            <div><input name="player_name" type="text" value=""></div>
-            <div>
-                <select name="team_id">
-                    <option value="null" label="не состоять нигде">
-                    <option th:each="team : ${teams}" th:value="${team.teamId}" th:label="${team.teamName}">
-                </select>
-            </div>
+            <table>
+                <tr>
+                    <td>ФИО</td>
+                    <td><input name="player_name" type="text" value=""></td>
+                </tr>
+                <tr>
+                    <td>Команда</td>
+                    <td>
+                        <select name="team_id">
+                            <option value="null" label="не состоять нигде">
+                            <option th:each="team : ${teams}" th:value="${team.teamId}" th:label="${team.teamName}">
+                        </select>
+                    </td>
+                </tr>
+            </table>
             <div><input type="submit" value="Добавить"></div>
         </form>
     </div>

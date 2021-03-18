@@ -11,12 +11,17 @@
     <div th:replace="/../fragments.html :: menu(~{queries.html :: home})" />
     <div class="page">
         <form method="post" th:action="'/insert_relay_subject?id=' + ${relayId}">
-            <div>
-                <select name="subject_id">
-                    <option th:each="subject : ${subjects}" th:value="${subject.subjectId}"
-                            th:label="${subject.subjectName}">
-                </select>
-            </div>
+            <table>
+                <tr>
+                    <td>Дисциплина</td>
+                    <td>
+                        <select name="subject_id">
+                            <option th:each="subject : ${subjects}" th:value="${subject.subjectId}"
+                                    th:label="${subject.subjectName}">
+                        </select>
+                    </td>
+                </tr>
+            </table>
             <div><input type="submit" value="Добавить"></div>
         </form>
     </div>

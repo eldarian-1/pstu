@@ -10,16 +10,9 @@
 <div class="box">
     <div th:replace="/../fragments.html :: menu(~{queries.html :: player(${player})})" />
     <div class="page">
-        <table>
-            <tr>
-                <td>Имя</td>
-                <td>Команда</td>
-            </tr>
-            <tr>
-                <td th:text="${player.playerName}" />
-                <td><a th:href="'/team?id='+${player.teamId}" th:text="${player.teamName}" /></td>
-            </tr>
-        </table>
+        <div th:text="${player.playerName}" />
+        <div><a th:href="'/team?id='+${player.teamId}" th:text="${player.teamName}" /></div>
+        <br />
 
         <table>
             <tr>

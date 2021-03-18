@@ -48,11 +48,6 @@ public class UpdateController {
         return "redirect:/subject?id=" + subject;
     }
 
-    @PostMapping("/update_workout")
-    public String updateWorkout() {
-        return "add_workout";
-    }
-
     @PostMapping("/update_relay_race")
     public String updateRelayRace() {
         return "add_relay_race";

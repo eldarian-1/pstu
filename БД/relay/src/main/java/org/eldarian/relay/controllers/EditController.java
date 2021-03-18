@@ -51,11 +51,6 @@ public class EditController {
         return "redirect:/team?id=" + id;
     }
 
-    @GetMapping("/edit_workout")
-    public String editWorkout() {
-        return "edition/add_workout";
-    }
-
     @GetMapping("/edit_relay_race")
     public String editRelayRace() {
         return "edition/add_relay_race";

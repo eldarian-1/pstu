@@ -103,11 +103,6 @@ public class MainController {
         return "general/relay_races";
     }
 
-    @GetMapping("/workouts")
-    public String workouts() {
-        return "general/workouts";
-    }
-
     @GetMapping("/authorization")
     public String authorization() {
         return "general/authorization";

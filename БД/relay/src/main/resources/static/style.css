@@ -22,3 +22,21 @@ div.auth_frame {
     border-top: 1px solid #000;
     font-size: 15px;
 }
+
+form {
+    width: 400px;
+    margin: 0px auto;
+}
+
+div.page table {
+	margin: 0px auto;
+}
+
+div.page table td {
+	border: solid 1px #ccc;
+	padding: 10x;
+}
+
+div.page table tr:first-child td {
+	font-weight: bold;
+}

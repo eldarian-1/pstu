@@ -49,6 +49,7 @@ public class EntityBuilder {
     public RelayTeam relayTeam() throws SQLException {
         RelayTeam item = new RelayTeam(team());
         item.setResultListId(_set.getInt("result_list_id"));
+        item.setResultListScore(_set.getDouble("result_list_score"));
         return item;
     }
 

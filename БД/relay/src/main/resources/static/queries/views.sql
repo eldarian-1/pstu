@@ -47,7 +47,8 @@ UNION
 SELECT team_participations.result_list_id,
     CONCAT("Эстафета ", relay_races.relay_name) AS relay_name,
     team_participations.team_id, teams.team_name,
-    result_lists.is_open, result_lists.result_list_date
+    result_lists.is_open,
+    result_lists.result_list_date
 FROM team_participations
 JOIN result_lists ON result_lists.result_list_id = team_participations.result_list_id
 JOIN teams ON teams.team_id = result_lists.team_id
@@ -79,12 +80,17 @@ JOIN team_participations ON team_participations.relay_id = relay_subjects.relay_
 ORDER BY relay_subjects.subject_position;
 
 CREATE VIEW relay_team_views
-(relay_id, relay_name, team_id, team_name, trainers, result_list_id)
+(relay_id, relay_name, team_id, team_name, trainers, result_list_id, result_list_score)
 AS SELECT team_participations.relay_id, relay_races.relay_name,
-    team_participations.team_id, teams.team_name, teams.trainers, team_participations.result_list_id
+    team_participations.team_id, teams.team_name, teams.trainers, team_participations.result_list_id,
+    SUM(results.result_value*subjects.subject_multiplier) as result_list_score
 FROM team_participations
 JOIN relay_races ON relay_races.relay_id = team_participations.relay_id
-JOIN teams ON teams.team_id = team_participations.team_id;
+JOIN teams ON teams.team_id = team_participations.team_id
+JOIN results ON results.result_list_id = team_participations.result_list_id
+JOIN subjects ON subjects.subject_id = results.subject_id
+GROUP BY team_participations.relay_id, relay_races.relay_name, team_participations.team_id, teams.team_name,
+    teams.trainers, team_participations.result_list_id;
 
 CREATE VIEW result_list_player_views
 (result_list_id, team_id, team_name, player_id, player_name)

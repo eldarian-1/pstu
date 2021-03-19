@@ -23,9 +23,8 @@ div.auth_frame {
     font-size: 15px;
 }
 
-form {
-    width: 400px;
-    margin: 0px auto;
+form div {
+    text-align: center;
 }
 
 div.page table {

@@ -2,6 +2,7 @@ package org.eldarian.relay.entities;
 
 public class RelayTeam extends Team{
     private int _resultListId;
+    private double _resultListScore;
 
     public RelayTeam() {}
 
@@ -17,5 +18,13 @@ public class RelayTeam extends Team{
 
     public void setResultListId(int resultListId) {
         _resultListId = resultListId;
+    }
+
+    public double getResultListScore() {
+        return _resultListScore;
+    }
+
+    public void setResultListScore(double resultListScore) {
+        _resultListScore = resultListScore;
     }
 }

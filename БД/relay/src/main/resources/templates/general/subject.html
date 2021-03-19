@@ -10,18 +10,10 @@
 <div class="box">
     <div th:replace="/../fragments.html :: menu(~{queries.html :: subject(${subject.subjectId})})" />
     <div class="page">
-        <table>
-            <tr>
-                <td>Наименование</td>
-                <td>Единица измерения</td>
-                <td>Множитель</td>
-            </tr>
-            <tr>
-                <td th:text="${subject.subjectName}" />
-                <td th:text="${subject.subjectUnit}" />
-                <td th:text="${subject.subjectMultiplier}" />
-            </tr>
-        </table>
+        <h3>Дисциплина</h3>
+        <div th:text="'Наименование: ' + ${subject.subjectName}" />
+        <div th:text="'Единица измерения: ' + ${subject.subjectUnit}" />
+        <div th:text="'Множитель: ' + ${subject.subjectMultiplier}" />
     </div>
 
 </body>

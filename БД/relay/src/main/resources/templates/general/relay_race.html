@@ -10,21 +10,14 @@
 <div class="box">
     <div th:replace="/../fragments.html :: menu(~{queries.html :: relay_race(${relayRace.relayId})})" />
     <div class="page">
-        <table>
-            <tr>
-                <td>Название</td>
-                <td>Количество команд</td>
-                <td>Количество игроков в каждой команде</td>
-            </tr>
-            <tr>
-                <td th:text="${relayRace.relayName}" />
-                <td th:text="${relayRace.teamNumber}" />
-                <td th:text="${relayRace.playerNumber}" />
-            </tr>
-        </table>
+        <h3>Эстафета</h3>
+        <div th:text="'Название: ' + ${relayRace.relayName}" />
+        <div th:text="'Количество команд: ' + ${relayRace.teamNumber}" />
+        <div th:text="'Количество игроков в каждой команде: ' + ${relayRace.playerNumber}" />
         <br />
 
         <table>
+            <caption>Дисциплины</caption>
             <tr>
                 <td>Наименование</td>
                 <td>Единица измерения</td>
@@ -39,6 +32,7 @@
         <br />
 
         <table>
+            <caption>Команды</caption>
             <tr>
                 <td>Название</td>
                 <td>Тренерский состав</td>
@@ -47,7 +41,7 @@
             <tr th:each="team : ${teams}">
                 <td><a th:href="'/team?id='+${team.teamId}" th:text="${team.teamName}" /></td>
                 <td th:text="${team.trainers}" />
-                <td><a th:href="'/result_list?id='+${team.resultListId}" th:text="'Результаты'" /></td>
+                <td><a th:href="'/result_list?id='+${team.resultListId}" th:text="${team.resultListScore}" /></td>
             </tr>
         </table>
     </div>

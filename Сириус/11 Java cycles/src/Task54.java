@@ -1,6 +1,6 @@
 package src;
 
-public class Task45 {
+public class Task54 {
     public static class Dog {
         String name;
         int height;

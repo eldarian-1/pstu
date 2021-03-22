@@ -2,7 +2,7 @@ package src;
 
 import java.io.*;
 
-public class Task46 {
+public class Task55 {
     public static void main(String[] args) throws Throwable {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int sum = 0;

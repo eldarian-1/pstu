@@ -2,7 +2,7 @@ package src;
 
 import java.io.*;
 
-public class Task48 {
+public class Task57 {
     public static int max(int a, int b) {
         return (a > b ? a : b);
     }

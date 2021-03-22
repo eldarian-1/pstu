@@ -1,6 +1,6 @@
 package src;
 
-public class Task42 {
+public class Task51 {
     public static class Color {
         private String description;
 

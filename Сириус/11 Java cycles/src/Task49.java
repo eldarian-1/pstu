@@ -1,6 +1,6 @@
 package src;
 
-public class Task40 {
+public class Task49 {
     public static class Circle {
         public double x;
         public double y;

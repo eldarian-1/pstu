@@ -1,6 +1,6 @@
 package src;
 
-public class Task44 {
+public class Task53 {
     public static class Man {
         private String name;
         private int age;

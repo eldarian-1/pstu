@@ -1,6 +1,6 @@
 package src;
 
-public class Task43 {
+public class Task52 {
     public static class Duck {
         public String toString() {
             return "Duck";

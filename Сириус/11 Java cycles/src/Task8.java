@@ -2,23 +2,29 @@ package src;
 
 public class Task8 {
     private static class Dog {
-        private String about = null;
+        private String name;
+        private int height;
+        private String color;
 
         public Dog(String name) {
-            about = name;
+            this.name = name;
         }
 
         public Dog(String name, int height) {
-            about = String.format("%s (height: %d)", name, height);
+            this.name = name;
+            this.height = height;
         }
 
         public Dog(String name, int height, String color) {
-            about = String.format("%s (height: %d, color: %s)",
-                name, height, color);
+            this.name = name;
+            this.height = height;
+            this.color = color;
         }
 
         public String about() {
-            return about;
+            return (height == 0 ? name : color == null
+                ? String.format("%s (height: %d)", name, height)
+                : String.format("%s (height: %d, color: %s)", name, height, color));
         }
     }
 

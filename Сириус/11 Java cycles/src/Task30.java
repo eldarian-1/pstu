@@ -8,9 +8,8 @@ public class Task30 {
         int sum = 0, temp = 0;
         while(true) {
             temp = Integer.parseInt(reader.readLine());
-            if(temp != -1)
-                sum += temp;
-            else
+            sum += temp;
+            if(temp == -1)
                 break;
         }
         System.out.println(sum);

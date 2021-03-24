@@ -13,6 +13,6 @@ public class RelayIsFinishedQuery extends AItemQuery<Boolean, String> {
 
     @Override
     protected Boolean item(EntityFactory builder) throws SQLException {
-        return builder.relayIsFinished();
+        return builder.bool();
     }
 }

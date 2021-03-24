@@ -29,10 +29,10 @@
 
 <div th:fragment="relay_race(relayRace)">
     <h3>Запросы</h3>
-    <div th:if="${relayRace.isOpen}"><a th:href="'/add_relay_subject?id='+${relayRace.relayRaceId}">Добавить дисциплину</a></div>
-    <div th:if="${relayRace.isOpen}"><a th:href="'/add_relay_team?id='+${relayRace.relayRaceId}">Зарегистрировать команду</a></div>
-    <div th:if="${relayRace.isOpen}"><a th:href="'/close_relay_race?id='+${relayRace.relayRaceId}">Завершить</a></div>
-    <div><a th:href="'/remove_relay_race?id='+${relayRace.relayRaceId}">Удалить</a></div>
+    <div th:if="${relayRace.isOpen}"><a th:href="'/add_relay_subject?id='+${relayRace.relayId}">Добавить дисциплину</a></div>
+    <div th:if="${relayRace.isOpen}"><a th:href="'/add_relay_team?id='+${relayRace.relayId}">Зарегистрировать команду</a></div>
+    <div th:if="${relayRace.isOpen}"><a th:href="'/close_relay_race?id='+${relayRace.relayId}">Завершить</a></div>
+    <div><a th:href="'/remove_relay_race?id='+${relayRace.relayId}">Удалить</a></div>
 </div>
 
 <div th:fragment="subject(id)">
@@ -57,9 +57,9 @@
 
 <div th:fragment="result_list(resultList)">
     <h3>Запросы</h3>
-    <div><a th:href="'/add_result?id='+${resultList.resultListId}">Добавить результат</a></div>
-    <div><a th:href="'/close_result_list?id='+${resultList.teamId}">Завершить</a></div>
-    <div><a th:href="'/remove_result_list?result_list_id=' + ${resultList.resultListId} + '&id='+${resultList.teamId}">Отменить</a></div>
+    <div th:if="${resultList.isOpen}"><a th:href="'/add_result?id='+${resultList.resultListId}">Добавить результат</a></div>
+    <div th:if="${resultList.isOpen}"><a th:href="'/close_result_list?id='+${resultList.resultListId}">Завершить</a></div>
+    <div><a th:href="'/remove_result_list?result_list_id=' + ${resultList.resultListId} + '&id='+${resultList.teamId}">Удалить</a></div>
 </div>
 
 <div th:fragment="teams">

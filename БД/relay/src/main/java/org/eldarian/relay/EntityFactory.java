@@ -88,20 +88,12 @@ public class EntityFactory {
         return item;
     }
 
-    public Boolean teamIsParticipate() {
-        return true;
+    public Boolean bool() throws SQLException {
+        return _set.getBoolean("is_true");
     }
 
-    public Boolean relayIsFinished() {
-        return true;
-    }
-
-    public Integer resultsCount() {
-        return 1;
-    }
-
-    public Integer relayResultsCount() {
-        return 1;
+    public Integer number() throws SQLException {
+        return _set.getInt("number");
     }
 
 }

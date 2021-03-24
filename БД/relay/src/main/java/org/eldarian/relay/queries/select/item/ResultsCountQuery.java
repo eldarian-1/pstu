@@ -13,6 +13,6 @@ public class ResultsCountQuery extends AItemQuery<Integer, String> {
 
     @Override
     protected Integer item(EntityFactory builder) throws SQLException {
-        return builder.resultsCount();
+        return builder.number();
     }
 }

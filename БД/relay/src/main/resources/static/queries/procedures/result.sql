@@ -18,6 +18,14 @@ CREATE PROCEDURE find_result(IN arg_result_id INT, IN arg_player_id INT, IN arg_
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE results_count(IN arg_result_id INT)
+    BEGIN
+        SELECT COUNT(*) AS number FROM results
+        WHERE result_list_id = arg_result_id;
+    END //
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE find_results_of_list(IN arg_result_id INT)
     BEGIN
         SELECT * FROM result_views
@@ -36,5 +44,6 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS add_result;
 DROP PROCEDURE IF EXISTS find_result;
+DROP PROCEDURE IF EXISTS results_count;
 DROP PROCEDURE IF EXISTS find_results_of_list;
 DROP PROCEDURE IF EXISTS update_result;

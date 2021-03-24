@@ -45,11 +45,11 @@ public class AddController extends AController {
     }
 
     @GetMapping("/add_relay_team")
-    public String addRelayTeam(@RequestParam(name = "id") String id, Model model) {
+    public String addRelayTeam(@RequestParam(name = "id") String relayId, Model model) {
         Collection<Team> teams = (Collection<Team>)(new DataContext(new NotIncludedRelayTeamQuery())
-                .provide(id));
+                .provide(relayId));
         model.addAttribute("teams", teams);
-        model.addAttribute("relayId", id);
+        model.addAttribute("relayId", relayId);
         return "addition/add_relay_team";
     }
 

@@ -66,12 +66,11 @@ AS SELECT team_subjects.team_id, team_subjects.subject_id, subjects.subject_name
 JOIN subjects ON team_subjects.subject_id = subjects.subject_id;
 
 CREATE VIEW relay_subject_views
-(result_list_id, relay_id, subject_id, subject_name, subject_unit, subject_multiplier, subject_position)
-AS SELECT team_participations.result_list_id, relay_subjects.relay_id, relay_subjects.subject_id,
+(relay_id, subject_id, subject_name, subject_unit, subject_multiplier, subject_position)
+AS SELECT relay_subjects.relay_id, relay_subjects.subject_id,
     subjects.subject_name, subjects.subject_unit, subjects.subject_multiplier, relay_subjects.subject_position
 FROM relay_subjects
 JOIN subjects ON relay_subjects.subject_id = subjects.subject_id
-JOIN team_participations ON team_participations.relay_id = relay_subjects.relay_id
 ORDER BY relay_subjects.subject_position;
 
 CREATE VIEW relay_team_views
@@ -85,7 +84,15 @@ JOIN teams ON teams.team_id = team_participations.team_id
 JOIN results ON results.result_list_id = team_participations.result_list_id
 JOIN subjects ON subjects.subject_id = results.subject_id
 GROUP BY team_participations.relay_id, relay_races.relay_name, team_participations.team_id, teams.team_name,
-    teams.trainers, team_participations.result_list_id;
+    teams.trainers, team_participations.result_list_id
+UNION
+SELECT team_participations.relay_id, relay_races.relay_name,
+    team_participations.team_id, teams.team_name, teams.trainers, team_participations.result_list_id,
+    0 as result_list_score
+FROM team_participations
+JOIN relay_races ON relay_races.relay_id = team_participations.relay_id
+JOIN teams ON teams.team_id = team_participations.team_id
+WHERE team_participations.result_list_id NOT IN (SELECT result_list_id FROM results);
 
 CREATE VIEW result_list_player_views
 (result_list_id, team_id, team_name, player_id, player_name)

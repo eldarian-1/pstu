@@ -5,10 +5,10 @@ import org.eldarian.relay.queries.AItemQuery;
 
 import java.sql.SQLException;
 
-public class TeamParticipationQuery extends AItemQuery<Boolean, String> {
+public class SubjectIsRelayQuery extends AItemQuery<Boolean, String[]> {
     @Override
-    protected String query(String arg) {
-        return String.format("CALL find_team_participation(%s);", arg);
+    protected String query(String[] arg) {
+        return String.format("CALL subject_is_relay(%s, %s);", arg[0], arg[1]);
     }
 
     @Override

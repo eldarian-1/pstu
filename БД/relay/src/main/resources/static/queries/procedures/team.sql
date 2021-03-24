@@ -15,6 +15,14 @@ CREATE PROCEDURE find_team(IN arg_team_id INT)
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE subject_is_team(IN arg_team_id INT, IN arg_subject_id INT)
+    BEGIN
+        SELECT (COUNT(*) = 1) AS is_true FROM team_subjects
+        WHERE team_id = arg_team_id AND subject_id = arg_subject_id;
+    END //
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE add_team(IN arg_name VARCHAR(50), IN arg_trainer VARCHAR(50))
     BEGIN
         INSERT INTO teams (team_name, trainers) VALUES (arg_name, arg_trainer);
@@ -79,6 +87,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS get_team_list;
 DROP PROCEDURE IF EXISTS find_team;
+DROP PROCEDURE IF EXISTS subject_is_team;
 DROP PROCEDURE IF EXISTS add_team;
 DROP PROCEDURE IF EXISTS add_team_subject;
 DROP PROCEDURE IF EXISTS remove_team_subject;

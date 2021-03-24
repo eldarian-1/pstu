@@ -2,10 +2,7 @@ package org.eldarian.relay.controllers;
 
 import org.eldarian.relay.DataContext;
 import org.eldarian.relay.queries.insert.*;
-import org.eldarian.relay.queries.select.item.OpenedResultListQuery;
-import org.eldarian.relay.queries.select.item.RelaySubjectQuery;
-import org.eldarian.relay.queries.select.item.ResultQuery;
-import org.eldarian.relay.queries.select.item.TeamSubjectQuery;
+import org.eldarian.relay.queries.select.item.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +34,8 @@ public class InsertController extends AController {
     @PostMapping("/insert_team_subject")
     public String insertTeamSubject(@RequestParam(name = "id") String teamId,
                                     @RequestParam(name = "subject_id") String subjectId) throws Exception {
-        boolean subjectIsTeam = new DataContext(new TeamSubjectQuery())
-                .provide(new String[]{teamId, subjectId}) != null;
+        boolean subjectIsTeam = (Boolean) new DataContext(new SubjectIsTeamQuery())
+                .provide(new String[]{teamId, subjectId});
         if(subjectIsTeam)
             throw new Exception("Команда уже тренерует данную дисциплину");
         new DataContext(new AddTeamSubjectQuery()).provide(new String[]{teamId, subjectId});
@@ -47,7 +44,7 @@ public class InsertController extends AController {
 
     @GetMapping("/start_workout")
     public String addWorkout(@RequestParam(name = "id") String teamId) throws Exception {
-        boolean teamIsBusy = new DataContext(new OpenedResultListQuery()).provide(teamId) == null;
+        boolean teamIsBusy = (Boolean) new DataContext(new TeamIsBusyQuery()).provide(teamId);
         if(teamIsBusy)
             throw new Exception("Команда уже занята");
         int id = (Integer)new DataContext(new AddResultListQuery()).provide(teamId);
@@ -66,7 +63,7 @@ public class InsertController extends AController {
     @PostMapping("/insert_relay_team")
     public String insertRelayTeam(@RequestParam(name = "id") String relayId,
                                   @RequestParam(name = "team_id") String teamId) throws Exception {
-        boolean teamIsBusy = new DataContext(new OpenedResultListQuery()).provide(teamId) == null;
+        boolean teamIsBusy = (Boolean) new DataContext(new TeamIsBusyQuery()).provide(teamId);
         if(teamIsBusy)
             throw new Exception("Команда уже занята");
         new DataContext(new AddRelayTeamQuery()).provide(new String[]{relayId, teamId});
@@ -76,8 +73,8 @@ public class InsertController extends AController {
     @PostMapping("/insert_relay_subject")
     public String insertRelaySubject(@RequestParam(name = "id") String relayId,
                                      @RequestParam(name = "subject_id") String subjectId) throws Exception {
-        boolean subjectIsRelay = new DataContext(new RelaySubjectQuery())
-                .provide(new String[]{relayId, subjectId}) != null;
+        boolean subjectIsRelay = (Boolean) new DataContext(new SubjectIsRelayQuery())
+                .provide(new String[]{relayId, subjectId});
         if(subjectIsRelay)
             throw new Exception("Эстафета уже включает данную дисциплину");
         new DataContext(new AddRelaySubjectQuery()).provide(new String[]{relayId, subjectId});

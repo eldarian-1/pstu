@@ -58,7 +58,7 @@ public class UpdateController extends AController {
                                 @RequestParam(name = "result_value") String resultValue) throws Exception {
         boolean resultIsExist = new DataContext(new ResultQuery())
                 .provide(new String[]{resultListId, nextPlayerId, nextSubjectId}) != null;
-        if(resultIsExist)
+        if(resultIsExist && (!nextPlayerId.equals(prevPlayerId) || !nextSubjectId.equals(prevSubjectId)))
             throw new Exception("Данный результат уже зафиксирован");
         new DataContext(new UpdateResultQuery()).provide(
                 new String[]{resultListId, prevPlayerId, nextPlayerId, prevSubjectId, nextSubjectId, resultValue});
@@ -66,23 +66,23 @@ public class UpdateController extends AController {
     }
 
     @GetMapping("/close_result_list")
-    public String closeResultList(@RequestParam(name = "id") String id) throws Exception {
-        boolean isRelayTeam = (Boolean) new DataContext(new TeamParticipationQuery()).provide(id);
+    public String closeResultList(@RequestParam(name = "id") String resultListId) throws Exception {
+        boolean isRelayTeam = (Boolean) new DataContext(new TeamParticipationQuery()).provide(resultListId);
         if(isRelayTeam) {
-            int resultsCount = (Integer) new DataContext(new ResultsCountQuery()).provide(id);
-            int relayResultsCount = (Integer) new DataContext(new RelayResultsCountQuery()).provide(id);
+            int resultsCount = (Integer) new DataContext(new ResultsCountQuery()).provide(resultListId);
+            int relayResultsCount = (Integer) new DataContext(new RelayResultsCountQuery()).provide(resultListId);
             if(resultsCount != relayResultsCount)
                 throw new Exception("Данная команда не прошла все испытания");
         }
-        new DataContext(new CloseResultListQuery()).provide(id);
-        return "redirect:/team?id=" + id;
+        new DataContext(new CloseResultListQuery()).provide(resultListId);
+        return "redirect:/result_list?id=" + resultListId;
     }
 
     @GetMapping("/close_relay_race")
     public String closeRelayRace(@RequestParam(name = "id") String id) throws Exception {
         boolean isNotFinished = !(Boolean) new DataContext(new RelayIsFinishedQuery()).provide(id);
         if(isNotFinished)
-            throw new Exception("Данная эстафета еще не завершена");
+            throw new Exception("Не все команды завершили эстафету");
         new DataContext(new CloseRelayRaceQuery()).provide(id);
         return "redirect:/relay_race?id=" + id;
     }

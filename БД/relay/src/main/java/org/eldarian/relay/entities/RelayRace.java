@@ -5,6 +5,7 @@ public class RelayRace {
     private String _relayName;
     private int _teamNumber;
     private int _playerNumber;
+    private boolean _isOpen;
 
     public int getRelayId() {
         return _relayId;
@@ -36,5 +37,13 @@ public class RelayRace {
 
     public void setPlayerNumber(int playerNumber) {
         _playerNumber = playerNumber;
+    }
+
+    public boolean isOpen() {
+        return _isOpen;
+    }
+
+    public void setOpen(boolean isOpen) {
+        _isOpen = isOpen;
     }
 }

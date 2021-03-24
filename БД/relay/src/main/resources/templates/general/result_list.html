@@ -21,8 +21,8 @@
             <tr th:each="result : ${results}">
                 <td><a th:href="'/player?id='+${result.playerId}" th:text="${result.playerName}" /></td>
                 <td><a th:href="'/subject?id='+${result.subjectId}" th:text="${result.subjectName}" /></td>
-                <td><a th:href="'/edit_result?result_list_id='+${result.resultListId}+'&player_id='+${result.playerId}"
-                       th:text="${result.resultValue}" /></td>
+                <td><a th:href="'/edit_result?result_list_id='+${result.resultListId}+'&player_id='+${result.playerId}
+                    +'&subject_id='+${result.subjectId}" th:text="${result.resultValue}" /></td>
                 <td th:text="${result.subjectUnit}" />
             </tr>
         </table>

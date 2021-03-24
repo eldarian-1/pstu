@@ -48,8 +48,10 @@ public class EditController extends AController {
     @GetMapping("/edit_result")
     public String editResult(Model model,
                              @RequestParam(name = "result_list_id") String resultListId,
-                             @RequestParam(name = "player_id") String playerId) {
-        Result result = (Result)(new DataContext(new ResultQuery()).provide(new String[]{resultListId, playerId}));
+                             @RequestParam(name = "player_id") String playerId,
+                             @RequestParam(name = "subject_id") String subjectId) {
+        Result result = (Result)(new DataContext(new ResultQuery())
+                .provide(new String[]{resultListId, playerId, subjectId}));
         Collection<Subject> subjects = (Collection<Subject>)(new DataContext(new PossibleSubjectListQuery())
                 .provide(resultListId));
         Collection<Player> players = (Collection<Player>)(new DataContext(new PossiblePlayerListQuery())
@@ -58,12 +60,6 @@ public class EditController extends AController {
         model.addAttribute("subjects", subjects);
         model.addAttribute("players", players);
         return "edition/edit_result";
-    }
-
-    @GetMapping("/close_result_list")
-    public String closeResultList(@RequestParam(name = "id") String id) {
-        new DataContext(new CloseResultListQuery()).provide(id);
-        return "redirect:/team?id=" + id;
     }
 
     @GetMapping("/edit_relay_race")

@@ -1,6 +1,6 @@
 package org.eldarian.relay.queries.select.item;
 
-import org.eldarian.relay.EntityBuilder;
+import org.eldarian.relay.EntityFactory;
 import org.eldarian.relay.entities.Team;
 import org.eldarian.relay.queries.AItemQuery;
 
@@ -13,7 +13,7 @@ public class TeamQuery extends AItemQuery<Team, String> {
     }
 
     @Override
-    protected Team item(EntityBuilder builder) throws SQLException {
+    protected Team item(EntityFactory builder) throws SQLException {
         return builder.team();
     }
 }

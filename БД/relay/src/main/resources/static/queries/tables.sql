@@ -23,7 +23,7 @@ CREATE TABLE subjects (
 CREATE TABLE result_lists (
     result_list_id INT PRIMARY KEY AUTO_INCREMENT,
     team_id INT NOT NULL,
-    is_open BOOLEAN NOT NULL,
+    is_open BOOLEAN NOT NULL DEFAULT(TRUE),
     result_list_date DATE NOT NULL,
     FOREIGN KEY (team_id) REFERENCES teams (team_id) ON DELETE CASCADE
 );
@@ -32,7 +32,8 @@ CREATE TABLE relay_races (
     relay_id INT PRIMARY KEY AUTO_INCREMENT,
     relay_name VARCHAR(50) NOT NULL,
     team_number INT NOT NULL,
-    player_number INT NOT NULL
+    player_number INT NOT NULL,
+    is_open BOOLEAN NOT NULL DEFAULT(TRUE)
 );
 
 CREATE TABLE team_participations (

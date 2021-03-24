@@ -59,11 +59,6 @@ CREATE VIEW team_views
 AS SELECT teams.team_id, players.player_id, players.player_name FROM teams
 JOIN players ON teams.team_id = players.team_id;
 
-CREATE VIEW team_result_views
-(team_id, result_list_id, list_name)
-AS SELECT result_lists.team_id, result_lists.result_list_id, get_list_name(result_lists.result_list_id)
-FROM result_lists;
-
 CREATE VIEW team_subject_views
 (team_id,subject_id, subject_name, subject_unit, subject_multiplier)
 AS SELECT team_subjects.team_id, team_subjects.subject_id, subjects.subject_name, subjects.subject_unit,
@@ -103,7 +98,6 @@ DROP VIEW IF EXISTS player_views;
 DROP VIEW IF EXISTS result_views;
 DROP VIEW IF EXISTS result_list_views;
 DROP VIEW IF EXISTS team_views;
-DROP VIEW IF EXISTS team_result_views;
 DROP VIEW IF EXISTS team_subject_views;
 DROP VIEW IF EXISTS relay_subject_views;
 DROP VIEW IF EXISTS relay_team_views;

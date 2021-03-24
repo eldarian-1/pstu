@@ -8,7 +8,7 @@
 <body>
 
 <div class="box">
-    <div th:replace="/../fragments.html :: menu(~{queries.html :: relay_race(${relayRace.relayId})})" />
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: relay_race(${relayRace})})" />
     <div class="page">
         <h3>Эстафета</h3>
         <div th:text="'Название: ' + ${relayRace.relayName}" />

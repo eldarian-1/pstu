@@ -1,6 +1,7 @@
 package org.eldarian.relay.controllers;
 
 import org.eldarian.relay.DataContext;
+import org.eldarian.relay.queries.select.item.*;
 import org.eldarian.relay.queries.update.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,15 +55,36 @@ public class UpdateController extends AController {
                                 @RequestParam(name = "next_player_id") String nextPlayerId,
                                 @RequestParam(name = "prev_subject_id") String prevSubjectId,
                                 @RequestParam(name = "next_subject_id") String nextSubjectId,
-                                @RequestParam(name = "result_value") String resultValue) {
+                                @RequestParam(name = "result_value") String resultValue) throws Exception {
+        boolean resultIsExist = new DataContext(new ResultQuery())
+                .provide(new String[]{resultListId, nextPlayerId, nextSubjectId}) != null;
+        if(resultIsExist)
+            throw new Exception("Данный результат уже зафиксирован");
         new DataContext(new UpdateResultQuery()).provide(
                 new String[]{resultListId, prevPlayerId, nextPlayerId, prevSubjectId, nextSubjectId, resultValue});
         return "redirect:/result_list?id=" + resultListId;
     }
 
-    @PostMapping("/update_relay_race")
-    public String updateRelayRace() {
-        return "add_relay_race";
+    @GetMapping("/close_result_list")
+    public String closeResultList(@RequestParam(name = "id") String id) throws Exception {
+        boolean isRelayTeam = (Boolean) new DataContext(new TeamParticipationQuery()).provide(id);
+        if(isRelayTeam) {
+            int resultsCount = (Integer) new DataContext(new ResultsCountQuery()).provide(id);
+            int relayResultsCount = (Integer) new DataContext(new RelayResultsCountQuery()).provide(id);
+            if(resultsCount != relayResultsCount)
+                throw new Exception("Данная команда не прошла все испытания");
+        }
+        new DataContext(new CloseResultListQuery()).provide(id);
+        return "redirect:/team?id=" + id;
+    }
+
+    @GetMapping("/close_relay_race")
+    public String closeRelayRace(@RequestParam(name = "id") String id) throws Exception {
+        boolean isNotFinished = !(Boolean) new DataContext(new RelayIsFinishedQuery()).provide(id);
+        if(isNotFinished)
+            throw new Exception("Данная эстафета еще не завершена");
+        new DataContext(new CloseRelayRaceQuery()).provide(id);
+        return "redirect:/relay_race?id=" + id;
     }
 
 }

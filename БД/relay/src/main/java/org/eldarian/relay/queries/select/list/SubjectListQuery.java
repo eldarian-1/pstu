@@ -1,6 +1,6 @@
 package org.eldarian.relay.queries.select.list;
 
-import org.eldarian.relay.EntityBuilder;
+import org.eldarian.relay.EntityFactory;
 import org.eldarian.relay.entities.Subject;
 import org.eldarian.relay.queries.AListQuery;
 
@@ -13,7 +13,7 @@ public class SubjectListQuery extends AListQuery<Subject, Void> {
     }
 
     @Override
-    protected Subject item(EntityBuilder builder) throws SQLException {
+    protected Subject item(EntityFactory builder) throws SQLException {
         return builder.subject();
     }
 }

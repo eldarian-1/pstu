@@ -10,9 +10,18 @@ CREATE PROCEDURE add_result(IN arg_result_id INT, IN arg_subject_id INT,
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE find_result(IN arg_result_id INT, IN arg_player_id INT)
+CREATE PROCEDURE find_result(IN arg_result_id INT, IN arg_player_id INT, IN arg_subject_id INT)
     BEGIN
-        SELECT * FROM result_views WHERE result_list_id = arg_result_id AND player_id = arg_player_id;
+        SELECT * FROM result_views
+        WHERE result_list_id = arg_result_id AND player_id = arg_player_id AND subject_id = arg_subject_id;
+    END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE find_results_of_list(IN arg_result_id INT)
+    BEGIN
+        SELECT * FROM result_views
+        WHERE result_list_id = arg_result_id ;
     END //
 DELIMITER ;
 
@@ -27,4 +36,5 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS add_result;
 DROP PROCEDURE IF EXISTS find_result;
+DROP PROCEDURE IF EXISTS find_results_of_list;
 DROP PROCEDURE IF EXISTS update_result;

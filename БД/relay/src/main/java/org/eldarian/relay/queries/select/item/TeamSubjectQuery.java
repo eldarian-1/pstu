@@ -6,10 +6,10 @@ import org.eldarian.relay.queries.AItemQuery;
 
 import java.sql.SQLException;
 
-public class SubjectQuery extends AItemQuery<Subject, String> {
+public class TeamSubjectQuery extends AItemQuery<Subject, String[]> {
     @Override
-    protected String query(String arg) {
-        return String.format("CALL find_subject(%s);", arg);
+    protected String query(String[] arg) {
+        return String.format("CALL find_team_subject(%s, %s);", arg[0], arg[1]);
     }
 
     @Override

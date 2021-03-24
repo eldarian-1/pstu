@@ -5,11 +5,11 @@ import org.eldarian.relay.entities.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EntityBuilder {
+public class EntityFactory {
 
     private ResultSet _set;
 
-    public EntityBuilder(ResultSet set) {
+    public EntityFactory(ResultSet set) {
         _set = set;
     }
 
@@ -84,7 +84,24 @@ public class EntityBuilder {
         item.setRelayName(_set.getString("relay_name"));
         item.setTeamNumber(_set.getInt("team_number"));
         item.setPlayerNumber(_set.getInt("player_number"));
+        item.setOpen(_set.getBoolean("is_open"));
         return item;
+    }
+
+    public Boolean teamIsParticipate() {
+        return true;
+    }
+
+    public Boolean relayIsFinished() {
+        return true;
+    }
+
+    public Integer resultsCount() {
+        return 1;
+    }
+
+    public Integer relayResultsCount() {
+        return 1;
     }
 
 }

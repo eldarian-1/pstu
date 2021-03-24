@@ -1,6 +1,6 @@
 package org.eldarian.relay.queries.select.item;
 
-import org.eldarian.relay.EntityBuilder;
+import org.eldarian.relay.EntityFactory;
 import org.eldarian.relay.entities.RelayRace;
 import org.eldarian.relay.queries.AItemQuery;
 
@@ -13,7 +13,7 @@ public class RelayRaceQuery extends AItemQuery<RelayRace, String> {
     }
 
     @Override
-    protected RelayRace item(EntityBuilder builder) throws SQLException {
+    protected RelayRace item(EntityFactory builder) throws SQLException {
         return builder.relayRace();
     }
 }

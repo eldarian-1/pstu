@@ -1,6 +1,6 @@
 package org.eldarian.relay.queries.select.list;
 
-import org.eldarian.relay.EntityBuilder;
+import org.eldarian.relay.EntityFactory;
 import org.eldarian.relay.entities.RelayTeam;
 import org.eldarian.relay.queries.AListQuery;
 
@@ -13,7 +13,7 @@ public class IncludedRelayTeamQuery extends AListQuery<RelayTeam, String> {
     }
 
     @Override
-    protected RelayTeam item(EntityBuilder builder) throws SQLException {
+    protected RelayTeam item(EntityFactory builder) throws SQLException {
         return builder.relayTeam();
     }
 }

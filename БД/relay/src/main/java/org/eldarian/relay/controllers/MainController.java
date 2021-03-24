@@ -108,9 +108,4 @@ public class MainController extends AController {
         return "general/authorization";
     }
 
-    @GetMapping("/test")
-    public String test() throws Exception {
-        throw new Exception("Тестовое исключение");
-    }
-
 }

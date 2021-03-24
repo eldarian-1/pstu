@@ -1,6 +1,6 @@
 package org.eldarian.relay.queries.select.list;
 
-import org.eldarian.relay.EntityBuilder;
+import org.eldarian.relay.EntityFactory;
 import org.eldarian.relay.entities.Player;
 import org.eldarian.relay.queries.AListQuery;
 
@@ -13,7 +13,7 @@ public class PossiblePlayerListQuery extends AListQuery<Player, String> {
     }
 
     @Override
-    protected Player item(EntityBuilder builder) throws SQLException {
+    protected Player item(EntityFactory builder) throws SQLException {
         return builder.player();
     }
 }

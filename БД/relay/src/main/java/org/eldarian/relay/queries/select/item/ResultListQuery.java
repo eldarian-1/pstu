@@ -1,6 +1,6 @@
 package org.eldarian.relay.queries.select.item;
 
-import org.eldarian.relay.EntityBuilder;
+import org.eldarian.relay.EntityFactory;
 import org.eldarian.relay.entities.ResultList;
 import org.eldarian.relay.queries.AItemQuery;
 
@@ -13,7 +13,7 @@ public class ResultListQuery extends AItemQuery<ResultList, String> {
     }
 
     @Override
-    protected ResultList item(EntityBuilder builder) throws SQLException {
+    protected ResultList item(EntityFactory builder) throws SQLException {
         return builder.resultList();
     }
 }

@@ -45,6 +45,21 @@ public class EditController {
         return "edition/edit_subject";
     }
 
+    @GetMapping("/edit_result")
+    public String editResult(Model model,
+                             @RequestParam(name = "result_list_id") String resultListId,
+                             @RequestParam(name = "player_id") String playerId) {
+        Result result = (Result)(new DataContext(new ResultQuery()).provide(new String[]{resultListId, playerId}));
+        Collection<Subject> subjects = (Collection<Subject>)(new DataContext(new PossibleSubjectListQuery())
+                .provide(resultListId));
+        Collection<Player> players = (Collection<Player>)(new DataContext(new PossiblePlayerListQuery())
+                .provide(resultListId));
+        model.addAttribute("result", result);
+        model.addAttribute("subjects", subjects);
+        model.addAttribute("players", players);
+        return "edition/edit_result";
+    }
+
     @GetMapping("/close_result_list")
     public String closeResultList(@RequestParam(name = "id") String id) {
         new DataContext(new CloseResultListQuery()).provide(id);

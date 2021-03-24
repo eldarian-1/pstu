@@ -48,6 +48,18 @@ public class UpdateController {
         return "redirect:/subject?id=" + subject;
     }
 
+    @PostMapping("/update_result")
+    public String updateResult(@RequestParam(name = "result_list_id") String resultListId,
+                                @RequestParam(name = "prev_player_id") String prevPlayerId,
+                                @RequestParam(name = "next_player_id") String nextPlayerId,
+                                @RequestParam(name = "prev_subject_id") String prevSubjectId,
+                                @RequestParam(name = "next_subject_id") String nextSubjectId,
+                                @RequestParam(name = "result_value") String resultValue) {
+        new DataContext(new UpdateResultQuery()).provide(
+                new String[]{resultListId, prevPlayerId, nextPlayerId, prevSubjectId, nextSubjectId, resultValue});
+        return "redirect:/result_list?id=" + resultListId;
+    }
+
     @PostMapping("/update_relay_race")
     public String updateRelayRace() {
         return "add_relay_race";

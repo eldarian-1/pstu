@@ -9,6 +9,6 @@ public class Task12 {
         int b = Integer.parseInt(reader.readLine());
         int c = Integer.parseInt(reader.readLine());
         System.out.println(String.format("%d",
-            0 + (a >= 0 ? 1 : 0) + (b >= 0 ? 1 : 0) + (c >= 0 ? 1 : 0)));
+            0 + (a > 0 ? 1 : 0) + (b > 0 ? 1 : 0) + (c > 0 ? 1 : 0)));
     }
 }

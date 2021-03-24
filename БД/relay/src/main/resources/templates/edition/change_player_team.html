@@ -17,7 +17,8 @@
             <div>
                 <select name="team_id">
                     <option value="null" label="не состоять нигде">
-                    <option th:each="team : ${teams}" th:value="${team.teamId}" th:label="${team.teamName}">
+                    <option th:each="team : ${teams}" th:value="${team.teamId}" th:label="${team.teamName}"
+                            th:selected="${player.teamId==team.teamId}">
                 </select>
             </div>
             <div><input type="submit" value="Сохранить"></div>

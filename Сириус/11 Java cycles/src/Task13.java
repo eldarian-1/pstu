@@ -11,6 +11,6 @@ public class Task13 {
         System.out.println(String.format("Количество отрицательных: %d",
             0 + (a < 0 ? 1 : 0) + (b < 0 ? 1 : 0) + (c < 0 ? 1 : 0)));
         System.out.println(String.format("Количество положительных: %d",
-            0 + (a >= 0 ? 1 : 0) + (b >= 0 ? 1 : 0) + (c >= 0 ? 1 : 0)));
+            0 + (a > 0 ? 1 : 0) + (b > 0 ? 1 : 0) + (c > 0 ? 1 : 0)));
     }
 }

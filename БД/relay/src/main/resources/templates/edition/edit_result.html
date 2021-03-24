@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование результата | Эстафеты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="box">
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: home})" />
+    <div class="page">
+        <form method="post" th:action="'/update_result?result_list_id=' + ${result.resultListId}
+            + '&prev_player_id=' + ${result.playerId} + '&prev_subject_id=' + ${result.subjectId}">
+            <table>
+                <tr>
+                    <td>Дисциплина</td>
+                    <td>
+                        <select name="next_subject_id">
+                            <option th:each="subject : ${subjects}" th:value="${subject.subjectId}"
+                                    th:label="${subject.subjectName}"
+                                    th:selected="${result.subjectId==subject.subjectId}">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Спортсмен</td>
+                    <td>
+                        <select name="next_player_id">
+                            <option th:each="player : ${players}" th:value="${player.playerId}"
+                                    th:label="${player.playerName}"  th:selected="${result.playerId==player.playerId}">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Результат</td>
+                    <td>
+                        <div><input name="result_value" type="text" th:value="${result.resultValue}"></div>
+                    </td>
+                </tr>
+            </table>
+            <div><input type="submit" value="Обновить"></div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

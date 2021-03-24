@@ -25,7 +25,8 @@
                     <td>Спортсмен</td>
                     <td>
                         <select name="player_id">
-                            <option th:each="player : ${players}" th:value="${player.playerId}" th:label="${player.playerName}">
+                            <option th:each="player : ${players}" th:value="${player.playerId}"
+                                    th:label="${player.playerName}">
                         </select>
                     </td>
                 </tr>

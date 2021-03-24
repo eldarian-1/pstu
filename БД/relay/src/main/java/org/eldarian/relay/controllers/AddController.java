@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Collection;
 
 @Controller
-public class AddController {
+public class AddController extends AController {
 
     @GetMapping("/add_team")
     public String addTeam() {

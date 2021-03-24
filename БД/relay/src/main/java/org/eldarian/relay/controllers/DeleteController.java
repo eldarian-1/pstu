@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class DeleteController {
+public class DeleteController extends AController {
 
     @GetMapping("/remove_team")
     public String deleteTeam(@RequestParam(name = "id") String id) {

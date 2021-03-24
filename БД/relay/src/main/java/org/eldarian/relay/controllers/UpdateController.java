@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class UpdateController {
+public class UpdateController extends AController {
 
     @PostMapping("/update_team")
     public String updateTeam(@RequestParam(name = "id") String team,

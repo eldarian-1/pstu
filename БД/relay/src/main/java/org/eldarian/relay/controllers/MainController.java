@@ -6,14 +6,13 @@ import org.eldarian.relay.queries.select.item.*;
 import org.eldarian.relay.queries.select.list.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
 
 @Controller
-public class MainController {
+public class MainController extends AController {
 
     @GetMapping("/")
     public String home() {
@@ -107,6 +106,11 @@ public class MainController {
     @GetMapping("/authorization")
     public String authorization() {
         return "general/authorization";
+    }
+
+    @GetMapping("/test")
+    public String test() throws Exception {
+        throw new Exception("Тестовое исключение");
     }
 
 }

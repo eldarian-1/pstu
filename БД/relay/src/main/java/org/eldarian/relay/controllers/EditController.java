@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Collection;
 
 @Controller
-public class EditController {
+public class EditController extends AController {
 
     @GetMapping("/edit_team")
     public String editTeam(@RequestParam(name = "id") String id, Model model) {

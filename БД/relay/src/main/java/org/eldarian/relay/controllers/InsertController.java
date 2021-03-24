@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class InsertController {
+public class InsertController extends AController {
 
     @PostMapping("/insert_team")
     public String insertTeam(@RequestParam(name = "team_name") String teamName,

@@ -1,14 +1,17 @@
 package org.eldarian.sirius12.task29;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Solution {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Throwable {
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(System.in));
+        String[] nums = reader.readLine().split(" ");
         int[] array = new int[15];
         int odd = 0, even = 0;
-        Scanner scanner = new Scanner(System.in);
         for(int i = 0; i < 15; i++) {
-            array[i] = scanner.nextInt();
+            array[i] = Integer.parseInt(nums[i]);
             if(array[i] % 2 == 0) {
                 even += array[i];
             }

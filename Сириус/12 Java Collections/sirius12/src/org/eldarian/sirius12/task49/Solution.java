@@ -1,14 +1,16 @@
 package org.eldarian.sirius12.task49;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Solution {
-    public static void main(String[] args) {
-        Scanner reader = new Scanner(System.in);
+    public static void main(String[] args) throws Throwable {
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(System.in));
         ArrayList<String> strings = new ArrayList<>();
         while (true) {
-            String string = reader.nextLine();
+            String string = reader.readLine();
             if (string == null || string.isEmpty()) break;
             strings.add(string);
         }

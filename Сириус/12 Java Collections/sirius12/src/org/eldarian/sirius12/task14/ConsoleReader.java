@@ -1,23 +1,27 @@
 package org.eldarian.sirius12.task14;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class ConsoleReader {
     public static String readString() throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        return new BufferedReader(new InputStreamReader(System.in))
+                .readLine();
     }
     public static int readInt() throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        return Integer.parseInt(
+                new BufferedReader(new InputStreamReader(System.in))
+                        .readLine());
     }
     public static double readDouble() throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextDouble();
+        return Double.parseDouble(
+                new BufferedReader(new InputStreamReader(System.in))
+                        .readLine());
     }
     public static boolean readBoolean() throws Exception {
-        Scanner scanner = new Scanner(System.in);
-        String text = scanner.nextLine();
+        String text = new BufferedReader(
+                new InputStreamReader(System.in)).readLine();
         if(text.equals("true")) {
             return true;
         }

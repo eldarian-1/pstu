@@ -18,9 +18,9 @@ public class Solution {
             double index = weight / height / height;
             System.out.println(index <= 18.5 ?
                     "Недовес: меньше чем 18.5"
-                    : index > 18.5 && index <= 25 ?
+                    : index <= 25 ?
                     "Нормальный: между 18.5 и 25"
-                    : index > 25 && index <= 30 ?
+                    : index <= 30 ?
                     "Избыточный: между 25 и 30" :
                     "Ожирение: 30 или больше");
         }

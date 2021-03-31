@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Solution {
     public static void main(String[] args) {
         ArrayList<String> strings = new ArrayList<String>();
-        strings.add("роза");
-        strings.add("лоза");
-        strings.add("лира");
+        strings.add("мама");
+        strings.add("виноград");
+        strings.add("лодка");
         strings = fix(strings);
         for (String string : strings) {
             System.out.println(string);

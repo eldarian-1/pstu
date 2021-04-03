@@ -34,6 +34,19 @@ JOIN relay_races ON relay_races.relay_id = team_participations.relay_id
 WHERE results.result_list_id IN
     (SELECT team_participations.result_list_id FROM team_participations);
 
+CREATE VIEW player_score_views
+(result_list_id, subject_id, player_id, subject_name, player_name, subject_score)
+AS SELECT result_lists.result_list_id, results.subject_id, players.player_id,
+    subjects.subject_name, players.player_name,
+    (SUM(results.result_value*subjects.subject_multiplier)/COUNT(results.result_value)) AS subject_score
+FROM players
+JOIN results ON results.player_id = players.player_id
+JOIN subjects ON subjects.subject_id = results.subject_id
+JOIN result_lists ON result_lists.team_id = players.team_id
+GROUP BY result_lists.result_list_id, results.subject_id, players.player_id,
+    subjects.subject_name, players.player_name
+ORDER BY result_list_id, subject_id, subject_score;
+
 CREATE VIEW result_list_views
 (result_list_id, result_list_name, team_id, team_name, is_open, result_list_date)
 AS SELECT result_lists.result_list_id,
@@ -102,6 +115,7 @@ JOIN teams ON teams.team_id = result_lists.team_id
 JOIN players ON players.team_id = result_lists.team_id;
 
 DROP VIEW IF EXISTS player_views;
+DROP VIEW IF EXISTS player_score_views;
 DROP VIEW IF EXISTS result_views;
 DROP VIEW IF EXISTS result_list_views;
 DROP VIEW IF EXISTS team_views;

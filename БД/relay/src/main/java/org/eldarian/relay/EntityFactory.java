@@ -88,6 +88,17 @@ public class EntityFactory {
         return item;
     }
 
+    public PlayerScores playerScores() throws SQLException {
+        PlayerScores item = new PlayerScores();
+        item.setResultListId(_set.getInt("result_list_id"));
+        item.setSubjectId(_set.getInt("subject_id"));
+        item.setPlayerId(_set.getInt("player_id"));
+        item.setSubjectName(_set.getString("subject_name"));
+        item.setPlayerName(_set.getString("player_name"));
+        item.setSubjectScore(_set.getDouble("subject_score"));
+        return item;
+    }
+
     public Boolean bool() throws SQLException {
         return _set.getBoolean("is_true");
     }
@@ -95,5 +106,4 @@ public class EntityFactory {
     public Integer number() throws SQLException {
         return _set.getInt("number");
     }
-
 }

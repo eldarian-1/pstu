@@ -68,8 +68,11 @@ public class AddController extends AController {
                 .provide(resultListId));
         Collection<Player> players = (Collection<Player>)(new DataContext(new PossiblePlayerListQuery())
                 .provide(resultListId));
+        Collection<PlayerScores> scores = (Collection<PlayerScores>)(new DataContext(new PlayerScoreListQuery())
+                .provide(resultListId));
         model.addAttribute("subjects", subjects);
         model.addAttribute("players", players);
+        model.addAttribute("scores", scores);
         model.addAttribute("resultListId", resultListId);
         return "addition/add_result";
     }

@@ -20,9 +20,13 @@ public class Solution {
         printValues(map);
     }
     public static void printKeys(Map<String, String> map) {
-        map.forEach((key, value) -> System.out.println(key));
+        for(String item : map.keySet()) {
+            System.out.println(item);
+        }
     }
     public static void printValues(Map<String, String> map) {
-        map.forEach((key, value) -> System.out.println(value));
+        for(String item : map.values()) {
+            System.out.println(item);
+        }
     }
 }

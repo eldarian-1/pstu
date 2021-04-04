@@ -18,7 +18,7 @@ public class Solution {
     }
     public static void insert10000(List<Integer> list) {
         for (int i = 0; i < 10000; i++) {
-            list.add(i);
+            list.add(0, i);
         }
     }
 }

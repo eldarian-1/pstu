@@ -14,6 +14,7 @@ public class Solution {
         map.put("Макрон", dateFormat.parse("1.03.2012"));
         map.put("Аль Капоне", dateFormat.parse("1.04.2012"));
         map.put("Сталлоне", dateFormat.parse("1.05.2012"));
+        map.put("Тест Катерины", dateFormat.parse("31.05.2000"));
         map.put("Шварц", dateFormat.parse("1.06.2012"));
         map.put("Линдеманн", dateFormat.parse("1.07.2012"));
         map.put("Ньютон", dateFormat.parse("1.08.2012"));

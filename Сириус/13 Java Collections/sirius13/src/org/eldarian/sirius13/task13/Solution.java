@@ -18,20 +18,20 @@ public class Solution {
         return result;
     }
     public static int getCountTheSameFirstName(Map<String, String> map, String name) {
-        final int[] result = {0};
-        map.forEach((ln, fn) -> {
-            if(fn.equals(name))
-                result[0]++;
-        });
-        return result[0];
+        int result = 0;
+        for(String item : map.values()) {
+            if(item.equals(name))
+                result++;
+        }
+        return result;
     }
     public static int getCountTheSameLastName(Map<String, String> map, String lastName) {
-        final int[] result = {0};
-        map.forEach((ln, fn) -> {
-            if(ln.equals(lastName))
-                result[0]++;
-        });
-        return result[0];
+        int result = 0;
+        for(String item : map.keySet()) {
+            if(item.equals(lastName))
+                result++;
+        }
+        return result;
     }
     public static void main(String[] args) throws Exception {
         Map<String, String> persons = createMap();

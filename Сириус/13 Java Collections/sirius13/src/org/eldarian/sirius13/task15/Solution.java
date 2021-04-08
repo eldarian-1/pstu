@@ -21,24 +21,24 @@ public class Solution {
 
     public static void removeTheFirstNameDuplicates(Map<String, String> map) {
         Map<String, String> copy1 = new HashMap<>(map);
-        for (Map.Entry<String, String> pair1 : copy1.entrySet()) {
+        copy1.forEach((key1, value1) -> {
             Map<String, String> copy2 = new HashMap<>(copy1);
-            copy2.remove(pair1.getKey());
-            for (Map.Entry<String, String> pair2 : copy2.entrySet()) {
-                if(pair2.getValue().equals(pair1.getValue())) {
-                    removeItemFromMapByValue(map, pair2.getValue());
+            copy2.remove(key1);
+            copy2.forEach((key2, value2) -> {
+                if(value2.equals(value1)) {
+                    removeItemFromMapByValue(map, value2);
                 }
-            }
-        }
+            });
+        });
     }
 
-    public static void removeItemFromMapByValue(Map<String, String> map, String value) {
+    public static void removeItemFromMapByValue(Map<String, String> map, String desiredValue) {
         Map<String, String> copy = new HashMap<>(map);
-        for (Map.Entry<String, String> pair : copy.entrySet()) {
-            if (pair.getValue().equals(value)) {
-                map.remove(pair.getKey());
+        copy.forEach((key, value) -> {
+            if (value.equals(desiredValue)) {
+                map.remove(value);
             }
-        }
+        });
     }
 
     public static void main(String[] args) throws Exception {

@@ -79,6 +79,17 @@ CREATE TABLE results (
     FOREIGN KEY (subject_id) REFERENCES subjects (subject_id) ON DELETE CASCADE
 );
 
+SELECT
+	column_name AS _name,
+	column_type AS _type,
+	is_nullable AS _null,
+	column_key AS _key,
+	extra AS _other,
+	column_default AS _default
+FROM information_schema.columns
+WHERE table_schema = 'testdb' AND table_name = 'teams'
+ORDER BY ordinal_position;
+
 DROP TABLE IF EXISTS results;
 DROP TABLE IF EXISTS player_positions;
 DROP TABLE IF EXISTS relay_subjects;

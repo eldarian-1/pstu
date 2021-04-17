@@ -2,7 +2,6 @@ package org.eldarian.polynomial;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         polynomialBtn = findViewById(R.id.polynomial);
         termLst = findViewById(R.id.term_list);
         addTermBtn = findViewById(R.id.add_term);
-        polynomialBtn.setOnClickListener(this::editTermBtnOnClick);
-        termLst.setOnItemClickListener(this::selectTermClick);
+        polynomialBtn.setOnClickListener(this::solvePolynomialBtnOnClick);
+        termLst.setOnItemClickListener(this::editTermListItemClick);
         addTermBtn.setOnClickListener(this::addTermBtnOnClick);
         TermAdapter termAdapter = new TermAdapter(this,
                 R.layout.term_list_item, polynomial.getTerms());
@@ -43,30 +42,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addTermBtnOnClick(View view) {
-        TermDialog dialog = new TermDialog("Ок", "Отмена",
-                this::addTerm, null, null);
+        TermDialog dialog = new TermDialog(polynomial, null);
         dialog.show(getSupportFragmentManager(), "custom");
     }
 
-    private void editTermBtnOnClick(View view) {
-        TermDialog dialog = new TermDialog("Обновить", "Удалить",
-                this::editTerm, this::removeTerm, null);
+    private void editTermListItemClick(AdapterView<?> parent, View view, int position, long id) {
+        TermDialog dialog = new TermDialog(polynomial, polynomial.getTerms().get(position));
         dialog.show(getSupportFragmentManager(), "custom");
     }
 
-    private void addTerm(DialogInterface dialog, int which) {
-        Toast.makeText(this, "Добавление", Toast.LENGTH_SHORT).show();
-    }
-
-    private void editTerm(DialogInterface dialog, int which) {
-        Toast.makeText(this, "Обновление", Toast.LENGTH_SHORT).show();
-    }
-
-    private void removeTerm(DialogInterface dialog, int which) {
-        Toast.makeText(this, "Удаление", Toast.LENGTH_SHORT).show();
-    }
-
-    private void selectTermClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this, "Выбран " + position, Toast.LENGTH_SHORT).show();
+    private void solvePolynomialBtnOnClick(View view) {
+        Toast.makeText(this, polynomial.toString(), Toast.LENGTH_SHORT).show();
     }
 }

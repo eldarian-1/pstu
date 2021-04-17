@@ -12,11 +12,11 @@
 
         <TableRow>
             <TextView android:text="Коэффициент"/>
-            <EditText android:layout_width="match_parent"/>
+            <EditText android:id="@+id/coefficient" />
         </TableRow>
         <TableRow>
             <TextView android:text="Степень"/>
-            <EditText android:layout_width="match_parent"/>
+            <EditText android:id="@+id/degree" />
         </TableRow>
 
     </TableLayout>

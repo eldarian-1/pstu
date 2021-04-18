@@ -18,11 +18,13 @@
 
             <TableRow>
                 <TextView android:text="Коэффициент"/>
-                <EditText android:id="@+id/coefficient" />
+                <EditText android:id="@+id/coefficient"
+                    android:minWidth="200dp" />
             </TableRow>
             <TableRow>
                 <TextView android:text="Степень"/>
-                <EditText android:id="@+id/degree" />
+                <EditText android:id="@+id/degree"
+                    android:minWidth="200dp" />
             </TableRow>
 
         </TableLayout>

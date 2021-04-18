@@ -1,47 +1,63 @@
 package org.eldarian.polynomial;
 
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import static java.lang.Math.pow;
 
 public class TermMultiplication {
     private Double coefficient;
-    private final Set<Character> names;
-    private final List<Integer> degree;
+    private Map<Character, Integer> terms;
 
-    public TermMultiplication(Map<Term, Integer> terms) {
+    private TermMultiplication(TermMultiplication multiply) {
+        this.coefficient = multiply.coefficient;
+        this.terms = new HashMap<>(multiply.terms);
+    }
+
+    public TermMultiplication(List<Term> terms) {
         coefficient = 1d;
-        names = new HashSet<>();
-        degree = new LinkedList<>();
-        for(Map.Entry<Term, Integer> term : terms.entrySet()) {
-            Term key = term.getKey();
-            Integer value = term.getValue();
-            if(value != 0) {
-                coefficient *= pow(key.getCoefficient(), value);
-                names.add(key.getName());
-                degree.add(value);
+        this.terms = new HashMap<>();
+        for(Term term : terms) {
+            Character name = term.getName();
+            coefficient *= term.getCoefficient();
+            if(this.terms.get(name) == null) {
+                this.terms.put(name, term.getDegree());
             } else {
-                coefficient = 0d;
-                names.clear();
-                degree.clear();
-                break;
+                this.terms.put(name, this.terms.get(name) + term.getDegree());
             }
         }
     }
 
-    public Double getCoefficient() {
-        return coefficient;
+    public TermMultiplication add(TermMultiplication term) {
+        TermMultiplication result = new TermMultiplication(this);
+        result.coefficient += term.coefficient;
+        return result;
     }
 
-    public Set<Character> getNames() {
-        return names;
+    public boolean isPositive() {
+        return coefficient > 0d;
     }
 
-    public List<Integer> getDegree() {
-        return degree;
+    public boolean likes(TermMultiplication multiply) {
+        for(Map.Entry<Character, Integer> term : terms.entrySet()) {
+            if(multiply.terms.get(term.getKey()) != term.getValue()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String absString() {
+        double c = Math.abs(coefficient);
+        String result = (c == 1d ? "" : String.valueOf(c));
+        for(Map.Entry<Character, Integer> term : terms.entrySet()) {
+            Integer d = term.getValue();
+            result += term.getKey() + (d == 1d ? "" : ("^" + d));
+        }
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return (isPositive() ? "" : "-") + absString();
     }
 }

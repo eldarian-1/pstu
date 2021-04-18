@@ -9,7 +9,7 @@ public class Polynomial {
 
     public Polynomial() {
         terms = new LinkedList<>();
-        degree = 0;
+        degree = 1;
     }
 
     public void insert(Term term) {
@@ -32,7 +32,9 @@ public class Polynomial {
         return degree;
     }
 
-    public void setDegree(Integer degree) {
+    public void setDegree(Integer degree) throws Throwable {
+        if(degree < 1)
+            throw new Exception("Степень полинома не может быть меньше 1");
         this.degree = degree;
     }
 
@@ -48,22 +50,16 @@ public class Polynomial {
             result = isFirst ? "" : "(";
             for (Term item : terms) {
                 if(index == 0) {
-                    if(item.isNull()) {
-                        --index;
-                        --size;
-                    } else if(item.isPositive()) {
-                        result += item;
+                    if(item.isPositive()) {
+                        result += item.absString();
                     } else {
-                        result += "-" + item;
+                        result += "-" + item.absString();
                     }
                 } else {
-                    if(item.isNull()) {
-                        --index;
-                        --size;
-                    } else if(item.isPositive()) {
-                        result += " + " + item;
+                    if(item.isPositive()) {
+                        result += " + " + item.absString();
                     } else {
-                        result += " - " + item;
+                        result += " - " + item.absString();
                     }
                 }
                 ++index;

@@ -2,6 +2,7 @@ package org.eldarian.polynomial;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,12 +48,19 @@ public class MainActivity extends AppCompatActivity implements TermDialog.OnInpu
     }
 
     private void solvePolynomialBtnOnClick(View view) {
-        Toast.makeText(this, polynomial.toString(), Toast.LENGTH_SHORT).show();
+        CalculatedPolynomialDialog dialog = new CalculatedPolynomialDialog(
+                new CalculatedPolynomial(polynomial));
+        dialog.show(getSupportFragmentManager(), "custom");
     }
 
+    @SuppressLint("ShowToast")
     private void changeDegreeBtnOnClick(View view) {
-        polynomial.setDegree(Integer.parseInt(degreeTxt.getText().toString()));
-        updatePolynomial();
+        try {
+            polynomial.setDegree(Integer.parseInt(degreeTxt.getText().toString()));
+            updatePolynomial();
+        } catch (Throwable t) {
+            Toast.makeText(this, t.getMessage(), Toast.LENGTH_LONG);
+        }
     }
 
     private void updatePolynomial() {

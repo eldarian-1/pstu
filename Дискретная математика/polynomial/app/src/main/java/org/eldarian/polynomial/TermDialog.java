@@ -1,5 +1,6 @@
 package org.eldarian.polynomial;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -75,18 +77,30 @@ public class TermDialog extends DialogFragment {
         }
     }
 
+    @SuppressLint("ShowToast")
     private void onInsertButtonClick(View view) {
-        onInputListener.insert(new Term(Double.parseDouble(coefficient.getText().toString()),
-                Integer.parseInt(degree.getText().toString())));
-        onCancelButtonClick(view);
+        try {
+            onInputListener.insert(new Term(Double.parseDouble(coefficient.getText().toString()),
+                    Integer.parseInt(degree.getText().toString())));
+        } catch (Throwable t) {
+            Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG);
+        } finally {
+            onCancelButtonClick(view);
+        }
     }
 
+    @SuppressLint("ShowToast")
     private void onUpdateButtonClick(View view) {
-        Term to = new Term(from);
-        to.setCoefficient(Double.parseDouble(coefficient.getText().toString()));
-        to.setDegree(Integer.parseInt(degree.getText().toString()));
-        onInputListener.update(from, to);
-        onCancelButtonClick(view);
+        try {
+            Term to = new Term(from);
+            to.setCoefficient(Double.parseDouble(coefficient.getText().toString()));
+            to.setDegree(Integer.parseInt(degree.getText().toString()));
+            onInputListener.update(from, to);
+        } catch (Throwable t) {
+            Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG);
+        } finally {
+            onCancelButtonClick(view);
+        }
     }
 
     private void onDeleteButtonClick(View view) {
@@ -97,5 +111,4 @@ public class TermDialog extends DialogFragment {
     private void onCancelButtonClick(View view) {
         Objects.requireNonNull(getDialog()).dismiss();
     }
-
 }

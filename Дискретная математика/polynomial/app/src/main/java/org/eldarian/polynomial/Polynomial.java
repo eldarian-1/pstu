@@ -1,7 +1,7 @@
 package org.eldarian.polynomial;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.util.LinkedList;
 
 public class Polynomial {
     private List<Term> terms;
@@ -12,20 +12,20 @@ public class Polynomial {
         degree = 0;
     }
 
-    public void add(Term term) {
+    public void insert(Term term) {
         terms.add(term);
     }
 
-    public void remove(Term term) {
+    public void update(Term from, Term to) {
+        terms.set(terms.indexOf(from), to);
+    }
+
+    public void delete(Term term) {
         terms.remove(term);
     }
 
     public List<Term> getTerms() {
         return terms;
-    }
-
-    public void setTerms(List<Term> terms) {
-        this.terms = terms;
     }
 
     public Integer getDegree() {
@@ -34,5 +34,45 @@ public class Polynomial {
 
     public void setDegree(Integer degree) {
         this.degree = degree;
+    }
+
+    @Override
+    public String toString() {
+        String result;
+        int index = 0;
+        int size = terms.size();
+        boolean isFirst = degree == 1;
+        if(size == 0) {
+            result = "Пусто";
+        } else {
+            result = isFirst ? "" : "(";
+            for (Term item : terms) {
+                if(index == 0) {
+                    if(item.isNull()) {
+                        --index;
+                        --size;
+                    } else if(item.isPositive()) {
+                        result += item;
+                    } else {
+                        result += "-" + item;
+                    }
+                } else {
+                    if(item.isNull()) {
+                        --index;
+                        --size;
+                    } else if(item.isPositive()) {
+                        result += " + " + item;
+                    } else {
+                        result += " - " + item;
+                    }
+                }
+                ++index;
+            }
+            result += isFirst ? "" : (")^" + degree);
+        }
+        if(size == 0) {
+            result = "Пусто";
+        }
+        return result;
     }
 }

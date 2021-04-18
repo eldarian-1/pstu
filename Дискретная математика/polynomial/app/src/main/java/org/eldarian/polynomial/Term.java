@@ -7,10 +7,26 @@ public class Term {
     private Integer degree;
     private final Character name;
 
-    public Term(Double coefficient, Integer degree) {
+    private Term(Double coefficient, Integer degree, Character name) {
         this.coefficient = coefficient;
         this.degree = degree;
-        this.name = nextName++;
+        this.name = name;
+    }
+
+    public Term(Term from) {
+        this(from.coefficient, from.degree, from.name);
+    }
+
+    public Term(Double coefficient, Integer degree) {
+        this(coefficient, degree, nextName++);
+    }
+
+    public boolean isNull() {
+        return coefficient == 0d;
+    }
+
+    public boolean isPositive() {
+        return coefficient > 0d;
     }
 
     public Double getCoefficient() {
@@ -31,5 +47,11 @@ public class Term {
 
     public Character getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        Double c = Math.abs(coefficient);
+        return (c == 1d ? "" : c) + name.toString() + (degree == 1d ? "" : ("^" + degree));
     }
 }

@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TermDialog.OnInputListener {
     private Polynomial polynomial;
 
     private Button polynomialBtn;
+    private EditText degreeTxt;
+    private Button changeDegreeBtn;
     private ListView termLst;
     private Button addTermBtn;
 
@@ -25,19 +28,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         polynomialBtn = findViewById(R.id.polynomial);
+        degreeTxt = findViewById(R.id.degree);
+        changeDegreeBtn = findViewById(R.id.change_degree_btn);
         termLst = findViewById(R.id.term_list);
         addTermBtn = findViewById(R.id.add_term);
+
         polynomialBtn.setOnClickListener(this::solvePolynomialBtnOnClick);
+        changeDegreeBtn.setOnClickListener(this::changeDegreeBtnOnClick);
         termLst.setOnItemClickListener(this::editTermListItemClick);
         addTermBtn.setOnClickListener(this::addTermBtnOnClick);
+
         TermAdapter termAdapter = new TermAdapter(this,
                 R.layout.term_list_item, polynomial.getTerms());
         termLst.setAdapter(termAdapter);
-        updatePolynomialBtn();
+        updatePolynomial();
     }
 
-    private void updatePolynomialBtn() {
+    private void solvePolynomialBtnOnClick(View view) {
+        Toast.makeText(this, polynomial.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void changeDegreeBtnOnClick(View view) {
+        polynomial.setDegree(Integer.parseInt(degreeTxt.getText().toString()));
+        updatePolynomial();
+    }
+
+    private void updatePolynomial() {
         polynomialBtn.setText(polynomial.toString());
     }
 
@@ -51,7 +69,21 @@ public class MainActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), "custom");
     }
 
-    private void solvePolynomialBtnOnClick(View view) {
-        Toast.makeText(this, polynomial.toString(), Toast.LENGTH_SHORT).show();
+    @Override
+    public void insert(Term term) {
+        polynomial.insert(term);
+        updatePolynomial();
+    }
+
+    @Override
+    public void update(Term from, Term to) {
+        polynomial.update(from, to);
+        updatePolynomial();
+    }
+
+    @Override
+    public void delete(Term term) {
+        polynomial.delete(term);
+        updatePolynomial();
     }
 }

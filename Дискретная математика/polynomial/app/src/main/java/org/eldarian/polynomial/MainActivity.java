@@ -73,12 +73,12 @@ public class MainActivity extends AppCompatActivity implements TermDialog.OnInpu
     }
 
     private void addTermBtnOnClick(View view) {
-        TermDialog dialog = new TermDialog(polynomial, null);
+        TermDialog dialog = new TermDialog(null);
         dialog.show(getSupportFragmentManager(), "custom");
     }
 
     private void editTermListItemClick(AdapterView<?> parent, View view, int position, long id) {
-        TermDialog dialog = new TermDialog(polynomial, polynomial.getTerms().get(position));
+        TermDialog dialog = new TermDialog(polynomial.getTerms().get(position));
         dialog.show(getSupportFragmentManager(), "custom");
     }
 

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.List;
 import java.util.Map;
@@ -43,8 +44,8 @@ public class ArgAdapter extends ArrayAdapter<Map.Entry<Character, Double>> {
     }
 
     private static class ViewHolder {
-        final EditText nameTxt;
-        final EditText degreeTxt;
+        final TextView nameTxt;
+        final TextView degreeTxt;
         ViewHolder(View view){
             nameTxt = view.findViewById(R.id.name_text);
             degreeTxt = view.findViewById(R.id.degree_text);

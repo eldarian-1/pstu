@@ -4,16 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TermMultiplication {
+public class Transposition {
     private Double coefficient;
     private Map<Character, Double> terms;
 
-    private TermMultiplication(TermMultiplication multiply) {
+    private Transposition(Transposition multiply) {
         this.coefficient = multiply.coefficient;
         this.terms = new HashMap<>(multiply.terms);
     }
 
-    public TermMultiplication(List<Term> terms) {
+    public Transposition(List<Term> terms) {
         coefficient = 1d;
         this.terms = new HashMap<>();
         for(Term term : terms) {
@@ -30,8 +30,8 @@ public class TermMultiplication {
         }
     }
 
-    public TermMultiplication add(TermMultiplication term) {
-        TermMultiplication result = new TermMultiplication(this);
+    public Transposition add(Transposition term) {
+        Transposition result = new Transposition(this);
         result.coefficient += term.coefficient;
         return result;
     }
@@ -40,9 +40,11 @@ public class TermMultiplication {
         return coefficient > 0d;
     }
 
-    public boolean likes(TermMultiplication multiply) {
+    public boolean likes(Transposition multiply) {
         for(Map.Entry<Character, Double> term : terms.entrySet()) {
-            if(multiply.terms.get(term.getKey()) != term.getValue()) {
+            if((multiply.terms.get(term.getKey()) == null && term.getValue() != 0) ||
+                    (multiply.terms.get(term.getKey()) != null &&
+                            !multiply.terms.get(term.getKey()).equals(term.getValue()))) {
                 return false;
             }
         }
@@ -51,10 +53,14 @@ public class TermMultiplication {
 
     public String absString() {
         double c = Math.abs(coefficient);
-        String result = (c == 1d ? "" : String.valueOf(c));
+        String result = c == 1d ? "" :
+                (c % 1d == 0d ? Integer.valueOf((int) c).toString() : Double.valueOf(c).toString());
         for(Map.Entry<Character, Double> term : terms.entrySet()) {
-            Double d = term.getValue();
-            result += term.getKey() + (d == 1d ? "" : ("^" + d));
+            double d = term.getValue();
+            d = d % 1 == 0d ? (int)d : d;
+            result += (c == 0d || d == 0d ? "" : term.getKey() + (d == 1d ? "" : "^" +
+                    (d % 1d == 0d ? Integer.valueOf((int) d).toString() : Double.valueOf(d)
+                            .toString())));
         }
         return result;
     }

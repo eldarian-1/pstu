@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CalculatedPolynomial {
-    private List<TermMultiplication> multiplies;
+    private List<Transposition> multiplies;
 
     public CalculatedPolynomial(Polynomial polynomial) {
         multiplies = new LinkedList<>();
@@ -14,7 +14,7 @@ public class CalculatedPolynomial {
 
     private void fill(List<Term> from, List<Term> to, int degree, int current) {
         if(current == degree) {
-            multiplies.add(new TermMultiplication(to));
+            multiplies.add(new Transposition(to));
             return;
         }
         for(Term term : from) {
@@ -45,7 +45,7 @@ public class CalculatedPolynomial {
             result = "Пусто";
         } else {
             result = "";
-            for (TermMultiplication multiply : multiplies) {
+            for (Transposition multiply : multiplies) {
                 if(index == 0) {
                     if(multiply.isPositive()) {
                         result += multiply.absString();

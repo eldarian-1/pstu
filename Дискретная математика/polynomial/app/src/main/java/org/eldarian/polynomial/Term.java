@@ -47,10 +47,13 @@ public class Term {
 
     public String absString() {
         double c = Math.abs(coefficient);
-        String result = c == 1d ? "" : String.valueOf(c);
+        String result = c == 1d ? "" :
+                (c % 1d == 0d ? Integer.valueOf((int) c).toString() : Double.valueOf(c).toString());
         for(Map.Entry<Character, Double> item : args.entrySet()) {
-            Double d = item.getValue();
-            result += (d == 0d ? "" : (item.getKey() + "^" + d));
+            double d = item.getValue();
+            result += (c == 0d || d == 0d ? "" : item.getKey() + (d == 1d ? "" : "^" +
+                    (d % 1d == 0d ? Integer.valueOf((int) d).toString() : Double.valueOf(d)
+                            .toString())));
         }
         return result;
     }

@@ -137,7 +137,8 @@ public class TermDialog extends DialogFragment {
     }
 
     private void onRemoveArgButtonClick(View view) {
-        args.add(new AbstractMap.SimpleEntry<>('A', 1d));
+        args.remove(currentArg);
+        updateCurrentArg(null);
     }
 
     private Map<Character, Double> getArgs() {

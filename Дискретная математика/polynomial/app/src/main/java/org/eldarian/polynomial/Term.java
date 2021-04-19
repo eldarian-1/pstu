@@ -1,26 +1,26 @@
 package org.eldarian.polynomial;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Term {
-    private static char nextName = 'A';
-
     private Double coefficient;
-    private Integer degree;
-    private final Character name;
+    private Map<Character, Double> args;
 
-    private Term(Double coefficient, Integer degree, Character name) throws Throwable {
+    public Term() {
+        coefficient = 1d;
+        args = new HashMap<>();
+    }
+
+    public Term(Double coefficient, Map<Character, Double> args) throws Throwable {
         if(coefficient == 0d)
             throw new Exception("Коэффициент не может быть равен нулю");
         this.coefficient = coefficient;
-        this.degree = degree;
-        this.name = name;
+        this.args = args;
     }
 
     public Term(Term from) throws Throwable {
-        this(from.coefficient, from.degree, from.name);
-    }
-
-    public Term(Double coefficient, Integer degree) throws Throwable {
-        this(coefficient, degree, nextName++);
+        this(from.coefficient, from.args);
     }
 
     public boolean isPositive() {
@@ -37,21 +37,22 @@ public class Term {
         this.coefficient = coefficient;
     }
 
-    public Integer getDegree() {
-        return degree;
+    public Map<Character, Double> getArgs() {
+        return args;
     }
 
-    public void setDegree(Integer degree) {
-        this.degree = degree;
-    }
-
-    public Character getName() {
-        return name;
+    public void setArgs(Map<Character, Double> args) {
+        this.args = args;
     }
 
     public String absString() {
         double c = Math.abs(coefficient);
-        return (c == 1d ? "" : c) + name.toString() + (degree == 1d ? "" : ("^" + degree));
+        String result = c == 1d ? "" : String.valueOf(c);
+        for(Map.Entry<Character, Double> item : args.entrySet()) {
+            Double d = item.getValue();
+            result += (d == 0d ? "" : (item.getKey() + "^" + d));
+        }
+        return result;
     }
 
     @Override

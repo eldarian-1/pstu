@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class TermMultiplication {
     private Double coefficient;
-    private Map<Character, Integer> terms;
+    private Map<Character, Double> terms;
 
     private TermMultiplication(TermMultiplication multiply) {
         this.coefficient = multiply.coefficient;
@@ -17,12 +17,15 @@ public class TermMultiplication {
         coefficient = 1d;
         this.terms = new HashMap<>();
         for(Term term : terms) {
-            Character name = term.getName();
             coefficient *= term.getCoefficient();
-            if(this.terms.get(name) == null) {
-                this.terms.put(name, term.getDegree());
-            } else {
-                this.terms.put(name, this.terms.get(name) + term.getDegree());
+            for(Map.Entry<Character, Double> arg : term.getArgs().entrySet()) {
+                Character name = arg.getKey();
+                Double degree = arg.getValue();
+                if(this.terms.get(name) == null) {
+                    this.terms.put(name, degree);
+                } else {
+                    this.terms.put(name, this.terms.get(name) + degree);
+                }
             }
         }
     }
@@ -38,7 +41,7 @@ public class TermMultiplication {
     }
 
     public boolean likes(TermMultiplication multiply) {
-        for(Map.Entry<Character, Integer> term : terms.entrySet()) {
+        for(Map.Entry<Character, Double> term : terms.entrySet()) {
             if(multiply.terms.get(term.getKey()) != term.getValue()) {
                 return false;
             }
@@ -49,8 +52,8 @@ public class TermMultiplication {
     public String absString() {
         double c = Math.abs(coefficient);
         String result = (c == 1d ? "" : String.valueOf(c));
-        for(Map.Entry<Character, Integer> term : terms.entrySet()) {
-            Integer d = term.getValue();
+        for(Map.Entry<Character, Double> term : terms.entrySet()) {
+            Double d = term.getValue();
             result += term.getKey() + (d == 1d ? "" : ("^" + d));
         }
         return result;

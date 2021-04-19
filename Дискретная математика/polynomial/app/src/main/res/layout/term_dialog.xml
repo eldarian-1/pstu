@@ -22,12 +22,22 @@
                     android:minWidth="200dp" />
             </TableRow>
             <TableRow>
+                <TextView android:text="Переменная"/>
                 <TextView android:text="Степень"/>
-                <EditText android:id="@+id/degree"
-                    android:minWidth="200dp" />
             </TableRow>
 
         </TableLayout>
+
+        <ListView
+            android:id="@+id/arg_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/add_arg"
+            android:text="+ Аргумент"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"

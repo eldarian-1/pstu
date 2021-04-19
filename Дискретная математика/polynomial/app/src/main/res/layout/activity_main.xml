@@ -50,7 +50,7 @@
             android:id="@+id/add_term"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Добавить новый член" />
+            android:text="Добавить слогаемое" />
 
     </LinearLayout>
 

@@ -52,4 +52,3 @@ public class ArgAdapter extends ArrayAdapter<Map.Entry<Character, Double>> {
         }
     }
 }
-

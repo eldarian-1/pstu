@@ -14,7 +14,12 @@ public class Term {
 
     public Term(Double coefficient, Map<Character, Double> args) throws Throwable {
         if(coefficient == 0d)
-            throw new Exception("Коэффициент не может быть равен нулю");
+            throw new TermException(TermException.Type.VARIABLE_COEFFICIENT);
+        for(Double item : args.values()) {
+            if(item == 0) {
+                throw new TermException(TermException.Type.VARIABLE_DEGREE);
+            }
+        }
         this.coefficient = coefficient;
         this.args = args;
     }
@@ -33,7 +38,7 @@ public class Term {
 
     public void setCoefficient(Double coefficient) throws Throwable {
         if(coefficient == 0d)
-            throw new Exception("Коэффициент не может быть равен нулю");
+            throw new TermException(TermException.Type.VARIABLE_COEFFICIENT);
         this.coefficient = coefficient;
     }
 
@@ -41,7 +46,12 @@ public class Term {
         return args;
     }
 
-    public void setArgs(Map<Character, Double> args) {
+    public void setArgs(Map<Character, Double> args) throws Throwable {
+        for(Double item : args.values()) {
+            if(item == 0) {
+                throw new TermException(TermException.Type.VARIABLE_DEGREE);
+            }
+        }
         this.args = args;
     }
 

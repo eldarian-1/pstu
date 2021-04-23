@@ -1,19 +1,14 @@
 package org.eldarian.polynomial;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements TermDialog.OnInputListener {
@@ -58,13 +53,25 @@ public class MainActivity extends AppCompatActivity implements TermDialog.OnInpu
         dialog.show(getSupportFragmentManager(), "custom");
     }
 
+    private Integer getPolynomialDegree() throws Throwable {
+        String text = degreeTxt.getText().toString();
+        if(text.isEmpty()) {
+            throw new TermException(TermException.Type.FORMAT_DEGREE);
+        }
+        try {
+            return Integer.parseInt(text);
+        } catch (Throwable t) {
+            throw new TermException(TermException.Type.FORMAT_DEGREE);
+        }
+    }
+
     @SuppressLint("ShowToast")
     private void changeDegreeBtnOnClick(View view) {
         try {
-            polynomial.setDegree(Integer.parseInt(degreeTxt.getText().toString()));
+            polynomial.setDegree(getPolynomialDegree());
             updatePolynomial();
         } catch (Throwable t) {
-            Toast.makeText(this, t.getMessage(), Toast.LENGTH_LONG);
+            Toast.makeText(this, t.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 

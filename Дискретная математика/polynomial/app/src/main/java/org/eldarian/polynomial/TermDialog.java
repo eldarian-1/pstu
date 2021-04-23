@@ -121,19 +121,55 @@ public class TermDialog extends DialogFragment {
         }
     }
 
+    private Double getTermCoefficient() throws Throwable {
+        String text = coefficient.getText().toString();
+        if(text.isEmpty()) {
+            throw new TermException(TermException.Type.FORMAT_COEFFICIENT);
+        }
+        try {
+            return Double.parseDouble(text);
+        } catch (Throwable t) {
+            throw new TermException(TermException.Type.FORMAT_COEFFICIENT);
+        }
+    }
+
+    private Character getVariableName() throws Throwable {
+        String text = argName.getText().toString();
+        if(text.length() != 1) {
+            throw new TermException(TermException.Type.FORMAT_NAME);
+        }
+        return text.charAt(0);
+    }
+
+    private Double getVariableDegree() throws Throwable {
+        String text = argDegree.getText().toString();
+        if(text.isEmpty()) {
+            throw new TermException(TermException.Type.FORMAT_DEGREE);
+        }
+        try {
+            return Double.parseDouble(text);
+        } catch (Throwable t) {
+            throw new TermException(TermException.Type.FORMAT_DEGREE);
+        }
+    }
+
     private void onAddArgButtonClick(View view) {
-        args.add(new AbstractMap.SimpleEntry<>(
-                argName.getText().charAt(0),
-                Double.parseDouble(argDegree.getText().toString())
-        ));
-        updateCurrentArg(null);
+        try {
+            args.add(new AbstractMap.SimpleEntry<>(getVariableName(),getVariableDegree()));
+            updateCurrentArg(null);
+        } catch (Throwable t) {
+            Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void onEditArgButtonClick(View view) {
-        args.set(args.indexOf(currentArg), new AbstractMap.SimpleEntry<>(
-                argName.getText().charAt(0),
-                Double.parseDouble(argDegree.getText().toString())));
-        updateCurrentArg(null);
+        try {
+            args.set(args.indexOf(currentArg),
+                    new AbstractMap.SimpleEntry<>(getVariableName(),getVariableDegree()));
+            updateCurrentArg(null);
+        } catch (Throwable t) {
+            Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     private void onRemoveArgButtonClick(View view) {
@@ -157,12 +193,11 @@ public class TermDialog extends DialogFragment {
     @SuppressLint("ShowToast")
     private void onInsertButtonClick(View view) {
         try {
-            Double c = Double.parseDouble(coefficient.getText().toString());
+            Double c = getTermCoefficient();
             onInputListener.insert(new Term(c, getArgs()));
-        } catch (Throwable t) {
-            Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG);
-        } finally {
             onCancelButtonClick(view);
+        } catch (Throwable t) {
+            Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -170,13 +205,12 @@ public class TermDialog extends DialogFragment {
     private void onUpdateButtonClick(View view) {
         try {
             Term to = new Term(from);
-            to.setCoefficient(Double.parseDouble(coefficient.getText().toString()));
+            to.setCoefficient(getTermCoefficient());
             to.setArgs(getArgs());
             onInputListener.update(from, to);
-        } catch (Throwable t) {
-            Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG);
-        } finally {
             onCancelButtonClick(view);
+        } catch (Throwable t) {
+            Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -186,7 +220,7 @@ public class TermDialog extends DialogFragment {
     }
 
     private void editArgListItemClick(AdapterView<?> parent, View view, int position, long id) {
-        updateCurrentArg((Map.Entry<Character, Double>)argLst.getAdapter().getItem(position));
+        updateCurrentArg((Map.Entry<Character, Double>) argLst.getAdapter().getItem(position));
     }
 
     private void onCancelButtonClick(View view) {

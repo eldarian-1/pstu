@@ -34,7 +34,7 @@ public class Polynomial {
 
     public void setDegree(Integer degree) throws Throwable {
         if(degree < 1)
-            throw new Exception("Степень полинома не может быть меньше 1");
+            throw new TermException(TermException.Type.POLYNOMIAL_DEGREE);
         this.degree = degree;
     }
 

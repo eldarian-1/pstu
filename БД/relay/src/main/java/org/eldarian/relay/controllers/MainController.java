@@ -14,16 +14,23 @@ import java.util.Collection;
 @Controller
 public class MainController extends AController {
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String home() {
         return "general/home";
     }
 
-    @GetMapping("/teams")
-    public String teams(Model model) {
-        Collection<Team> teams = (Collection<Team>)(new DataContext(new TeamListQuery()).provide(null));
-        model.addAttribute("teams", teams);
-        return "general/teams";
+    @GetMapping("/about")
+    public String about() {
+        return "general/about";
+    }
+
+    @GetMapping("/player")
+    public String player(@RequestParam(name = "id") String id, Model model) {
+        Player player = (Player)(new DataContext(new PlayerQuery()).provide(id));
+        Collection<Result> results = (Collection<Result>)(new DataContext(new PlayerResultListQuery()).provide(id));
+        model.addAttribute("player", player);
+        model.addAttribute("results", results);
+        return "general/player";
     }
 
     @GetMapping("/players")
@@ -57,13 +64,11 @@ public class MainController extends AController {
         return "general/team";
     }
 
-    @GetMapping("/player")
-    public String player(@RequestParam(name = "id") String id, Model model) {
-        Player player = (Player)(new DataContext(new PlayerQuery()).provide(id));
-        Collection<Result> results = (Collection<Result>)(new DataContext(new PlayerResultListQuery()).provide(id));
-        model.addAttribute("player", player);
-        model.addAttribute("results", results);
-        return "general/player";
+    @GetMapping("/teams")
+    public String teams(Model model) {
+        Collection<Team> teams = (Collection<Team>)(new DataContext(new TeamListQuery()).provide(null));
+        model.addAttribute("teams", teams);
+        return "general/teams";
     }
 
     @GetMapping("/subject")

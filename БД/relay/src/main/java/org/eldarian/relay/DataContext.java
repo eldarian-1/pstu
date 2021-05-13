@@ -14,9 +14,9 @@ public class DataContext<TResult, TArgument> {
     public TResult provide(TArgument argument) {
         TResult result = null;
         try{
-            String url = "jdbc:mysql://localhost/testdb?serverTimezone=Europe/Moscow&allowPublicKeyRetrieval=true&useSSL=false";
-            String username = "eldarian";
-            String password = "19841986";
+            String url = "jdbc:mysql://localhost/relaydb?serverTimezone=Europe/Moscow&allowPublicKeyRetrieval=true&useSSL=false";
+            String username = "eldar";
+            String password = "01234567";
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection connection = DriverManager.getConnection(url, username, password)){
                 result = _query.execute(connection.createStatement(), argument);

@@ -19,11 +19,6 @@ public class MainController extends AController {
         return "general/home";
     }
 
-    @GetMapping("/about")
-    public String about() {
-        return "general/about";
-    }
-
     @GetMapping("/player")
     public String player(@RequestParam(name = "id") String id, Model model) {
         Player player = (Player)(new DataContext(new PlayerQuery()).provide(id));

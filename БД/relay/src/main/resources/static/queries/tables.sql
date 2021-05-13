@@ -1,4 +1,4 @@
-USE testdb;
+USE relaydb;
 
 CREATE TABLE teams (
     team_id INT PRIMARY KEY AUTO_INCREMENT,

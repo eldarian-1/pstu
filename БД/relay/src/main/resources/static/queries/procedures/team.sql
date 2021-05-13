@@ -1,4 +1,4 @@
-USE testdb;
+USE relaydb;
 
 DELIMITER //
 CREATE PROCEDURE get_team_list()

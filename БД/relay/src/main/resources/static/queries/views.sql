@@ -1,4 +1,4 @@
-USE testdb;
+USE relaydb;
 
 CREATE VIEW player_views
 (player_id, player_name, team_id, team_name)

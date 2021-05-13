@@ -1,4 +1,4 @@
-USE testdb;
+USE relaydb;
 
 DELIMITER //
 CREATE PROCEDURE start_result_list(IN arg_team_id INT)

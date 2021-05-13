@@ -1,4 +1,4 @@
-USE testdb;
+USE relaydb;
 
 DELIMITER //
 CREATE PROCEDURE add_result(IN arg_result_id INT, IN arg_subject_id INT,

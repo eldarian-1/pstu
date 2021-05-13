@@ -14,7 +14,7 @@ import java.util.Collection;
 @Controller
 public class MainController extends AController {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home() {
         return "general/home";
     }

@@ -3,6 +3,9 @@ package org.eldarian.relay.controllers;
 import org.eldarian.relay.DataContext;
 import org.eldarian.relay.queries.insert.*;
 import org.eldarian.relay.queries.select.item.*;
+import org.eldarian.relay.queries.insert.AddRelaySubjectQuery;
+import org.eldarian.relay.queries.insert.AddRelayTeamQuery;
+import org.eldarian.relay.queries.insert.AddTeamSubjectQuery;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

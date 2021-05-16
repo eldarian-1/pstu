@@ -10,8 +10,8 @@
         <option name="gradleJvm" value="1.8" />
         <option name="modules">
           <set>
-            <option value="/mnt/disk_d/Lester/Политех/Master/Дискретная математика/polynomial" />
-            <option value="/mnt/disk_d/Lester/Политех/Master/Дискретная математика/polynomial/app" />
+            <option value="/mnt/disk_d/Lester/Политех/pstu/Дискретная математика/polynomial" />
+            <option value="/mnt/disk_d/Lester/Политех/pstu/Дискретная математика/polynomial/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

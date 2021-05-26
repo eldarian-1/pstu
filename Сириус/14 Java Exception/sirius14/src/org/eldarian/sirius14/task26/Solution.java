@@ -10,8 +10,7 @@ public class Solution {
         InputStream fileInputStream = getInputStream(sourceFileName);
         OutputStream fileOutputStream = getOutputStream(destinationFileName);
         int count = 0;
-        while (fileInputStream.available() > 0) ;
-        {
+        while (fileInputStream.available() > 0) {
             int data = fileInputStream.read();
             fileOutputStream.write(data);
             count++;
@@ -27,3 +26,6 @@ public class Solution {
         return new FileOutputStream(fileName);
     }
 }
+
+//mnt/disk_d/Lester/Политех/pstu/Сириус/14 Java Exception/sirius14/out/production/sirius14/org/eldarian/sirius14/task26/from.txt
+//mnt/disk_d/Lester/Политех/pstu/Сириус/14 Java Exception/sirius14/out/production/sirius14/org/eldarian/sirius14/task26/to.txt

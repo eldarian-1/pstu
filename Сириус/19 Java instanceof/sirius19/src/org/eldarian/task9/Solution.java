@@ -14,13 +14,17 @@ public class Solution {
         }
     }
     public static Optional<Person> create(String person) {
-        return switch (person) {
-            case "user" -> Optional.of(new Person.User());
-            case "loser" -> Optional.of(new Person.Loser());
-            case "coder" -> Optional.of(new Person.Coder());
-            case "proger" -> Optional.of(new Person.Proger());
-            default -> Optional.empty();
-        };
+        if(person.equals("user")) {
+            return Optional.of(new Person.User());
+        } else if(person.equals("loser")) {
+            return Optional.of(new Person.Loser());
+        } else if(person.equals("coder")) {
+            return Optional.of(new Person.Coder());
+        } else if(person.equals("proger")) {
+            return Optional.of(new Person.Proger());
+        } else {
+            return Optional.empty();
+        }
     }
     public static void doWork(Person person) {
         if(person instanceof Person.User) {

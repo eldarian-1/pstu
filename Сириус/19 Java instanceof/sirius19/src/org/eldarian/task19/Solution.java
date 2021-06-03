@@ -15,14 +15,17 @@ public class Solution {
     }
     static class HenFactory {
         static Hen getHen(String country) {
-            Hen hen = null;
-            switch(country) {
-                case Country.RUSSIA: hen = new RussianHen(); break;
-                case Country.UKRAINE: hen = new UkrainianHen(); break;
-                case Country.BELARUS: hen = new BelarusianHen(); break;
-                case Country.MOLDOVA: hen = new MoldovanHen(); break;
+            if(country.equals(Country.RUSSIA)) {
+                return new RussianHen();
+            } else if(country.equals(Country.UKRAINE)) {
+                return new UkrainianHen();
+            } else if(country.equals(Country.BELARUS)) {
+                return new BelarusianHen();
+            } else if(country.equals(Country.MOLDOVA)) {
+                return new MoldovanHen();
+            } else {
+                return null;
             }
-            return hen;
         }
     }
     static abstract class Hen {

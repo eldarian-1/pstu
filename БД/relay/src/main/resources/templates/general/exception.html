@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Исключение | Эстафеты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="box">
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: home})" />
+    <div class="page">
+        <h4 th:text="${exception}"/>
+    </div>
+</div>
+
+</body>
+</html>

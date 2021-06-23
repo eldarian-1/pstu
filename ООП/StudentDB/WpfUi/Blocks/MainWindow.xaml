@@ -1,0 +1,39 @@
+﻿<Window x:Class="WpfUi.Blocks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfUi.Blocks"
+        xmlns:table="clr-namespace:WpfUi.Blocks.Tables"
+        xmlns:form="clr-namespace:WpfUi.Blocks.Forms"
+        mc:Ignorable="d"
+        Title="База дисциплин, студентов и оценок" Height="650" Width="720">
+    <TabControl>
+
+        <TabItem Header="Предметы">
+            <StackPanel>
+                <table:SubjectTable x:Name="SubjectTableItem" />
+                <form:SubjectForm x:Name="SubjectFormItem" />
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Студенты">
+            <StackPanel>
+                <table:StudentTable x:Name="StudentTableItem" />
+                <form:StudentForm x:Name="StudentFormItem" />
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Оценки">
+            <StackPanel>
+                <table:MarkTable x:Name="MarkTableItem" />
+                <form:MarkForm x:Name="MarkFormItem" />
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Настройки">
+            <local:Setting x:Name="SettingItem" />
+        </TabItem>
+
+    </TabControl>
+</Window>

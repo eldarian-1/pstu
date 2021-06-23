@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Авторизация | Эстафеты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="box">
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: result_list(${resultList})})" />
+    <div class="page">
+        <table>
+            <caption>Список результатов</caption>
+            <tr>
+                <td>Спортсмен</td>
+                <td>Дисциплина</td>
+                <td>Результат</td>
+                <td>Единица измерения</td>
+            </tr>
+            <tr th:each="result : ${results}">
+                <td><a th:href="'/player?id='+${result.playerId}" th:text="${result.playerName}" /></td>
+                <td><a th:href="'/subject?id='+${result.subjectId}" th:text="${result.subjectName}" /></td>
+                <td><a th:href="'/edit_result?result_list_id='+${result.resultListId}+'&player_id='+${result.playerId}
+                    +'&subject_id='+${result.subjectId}" th:text="${result.resultValue}" /></td>
+                <td th:text="${result.subjectUnit}" />
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

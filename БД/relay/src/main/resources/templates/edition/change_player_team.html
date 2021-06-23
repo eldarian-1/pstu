@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Переименование спортсмена | Эстафеты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="box">
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: home})" />
+    <div class="page">
+        <div>
+            Сменить команду <th:block th:text="${player.playerName}"/> с <th:block th:text="${player.teamName}"/> на:
+        </div>
+        <form method="post" th:action="'/update_player_team?id=' + ${player.playerId}">
+            <div>
+                <select name="team_id">
+                    <option value="null" label="не состоять нигде">
+                    <option th:each="team : ${teams}" th:value="${team.teamId}" th:label="${team.teamName}"
+                            th:selected="${player.teamId==team.teamId}">
+                </select>
+            </div>
+            <div><input type="submit" value="Сохранить"></div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

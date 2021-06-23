@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Создание дисциплины | Эстафеты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="box">
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: home})" />
+    <div class="page">
+        <form method="post" action="/insert_subject">
+            <table>
+                <tr><td>Название</td><td><input name="subject_name" type="text" value=""></td></tr>
+                <tr><td>Единица измерения</td><td><input name="subject_unit" type="text" value=""></td></tr>
+                <tr><td>Множитель</td><td><input name="subject_multiplier" type="text" value=""></td></tr>
+            </table>
+            <div><input type="submit" value="Добавить"></div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

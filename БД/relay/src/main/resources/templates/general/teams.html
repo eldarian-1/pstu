@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Команды | Эстафеты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="box">
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: teams})" />
+    <div class="page">
+        <table>
+            <caption>Команды</caption>
+            <tr>
+                <td>Название</td>
+                <td>Тренерский состав</td>
+            </tr>
+            <tr th:each="team : ${teams}">
+                <td><a th:href="'/team?id='+${team.teamId}" th:text="${team.teamName}" /></td>
+                <td th:text="${team.trainers}" />
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

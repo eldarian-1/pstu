@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Соревнования | Эстафеты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="box">
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: relay_races})" />
+    <div class="page">
+        <table>
+            <caption>Эстафеты</caption>
+            <tr>
+                <td>Название</td>
+                <td>Количество команд</td>
+                <td>Количество игроков в каждой команде</td>
+            </tr>
+            <tr th:each="relayRace : ${relayRaces}">
+                <td><a th:href="'/relay_race?id='+${relayRace.relayId}" th:text="${relayRace.relayName}" /></td>
+                <td th:text="${relayRace.teamNumber}" />
+                <td th:text="${relayRace.playerNumber}" />
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

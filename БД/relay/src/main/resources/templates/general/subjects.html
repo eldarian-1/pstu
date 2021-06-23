@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Дисциплины | Эстафеты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="box">
+    <div th:replace="/../fragments.html :: menu(~{queries.html :: subjects})" />
+    <div class="page">
+        <table>
+            <caption>Дисциплины</caption>
+            <tr>
+                <td>Наименование</td>
+                <td>Единица измерения</td>
+                <td>Множитель</td>
+            </tr>
+            <tr th:each="subject : ${subjects}">
+                <td><a th:href="'/subject?id='+${subject.subjectId}" th:text="${subject.subjectName}" /></td>
+                <td th:text="${subject.subjectUnit}" />
+                <td th:text="${subject.subjectMultiplier}" />
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

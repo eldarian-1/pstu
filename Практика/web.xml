@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app>
+
+    <servlet>
+        <servlet-name>InokovaServlet</servlet-name>
+        <servlet-class>intern.InokovaServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InokovaServlet</servlet-name>
+        <url-pattern>/inokovaServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EldarServlet</servlet-name>
+        <servlet-class>intern.EldarServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EldarServlet</servlet-name>
+        <url-pattern>/eldar</url-pattern>
+    </servlet-mapping>
+
+</web-app>

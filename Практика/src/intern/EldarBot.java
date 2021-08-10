@@ -893,18 +893,18 @@ public class EldarBot {
         }
     }
 
-    private static List<String> getFaxes(Obb desc) {
-        return new ArrayList<>(Arrays.asList(Ob0.getAt(desc, "1240100097").split(",")));
+    private static ArrayList<String> getFaxes(Obb desc) {
+        return new ArrayList<>(Arrays.asList(Ob0.getAts(desc, "1240100097")));
     }
 
-    private static void setFaxes(Obb desc, List<String> faxes) throws Throwable {
+    private static void setFaxes(Obb desc, ArrayList<String> faxes) throws Throwable {
         desc.id_user = myId;
-        Ob0.addAt(desc, "1240100097", String.join(",", faxes));
+        Ob0.addAts(desc, 1240100097, faxes);
         Ob0.edtOb(mains, desc);
     }
 
     private static void outFaxes(Obb desc) {
-        out.printf("Faxes by descID %s: %s\n", desc.id, String.join(",", getFaxes(desc)));
+        out.printf("Faxes by descID %s: %s\n", desc.id, String.join(", ", getFaxes(desc)));
     }
 
     private static void lec2task9(String phase) throws Throwable {
@@ -916,7 +916,7 @@ public class EldarBot {
             }
         }
         if(phase.equals("1")) {
-            List<String> faxes = new ArrayList<>();
+            ArrayList<String> faxes = new ArrayList<>();
             faxes.add("2-192-35-46");
             for(Obb desc : myDescs) {
                 setFaxes(desc, faxes);
@@ -924,15 +924,15 @@ public class EldarBot {
             }
         } else if(phase.equals("2")) {
             for(Obb desc : myDescs) {
-                List<String> faxes = getFaxes(desc);
+                ArrayList<String> faxes = getFaxes(desc);
                 faxes.add(0, "2-329-61-59");
                 setFaxes(desc, faxes);
                 outFaxes(desc);
             }
         } else if(phase.equals("3")) {
             for(Obb desc : myDescs) {
-                List<String> faxes = getFaxes(desc);
-                faxes.add(faxes.size() - 1, "2-911-73-08");
+                ArrayList<String> faxes = getFaxes(desc);
+                faxes.add(faxes.size(), "2-911-73-08");
                 setFaxes(desc, faxes);
                 outFaxes(desc);
             }
@@ -941,8 +941,8 @@ public class EldarBot {
 
     private static void lec2task10(String hotelId) throws Throwable {
         String descId = Ob0.getZn(mains, hotelId, "1026922737", 9);
-        String faxes = Ob0.getZn(mains, descId, "1240100097", 4);
-        out.printf("\n%s\n", faxes);
+        List<String> faxes = Ob0.getZnS(mains, descId, 1240100097, 4);
+        out.printf("\n%s\n", String.join(", ", faxes));
     }
 
     private static void lec2task11(String way) throws Throwable {
@@ -1041,17 +1041,16 @@ public class EldarBot {
         Consumer<Obb[]> remover = (Obb[] obs) -> {
             for(Obb ob : obs) {
                 if(ob.id_user == myId) {
-                    ob.id_user = myId;
                     try {
-                        Ob0.delOb(mains, ob.id);
-                        out.printf("%d is deleted\n", ob.id);
+                        Ob0.delOb(mains, ob.id, myId);
+                        out.printf("%s is deleted\n", ob.id);
                     } catch (Exception ex) {
                         out.println(ex.getMessage());
                     }
                 }
             }
         };
-        remover.accept(descs);
         remover.accept(hotels);
+        remover.accept(descs);
     }
 }

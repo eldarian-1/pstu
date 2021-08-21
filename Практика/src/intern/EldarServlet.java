@@ -1,17 +1,17 @@
 package intern;
 
-import appt.meta3.Ob0;
-import appt.meta3.Ob3;
-import appt.meta3.Obb;
-import appt.meta3.Util;
+import appt.meta3.*;
+import appt.meta3.servlet.AuthServlet;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.text.*;
 import java.util.*;
 import java.util.function.BiConsumer;
 
@@ -24,11 +24,55 @@ public class EldarServlet extends HttpServlet {
     private final String redis = "rev";
     private final String prefix = "Eldar";
 
-    private static final Map<String, String> typeMap = new HashMap<>();
-    private static final Map<String, String> yesnoMap = new HashMap<>();
-    private static final Map<String, List<String>> pagesMap = new TreeMap<>();
+    private final Map<String, String> typeMap = new HashMap<>();
+    private final Map<String, String> yesnoMap = new HashMap<>();
+    private final Map<String, List<String>> pagesMap = new TreeMap<>();
+    private List<Procedure> solutionList;
 
-    static {
+    public interface Procedure {
+        void run() throws Exception;
+    }
+
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        initialize(req, res);
+        String task = request.getParameter("task");
+        try {
+            if ("7".equals(task)) {
+                lection3task7post();
+            }
+            if ("13".equals(task)) {
+                lection5task1post();
+            }
+        } catch (Exception e) {
+            printException(e);
+        }
+        out.flush();
+    }
+
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        initialize(req, res);
+        try {
+            int task = Integer.parseInt(request.getParameter("task"));
+            if(task < 1 || task > solutionList.size()) {
+                throw new NumberFormatException();
+            }
+            solutionList.get(task - 1).run();
+        } catch (NumberFormatException e) {
+            printHtml("Hello", "<h1 style=\"text-align:center;\">Привет Sirius!</h1>");
+        } catch (Exception e) {
+            printException(e);
+        }
+        out.flush();
+    }
+
+    public void initialize(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        request = req;
+        response = res;
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        out = res.getWriter();
+        mains = ResourceBundle.getBundle("intern_main", new Locale("ru", "RU"));
+
         typeMap.put("", "-");
         typeMap.put("0", "Экскурсия");
         typeMap.put("1", "Билет");
@@ -46,68 +90,12 @@ public class EldarServlet extends HttpServlet {
         pagesMap.put("PostgreSQL", Arrays.asList("Один", "Два",
                 "Три", "Четыре", "Пять", "Шесть", "Семь", "Восемь"));
         pagesMap.put("Redis", Arrays.asList("Один", "Два", "Три", "Четыре"));
-    }
+        pagesMap.put("Авторизация", Arrays.asList("Один", "Два", "Три", "Четыре", "Пять"));
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        initialize(req, res);
-        String task = request.getParameter("task");
-        try {
-            if ("7".equals(task)) {
-                task7post();
-            }
-        } catch (Exception e) {
-            printException(e);
-        }
-        out.flush();
-    }
-
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        initialize(req, res);
-        try {
-            int task = Integer.parseInt(request.getParameter("task"));
-            if(task < 1 || task > 12) {
-                throw new NumberFormatException();
-            }
-            if(task == 1) {
-                task1();
-            } else if(task == 2) {
-                task2();
-            } else if(task == 3) {
-                task3();
-            } else if(task == 4) {
-                task4();
-            } else if(task == 5) {
-                task5();
-            } else if(task == 6) {
-                task6();
-            } else if(task == 7) {
-                task7();
-            } else if(task == 8) {
-                task8();
-            } else if(task == 9) {
-                task9();
-            } else if(task == 10) {
-                task10();
-            } else if(task == 11) {
-                task11();
-            } else if(task == 12) {
-                task12();
-            }
-        } catch (NumberFormatException e) {
-            printHtml("Hello", "<h1>Привет Sirius!</h1>");
-        } catch (Exception e) {
-            printException(e);
-        }
-        out.flush();
-    }
-
-    public void initialize(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        request = req;
-        response = res;
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        out = res.getWriter();
-        mains = ResourceBundle.getBundle("intern_main", new Locale("ru", "RU"));
+        solutionList = Arrays.asList(this::lection3task1, this::lection3task2, this::lection3task3, this::lection3task4,
+                this::lection3task5, this::lection3task6, this::lection3task7, this::lection3task8, this::lection4task1,
+                this::lection4task2, this::lection4task3, this::lection4task4, this::lection5task1, this::lection5task2,
+                this::lection5task3, this::lection5task4, this::lection5task5, this::cheatCode, this::cheatFunction);
     }
 
     public void printException(Exception e) {
@@ -120,7 +108,7 @@ public class EldarServlet extends HttpServlet {
                 e.getClass().getName(), e.getMessage(), String.join("<br>", stackTrace)));
     }
 
-    public void task1() throws Exception {
+    public void lection3task1() throws Exception {
         Map<String, String> regions = getRegions("100410000050");
         Obb filter = Ob0.createFilter(5);
         String regionId = request.getParameter("region");
@@ -164,7 +152,7 @@ public class EldarServlet extends HttpServlet {
         return regions;
     }
 
-    public void task2() throws Exception {
+    public void lection3task2() throws Exception {
         String countryId = request.getParameter("country");
         if(countryId == null || countryId.equals("")) {
             countryId = "100410000050";
@@ -218,7 +206,7 @@ public class EldarServlet extends HttpServlet {
         return distribution;
     }
 
-    public void task3() throws Exception {
+    public void lection3task3() throws Exception {
         response.setContentType("application/json; charset=UTF-8");
         String birthday = request.getParameter("bd");
         if(birthday == null || birthday.equals("")) {
@@ -249,7 +237,7 @@ public class EldarServlet extends HttpServlet {
         out.print("]");
     }
 
-    public void task4() throws Exception {
+    public void lection3task4() throws Exception {
         String agentName = request.getParameter("agent");
         String categoryName = request.getParameter("category");
         if(agentName == null || agentName.equals("")) {
@@ -298,7 +286,7 @@ public class EldarServlet extends HttpServlet {
         printHtml("Экскурсии", text.append("</table>").toString());
     }
 
-    public void task5() throws Exception {
+    public void lection3task5() throws Exception {
         Obb[] costs = Ob0.getSrcObs(mains, Ob0.createFilter(36), 0, 0);
         List<Obb> list = Arrays.asList(costs);
         List<Obb> array = new ArrayList<>(list);
@@ -319,7 +307,7 @@ public class EldarServlet extends HttpServlet {
         printHtml("Временное сравнение", text.toString());
     }
 
-    public void task6() throws Exception {
+    public void lection3task6() throws Exception {
         String type = request.getParameter("type");
         String code = request.getParameter("code");
         String address = request.getParameter("address");
@@ -397,7 +385,7 @@ public class EldarServlet extends HttpServlet {
         printHtml("Экскурсии", text.append("</table>").toString());
     }
 
-    public void task7() throws Exception {
+    public void lection3task7() throws Exception {
         Map<String, String> regions = new HashMap<>();
         Map<String, String> partners = new HashMap<>();
         regionsAndPartners(regions, partners);
@@ -431,7 +419,7 @@ public class EldarServlet extends HttpServlet {
         printDescs(text, regions, partners);
     }
 
-    public void task7post() throws Exception {
+    public void lection3task7post() throws Exception {
         String name = request.getParameter("name");
         String desc = request.getParameter("desc");
         String region = request.getParameter("region");
@@ -461,7 +449,7 @@ public class EldarServlet extends HttpServlet {
         response.sendRedirect("/eldar?task=7");
     }
 
-    public void task8() throws Exception {
+    public void lection3task8() throws Exception {
         String descId = request.getParameter("did");
         descId = descId == null ? "" : descId;
         if(!descId.equals("")) {
@@ -517,7 +505,7 @@ public class EldarServlet extends HttpServlet {
         printHtml("Описания экскурсий", text.toString());
     }
 
-    public void task9() throws Exception {
+    public void lection4task1() throws Exception {
         long time = 100000000L;
         int expire = 180;
         String[] types = new String[]{"С", "БНС", "НС"};
@@ -556,7 +544,7 @@ public class EldarServlet extends HttpServlet {
         printHtml("Redis - Один", text);
     }
 
-    public void task10() throws Exception {
+    public void lection4task2() throws Exception {
         long time = 100000000L;
         int expire = 1;
         String action = request.getParameter("action");
@@ -615,7 +603,7 @@ public class EldarServlet extends HttpServlet {
         printHtml("Redis - Два", text);
     }
 
-    public void task11() throws Exception {
+    public void lection4task3() throws Exception {
         Obb[] obs = Ob0.getSrcObs(mains, Ob0.createFilter(36), 0, 0);
         List<String> result = new ArrayList<>(obs.length);
         String action = Util.s2s(request.getParameter("action"));
@@ -675,17 +663,496 @@ public class EldarServlet extends HttpServlet {
         return System.currentTimeMillis() - time;
     }
 
-    public interface Procedure {
-        void run() throws Exception;
-    }
-
-    public void task12() throws Exception {
+    public void lection4task4() throws Exception {
         printHtml("Redis - Четыре",
                 "<div style=\"border:1px solid #ccc; width:900px; margin:0px auto; padding:15px;\">" +
-                        "Целесообразно применять Redis в онлайн-магазинах для корзины, " +
-                        "в онлайн-играх по типу шахмат для хранения ходов и состояния шахматной доски, " +
-                        "в стриминговых платформах для буферизации видеопотоков..." +
-                        "</div>");
+                        "Целесообразно применять Redis в: <ul>" +
+                        "<li>онлайн-магазинах для корзины;" +
+                        "<li>онлайн-играх по типу шахмат для хранения ходов и состояния шахматной доски;" +
+                        "<li>программах с видеоконференциями для буферизации видеопотоков;" +
+                        "<li>в общем, применима в тех случаях, когда требуется быстродействие и безопасна возможная" +
+                        " потеря данных в связи с отключением электричества на сервере." +
+                        "</ul></div>");
+    }
+
+    public void lection5task1() throws Exception {
+        String userEMail = getUserEMail();
+        String tourId = request.getParameter("tour_id");
+        String quoteId = request.getParameter("quote_id");
+        StringBuilder text = new StringBuilder();
+        new StackPager()
+                .add(() -> true,
+                        () -> "task=13",
+                        () -> "Экскурсии",
+                        (String link) -> toursHtml(text, userEMail))
+                .add(() -> NumberUtils.isNumber(tourId),
+                        () -> "tour_id=" + tourId,
+                        () -> "Квоты экскурсии ID " + tourId,
+                        (String link) -> quotesHtml(text, tourId))
+                .add(() -> NumberUtils.isNumber(quoteId),
+                        () -> "quote_id=" + quoteId,
+                        () -> "Квота ID " + quoteId,
+                        (String link) -> quoteEditHtml(text, quoteId))
+                .run(text);
+        printHtmlWithAuth(userEMail, "Авторизация - Один", text.toString());
+    }
+
+    public void toursHtml(StringBuilder text, String userEMail) throws Exception {
+        Obb tourFilter = Ob0.createFilter(36);
+        Obb quoteFilter = Ob0.createFilter(799);
+        Obb[] tours = Ob0.getSrcObs(mains, tourFilter, 0, 0);
+        Obb[] quotes = Ob0.getSrcObs(mains, quoteFilter, 0, 0);
+        Set<String> quotedTours = new HashSet<>();
+        for(Obb quote : quotes) {
+            quotedTours.add(quote.getAt(1799910177));
+        }
+        text.append("<table class=\"data\"><tr><td>№</td><td>Код экскурсии</td><td>Адрес</td></tr>");
+        int i = 0;
+        for(Obb tour : tours) {
+            text.append(String.format("<tr><td>%d</td><td>%s</td><td>%s</td></tr>",
+                    ++i,
+                    quotedTours.contains(tour.id) && userEMail != null
+                            ? "<a href=\"?task=13&tour_id=" + tour.id + "\">" + tour.id + "</a>"
+                            : tour.id,
+                    tour.getAt("1036423021") + "<br>" + tour.getAt("1036410028")));
+        }
+        text.append("</table>");
+    }
+
+    public void quotesHtml(StringBuilder text, String tourId) throws Exception {
+        Obb filter = Ob0.createFilter(799);
+        Ob0.addCondition(filter, 1799910177, Ob0.ComparisonType.EQ, tourId);
+        Obb[] quotes = Ob0.getSrcObs(mains, filter, 0, 0);
+        text.append("<table class=\"data\"><tr><td>№</td><td>ID</td><td>Дата</td><td>Количество</td></tr>");
+        int i = 0;
+        for(Obb quote : quotes) {
+            text.append(String.format("<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td></tr>", ++i,
+                    String.format("<a href=\"?task=13&tour_id=%s&quote_id=%s\">%s</a>", tourId, quote.id, quote.id),
+                    quote.getAt("1799510027"), quote.getAt("1799210047")));
+        }
+        text.append("</table>");
+    }
+
+    public void quoteEditHtml(StringBuilder text, String quoteId) throws Exception {
+        Obb quote = Ob0.getOb(mains, quoteId);
+        text.append(String.format("<form method=\"post\" action=\"#\">" +
+                        "<table class=\"form\">" +
+                        "<tr><td>Дата</td><td><input type=\"text\" name=\"date\" value=\"%s\"></td></tr>" +
+                        "<tr><td>Количество</td><td><input type=\"text\" name=\"count\" value=\"%s\"></td></tr>" +
+                        "</table><input type=\"hidden\" name=\"task\" value=\"13\">" +
+                        "<input type=\"hidden\" name=\"tour_id\" value=\"%s\">" +
+                        "<input type=\"hidden\" name=\"quote_id\" value=\"%s\">" +
+                        "<input type=\"submit\" value=\"Обновить квоту\"></form>",
+                quote.getAt("1799510027"), quote.getAt("1799210047"),
+                quote.getAt("1799910177"), quote.id));
+    }
+
+    public void lection5task1post() throws Exception {
+        String tourId = request.getParameter("tour_id");
+        String quoteId = request.getParameter("quote_id");
+        String date = request.getParameter("date");
+        String count = request.getParameter("count");
+        Obb quote = Ob0.getOb(mains, quoteId);
+        Ob0.addAt(quote, "1799510027", date);
+        Ob0.addAt(quote, "1799210047", count);
+        quote.id_user = myId;
+        Ob0.edtOb(mains, quote);
+        response.sendRedirect("eldar?task=13&tour_id=" + tourId + "&quote_id=" + quoteId);
+    }
+
+    public void lection5task2() throws Exception {
+        String userEMail = getUserEMail();
+        String action = request.getParameter("action");
+        String quoteId = request.getParameter("id");
+        StringBuilder text = new StringBuilder();
+        if(quoteId != null) {
+            Obb quote = Ob0.getOb(mains, quoteId);
+            DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+            Date date = format.parse(quote.getAt(1074100143));
+            if(date.after(new Date())) {
+                if ("add".equals(action)) {
+                    Ob0.addAt(quote, 1074200033, "1");
+                    text.append("<div style=\"text-align:center;color:green;\">Стоп добавлен</div>");
+                } else if ("del".equals(action)) {
+                    Ob0.addAt(quote, 1074200033, "0");
+                    text.append("<div style=\"text-align:center;color:green;\">Стоп убран</div>");
+                }
+                Ob0.edtOb(mains, quote);
+            } else {
+                text.append("<div style=\"text-align:center;color:red;\">Стоп не добавлен</div>");
+            }
+        }
+        Obb filter = Ob0.createFilter(74);
+        Obb[] quotes = Ob0.getSrcObs(mains, filter, 0, 0);
+        text.append("<table class=\"data\">");
+        text.append(String.format("<tr><td>№</td><td>Отель</td><td>Страна</td>" +
+                "<td>Дата начала</td><td>Дата окончания</td><td>Стоп</td>%s</tr>",
+                userEMail == null ? "" : "<td>Действие</td>"));
+        int i = 0;
+        for(Obb quote : quotes) {
+            text.append(String.format("<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td>%s</tr>",
+                    ++i, Ob0.getZn(mains, quote.getAt(1000538), 1000127, 4),
+                    Ob0.getZn(mains, quote.getAt(1000802), 1000000, 4),
+                    quote.getAt(1074100142),
+                    quote.getAt(1074100143),
+                    quote.getAt(1074200033),
+                    userEMail == null ? "" : "<td>" + (quote.getAt(1074200033).equals("0")
+                            ? "<a href=\"?task=14&action=add&id=" + quote.id + "\">Добавить</a>"
+                            : "<a href=\"?task=14&action=del&id=" + quote.id + "\">Удалить</a>") + "</td>"));
+        }
+        text.append("</table>");
+        printHtmlWithAuth(userEMail, "Авторизация - Два", text.toString());
+    }
+
+    public void lection5task3() throws Exception {
+        String userEMail = getUserEMail();
+        StringBuilder text = new StringBuilder();
+        text.append(hasRole("1001900012") + "<br>");
+        text.append(hasTitle("1007410000") + "<br>");
+        printHtmlWithAuth(userEMail, "Авторизация - Три", text.toString());
+    }
+
+    public void lection5task4() throws Exception {
+        String userEMail = getUserEMail();
+        String text;
+        if(userEMail == null) {
+            text = "<div style=\"text-align:center;\">Вы не авторизированы.</div>";
+        } else {
+            User whoami = AuthServlet.isAuth(request, response, mains, "meta");
+            text = String.format("<table class=\"form\">" +
+                            "<tr><td>ID: </td><td>%s</td></tr>" +
+                            "<tr><td>Тип ID: </td><td>%d</td></tr>" +
+                            "<tr><td>Статус: </td><td>%s</td></tr>" +
+                            "<tr><td>Логин: </td><td>%s</td></tr>" +
+                            "<tr><td>Почта: </td><td>%s</td></tr>" +
+                            "<tr><td>IP: </td><td>%s</td></tr>" +
+                            "<tr><td>User-Agent: </td><td>%s</td></tr></table>",
+                    whoami.id, Ob0.id2type(whoami.id), whoami.status, whoami.login, whoami.mail,
+                    request.getHeader("X-Real-IP"), request.getHeader("User-Agent"));
+        }
+        printHtmlWithAuth(userEMail, "Авторизация - Четыре", text);
+    }
+
+    public void lection5task5() throws Exception {
+        String userEMail = getUserEMail();
+        String countryId = request.getParameter("country_id");
+        String regionId = request.getParameter("region_id");
+        String cityId = request.getParameter("city_id");
+        String hotelId = request.getParameter("hotel_id");
+        String roomId = request.getParameter("room_id");
+        String nsId = request.getParameter("ns_id");
+        String quoteId = request.getParameter("quote_id");
+        StringBuilder text = new StringBuilder();
+        new StackPager()
+                .add(() -> true,
+                        () -> "task=17",
+                        () -> "Страны",
+                        (String link) -> countriesHtml(text))
+                .add(() -> NumberUtils.isNumber(countryId),
+                        () -> "country_id=" + countryId,
+                        () -> Ob0.getOb(mains, countryId).getAt(1000000) + ": регионы",
+                        (String link) -> regionsHtml(text, countryId))
+                .add(() -> NumberUtils.isNumber(regionId),
+                        () -> "region_id=" + regionId,
+                        () -> Ob0.getOb(mains, regionId).getAt(1000098) + ": города",
+                        (String link) -> citiesHtml(text, link, regionId))
+                .add(() -> NumberUtils.isNumber(cityId),
+                        () -> "city_id=" + cityId,
+                        () -> Ob0.getOb(mains, cityId).getAt(1000098) + ": отели",
+                        (String link) -> hotelsHtml(text, link, cityId))
+                .add(() -> NumberUtils.isNumber(hotelId),
+                        () -> "hotel_id=" + hotelId,
+                        () -> "Отель \"" + Ob0.getOb(mains, hotelId).getAt(1990410000) + "\"",
+                        (String link) -> roomsHtml(text, link, hotelId))
+                .add(() -> NumberUtils.isNumber(roomId),
+                        () -> "room_id=" + roomId,
+                        () -> "Номер \"" + Ob0.getOb(mains, roomId).getAt(1000168) + "\"",
+                        (String link) -> nssHtml(text, link, roomId))
+                .add(() -> NumberUtils.isNumber(nsId),
+                        () -> "ns_id=" + nsId,
+                        () -> "НС \"" + Ob0.getOb(mains, nsId).getAt(1000348) + "\"",
+                        (String link) -> quotesHtmlV2(text, link, nsId))
+                .add(() -> NumberUtils.isNumber(quoteId),
+                        () -> "quote_id=" + quoteId,
+                        () -> "Квота ID " + quoteId,
+                        (String link) -> quoteEditHtmlV2(text, link, quoteId))
+                .run(text);
+        printHtmlWithAuth(userEMail, "Авторизация - Пять", text.toString());
+    }
+
+    public void countriesHtml(StringBuilder text) throws Exception {
+        Obb filter = Ob0.createFilter(4);
+        Obb[] countries = Ob0.getSrcObs(mains, filter, 0, 0);
+        Arrays.sort(countries, Comparator.comparing((Obb country) -> country.getAt(1000000)));
+        text.append("<table class=\"data\"><tr><td>№</td><td>Название</td></tr>");
+        int i = 0;
+        for(Obb country : countries) {
+            text.append(String.format("<tr><td>%d</td><td><a href=\"?task=17&country_id=%s\">%s</a></td></tr>",
+                    ++i, country.id, country.getAt(1000000)));
+        }
+        text.append("</table>");
+    }
+
+    public void regionsHtml(StringBuilder text, String countryId) throws Exception {
+        Map<String, String> regions = getRegions(countryId);
+        List<String> regionIds = intern.Utils.getKeysSortedByValue(regions, false);
+        text.append("<table class=\"data\"><tr><td>№</td><td>Название</td></tr>");
+        int i = 0;
+        for(String id : regionIds) {
+            text.append(String.format("<tr><td>%d</td><td>" +
+                            "<a href=\"?task=17&country_id=%s&region_id=%s\">%s</a></td></tr>",
+                    ++i, countryId, id, regions.get(id)));
+        }
+        text.append("</table>");
+    }
+
+    public void citiesHtml(StringBuilder text, String link, String regionId) throws Exception {
+        Obb filter = Ob0.createFilter(5);
+        Ob0.addCondition(filter, 1005101368, Ob0.ComparisonType.EQ, regionId);
+        Obb[] cities = Ob0.getSrcObs(mains, filter, 0, 0);
+        Arrays.sort(cities, Comparator.comparing((Obb city) -> city.getAt(1000098)));
+        text.append("<table class=\"data\"><tr><td>№</td><td>Название</td></tr>");
+        int i = 0;
+        for(Obb city : cities) {
+            text.append(String.format("<tr><td>%d</td><td><a href=\"%s&city_id=%s\">%s</a></td></tr>",
+                    ++i, link, city.id, city.getAt(1000098)));
+        }
+        text.append("</table>");
+    }
+
+    public void hotelsHtml(StringBuilder text, String link, String cityId) throws Exception {
+        Obb filter = Ob0.createFilter(990);
+        Ob0.addCondition(filter, 1990100059, Ob0.ComparisonType.EQ, cityId);
+        Obb[] hotels = Ob0.getSrcObs(mains, filter, 0, 0);
+        Arrays.sort(hotels, Comparator.comparing((Obb hotel) -> hotel.getAt(1990410000)));
+        text.append("<table class=\"data\"><tr><td>№</td><td>Название</td><td>НСы</td></tr>");
+        int i = 0;
+        for(Obb hotel : hotels) {
+            text.append(String.format("<tr><td>%d</td><td><a href=\"%s&hotel_id=%s\">%s</a></td><td>%s</td></tr>",
+                    ++i, link, hotel.id, hotel.getAt(1990410000),
+                    String.join(", ", hotel.getAts(1990423125))));
+        }
+        text.append("</table>");
+    }
+
+    public void roomsHtml(StringBuilder text, String link, String hotelId) throws Exception {
+        Obb filter = Ob0.createFilter(21);
+        Ob0.addCondition(filter, 1000169, Ob0.ComparisonType.EQ, hotelId);
+        Obb[] rooms = Ob0.getSrcObs(mains, filter, 0, 0);
+        Arrays.sort(rooms, Comparator.comparing((Obb hotel) -> hotel.getAt(1000168)));
+        text.append("<table class=\"data\"><tr><td>№</td><td>Название</td></tr>");
+        int i = 0;
+        for(Obb room : rooms) {
+            text.append(String.format("<tr><td>%d</td><td><a href=\"%s&room_id=%s\">%s</a></td></tr>",
+                    ++i, link, room.id, room.getAt(1000168)));
+        }
+        text.append("</table>");
+    }
+
+    public void nssHtml(StringBuilder text, String link, String roomId) throws Exception {
+        Obb filter = Ob0.createFilter(46);
+        Ob0.addCondition(filter, 1000350, Ob0.ComparisonType.EQ, roomId);
+        Obb[] nss = Ob0.getSrcObs(mains, filter, 0, 0);
+        Arrays.sort(nss, Comparator.comparing((Obb ns) -> ns.getAt(1000348)));
+        text.append("<table class=\"data\"><tr><td>№</td><td>Название</td></tr>");
+        int i = 0;
+        for(Obb ns : nss) {
+            text.append(String.format("<tr><td>%d</td><td><a href=\"%s&ns_id=%s\">%s</a></td></tr>",
+                    ++i, link, ns.id, ns.getAt(1000348)));
+        }
+        text.append("</table>");
+    }
+
+    public void quotesHtmlV2(StringBuilder text, String link, String nsId) throws Exception {
+        Obb filter = Ob0.createFilter(990);
+        Ob0.addCondition(filter, 1000117, Ob0.ComparisonType.EQ, nsId);
+        Obb[] hotels = Ob0.getSrcObs(mains, filter, 0, 0);
+        Arrays.sort(hotels, Comparator.comparing((Obb hotel) -> hotel.getAt(1000127)));
+        text.append("<table class=\"data\"><tr><td>№</td><td>Название</td></tr>");
+        int i = 0;
+        for(Obb hotel : hotels) {
+            text.append(String.format("<tr><td>%d</td><td><a href=\"%s&hotel_id=%s\">%s</a></td></tr>",
+                    ++i, link, hotel.id, hotel.getAt(1000127)));
+        }
+        text.append("</table>");
+    }
+
+    public void quoteEditHtmlV2(StringBuilder text, String link, String quoteId) throws Exception {
+        Obb filter = Ob0.createFilter(990);
+        Ob0.addCondition(filter, 1000117, Ob0.ComparisonType.EQ, quoteId);
+        Obb[] hotels = Ob0.getSrcObs(mains, filter, 0, 0);
+        Arrays.sort(hotels, Comparator.comparing((Obb hotel) -> hotel.getAt(1000127)));
+        text.append("<table class=\"data\"><tr><td>№</td><td>Название</td></tr>");
+        int i = 0;
+        for(Obb hotel : hotels) {
+            text.append(String.format("<tr><td>%d</td><td><a href=\"%s&hotel_id=%s\">%s</a></td></tr>",
+                    ++i, link, hotel.id, hotel.getAt(1000127)));
+        }
+        text.append("</table>");
+    }
+
+    public static class StackPager {
+        private final List<Supplier<Boolean>> predicates = new ArrayList<>();
+        private final List<Supplier<String>> links = new ArrayList<>();
+        private final List<Supplier<String>> names = new ArrayList<>();
+        private final List<Consumer<String>> consumers = new ArrayList<>();
+
+        StackPager add(Supplier<Boolean> predicate, Supplier<String> link,
+                       Supplier<String> name, Consumer<String> consumer) {
+            predicates.add(predicate);
+            links.add(link);
+            names.add(name);
+            consumers.add(consumer);
+            return this;
+        }
+
+        void run(StringBuilder text) throws Exception {
+            StringBuilder link = new StringBuilder();
+            StringBuilder name = new StringBuilder();
+            int n = 0;
+            while(++n < predicates.size() && predicates.get(n).get());
+            for(int i = 0; i < n; ++i) {
+                link.append(i == 0 ? "eldar?" : "&").append(links.get(i).get());
+                name.append(i == 0 ? "" : " -> ").append(i < n - 1 ? String.format("<a href=\"%s\">", link) : "")
+                        .append(names.get(i).get()).append(i < n - 1 ? "</a>" : "");
+            }
+            text.append("<div style=\"text-align:center; margin-bottom:20px;\">").append(name).append("</div>");
+            consumers.get(n - 1).accept(link.toString());
+        }
+    }
+
+    public interface Supplier<T> {
+        T get() throws Exception;
+    }
+
+    public interface Consumer<T> {
+        void accept(T arg) throws Exception;
+    }
+
+    public void printHtmlWithAuth(String userEMail, String title, String text) throws Exception {
+        String task = request.getParameter("task");
+        authTask(userEMail != null);
+        StringBuilder output = new StringBuilder();
+        output.append("<div style=\"text-align:center;margin-bottom:20px;\">");
+        if(userEMail == null) {
+            output.append("<a href=\"?task=" + task + "&auth=need\">Авторизоваться</a>");
+        } else {
+            output.append("Привет, " + userEMail + "!");
+        }
+        output.append("</div>");
+        printHtml(title, output + text);
+    }
+
+    public void authTask(boolean isAuth) throws Exception {
+        String authParameter = request.getParameter("auth");
+        boolean doYouNeedAuth = authParameter != null && authParameter.equals("need");
+        boolean doYouNeedQuit = authParameter != null && authParameter.equals("quit");
+        if(!isAuth && doYouNeedAuth) {
+            AuthServlet.isAuth(request, response, mains, "meta");
+        }
+        if(isAuth && doYouNeedQuit) {
+            String task = request.getParameter("task");
+            response.setContentType("text/html; charset=UTF-8");
+            Cookie[] cookies = request.getCookies();
+            if(cookies != null) {
+                for (var cookie : cookies) {
+                    cookie.setValue("");
+                    cookie.setPath("/");
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                }
+            }
+            response.sendRedirect("eldar?task=" + task);
+        }
+    }
+
+    public boolean hasRole(String role) {
+        if(getUserEMail() == null) {
+            return false;
+        }
+        Obb obUser = getUser();
+        return Base.userHasRole(mains, Ob0.metaconnname, obUser, role);
+    }
+
+    public int hasTitle(String role) {
+        if(getUserEMail() == null) {
+            return -5;
+        }
+        User whoami = AuthServlet.isAuth(request, response, mains, "meta");
+        Obb obUser = PersonalPageServlet.getUserByComm(mains, whoami);
+        return Base.userHasRole(mains, Ob0.metaconnname, whoami, obUser, "100718258857",
+                request.getHeader("X-Real-IP"), request.getHeader("User-Agent"));
+    }
+
+    public Obb getUser() {
+        User whoami = AuthServlet.isAuth(request, response, mains, "meta");
+        return PersonalPageServlet.getUserByComm(mains, whoami);
+    }
+
+    public String getUserEMail() {
+        Cookie[] cookies = request.getCookies();
+        boolean A100 = false, Z100 = false;
+        String L = null;
+        if(cookies != null) {
+            for (var cookie : cookies) {
+                if (cookie.getName().equals("A100") && !cookie.getValue().equals("")) {
+                    A100 = true;
+                }
+                if (cookie.getName().equals("Z100") && !cookie.getValue().equals("")) {
+                    Z100 = true;
+                }
+                if (cookie.getName().equals("L") && !cookie.getValue().equals("")) {
+                    L = cookie.getValue();
+                }
+            }
+        }
+        return A100 && Z100 ? L : null;
+    }
+
+    public void cheatCode() throws Exception {
+        response.setContentType("application/json; charset=UTF-8");
+        String type = request.getParameter("type");
+        String s_begin = request.getParameter("begin");
+        String s_count = request.getParameter("count");
+        String s_id = request.getParameter("id");
+        String s_atid = request.getParameter("at");
+        String s_val = request.getParameter("val");
+        int begin, count;
+        Obb[] obbs;
+        if(NumberUtils.isNumber(s_id)) {
+            obbs = new Obb[]{Ob0.getOb(mains, s_id)};
+        } else {
+            if(!NumberUtils.isNumber(type)) {
+                return;
+            }
+            begin = !NumberUtils.isNumber(s_begin) ? 0 : Integer.parseInt(s_begin);
+            count = !NumberUtils.isNumber(s_count) ? 0 : Integer.parseInt(s_count);
+            Obb filter = Ob0.createFilter(Integer.parseInt(type));
+            if(NumberUtils.isNumber(s_atid) && NumberUtils.isNumber(s_val)) {
+                Ob0.addCondition(filter, Integer.parseInt(s_atid), Ob0.ComparisonType.EQ, s_val);
+            }
+            obbs = Ob0.getSrcObs(mains, filter, begin, count);
+        }
+        out.print("[");
+        int i = 0;
+        for(Obb obb : obbs) {
+            out.printf("{\"id\":\"%s\",\"id_user\":\"%s\",", obb.id, obb.id_user);
+            int j = 0;
+            for(String key : obb.zn.keySet()) {
+                out.printf("\"%s\":\"%s\"%s", key, obb.getAt(key), ++j < obb.zn.size() ? "," : "");
+            }
+            out.printf("}%s", ++i < obbs.length ? "," : "");
+        }
+        out.print("]");
+    }
+
+    public void cheatFunction() throws Exception {
+        /*Obb ob = Ob0.getOb(mains, "103610006184");
+        ob.zn.remove("1799210047");
+        ob.zn.remove("1799510027");
+        ob.id_user = myId;
+        Ob0.edtOb(mains, ob);
+        out.print(ob.zn);*/
     }
 
     public void printHtml(String title, String text) {
@@ -702,6 +1169,8 @@ public class EldarServlet extends HttpServlet {
                 "table.data td { border: solid 1px #ccc; padding: 5px; }" +
                 "form { margin: 0px auto; margin-bottom:20px; text-align:center;" +
                 "padding:10px; }" +
+                "ul { list-style: none; }" +
+                "ul li:before { content: \"—\"; position: relative; left: -5px; }" +
                 "</style></head>" +
                 "<body><div style=\"text-align:center;margin-bottom:20px;\">" +
                 "<table class=\"form\">", title));

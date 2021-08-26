@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <web-app>
 
     <servlet>
         <servlet-name>InokovaServlet</servlet-name>
         <servlet-class>intern.InokovaServlet</servlet-class>
+        <init-param>
+        <param-name>main_resource</param-name>
+        <param-value>intern_main</param-value>
+        </init-param>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>InokovaServlet</servlet-name>
-        <url-pattern>/inokovaServlet</url-pattern>
+        <url-pattern>/inokovaservlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -20,5 +24,15 @@
         <servlet-name>EldarServlet</servlet-name>
         <url-pattern>/eldar</url-pattern>
     </servlet-mapping>
+   
+   <servlet>
+       <servlet-name>ServletKartashova</servlet-name>
+       <servlet-class>intern.ServletKartashova</servlet-class>
+   </servlet>
+
+   <servlet-mapping>
+       <servlet-name>ServletKartashova</servlet-name>
+       <url-pattern>/kartashova</url-pattern>
+   </servlet-mapping>
 
 </web-app>

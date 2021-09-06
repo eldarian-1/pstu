@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/eldarian/CLionProjects/untitled/main.cpp
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/main.cpp
 iostream
+-
+sstream
 -
 

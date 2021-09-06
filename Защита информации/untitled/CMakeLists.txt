@@ -3,7 +3,13 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 14)
 
+find_package(Qt5Widgets REQUIRED)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
 add_executable(untitled main.cpp)
+target_link_libraries(untitled Qt5::Widgets)
 
 #cmake_minimum_required(VERSION 3.19)
 #project(crypt)

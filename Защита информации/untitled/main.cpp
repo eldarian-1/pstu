@@ -3,6 +3,9 @@
 #include <iostream>
 #include <sstream>
 
+#include <QApplication>
+#include <QLabel>
+
 class Code;
 std::string crypt(const std::string &str, const Code &code);
 char crypt(const char &c, const int &code);
@@ -50,11 +53,11 @@ char crypt(const char &c, const int &code) {
 
 int main(int argc, char **argv)
 {
-    /*srand(time(0));
+    srand(time(0));
     QApplication app(argc, argv);
-    LMain wgtMain;
+    QLabel wgtMain("Hello Eldarian!!!");
     wgtMain.show();
-    return app.exec();*/
+    return app.exec();
     std::cout << "Hello, Eldarian" << std::endl;
     return 0;
 }

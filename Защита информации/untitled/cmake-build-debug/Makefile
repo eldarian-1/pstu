@@ -129,6 +129,19 @@ untitled/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/build
 .PHONY : untitled/fast
 
+#=============================================================================
+# Target rules for targets named untitled_autogen
+
+# Build rule for target.
+untitled_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 untitled_autogen
+.PHONY : untitled_autogen
+
+# fast build rule for target.
+untitled_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled_autogen.dir/build.make CMakeFiles/untitled_autogen.dir/build
+.PHONY : untitled_autogen/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -153,6 +166,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+untitled_autogen/mocs_compilation.o: untitled_autogen/mocs_compilation.cpp.o
+.PHONY : untitled_autogen/mocs_compilation.o
+
+# target to build an object file
+untitled_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o
+.PHONY : untitled_autogen/mocs_compilation.cpp.o
+
+untitled_autogen/mocs_compilation.i: untitled_autogen/mocs_compilation.cpp.i
+.PHONY : untitled_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+untitled_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.i
+.PHONY : untitled_autogen/mocs_compilation.cpp.i
+
+untitled_autogen/mocs_compilation.s: untitled_autogen/mocs_compilation.cpp.s
+.PHONY : untitled_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+untitled_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.s
+.PHONY : untitled_autogen/mocs_compilation.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -161,10 +198,14 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... untitled_autogen"
 	@echo "... untitled"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... untitled_autogen/mocs_compilation.o"
+	@echo "... untitled_autogen/mocs_compilation.i"
+	@echo "... untitled_autogen/mocs_compilation.s"
 .PHONY : help
 
 

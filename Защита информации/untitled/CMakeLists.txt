@@ -1,35 +1,17 @@
-cmake_minimum_required(VERSION 3.19)
-project(untitled)
+cmake_minimum_required(VERSION 3.16.0)
 
-set(CMAKE_CXX_STANDARD 14)
+project(untitled VERSION 1.0.0 LANGUAGES CXX)
 
-find_package(Qt5Widgets REQUIRED)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_PREFIX_PATH "/home/eldarian/Qt/5.15.2/gcc_64")
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 add_executable(untitled main.cpp)
-target_link_libraries(untitled Qt5::Widgets)
 
-#cmake_minimum_required(VERSION 3.19)
-#project(crypt)
-
-#set(CMAKE_CXX_STANDARD 20)
-#set(CMAKE_PREFIX_PATH "/home/eldarian/Qt/6.1.1/gcc_64")
-#set(CMAKE_AUTOMOC ON)
-#set(CMAKE_AUTORCC ON)
-#set(CMAKE_AUTOUIC ON)
-
-#set(QT_VERSION 6)
-#set(REQUIRED_LIBS Core Gui Widgets)
-#set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets)
-
-#set(CRYPT main.cpp)
-
-#if (NOT CMAKE_PREFIX_PATH)
-#    message(WARNING "CMAKE_PREFIX_PATH is not defined, you may need to set it "
-#            "(-DCMAKE_PREFIX_PATH=\"path/to/Qt/lib/cmake\" or -DCMAKE_PREFIX_PATH=/usr/include/{host}/qt{version}/ on Ubuntu)")
-#endif ()
-
-#find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
-#target_link_libraries(view_qt chess_logic ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(untitled PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)

@@ -439,3 +439,51 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_dd988/fast && /usr/bin/make  -f CMakeFiles/cmTC_dd988.dir/build.make CMakeFiles/cmTC_dd988.dir/build
+make[1]: Entering directory '/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_dd988.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++   -std=gnu++2a -o CMakeFiles/cmTC_dd988.dir/CheckIncludeFile.cxx.o -c "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx"
+Linking CXX executable cmTC_dd988
+/opt/clion/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dd988.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_dd988.dir/CheckIncludeFile.cxx.o -o cmTC_dd988 
+make[1]: Leaving directory '/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
+
+Performing C++ SOURCE FILE Test HAVE_STDATOMIC succeeded with the following output:
+Change Dir: /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_b0ebc/fast && /usr/bin/make  -f CMakeFiles/cmTC_b0ebc.dir/build.make CMakeFiles/cmTC_b0ebc.dir/build
+make[1]: Entering directory '/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b0ebc.dir/src.cxx.o
+/usr/bin/c++ -DHAVE_STDATOMIC  -std=gnu++2a -o CMakeFiles/cmTC_b0ebc.dir/src.cxx.o -c "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/CMakeTmp/src.cxx"
+Linking CXX executable cmTC_b0ebc
+/opt/clion/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b0ebc.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_b0ebc.dir/src.cxx.o -o cmTC_b0ebc 
+make[1]: Leaving directory '/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+#include <atomic>
+#include <cstdint>
+
+void test(volatile std::atomic<std::int64_t> &a)
+{
+    std::int64_t v = a.load(std::memory_order_acquire);
+    while (!a.compare_exchange_strong(v, v + 1,
+                                      std::memory_order_acq_rel,
+                                      std::memory_order_acquire)) {
+        v = a.exchange(v - 1);
+    }
+    a.store(v + 1, std::memory_order_release);
+}
+
+int main(int, char **)
+{
+    void *ptr = (void*)0xffffffc0; // any random pointer
+    test(*reinterpret_cast<std::atomic<std::int64_t> *>(ptr));
+    return 0;
+}

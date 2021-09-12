@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QObject
+qobject.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qobject.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h
 QtCore/qglobal.h
 -
@@ -862,6 +866,16 @@ QtCore/qpoint.h
 QtCore/qsize.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qicon.h
+QtGui/qtguiglobal.h
+-
+QtCore/qsize.h
+-
+QtCore/qlist.h
+-
+QtGui/qpixmap.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qimage.h
 QtGui/qtguiglobal.h
 -
@@ -1046,9 +1060,39 @@ QtGui/qtguiglobal.h
 qapplication.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QErrorMessage
+qerrormessage.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qerrormessage.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout
+qboxlayout.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QLabel
 qlabel.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton
+qpushbutton.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout
+qboxlayout.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget
+qwidget.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtGui/qicon.h
+-
+QtGui/qkeysequence.h
+-
+QtWidgets/qwidget.h
+-
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
 QtWidgets/qtwidgetsglobal.h
@@ -1068,10 +1112,32 @@ QtWidgets/qdesktopwidget.h
 QtGui/qguiapplication.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qlayout.h
+-
+QtWidgets/qwidget.h
+-
+limits.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h
 QtWidgets/qtwidgetsglobal.h
 -
 QtWidgets/qwidget.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qwidget.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qerrormessage.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qdialog.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h
@@ -1080,10 +1146,56 @@ QtWidgets/qtwidgetsglobal.h
 QtWidgets/qwidget.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qlayout.h
+-
+QtWidgets/qwidget.h
+-
+limits.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h
 QtWidgets/qtwidgetsglobal.h
 -
 QtWidgets/qframe.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtCore/qobject.h
+-
+QtWidgets/qlayoutitem.h
+-
+QtWidgets/qsizepolicy.h
+-
+QtCore/qrect.h
+-
+QtCore/qmargins.h
+-
+limits.h
+-
+QtWidgets/qboxlayout.h
+-
+QtWidgets/qgridlayout.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qsizepolicy.h
+-
+QtCore/qrect.h
+-
+limits.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qabstractbutton.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h
@@ -1134,7 +1246,57 @@ QtGui/qkeysequence.h
 QtGui/qevent.h
 -
 
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
+QWidget
+-
+QLabel
+-
+QErrorMessage
+-
+Task.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
+
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/PickTask.h
+QWidget
+-
+QLabel
+-
+QErrorMessage
+-
+Task.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
+
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
+
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
+vector
+-
+QObject
+-
+QPushButton
+-
+QWidget
+-
+QVBoxLayout
+-
+Task.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
+
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Window.h
+QWidget
+-
+QHBoxLayout
+-
+QVBoxLayout
+-
+QPushButton
+-
+TaskManager.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
+PickTask.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/PickTask.h
+GronsfeldTask.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
 
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/main.cpp
 iostream
@@ -1143,6 +1305,6 @@ sstream
 -
 QApplication
 -
-QLabel
--
+Window.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Window.h
 

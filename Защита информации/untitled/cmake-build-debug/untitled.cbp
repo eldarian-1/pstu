@@ -110,6 +110,21 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/PickTask.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Window.h">
+			<Option target="untitled"/>
+		</Unit>
 		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp">
 			<Option target="untitled"/>
 		</Unit>

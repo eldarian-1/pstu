@@ -82,7 +82,39 @@
 	"CMAKE_SOURCE_DIR" : "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled",
 	"DEP_FILE" : "",
 	"DEP_FILE_RULE_NAME" : "",
-	"HEADERS" : [],
+	"HEADERS" : 
+	[
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h",
+			"MU",
+			"EWIEGA46WW/moc_GronsfeldTask.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/PickTask.h",
+			"MU",
+			"EWIEGA46WW/moc_PickTask.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h",
+			"MU",
+			"EWIEGA46WW/moc_Task.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h",
+			"MU",
+			"EWIEGA46WW/moc_TaskManager.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Window.h",
+			"MU",
+			"EWIEGA46WW/moc_Window.cpp",
+			null
+		]
+	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/include",
 	"MOC_COMPILATION_FILE" : "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp",

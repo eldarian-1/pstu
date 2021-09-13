@@ -1,6 +1,3 @@
-#include <iostream>
-#include <sstream>
-
 #include <QApplication>
 #include "Window.h"
 

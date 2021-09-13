@@ -1,7 +1,13 @@
 #pragma once
 
+#include <iostream>
+#include <sstream>
+
 #include <QWidget>
-#include <QLabel>
+#include <QTextEdit>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QErrorMessage>
 
 #include "Task.h"
@@ -12,8 +18,35 @@ char crypt(const char &c, const int &code);
 
 class Code {
 private:
+    constexpr static const char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    static const int size = sizeof(alphabet);
+
     int* _code;
     int _size;
+
+    char crypt(const char &c, const int &term) {
+        char index = 0;
+        if(c >= 'A' && c <= 'Z') {
+            index += c - 'A';
+        } else if(c >= 'a' && c <= 'z') {
+            index += c - 'a' + 26;
+        }
+        int temp = index + term;
+        temp = temp < 0? temp + size : temp >= 52 ? temp - 52 : temp;
+        return alphabet[temp];
+    }
+
+    char decrypt(const char &c, const int &term) {
+        char index = 0;
+        if(c >= 'A' && c <= 'Z') {
+            index += c - 'A';
+        } else if(c >= 'a' && c <= 'z') {
+            index += c - 'a' + 26;
+        }
+        int temp = index + term;
+        temp = temp < 0? temp + size : temp >= 52 ? temp - 52 : temp;
+        return alphabet[temp];
+    }
 
 public:
     Code(const int &code) {
@@ -24,37 +57,57 @@ public:
             ++_size;
         }
         _code = new int[_size];
-        for(i = _size - 1, temp = code; i >= 0; ++i) {
+        for(i = _size - 1, temp = code; i >= 0; --i) {
             _code[i] = temp % 10;
             temp /= 10;
         }
     }
-    const int &size() const {
-        return _size;
+
+    std::string crypt(const std::string &str) {
+        std::stringstream result;
+        for(int i = 0, j = 0; i < str.size(); ++i) {
+            result << crypt(str[i], _code[j]);
+            j == _size ? j = 0 : ++j;
+        }
+        return result.str();
     }
-    const int *code() const {
-        return _code;
+
+    std::string decrypt(const std::string &str) {
+        std::stringstream result;
+        for(int i = 0, j = 0; i < str.size(); ++i) {
+            result << decrypt(str[i], _code[j]);
+            j == _size ? j = 0 : ++j;
+        }
+        return result.str();
     }
 };
 
-std::string crypt(const std::string &str, const Code &code) {
-    int n = code.size();
-    std::stringstream result;
-    for(int i = 0; i < n; ++i) {
-        result << crypt(str[i], code.code()[i]);
+class GronsfeldTask: public QObject, public Task {
+    Q_OBJECT
+private:
+    QVBoxLayout *lytV;
+    QHBoxLayout *lytH;
+    QTextEdit *txtNumber;
+    QTextEdit *txtIn;
+    QTextEdit *txtOut;
+    QPushButton *btnCrypt;
+    QPushButton *btnDecrypt;
+
+public slots:
+    void crypt() {
+        int number = txtNumber->toPlainText().toInt();
+        std::string in = txtIn->toPlainText().toStdString();
+        std::string out = Code(number).crypt(in);
+        txtOut->setPlainText(out.c_str());
     }
-    return result.str();
-}
 
-char crypt(const char &c, const int &code) {
-    static const char alph[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                               "abcdefghijklmnopqrstuvwxyz"
-                               "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЪЫЭЮЯ"
-                               "абвгдеёжзийклмнопрстуфхцчшщьъыэюя";
-    static const int size = sizeof(alph);
-}
+    void decrypt() {
+        int number = txtNumber->toPlainText().toInt();
+        std::string out = txtOut->toPlainText().toStdString();
+        std::string in = Code(number).decrypt(out);
+        txtIn->setPlainText(in.c_str());
+    }
 
-class GronsfeldTask: public Task {
 public:
     GronsfeldTask(): Task("Шифр Гронсфельда") {
 
@@ -62,13 +115,24 @@ public:
 
     void initWidget(QWidget *wgt) override {
         wgt->setGeometry(0, 0, 360, 480);
-        new QLabel("Шифр Гронсфельда", wgt);
+        lytV = new QVBoxLayout();
+        lytH = new QHBoxLayout();
+        txtNumber = new QTextEdit();
+        txtIn = new QTextEdit();
+        txtOut = new QTextEdit();
+        btnCrypt = new QPushButton("Зашифровать");
+        btnDecrypt = new QPushButton("Расшифровать");
+        wgt->setLayout(lytV);
+        lytV->addWidget(txtNumber);
+        lytV->addWidget(txtIn);
+        lytV->addWidget(txtOut);
+        lytV->addLayout(lytH);
+        lytH->addWidget(btnCrypt);
+        lytH->addWidget(btnDecrypt);
+        connect(btnCrypt, SIGNAL(released()), this, SLOT(crypt()));
+        connect(btnDecrypt, SIGNAL(released()), this, SLOT(decrypt()));
     }
 
-    void run() const override {
-        /*QErrorMessage message = QErrorMessage();
-        message.showMessage("Шифр Гронсфельда");
-        message.exec();*/
-    }
+    void run() const override {}
 
 };

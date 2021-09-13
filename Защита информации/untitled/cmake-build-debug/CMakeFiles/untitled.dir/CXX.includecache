@@ -946,6 +946,14 @@ QtGui/qcolor.h
 QtGui/qbrush.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpen.h
+QtGui/qtguiglobal.h
+-
+QtGui/qcolor.h
+-
+QtGui/qbrush.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpixelformat.h
 QtGui/qtguiglobal.h
 -
@@ -1000,6 +1008,62 @@ QtCore/qprocessordetection.h
 QtGui/qtguiglobal.h
 -
 QtCore/qprocessordetection.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextcursor.h
+QtGui/qtguiglobal.h
+-
+QtCore/qstring.h
+-
+QtCore/qshareddata.h
+-
+QtGui/qtextformat.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextdocument.h
+QtGui/qtguiglobal.h
+-
+QtCore/qobject.h
+-
+QtCore/qsize.h
+-
+QtCore/qrect.h
+-
+QtCore/qvariant.h
+-
+QtGui/qfont.h
+-
+QtCore/qurl.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h
+QtGui/qtguiglobal.h
+-
+QtGui/qcolor.h
+-
+QtGui/qfont.h
+-
+QtCore/qshareddata.h
+-
+QtCore/qvector.h
+-
+QtCore/qvariant.h
+-
+QtGui/qpen.h
+-
+QtGui/qbrush.h
+-
+QtGui/qtextoption.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h
+QtGui/qtguiglobal.h
+-
+QtCore/qnamespace.h
+-
+QtCore/qchar.h
+-
+QtCore/qmetatype.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h
@@ -1076,6 +1140,10 @@ qlabel.h
 qpushbutton.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QTextEdit
+qtextedit.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtextedit.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout
 qboxlayout.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h
@@ -1092,6 +1160,12 @@ QtGui/qicon.h
 QtGui/qkeysequence.h
 -
 QtWidgets/qwidget.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractscrollarea.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qframe.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
@@ -1206,6 +1280,20 @@ QtCore/qobject.h
 QtCore/qalgorithms.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtextedit.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qabstractscrollarea.h
+-
+QtGui/qtextdocument.h
+-
+QtGui/qtextoption.h
+-
+QtGui/qtextcursor.h
+-
+QtGui/qtextformat.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h
@@ -1247,9 +1335,19 @@ QtGui/qevent.h
 -
 
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
+iostream
+-
+sstream
+-
 QWidget
 -
-QLabel
+QTextEdit
+-
+QPushButton
+-
+QVBoxLayout
+-
+QHBoxLayout
 -
 QErrorMessage
 -
@@ -1298,11 +1396,33 @@ PickTask.h
 GronsfeldTask.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
 
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_GronsfeldTask.cpp
+memory
+-
+../../../GronsfeldTask.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_TaskManager.cpp
+memory
+-
+../../../TaskManager.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp
+EWIEGA46WW/moc_GronsfeldTask.cpp
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_GronsfeldTask.cpp
+EWIEGA46WW/moc_TaskManager.cpp
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_TaskManager.cpp
+
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/main.cpp
-iostream
--
-sstream
--
 QApplication
 -
 Window.h

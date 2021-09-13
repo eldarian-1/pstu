@@ -93,12 +93,17 @@ CMakeFiles/untitled.dir/main.cpp.o
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qmatrix.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpaintdevice.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpalette.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpen.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpixelformat.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpixmap.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpolygon.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qregion.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgb.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgba64.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextcursor.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextdocument.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h
@@ -111,9 +116,11 @@ CMakeFiles/untitled.dir/main.cpp.o
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QLabel
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QTextEdit
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractscrollarea.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h
@@ -126,6 +133,7 @@ CMakeFiles/untitled.dir/main.cpp.o
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtextedit.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h
@@ -223,12 +231,17 @@ CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qmatrix.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpaintdevice.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpalette.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpen.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpixelformat.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpixmap.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpolygon.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qregion.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgb.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgba64.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextcursor.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextdocument.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h
@@ -236,20 +249,30 @@ CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qvector2d.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs_win.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QErrorMessage
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QTextEdit
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractscrollarea.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qerrormessage.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtextedit.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h
+ /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
  /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
  /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
+ /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_GronsfeldTask.cpp
  /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_TaskManager.cpp
  /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp

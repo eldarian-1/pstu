@@ -27,17 +27,20 @@ public:
         vLytMenu = new QVBoxLayout();
 
         this->setLayout(hLyt);
-        hLyt->addLayout(vLytMenu);
+        hLyt->setSpacing(10);
+        vLytMenu->setSpacing(10);
+        vLytMenu->setAlignment(Qt::Alignment::enum_type::AlignTop);
+        hLyt->addLayout(vLytMenu, 1);
 
         wgtRight = new QWidget();
-        wgtRight->setGeometry(0, 0, 360, 480);
+        wgtRight->setGeometry(0, 0, 360, 500);
 
         tm = (new TaskManager(vLytMenu, wgtRight))
                 ->add(new PickTask())
                 ->add(new GronsfeldTask());
 
-        hLyt->addWidget(wgtRight);
-        resize(720, 480);
+        hLyt->addWidget(wgtRight, 6);
+        resize(720, 500);
     }
 
     ~Window() {

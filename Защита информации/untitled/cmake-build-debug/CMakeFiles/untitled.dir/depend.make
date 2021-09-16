@@ -251,6 +251,7 @@ CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs_win.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QErrorMessage \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QTextEdit \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout \
@@ -262,6 +263,7 @@ CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qerrormessage.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \

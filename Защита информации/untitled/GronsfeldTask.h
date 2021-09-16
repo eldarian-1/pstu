@@ -4,6 +4,7 @@
 #include <sstream>
 
 #include <QWidget>
+#include <QLabel>
 #include <QTextEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -87,6 +88,9 @@ class GronsfeldTask: public QObject, public Task {
 private:
     QVBoxLayout *lytV;
     QHBoxLayout *lytH;
+    QLabel *lblNumber;
+    QLabel *lblIn;
+    QLabel *lblOut;
     QTextEdit *txtNumber;
     QTextEdit *txtIn;
     QTextEdit *txtOut;
@@ -117,14 +121,22 @@ public:
         wgt->setGeometry(0, 0, 360, 480);
         lytV = new QVBoxLayout();
         lytH = new QHBoxLayout();
+        lblNumber = new QLabel("Ключ шифрования");
+        lblIn = new QLabel("Расшифрованная часть");
+        lblOut = new QLabel("Зашифрованная часть");
         txtNumber = new QTextEdit();
         txtIn = new QTextEdit();
         txtOut = new QTextEdit();
         btnCrypt = new QPushButton("Зашифровать");
         btnDecrypt = new QPushButton("Расшифровать");
         wgt->setLayout(lytV);
+        lytV->setSpacing(10);
+        lytV->setAlignment(Qt::Alignment::enum_type::AlignTop);
+        lytV->addWidget(lblNumber);
         lytV->addWidget(txtNumber);
+        lytV->addWidget(lblIn);
         lytV->addWidget(txtIn);
+        lytV->addWidget(lblOut);
         lytV->addWidget(txtOut);
         lytV->addLayout(lytH);
         lytH->addWidget(btnCrypt);

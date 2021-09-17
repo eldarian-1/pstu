@@ -5,7 +5,7 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <QTextEdit>
+#include <QLineEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -13,19 +13,18 @@
 
 #include "Task.h"
 
-class Code;
-std::string crypt(const std::string &str, const Code &code);
-char crypt(const char &c, const int &code);
-
 class Code {
 private:
     constexpr static const char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     static const int size = sizeof(alphabet);
 
-    int* _code;
-    int _size;
+    std::vector<int> _code;
 
-    char crypt(const char &c, const int &term) {
+    bool check(const char &c) {
+        return c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z';
+    }
+
+    char cry(const char &c, const int &term) {
         char index = 0;
         if(c >= 'A' && c <= 'Z') {
             index += c - 'A';
@@ -37,49 +36,38 @@ private:
         return alphabet[temp];
     }
 
-    char decrypt(const char &c, const int &term) {
+    char decry(const char &c, const int &term) {
         char index = 0;
         if(c >= 'A' && c <= 'Z') {
             index += c - 'A';
         } else if(c >= 'a' && c <= 'z') {
             index += c - 'a' + 26;
         }
-        int temp = index + term;
+        int temp = index - term;
         temp = temp < 0? temp + size : temp >= 52 ? temp - 52 : temp;
         return alphabet[temp];
     }
 
 public:
-    Code(const int &code) {
-        int temp = code, i;
-        _size = 0;
-        while(temp != 0) {
-            temp /= 10;
-            ++_size;
-        }
-        _code = new int[_size];
-        for(i = _size - 1, temp = code; i >= 0; --i) {
-            _code[i] = temp % 10;
-            temp /= 10;
+    Code(const std::string &code) {
+        for(int i = 0; i < code.size(); ++i) {
+            if(code[i] >= '0' && code[i] <= '9') {
+                _code.push_back(code[i] - '0');
+            }
         }
     }
 
-    std::string crypt(const std::string &str) {
+    std::string crypt(const std::string &str, bool dec = false) {
         std::stringstream result;
         for(int i = 0, j = 0; i < str.size(); ++i) {
-            result << crypt(str[i], _code[j]);
-            j == _size ? j = 0 : ++j;
+            result << (check(str[i]) ? (dec ? &decry : &cry)(str[i], _code[j]) : str[i]);
+            ++j == _code.size() ? j = 0 : j;
         }
         return result.str();
     }
 
     std::string decrypt(const std::string &str) {
-        std::stringstream result;
-        for(int i = 0, j = 0; i < str.size(); ++i) {
-            result << decrypt(str[i], _code[j]);
-            j == _size ? j = 0 : ++j;
-        }
-        return result.str();
+        return crypt(str, true);
     }
 };
 
@@ -91,25 +79,25 @@ private:
     QLabel *lblNumber;
     QLabel *lblIn;
     QLabel *lblOut;
-    QTextEdit *txtNumber;
-    QTextEdit *txtIn;
-    QTextEdit *txtOut;
+    QLineEdit *txtNumber;
+    QLineEdit *txtIn;
+    QLineEdit *txtOut;
     QPushButton *btnCrypt;
     QPushButton *btnDecrypt;
 
 public slots:
     void crypt() {
-        int number = txtNumber->toPlainText().toInt();
-        std::string in = txtIn->toPlainText().toStdString();
+        std::string number = txtNumber->text().toStdString();
+        std::string in = txtIn->text().toStdString();
         std::string out = Code(number).crypt(in);
-        txtOut->setPlainText(out.c_str());
+        txtOut->setText(out.c_str());
     }
 
     void decrypt() {
-        int number = txtNumber->toPlainText().toInt();
-        std::string out = txtOut->toPlainText().toStdString();
+        std::string number = txtNumber->text().toStdString();
+        std::string out = txtOut->text().toStdString();
         std::string in = Code(number).decrypt(out);
-        txtIn->setPlainText(in.c_str());
+        txtIn->setText(in.c_str());
     }
 
 public:
@@ -124,9 +112,9 @@ public:
         lblNumber = new QLabel("Ключ шифрования");
         lblIn = new QLabel("Расшифрованная часть");
         lblOut = new QLabel("Зашифрованная часть");
-        txtNumber = new QTextEdit();
-        txtIn = new QTextEdit();
-        txtOut = new QTextEdit();
+        txtNumber = new QLineEdit();
+        txtIn = new QLineEdit();
+        txtOut = new QLineEdit();
         btnCrypt = new QPushButton("Зашифровать");
         btnDecrypt = new QPushButton("Расшифровать");
         wgt->setLayout(lytV);

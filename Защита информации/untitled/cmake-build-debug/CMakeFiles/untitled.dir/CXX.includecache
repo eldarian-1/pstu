@@ -1020,22 +1020,6 @@ QtCore/qshareddata.h
 QtGui/qtextformat.h
 -
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextdocument.h
-QtGui/qtguiglobal.h
--
-QtCore/qobject.h
--
-QtCore/qsize.h
--
-QtCore/qrect.h
--
-QtCore/qvariant.h
--
-QtGui/qfont.h
--
-QtCore/qurl.h
--
-
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h
 QtGui/qtguiglobal.h
 -
@@ -1136,13 +1120,13 @@ qboxlayout.h
 qlabel.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QLineEdit
+qlineedit.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlineedit.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton
 qpushbutton.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h
-
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QTextEdit
-qtextedit.h
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtextedit.h
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout
 qboxlayout.h
@@ -1160,12 +1144,6 @@ QtGui/qicon.h
 QtGui/qkeysequence.h
 -
 QtWidgets/qwidget.h
--
-
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractscrollarea.h
-QtWidgets/qtwidgetsglobal.h
--
-QtWidgets/qframe.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
@@ -1266,6 +1244,18 @@ QtCore/qrect.h
 limits.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlineedit.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qframe.h
+-
+QtGui/qtextcursor.h
+-
+QtCore/qstring.h
+-
+QtCore/qmargins.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h
 QtWidgets/qtwidgetsglobal.h
 -
@@ -1278,20 +1268,6 @@ QtWidgets/qtwidgetsglobal.h
 QtCore/qobject.h
 -
 QtCore/qalgorithms.h
--
-
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtextedit.h
-QtWidgets/qtwidgetsglobal.h
--
-QtWidgets/qabstractscrollarea.h
--
-QtGui/qtextdocument.h
--
-QtGui/qtextoption.h
--
-QtGui/qtextcursor.h
--
-QtGui/qtextformat.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h
@@ -1343,7 +1319,7 @@ QWidget
 -
 QLabel
 -
-QTextEdit
+QLineEdit
 -
 QPushButton
 -
@@ -1397,6 +1373,32 @@ PickTask.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/PickTask.h
 GronsfeldTask.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
+
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_GronsfeldTask.cpp
+memory
+-
+../../../GronsfeldTask.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_TaskManager.cpp
+memory
+-
+../../../TaskManager.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp
+EWIEGA46WW/moc_GronsfeldTask.cpp
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_GronsfeldTask.cpp
+EWIEGA46WW/moc_TaskManager.cpp
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_TaskManager.cpp
 
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/main.cpp
 QApplication

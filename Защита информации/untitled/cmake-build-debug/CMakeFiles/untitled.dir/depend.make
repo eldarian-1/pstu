@@ -101,7 +101,6 @@ CMakeFiles/untitled.dir/main.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgb.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgba64.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextcursor.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextdocument.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h \
@@ -115,12 +114,11 @@ CMakeFiles/untitled.dir/main.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QErrorMessage \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QLineEdit \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QTextEdit \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
@@ -131,9 +129,9 @@ CMakeFiles/untitled.dir/main.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlineedit.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtextedit.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h \
@@ -239,7 +237,6 @@ CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgb.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgba64.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextcursor.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextdocument.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h \
@@ -252,12 +249,11 @@ CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QErrorMessage \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QLineEdit \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QTextEdit \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qerrormessage.h \
@@ -266,9 +262,9 @@ CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlineedit.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtextedit.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h \

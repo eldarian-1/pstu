@@ -15,58 +15,65 @@
 
 class Code {
 private:
-    constexpr static const char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    static const int size = sizeof(alphabet);
+    static QString alphabet;
+
+    static ushort get(int i) {
+        return alphabet[i].unicode();
+    }
+
+    static bool check(const QChar &c, const QCharRef &a, const QCharRef &z) {
+        ushort uc = c.unicode();
+        return a.unicode() <= uc && uc <= z.unicode();
+    }
+
+    static bool check(const QChar &c) {
+        return check(c, alphabet[0], alphabet[25]) ||
+               check(c, alphabet[26], alphabet[51]) ||
+               check(c, alphabet[52], alphabet[83]) ||
+               check(c, alphabet[84], alphabet[115]);
+    }
+
+    static void index(int &i, const QChar &c, int begin, int end) {
+        if(c >= get(begin) && c <= get(end)) {
+            i = c.unicode() - get(begin) + begin;
+        }
+    }
+
+    static QChar cry(const QChar &c, const int &term, bool decrypt = false) {
+        int i;
+        index(i, c, 0, 25);
+        index(i, c, 26, 51);
+        index(i, c, 52, 83);
+        index(i, c, 84, 115);
+        int temp = i + (decrypt ? -1 : 1) * term;
+        int size = alphabet.size();
+        temp = temp < 0 ? temp + size : (temp >= size ? temp - size : temp);
+        return alphabet.constData()[temp];
+    }
 
     std::vector<int> _code;
 
-    bool check(const char &c) {
-        return c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z';
-    }
-
-    char cry(const char &c, const int &term) {
-        char index = 0;
-        if(c >= 'A' && c <= 'Z') {
-            index += c - 'A';
-        } else if(c >= 'a' && c <= 'z') {
-            index += c - 'a' + 26;
-        }
-        int temp = index + term;
-        temp = temp < 0? temp + size : temp >= 52 ? temp - 52 : temp;
-        return alphabet[temp];
-    }
-
-    char decry(const char &c, const int &term) {
-        char index = 0;
-        if(c >= 'A' && c <= 'Z') {
-            index += c - 'A';
-        } else if(c >= 'a' && c <= 'z') {
-            index += c - 'a' + 26;
-        }
-        int temp = index - term;
-        temp = temp < 0? temp + size : temp >= 52 ? temp - 52 : temp;
-        return alphabet[temp];
-    }
-
 public:
-    Code(const std::string &code) {
-        for(int i = 0; i < code.size(); ++i) {
-            if(code[i] >= '0' && code[i] <= '9') {
-                _code.push_back(code[i] - '0');
+    static QString alph() { return  alphabet; }
+
+    explicit Code(const QString &code) {
+        for(auto i : code) {
+            if(i >= QChar('0') && i <= QChar('9')) {
+                _code.push_back(i.unicode() - QChar('0').unicode());
             }
         }
     }
 
-    std::string crypt(const std::string &str, bool decrypt = false) {
-        std::stringstream result;
+    QString crypt(const QString &str, bool decrypt = false) {
+        QString result;
         for(int i = 0, j = 0; i < str.size(); ++i) {
-            result << (check(str[i]) ? (this->*(decrypt ? &Code::decry : &Code::cry))(str[i], _code[j]) : str[i]);
+            result.append(check(str[i]) ? cry(str[i], _code[j], decrypt) : str[i]);
             ++j == _code.size() ? j = 0 : j;
         }
-        return result.str();
+        return result;
     }
 
-    std::string decrypt(const std::string &str) {
+    QString decrypt(const QString &str) {
         return crypt(str, true);
     }
 };
@@ -87,23 +94,21 @@ private:
 
 public slots:
     void crypt() {
-        std::string number = txtNumber->text().toStdString();
-        std::string in = txtIn->text().toStdString();
-        std::string out = Code(number).crypt(in);
-        txtOut->setText(out.c_str());
+        QString number = txtNumber->text();
+        QString in = txtIn->text();
+        QString out = Code(number).crypt(in);
+        txtOut->setText(out);
     }
 
     void decrypt() {
-        std::string number = txtNumber->text().toStdString();
-        std::string out = txtOut->text().toStdString();
-        std::string in = Code(number).decrypt(out);
-        txtIn->setText(in.c_str());
+        QString number = txtNumber->text();
+        QString out = txtOut->text();
+        QString in = Code(number).decrypt(out);
+        txtIn->setText(in);
     }
 
 public:
-    GronsfeldTask(): Task("Шифр Гронсфельда") {
-
-    }
+    GronsfeldTask(): Task("Шифр Гронсфельда") { }
 
     void initWidget(QWidget *wgt) override {
         lytV = new QVBoxLayout();
@@ -132,6 +137,10 @@ public:
         connect(btnDecrypt, SIGNAL(released()), this, SLOT(decrypt()));
     }
 
-    void run() const override {}
+    void run() const override {
+        /*QErrorMessage message = QErrorMessage();
+        message.showMessage(Code::alph());
+        message.exec();*/
+    }
 
 };

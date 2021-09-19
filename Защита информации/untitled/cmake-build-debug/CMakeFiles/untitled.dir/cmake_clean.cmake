@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/untitled_autogen.dir/AutogenUsed.txt"
   "CMakeFiles/untitled_autogen.dir/ParseCache.txt"
   "untitled_autogen"
+  "CMakeFiles/untitled.dir/GronsfeldTask.cpp.o"
   "CMakeFiles/untitled.dir/main.cpp.o"
   "CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o"
   "untitled"

@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QObject
-qobject.h
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qobject.h
-
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h
 QtCore/qglobal.h
 -
@@ -108,20 +104,6 @@ limits.h
 new
 -
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h
-QtCore/qglobal.h
--
-QtCore/qstring.h
--
-QtCore/qobject.h
--
-QtCore/qcoreevent.h
--
-QtCore/qeventloop.h
--
-QtCore/qscopedpointer.h
--
-
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcoreevent.h
 QtCore/qnamespace.h
 -
@@ -168,10 +150,6 @@ list
 map
 -
 utility
--
-
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h
-QtCore/qobject.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qfile.h
@@ -850,22 +828,6 @@ QtCore/qsharedpointer.h
 QtCore/qrect.h
 -
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h
-QtGui/qtguiglobal.h
--
-QtCore/qcoreapplication.h
--
-QtGui/qwindowdefs.h
--
-QtGui/qinputmethod.h
--
-QtCore/qlocale.h
--
-QtCore/qpoint.h
--
-QtCore/qsize.h
--
-
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qicon.h
 QtGui/qtguiglobal.h
 -
@@ -896,12 +858,6 @@ QtCore/qrect.h
 QtCore/qstring.h
 -
 QtCore/qstringlist.h
--
-
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h
-QtGui/qtguiglobal.h
--
-QtCore/qobject.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qkeysequence.h
@@ -1104,10 +1060,6 @@ QtGui/qwindowdefs_win.h
 QtGui/qtguiglobal.h
 -
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QApplication
-qapplication.h
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
-
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QErrorMessage
 qerrormessage.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qerrormessage.h
@@ -1146,24 +1098,6 @@ QtGui/qkeysequence.h
 QtWidgets/qwidget.h
 -
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
-QtWidgets/qtwidgetsglobal.h
--
-QtCore/qcoreapplication.h
--
-QtGui/qwindowdefs.h
--
-QtCore/qpoint.h
--
-QtCore/qsize.h
--
-QtGui/qcursor.h
--
-QtWidgets/qdesktopwidget.h
--
-QtGui/qguiapplication.h
--
-
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h
 QtWidgets/qtwidgetsglobal.h
 -
@@ -1172,12 +1106,6 @@ QtWidgets/qlayout.h
 QtWidgets/qwidget.h
 -
 limits.h
--
-
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h
-QtWidgets/qtwidgetsglobal.h
--
-QtWidgets/qwidget.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h
@@ -1310,6 +1238,10 @@ QtGui/qkeysequence.h
 QtGui/qevent.h
 -
 
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.cpp
+GronsfeldTask.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
+
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
 iostream
 -
@@ -1332,77 +1264,5 @@ QErrorMessage
 Task.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
 
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/PickTask.h
-QWidget
--
-QLabel
--
-QErrorMessage
--
-Task.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
-
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
-
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
-vector
--
-QObject
--
-QPushButton
--
-QWidget
--
-QVBoxLayout
--
-Task.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
-
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Window.h
-QWidget
--
-QHBoxLayout
--
-QVBoxLayout
--
-QPushButton
--
-TaskManager.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
-PickTask.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/PickTask.h
-GronsfeldTask.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
-
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_GronsfeldTask.cpp
-memory
--
-../../../GronsfeldTask.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_TaskManager.cpp
-memory
--
-../../../TaskManager.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp
-EWIEGA46WW/moc_GronsfeldTask.cpp
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_GronsfeldTask.cpp
-EWIEGA46WW/moc_TaskManager.cpp
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_TaskManager.cpp
-
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/main.cpp
-QApplication
--
-Window.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Window.h
 

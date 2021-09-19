@@ -22,7 +22,11 @@ public:
 
     void run() const override {
         QErrorMessage message = QErrorMessage();
-        message.showMessage("Шифр Гронсфельда");
+        QString s;
+        for(int i = 0; i < 32; ++i) {
+            s.append(QChar(QString("а")[0].unicode() + i));
+        }
+        message.showMessage("Шифр Гронсфельда\n" + s);
         message.exec();
     }
 

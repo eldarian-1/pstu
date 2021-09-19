@@ -264,8 +264,14 @@ CMakeFiles/untitled.dir/main.cpp.o
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h
+ /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/CicleTask.h
+ /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/DESTask.h
+ /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/ElgamalTask.h
+ /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GammaTask.h
  /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
- /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/PickTask.h
+ /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/HashTask.h
+ /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/HuffmanTask.h
+ /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RSATask.h
  /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
  /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
  /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Window.h

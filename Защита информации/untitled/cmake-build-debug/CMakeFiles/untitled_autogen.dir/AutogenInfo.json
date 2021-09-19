@@ -85,15 +85,51 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/CicleTask.h",
+			"MU",
+			"EWIEGA46WW/moc_CicleTask.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/DESTask.h",
+			"MU",
+			"EWIEGA46WW/moc_DESTask.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/ElgamalTask.h",
+			"MU",
+			"EWIEGA46WW/moc_ElgamalTask.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GammaTask.h",
+			"MU",
+			"EWIEGA46WW/moc_GammaTask.cpp",
+			null
+		],
+		[
 			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h",
 			"MU",
 			"EWIEGA46WW/moc_GronsfeldTask.cpp",
 			null
 		],
 		[
-			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/PickTask.h",
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/HashTask.h",
 			"MU",
-			"EWIEGA46WW/moc_PickTask.cpp",
+			"EWIEGA46WW/moc_HashTask.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/HuffmanTask.h",
+			"MU",
+			"EWIEGA46WW/moc_HuffmanTask.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RSATask.h",
+			"MU",
+			"EWIEGA46WW/moc_RSATask.cpp",
 			null
 		],
 		[

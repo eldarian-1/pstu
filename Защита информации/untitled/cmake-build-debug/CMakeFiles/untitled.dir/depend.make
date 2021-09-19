@@ -264,8 +264,14 @@ CMakeFiles/untitled.dir/main.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h \
+ ../CicleTask.h \
+ ../DESTask.h \
+ ../ElgamalTask.h \
+ ../GammaTask.h \
  ../GronsfeldTask.h \
- ../PickTask.h \
+ ../HashTask.h \
+ ../HuffmanTask.h \
+ ../RSATask.h \
  ../Task.h \
  ../TaskManager.h \
  ../Window.h \

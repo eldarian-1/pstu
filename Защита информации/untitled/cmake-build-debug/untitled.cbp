@@ -110,13 +110,31 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/CicleTask.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/DESTask.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/ElgamalTask.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GammaTask.h">
+			<Option target="untitled"/>
+		</Unit>
 		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.cpp">
 			<Option target="untitled"/>
 		</Unit>
 		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h">
 			<Option target="untitled"/>
 		</Unit>
-		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/PickTask.h">
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/HashTask.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/HuffmanTask.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RSATask.h">
 			<Option target="untitled"/>
 		</Unit>
 		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h">

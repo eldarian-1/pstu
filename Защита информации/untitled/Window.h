@@ -6,8 +6,14 @@
 #include <QPushButton>
 
 #include "TaskManager.h"
-#include "PickTask.h"
 #include "GronsfeldTask.h"
+#include "RSATask.h"
+#include "ElgamalTask.h"
+#include "DESTask.h"
+#include "CicleTask.h"
+#include "HuffmanTask.h"
+#include "HashTask.h"
+#include "GammaTask.h"
 
 class Window: public QWidget {
 private:
@@ -35,10 +41,17 @@ public:
         hLyt->addWidget(wgtRight, 6);
 
         tm = (new TaskManager(vLytMenu, wgtRight))
-                ->add(new PickTask())
-                ->add(new GronsfeldTask());
+                ->add(new GronsfeldTask())
+                ->add(new RSATask())
+                ->add(new ElgamalTask())
+                ->add(new DESTask())
+                ->add(new CicleTask())
+                ->add(new HuffmanTask())
+                ->add(new HashTask())
+                ->add(new GammaTask())
+                ->start();
 
-        resize(370, 270);
+        resize(470, 270);
     }
 
     ~Window() {

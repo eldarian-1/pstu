@@ -49,6 +49,7 @@ public:
     TaskManager *add(Task *task) {
         QPushButton *btnTemp = new QPushButton(task->title());
         QWidget *wgtTemp = new QWidget(_wgt);
+        wgtTemp->setGeometry(0,0, 220, 270);
         wgtTemp->setHidden(!_tasks->empty());
         task->initWidget(wgtTemp);
         _tasks->push_back(task);
@@ -56,6 +57,12 @@ public:
         _widgets->push_back(wgtTemp);
         _menu->addWidget(btnTemp);
         connect(btnTemp, SIGNAL(released()), this, SLOT(onclick()));
+        return this;
+    }
+
+    TaskManager *start() {
+        setActiveTask(0);
+        (*_tasks)[0]->run();
         return this;
     }
 

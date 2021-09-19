@@ -57,10 +57,10 @@ public:
         }
     }
 
-    std::string crypt(const std::string &str, bool dec = false) {
+    std::string crypt(const std::string &str, bool decrypt = false) {
         std::stringstream result;
         for(int i = 0, j = 0; i < str.size(); ++i) {
-            result << (check(str[i]) ? (dec ? &decry : &cry)(str[i], _code[j]) : str[i]);
+            result << (check(str[i]) ? (this->*(decrypt ? &Code::decry : &Code::cry))(str[i], _code[j]) : str[i]);
             ++j == _code.size() ? j = 0 : j;
         }
         return result.str();
@@ -106,7 +106,6 @@ public:
     }
 
     void initWidget(QWidget *wgt) override {
-        wgt->setGeometry(0, 0, 360, 480);
         lytV = new QVBoxLayout();
         lytH = new QHBoxLayout();
         lblNumber = new QLabel("Ключ шифрования");

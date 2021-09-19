@@ -21,9 +21,9 @@ public:
     }
 
     void run() const override {
-        /*QErrorMessage message = QErrorMessage();
+        QErrorMessage message = QErrorMessage();
         message.showMessage("Шифр Гронсфельда");
-        message.exec();*/
+        message.exec();
     }
 
 };

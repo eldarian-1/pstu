@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="820a73ee-d7fa-400f-b63f-fb62941aabef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Защита информации/untitled/GronsfeldTask.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../Защита информации/untitled/GronsfeldTask.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Защита информации/untitled/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../Защита информации/untitled/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,10 +25,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ЛР1/lr1" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -39,6 +41,8 @@
       <updated>1631702564020</updated>
       <workItem from="1631702567279" duration="147000" />
       <workItem from="1631854841348" duration="162000" />
+      <workItem from="1632051664680" duration="71000" />
+      <workItem from="1632051748411" duration="40000" />
     </task>
     <servers />
   </component>

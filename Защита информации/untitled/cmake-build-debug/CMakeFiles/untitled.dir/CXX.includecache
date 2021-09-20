@@ -1432,32 +1432,6 @@ HashTask.h
 GammaTask.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GammaTask.h
 
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_GronsfeldTask.cpp
-memory
--
-../../../GronsfeldTask.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_TaskManager.cpp
-memory
--
-../../../TaskManager.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp
-EWIEGA46WW/moc_GronsfeldTask.cpp
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_GronsfeldTask.cpp
-EWIEGA46WW/moc_TaskManager.cpp
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_TaskManager.cpp
-
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/main.cpp
 QApplication
 -

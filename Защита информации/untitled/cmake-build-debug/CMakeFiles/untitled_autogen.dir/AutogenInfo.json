@@ -192,7 +192,7 @@
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
-	"PARALLEL" : 12,
+	"PARALLEL" : 8,
 	"PARSE_CACHE_FILE" : "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/untitled_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/home/eldarian/Qt/5.15.2/gcc_64/bin/moc",
 	"QT_UIC_EXECUTABLE" : "/home/eldarian/Qt/5.15.2/gcc_64/bin/uic",

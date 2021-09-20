@@ -14,6 +14,16 @@ private:
         else return gcd(a, b - a);
     }
 
+    static std::tuple<int, int, int> gcf(int a, int b) {
+        if(b == 0) {
+            return {1, 0, a};
+        } else {
+            int x, y, g;
+            std::tie(x, y, g) = gcf(b, a % b);
+            return {y, x - (a / b) * y, g};
+        }
+    }
+
 
 public:
     RSA(int p, int q) {
@@ -24,6 +34,7 @@ public:
             int t0 = gcd(i, t);
             if(t0 == 1) {
                 e = i;
+                break;
             }
         }
         if(e == -1) throw -1;

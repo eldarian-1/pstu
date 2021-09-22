@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/BigInt.cpp" "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/untitled.dir/BigInt.cpp.o"
   "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.cpp" "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/untitled.dir/GronsfeldTask.cpp.o"
   "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/main.cpp" "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/untitled.dir/main.cpp.o"
   "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp" "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o"

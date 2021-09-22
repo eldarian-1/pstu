@@ -142,6 +142,30 @@ untitled_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled_autogen.dir/build.make CMakeFiles/untitled_autogen.dir/build
 .PHONY : untitled_autogen/fast
 
+BigInt.o: BigInt.cpp.o
+.PHONY : BigInt.o
+
+# target to build an object file
+BigInt.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/BigInt.cpp.o
+.PHONY : BigInt.cpp.o
+
+BigInt.i: BigInt.cpp.i
+.PHONY : BigInt.i
+
+# target to preprocess a source file
+BigInt.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/BigInt.cpp.i
+.PHONY : BigInt.cpp.i
+
+BigInt.s: BigInt.cpp.s
+.PHONY : BigInt.s
+
+# target to generate assembly for a file
+BigInt.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/untitled.dir/build.make CMakeFiles/untitled.dir/BigInt.cpp.s
+.PHONY : BigInt.cpp.s
+
 GronsfeldTask.o: GronsfeldTask.cpp.o
 .PHONY : GronsfeldTask.o
 
@@ -224,6 +248,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... untitled_autogen"
 	@echo "... untitled"
+	@echo "... BigInt.o"
+	@echo "... BigInt.i"
+	@echo "... BigInt.s"
 	@echo "... GronsfeldTask.o"
 	@echo "... GronsfeldTask.i"
 	@echo "... GronsfeldTask.s"

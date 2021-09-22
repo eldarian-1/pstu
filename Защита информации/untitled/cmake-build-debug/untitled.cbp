@@ -110,6 +110,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/BigInt.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/BigInt.h">
+			<Option target="untitled"/>
+		</Unit>
 		<Unit filename="/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/CicleTask.h">
 			<Option target="untitled"/>
 		</Unit>

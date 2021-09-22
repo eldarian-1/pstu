@@ -12,6 +12,6 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
-add_executable(untitled main.cpp Window.h TaskManager.h Task.h RSATask.h GronsfeldTask.h GronsfeldTask.cpp ElgamalTask.h DESTask.h CicleTask.h HuffmanTask.h HashTask.h GammaTask.h)
+add_executable(untitled main.cpp Window.h TaskManager.h Task.h RSATask.h GronsfeldTask.h GronsfeldTask.cpp ElgamalTask.h DESTask.h CicleTask.h HuffmanTask.h HashTask.h GammaTask.h BigInt.cpp BigInt.h)
 
 target_link_libraries(untitled PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)

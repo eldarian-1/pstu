@@ -3,7 +3,7 @@ fun main() {
         print("Введите тариф (1 - первый, 2 - второй): ")
         val r = readLine()?.toInt().takeIf { it == 1 || it == 2 }
             ?: throw Exception("Некорректный тариф!")
-        print("Введите числа K, x, %s через пробел: ".format(if(r == 1) "A, B" else "C, D"))
+        print("Введите числа K, x, ${if(r == 1) "A, B" else "C, D"} через пробел: ")
         val s = (readLine() ?: throw Exception("Некорректный ввод!"))
             .split(" ").map { it.toDouble() }
             .takeIf { it.size == 4 } ?.let {

@@ -9,32 +9,54 @@
 
 class RSA {
 private:
-    static std::tuple<BigInt, BigInt, BigInt> gcf(BigInt a, BigInt b) {
-        if(b == 0) {
-            return {1, 0, a};
+    static int gcd(int a, int b) {
+        if(a == 0 || b == 0) {
+            return a + b;
+        } else if(a > b) {
+            return gcd(a % b, b);
         } else {
-            BigInt x, y, g;
-            std::tie(x, y, g) = gcf(b, a % b);
-            return {y, x - (a / b) * y, g};
+            return gcd(a, b % a);
         }
     }
 
     BigInt e, n, d;
 
+    BigInt crypt(BigInt c, bool decrypt) {
+        if(decrypt) {
+            return BigInt::pow(c, d) % n;
+        } else {
+            return BigInt::pow(c, e) % n;
+        }
+    }
+
+    ushort crypt(ushort c, bool decrypt) {
+        return std::stoi(BigInt::to_string(crypt(BigInt((int)c), decrypt)));
+    }
+
 public:
     RSA(BigInt p, BigInt q) {
         n = p * q;
         e = -1;
-        BigInt t = (p - 1) * (q - 1);
+        BigInt phi = (p - 1) * (q - 1);
         for(BigInt i = n; i > 1; --i) {
-            BigInt t0 = BigInt::gcd(i, t);
+            if(i == phi) {
+                continue;
+            }
+            BigInt t0 = BigInt::gcd(i, phi);
             if(t0 == 1) {
                 e = i;
                 break;
             }
         }
         if(e == -1) throw -1;
-        std::tuple<BigInt, BigInt, BigInt> d = gcf(e, t);
+        for(int i = 1; ; ++i) {
+            int top = (i * std::stoi(BigInt::to_string(phi)) + 1);
+            int bottom = std::stoi(BigInt::to_string(e));
+            if((double)bottom / gcd(top, bottom) == 1.0) {
+                d = BigInt(top / bottom);
+                break;
+            }
+        }
     }
 
     RSA(const QString &p, const QString &q)
@@ -42,12 +64,16 @@ public:
 
     }
 
-    QString crypt(const QString &in) {
-        return "Hello, World!";
+    QString crypt(const QString &in, bool decrypt = false) {
+        QString result;
+        for(QChar c : in) {
+            result.append(QChar(crypt(c.unicode(), decrypt)));
+        }
+        return result;
     }
 
     QString decrypt(const QString &out) {
-        return "Привет, Мир!";
+        return crypt(out, true);
     }
 };
 

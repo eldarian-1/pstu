@@ -1,1 +1,1 @@
-/usr/bin/cc -g CMakeFiles/server.dir/src/server/main.c.o -o server 
+/usr/bin/cc -g CMakeFiles/server.dir/src/server/main.c.o -o server  -lm 

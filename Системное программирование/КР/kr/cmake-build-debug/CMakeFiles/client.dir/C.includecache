@@ -13,6 +13,12 @@ sys/socket.h
 -
 netinet/in.h
 -
+stdlib.h
+-
+stdio.h
+-
+string.h
+-
 ../common.h
 /home/eldarian/Рабочий стол/pstu/Системное программирование/КР/kr/src/common.h
 

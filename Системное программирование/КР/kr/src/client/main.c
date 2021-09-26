@@ -2,9 +2,15 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "../common.h"
 
+const size_t buf_size = 1024;
 char buf[1024];
+char *buff = buf;
 
 int main()
 {
@@ -27,10 +33,13 @@ int main()
         exit(2);
     }
 
-    for(;;) {
+    //while(1)
+    {
         printf("Клиент: ");
-        scanf("%s", buf);
+        //scanf("%s", buf);
+        getline(&buff, &buf_size, stdin);
         send(sock, buf, strlen(buf), 0);
+        memset(buf, '\0', buf_size);
         recv(sock, buf, sizeof(buf), 0);
         printf("Сервер: %s\n", buf);
     }

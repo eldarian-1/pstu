@@ -51,7 +51,7 @@ public:
                 ->add(new GammaTask())
                 ->start();
 
-        resize(470, 270);
+        resize(700, 320);
     }
 
     ~Window() {

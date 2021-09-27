@@ -2,10 +2,43 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <utility>
 //#include <QErrorMessage>
 
 #include "Task.h"
 #include "BigInt.h"
+
+class RsaClient {
+private:
+    BigInt e, n;
+
+    BigInt crypt(const BigInt& c) {
+        return BigInt::pow(c, e) % n;
+    }
+
+    ushort crypt(ushort c) {
+        return std::stoi(BigInt::to_string(crypt(BigInt((int)c))));
+    }
+
+public:
+    RsaClient(const BigInt& e, const BigInt& n) : e(e), n(n) { }
+
+    QString crypt(const QString &in) {
+        QString result;
+        for(QChar c : in) {
+            result.append(QChar(crypt(c.unicode())));
+        }
+        return result;
+    }
+
+    const BigInt& E() {
+        return e;
+    }
+
+    const BigInt& N() {
+        return n;
+    }
+};
 
 class RSA {
 private:
@@ -21,20 +54,8 @@ private:
 
     BigInt e, n, d;
 
-    BigInt crypt(BigInt c, bool decrypt) {
-        if(decrypt) {
-            return BigInt::pow(c, d) % n;
-        } else {
-            return BigInt::pow(c, e) % n;
-        }
-    }
-
-    ushort crypt(ushort c, bool decrypt) {
-        return std::stoi(BigInt::to_string(crypt(BigInt((int)c), decrypt)));
-    }
-
 public:
-    RSA(BigInt p, BigInt q) {
+    RSA(const BigInt& p, const BigInt& q) {
         n = p * q;
         e = -1;
         BigInt phi = (p - 1) * (q - 1);
@@ -64,52 +85,94 @@ public:
 
     }
 
-    QString crypt(const QString &in, bool decrypt = false) {
-        QString result;
-        for(QChar c : in) {
-            result.append(QChar(crypt(c.unicode(), decrypt)));
-        }
-        return result;
+    RsaClient *alice() {
+        return new RsaClient(d, n);
     }
 
-    QString decrypt(const QString &out) {
-        return crypt(out, true);
+    RsaClient *bob() {
+        return new RsaClient(e, n);
     }
 };
 
 class RSATask: public QObject, public Task {
 Q_OBJECT
 private:
-    QLabel *label;
-    QVBoxLayout *lytMain;
-    QHBoxLayout *lytNums;
-    QHBoxLayout *lytBtns;
+    QHBoxLayout *lytMain;
+    QVBoxLayout *lytAlice;
+    QVBoxLayout *lytBob;
+    QHBoxLayout *lytPQ;
+    QHBoxLayout *lytABtns;
+    QHBoxLayout *lytEN;
+    QHBoxLayout *lytBBtns;
+
+    QLabel *lblAlice;
+    QLabel *lblBob;
     QLabel *lblP;
     QLabel *lblQ;
-    QLabel *lblIn;
-    QLabel *lblOut;
+    QLabel *lblE;
+    QLabel *lblN;
+    QLabel *lblPrivate;
+    QLabel *lblPublic;
+    QLabel *lblAIn;
+    QLabel *lblAOut;
+    QLabel *lblBIn;
+    QLabel *lblBOut;
+
     QLineEdit *txtP;
     QLineEdit *txtQ;
-    QLineEdit *txtIn;
-    QLineEdit *txtOut;
-    QPushButton *btnCrypt;
-    QPushButton *btnDecrypt;
+    QLineEdit *txtE;
+    QLineEdit *txtN;
+    QLineEdit *txtAIn;
+    QLineEdit *txtAOut;
+    QLineEdit *txtBIn;
+    QLineEdit *txtBOut;
+
+    QPushButton *btnACrypt;
+    QPushButton *btnADecrypt;
+    QPushButton *btnBCrypt;
+    QPushButton *btnBDecrypt;
+
+    RsaClient *alice = nullptr;
+    RsaClient *bob = nullptr;
 
 public slots:
-    void crypt() {
+    void aCrypt() {
+        if(alice) {
+            delete alice;
+            delete bob;
+            alice = nullptr;
+            bob = nullptr;
+        }
         const QString &p = txtP->text();
         const QString &q = txtQ->text();
-        const QString &in = txtIn->text();
-        const QString &out = RSA(p, q).crypt(in);
-        txtOut->setText(out);
+        RSA rsa(p, q);
+        alice = rsa.alice();
+        bob = rsa.bob();
+        lblPrivate->setText(("Закрытый: d - " + BigInt::to_string(alice->E()) + ", n - "  + BigInt::to_string(alice->E())).c_str());
+        lblPublic->setText(("Открытый: e - " + BigInt::to_string(bob->E()) + ", n - " + BigInt::to_string(bob->N())).c_str());
+        txtE->setText(BigInt::to_string(bob->E()).c_str());
+        txtN->setText(BigInt::to_string(bob->N()).c_str());
+        const QString &in = txtAIn->text();
+        const QString &out = alice->crypt(in);
+        txtBOut->setText(out);
     }
 
-    void decrypt() {
-        const QString &p = txtP->text();
-        const QString &q = txtQ->text();
-        const QString &out = txtOut->text();
-        const QString &in = RSA(p, q).decrypt(out);
-        txtIn->setText(in);
+    void aDecrypt() {
+        const QString &in = txtAOut->text();
+        const QString &out = alice->crypt(in);
+        txtAIn->setText(out);
+    }
+
+    void bCrypt() {
+        const QString &in = txtBIn->text();
+        const QString &out = bob->crypt(in);
+        txtAOut->setText(out);
+    }
+
+    void bDecrypt() {
+        const QString &in = txtBOut->text();
+        const QString &out = bob->crypt(in);
+        txtBIn->setText(out);
     }
 
 public:
@@ -118,34 +181,80 @@ public:
     }
 
     void initWidget(QWidget *wgt) override {
-        lytMain = new QVBoxLayout();
-        lytNums = new QHBoxLayout();
-        lytBtns = new QHBoxLayout();
-        lblP = new QLabel("P");
-        lblQ = new QLabel("Q");
-        lblIn = new QLabel("Расшифрованная часть");
-        lblOut = new QLabel("Зашифрованная часть");
+        lytMain = new QHBoxLayout();
+        lytAlice = new QVBoxLayout();
+        lytBob = new QVBoxLayout();
+        lytPQ = new QHBoxLayout();
+        lytABtns = new QHBoxLayout();
+        lytEN = new QHBoxLayout();
+        lytBBtns = new QHBoxLayout();
+
+        lytAlice->setAlignment(Qt::Alignment::enum_type::AlignTop);
+        lytBob->setAlignment(Qt::Alignment::enum_type::AlignTop);
+
+        lblAlice = new QLabel("Alice");
+        lblBob = new QLabel("Bob");
+        lblP = new QLabel("p");
+        lblQ = new QLabel("q");
+        lblE = new QLabel("e");
+        lblN = new QLabel("n");
+        lblPrivate = new QLabel("Закрытый: d - ..., n - ...");
+        lblPublic = new QLabel("Открытый: e - ..., n - ...");
+        lblAIn = new QLabel("Открытый текст");
+        lblAOut = new QLabel("Шифротекст");
+        lblBIn = new QLabel("Открытый текст");
+        lblBOut = new QLabel("Шифротекст");
+
         txtP = new QLineEdit();
         txtQ = new QLineEdit();
-        txtIn = new QLineEdit();
-        txtOut = new QLineEdit();
-        btnCrypt = new QPushButton("Зашифровать");
-        btnDecrypt = new QPushButton("Расшифровать");
+        txtE = new QLineEdit();
+        txtN = new QLineEdit();
+        txtAIn = new QLineEdit();
+        txtAOut = new QLineEdit();
+        txtBIn = new QLineEdit();
+        txtBOut = new QLineEdit();
+
+        btnACrypt = new QPushButton("Отправить");
+        btnADecrypt = new QPushButton("Расшифровать");
+        btnBCrypt = new QPushButton("Отправить");
+        btnBDecrypt = new QPushButton("Расшифровать");
+
         wgt->setLayout(lytMain);
-        lytMain->addLayout(lytNums);
-        lytNums->addWidget(lblP);
-        lytNums->addWidget(txtP);
-        lytNums->addWidget(lblQ);
-        lytNums->addWidget(txtQ);
-        lytMain->addWidget(lblIn);
-        lytMain->addWidget(txtIn);
-        lytMain->addWidget(lblOut);
-        lytMain->addWidget(txtOut);
-        lytMain->addLayout(lytBtns);
-        lytBtns->addWidget(btnCrypt);
-        lytBtns->addWidget(btnDecrypt);
-        connect(btnCrypt, SIGNAL(released()), this, SLOT(crypt()));
-        connect(btnDecrypt, SIGNAL(released()), this, SLOT(decrypt()));
+        lytMain->addLayout(lytAlice);
+        lytAlice->addWidget(lblAlice);
+        lytAlice->addLayout(lytPQ);
+        lytPQ->addWidget(lblP);
+        lytPQ->addWidget(txtP);
+        lytPQ->addWidget(lblQ);
+        lytPQ->addWidget(txtQ);
+        lytAlice->addWidget(lblPrivate);
+        lytAlice->addWidget(lblPublic);
+        lytAlice->addWidget(lblAIn);
+        lytAlice->addWidget(txtAIn);
+        lytAlice->addWidget(lblAOut);
+        lytAlice->addWidget(txtAOut);
+        lytAlice->addLayout(lytABtns);
+        lytABtns->addWidget(btnACrypt);
+        lytABtns->addWidget(btnADecrypt);
+        lytMain->addLayout(lytBob);
+        lytBob->addWidget(lblBob);
+        lytBob->addLayout(lytEN);
+        lytEN->addWidget(lblE);
+        lytEN->addWidget(txtE);
+        lytEN->addWidget(lblN);
+        lytEN->addWidget(txtN);
+        lytBob->addWidget(lblBIn);
+        lytBob->addWidget(txtBIn);
+        lytBob->addWidget(lblBOut);
+        lytBob->addWidget(txtBOut);
+        lytBob->addLayout(lytBBtns);
+        lytBBtns->addWidget(btnBCrypt);
+        lytBBtns->addWidget(btnBDecrypt);
+
+        connect(btnACrypt, SIGNAL(released()), this, SLOT(aCrypt()));
+        connect(btnADecrypt, SIGNAL(released()), this, SLOT(aDecrypt()));
+        connect(btnBCrypt, SIGNAL(released()), this, SLOT(bCrypt()));
+        connect(btnBDecrypt, SIGNAL(released()), this, SLOT(bDecrypt()));
     }
 
     void run() const override {

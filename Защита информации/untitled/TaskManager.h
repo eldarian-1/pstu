@@ -49,7 +49,7 @@ public:
     TaskManager *add(Task *task) {
         QPushButton *btnTemp = new QPushButton(task->title());
         QWidget *wgtTemp = new QWidget(_wgt);
-        wgtTemp->setGeometry(0,0, 220, 270);
+        wgtTemp->setGeometry(0,0, 450, 320);
         wgtTemp->setHidden(!_tasks->empty());
         task->initWidget(wgtTemp);
         _tasks->push_back(task);

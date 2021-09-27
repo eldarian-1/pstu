@@ -11,22 +11,36 @@
 class RsaClient {
 private:
     BigInt e, n;
+    int k;
 
-    BigInt crypt(const BigInt& c) {
-        return BigInt::pow(c, e) % n;
-    }
-
-    ushort crypt(ushort c) {
-        return std::stoi(BigInt::to_string(crypt(BigInt((int)c))));
+    QString crypt(const BigInt &c) {
+        BigInt r = BigInt::pow(c, e) % n;
+        BigInt nul(0);
+        BigInt multiplier(65536);
+        QString result;
+        for(int i = 0; i < k && r != nul; ++i) {
+            result = QChar(stoi(BigInt::to_string(r % multiplier))) + result;
+            r /= multiplier;
+        }
+        return result;
     }
 
 public:
-    RsaClient(const BigInt& e, const BigInt& n) : e(e), n(n) { }
+    RsaClient(const BigInt& e, const BigInt& n) : e(e), n(n) {
+        k = BigInt::log2(n);
+        k > 16 ? k /= 16 : k = 1;
+    }
 
     QString crypt(const QString &in) {
         QString result;
-        for(QChar c : in) {
-            result.append(QChar(crypt(c.unicode())));
+        BigInt multiplier(65536);
+        for (int i = 0; i < in.size(); i += k) {
+            BigInt symbol(0);
+            for (int j = i; j < in.size() && j < i + k; ++j) {
+                symbol *= multiplier;
+                symbol += BigInt((int)in[j].unicode());
+            }
+            result.append(crypt(symbol));
         }
         return result;
     }
@@ -42,24 +56,15 @@ public:
 
 class RSA {
 private:
-    static int gcd(int a, int b) {
-        if(a == 0 || b == 0) {
-            return a + b;
-        } else if(a > b) {
-            return gcd(a % b, b);
-        } else {
-            return gcd(a, b % a);
-        }
-    }
-
     BigInt e, n, d;
 
 public:
     RSA(const BigInt& p, const BigInt& q) {
         n = p * q;
         e = -1;
+        BigInt one(1);
         BigInt phi = (p - 1) * (q - 1);
-        for(BigInt i = n; i > 1; --i) {
+        for(BigInt i = n - 1; i > 1; --i) {
             if(i == phi) {
                 continue;
             }
@@ -71,10 +76,10 @@ public:
         }
         if(e == -1) throw -1;
         for(int i = 1; ; ++i) {
-            int top = (i * std::stoi(BigInt::to_string(phi)) + 1);
-            int bottom = std::stoi(BigInt::to_string(e));
-            if((double)bottom / gcd(top, bottom) == 1.0) {
-                d = BigInt(top / bottom);
+            BigInt top = i * phi + 1;
+            std::cout << top << " " << e << "\n";
+            if(top > e && e / BigInt::gcd(top, e) == one) {
+                d = BigInt(top / e);
                 break;
             }
         }
@@ -148,7 +153,7 @@ public slots:
         RSA rsa(p, q);
         alice = rsa.alice();
         bob = rsa.bob();
-        lblPrivate->setText(("Закрытый: d - " + BigInt::to_string(alice->E()) + ", n - "  + BigInt::to_string(alice->E())).c_str());
+        lblPrivate->setText(("Закрытый: d - " + BigInt::to_string(alice->E()) + ", n - "  + BigInt::to_string(alice->N())).c_str());
         lblPublic->setText(("Открытый: e - " + BigInt::to_string(bob->E()) + ", n - " + BigInt::to_string(bob->N())).c_str());
         txtE->setText(BigInt::to_string(bob->E()).c_str());
         txtN->setText(BigInt::to_string(bob->N()).c_str());

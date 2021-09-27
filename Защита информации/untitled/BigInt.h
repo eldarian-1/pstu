@@ -19,6 +19,7 @@ public:
     static char sign(const BigInt& number);
     static BigInt max(BigInt number_first, BigInt number_second);
     static BigInt min(BigInt number_first, BigInt number_second);
+    static int log2(BigInt number);
     friend bool operator ==(BigInt number_first, BigInt number_second);
     friend bool operator !=(BigInt number_first, BigInt number_second);
     friend bool operator >(BigInt number_first, BigInt number_second);

@@ -179,6 +179,16 @@ BigInt BigInt::min(BigInt number_first, BigInt number_second) {
     }
     return number_second;
 }
+int BigInt::log2(BigInt number) {
+    int k = 0;
+    BigInt nul(0);
+    BigInt two(2);
+    while (number != nul) {
+        number /= two;
+        ++k;
+    }
+    return k;
+}
 bool operator ==(BigInt number_first, BigInt number_second) {
     if (number_first._natural != number_second._natural) {
         return false;

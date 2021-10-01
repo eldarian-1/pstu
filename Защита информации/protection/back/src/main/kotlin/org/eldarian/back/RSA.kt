@@ -48,7 +48,7 @@ fun generate(bits: Int): RsaResponse {
         gcd = e.gcd(phi)
     } while (gcd != BigInteger.ONE)
 
-    var d: BigInteger
+    val d: BigInteger
 
     var i = BigInteger.ONE
     while(true) {

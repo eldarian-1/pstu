@@ -66,36 +66,28 @@ void RsaTask::getRsa() {
     loader->download(txtCapacity->text());
 }
 
+void RsaTask::crypt(bool isAlice, bool isCrypt) {
+    this->isAlice = isAlice;
+    this->isCrypt = isCrypt;
+    const QString &in = (isAlice ? (isCrypt ? txtAIn : txtAOut) : (isCrypt ? txtBIn : txtBOut))->text();
+    const QString &out = (isAlice ? alice : bob)->crypt(in);
+    (isAlice ? (isCrypt ? txtBOut : txtAIn) : (isCrypt ? txtAOut : txtBIn))->setText(out);
+}
+
 void RsaTask::aCrypt() {
-    const QString &in = txtAIn->text();
-    const QString &out = alice->crypt(in);
-    std::cout << BigInt::to_string(alice->E()) << std::endl;
-    std::cout << BigInt::to_string(alice->N()) << std::endl;
-    txtBOut->setText(out);
+    crypt(true, true);
 }
 
 void RsaTask::aDecrypt() {
-    const QString &in = txtAOut->text();
-    const QString &out = alice->crypt(in);
-    std::cout << BigInt::to_string(alice->E()) << std::endl;
-    std::cout << BigInt::to_string(alice->N()) << std::endl;
-    txtAIn->setText(out);
+    crypt(true, false);
 }
 
 void RsaTask::bCrypt() {
-    const QString &in = txtBIn->text();
-    const QString &out = bob->crypt(in);
-    std::cout << BigInt::to_string(bob->E()) << std::endl;
-    std::cout << BigInt::to_string(bob->N()) << std::endl;
-    txtAOut->setText(out);
+    crypt(false, true);
 }
 
 void RsaTask::bDecrypt() {
-    const QString &in = txtBOut->text();
-    const QString &out = bob->crypt(in);
-    std::cout << BigInt::to_string(bob->E()) << std::endl;
-    std::cout << BigInt::to_string(bob->N()) << std::endl;
-    txtBIn->setText(out);
+    crypt(false, false);
 }
 
 void RsaTask::setRsa(const BigInt &p, const BigInt &q, const BigInt &e, const BigInt &n, const BigInt &d) {

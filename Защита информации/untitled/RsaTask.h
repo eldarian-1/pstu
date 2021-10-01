@@ -53,6 +53,8 @@ private slots:
 class RsaTask: public QObject, public Task {
 Q_OBJECT
 private:
+    bool isAlice, isCrypt;
+
     QHBoxLayout *lytMain;
     QVBoxLayout *lytAlice;
     QHBoxLayout *lytCapacity;
@@ -94,6 +96,7 @@ private:
 
 public slots:
     void getRsa();
+    void crypt(bool isAlice, bool isCrypt);
     void aCrypt();
     void aDecrypt();
     void bCrypt();

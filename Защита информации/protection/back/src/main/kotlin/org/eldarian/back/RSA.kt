@@ -60,7 +60,5 @@ fun generate(bits: Int): RsaResponse {
         ++i
     }
 
-    //val d = BigInteger.ONE.add(phi).divide(e)
-
     return RsaResponse(p, q, n, e, d)
 }

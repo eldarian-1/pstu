@@ -77,7 +77,12 @@
 		"/home/eldarian/Qt/5.15.2/gcc_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake",
 		"/home/eldarian/Qt/5.15.2/gcc_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake",
 		"/home/eldarian/Qt/5.15.2/gcc_64/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake",
-		"/opt/clion/bin/cmake/linux/share/cmake-3.20/Modules/CMakeParseArguments.cmake"
+		"/opt/clion/bin/cmake/linux/share/cmake-3.20/Modules/CMakeParseArguments.cmake",
+		"/home/eldarian/Qt/5.15.2/gcc_64/lib/cmake/Qt5Network/Qt5NetworkConfigVersion.cmake",
+		"/home/eldarian/Qt/5.15.2/gcc_64/lib/cmake/Qt5Network/Qt5NetworkConfig.cmake",
+		"/home/eldarian/Qt/5.15.2/gcc_64/lib/cmake/Qt5Network/Qt5Network_QConnmanEnginePlugin.cmake",
+		"/home/eldarian/Qt/5.15.2/gcc_64/lib/cmake/Qt5Network/Qt5Network_QGenericEnginePlugin.cmake",
+		"/home/eldarian/Qt/5.15.2/gcc_64/lib/cmake/Qt5Network/Qt5Network_QNetworkManagerEnginePlugin.cmake"
 	],
 	"CMAKE_SOURCE_DIR" : "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled",
 	"DEP_FILE" : "",
@@ -133,9 +138,9 @@
 			null
 		],
 		[
-			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RSATask.h",
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RsaTask.h",
 			"MU",
-			"EWIEGA46WW/moc_RSATask.cpp",
+			"EWIEGA46WW/moc_RsaTask.cpp",
 			null
 		],
 		[
@@ -160,7 +165,7 @@
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/include",
 	"MOC_COMPILATION_FILE" : "/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp",
-	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_WIDGETS_LIB" ],
+	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NETWORK_LIB", "QT_WIDGETS_LIB" ],
 	"MOC_DEPEND_FILTERS" : 
 	[
 		[
@@ -175,6 +180,7 @@
 		"/home/eldarian/Qt/5.15.2/gcc_64/mkspecs/linux-g++",
 		"/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui",
 		"/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets",
+		"/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork",
 		"/usr/include",
 		"/usr/include/c++/9",
 		"/usr/include/x86_64-linux-gnu/c++/9",
@@ -214,6 +220,11 @@
 		],
 		[
 			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RsaTask.cpp",
 			"MU",
 			null
 		],

@@ -10,8 +10,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui Widgets Network REQUIRED)
 
-add_executable(untitled main.cpp Window.h TaskManager.h Task.h RSATask.h GronsfeldTask.h GronsfeldTask.cpp ElgamalTask.h DESTask.h CicleTask.h HuffmanTask.h HashTask.h GammaTask.h BigInt.cpp BigInt.h)
+add_executable(untitled main.cpp Window.h TaskManager.h Task.h RsaTask.h GronsfeldTask.h GronsfeldTask.cpp ElgamalTask.h DESTask.h CicleTask.h HuffmanTask.h HashTask.h GammaTask.h BigInt.cpp BigInt.h RsaTask.cpp)
 
-target_link_libraries(untitled PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(untitled PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network)

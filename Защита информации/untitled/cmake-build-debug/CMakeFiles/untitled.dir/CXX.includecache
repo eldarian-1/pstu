@@ -6,9 +6,49 @@
 
 #IncludeRegexTransform: 
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QFlags
+qflags.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qflags.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QIODevice
+qiodevice.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qiodevice.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QJsonDocument
+qjsondocument.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qjsondocument.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QJsonObject
+qjsonobject.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qjsonobject.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QMetaType
+qmetatype.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qmetatype.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QObject
 qobject.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qobject.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QSharedDataPointer
+qshareddata.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qshareddata.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QString
+qstring.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qstring.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QUrl
+qurl.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qurl.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QVariant
+qvariant.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qvariant.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QVector
+qvector.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qvector.h
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h
 QtCore/qglobal.h
@@ -76,6 +116,38 @@ QtCore/qlist.h
 QtCore/qbytearray.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcborcommon.h
+QtCore/qobjectdefs.h
+-
+QtCore/qmetatype.h
+-
+QtCore/qdebug.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcborvalue.h
+QtCore/qbytearray.h
+-
+QtCore/qdatetime.h
+-
+QtCore/qcborcommon.h
+-
+QtCore/qregularexpression.h
+-
+QtCore/qstring.h
+-
+QtCore/qstringview.h
+-
+QtCore/qurl.h
+-
+QtCore/quuid.h
+-
+QtCore/qvariant.h
+-
+QtCore/qvector.h
+-
+compare
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qchar.h
 QtCore/qglobal.h
 -
@@ -130,12 +202,28 @@ QtCore/qbytearray.h
 QtCore/qobjectdefs.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcryptographichash.h
+QtCore/qbytearray.h
+-
+QtCore/qobjectdefs.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qdatastream.h
 QtCore/qscopedpointer.h
 -
 QtCore/qiodevice.h
 -
 QtCore/qpair.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qdatetime.h
+QtCore/qstring.h
+-
+QtCore/qnamespace.h
+-
+QtCore/qshareddata.h
+-
+limits
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qdebug.h
@@ -294,6 +382,36 @@ QtCore/qstring.h
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qiterator.h
 QtCore/qglobal.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qjsondocument.h
+QtCore/qjsonvalue.h
+-
+QtCore/qscopedpointer.h
+-
+memory
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qjsonobject.h
+QtCore/qjsonvalue.h
+-
+QtCore/qiterator.h
+-
+QtCore/qpair.h
+-
+QtCore/qshareddata.h
+-
+initializer_list
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qjsonvalue.h
+QtCore/qglobal.h
+-
+QtCore/qstring.h
+-
+QtCore/qshareddata.h
+-
+QtCore/qcborvalue.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qline.h
@@ -474,6 +592,18 @@ QtCore/qatomic.h
 QtCore/qglobal.h
 -
 QtCore/qstring.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qregularexpression.h
+QtCore/qglobal.h
+-
+QtCore/qstring.h
+-
+QtCore/qstringview.h
+-
+QtCore/qshareddata.h
+-
+QtCore/qvariant.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qscopedpointer.h
@@ -666,6 +796,10 @@ QtCore/qurl.h
 QtCore/qstringlist.h
 -
 initializer_list
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/quuid.h
+QtCore/qstring.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qvariant.h
@@ -1104,6 +1238,164 @@ QtGui/qwindowdefs_win.h
 QtGui/qtguiglobal.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/QNetworkAccessManager
+qnetworkaccessmanager.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qnetworkaccessmanager.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/QNetworkReply
+qnetworkreply.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qnetworkreply.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/QNetworkRequest
+qnetworkrequest.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qnetworkrequest.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/QSslConfiguration
+qsslconfiguration.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qsslconfiguration.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/QSslPreSharedKeyAuthenticator
+qsslpresharedkeyauthenticator.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qsslpresharedkeyauthenticator.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qabstractsocket.h
+QtNetwork/qtnetworkglobal.h
+-
+QtCore/qiodevice.h
+-
+QtCore/qobject.h
+-
+QtCore/qdebug.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qnetworkaccessmanager.h
+QtNetwork/qtnetworkglobal.h
+-
+QtNetwork/qnetworkrequest.h
+-
+QtCore/QString
+-
+QtCore/QVector
+-
+QtCore/QObject
+-
+QtNetwork/QSslConfiguration
+-
+QtNetwork/QSslPreSharedKeyAuthenticator
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qnetworkreply.h
+QtNetwork/qtnetworkglobal.h
+-
+QtCore/QIODevice
+-
+QtCore/QString
+-
+QtCore/QVariant
+-
+QtNetwork/QNetworkRequest
+-
+QtNetwork/QNetworkAccessManager
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qnetworkrequest.h
+QtNetwork/qtnetworkglobal.h
+-
+QtCore/QSharedDataPointer
+-
+QtCore/QString
+-
+QtCore/QUrl
+-
+QtCore/QVariant
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qssl.h
+QtNetwork/qtnetworkglobal.h
+-
+QtCore/QFlags
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qsslcertificate.h
+QtNetwork/qtnetworkglobal.h
+-
+QtCore/qnamespace.h
+-
+QtCore/qbytearray.h
+-
+QtCore/qcryptographichash.h
+-
+QtCore/qdatetime.h
+-
+QtCore/qregexp.h
+-
+QtCore/qsharedpointer.h
+-
+QtCore/qmap.h
+-
+QtNetwork/qssl.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qsslconfiguration.h
+QtNetwork/qtnetworkglobal.h
+-
+QtCore/qmap.h
+-
+QtCore/qshareddata.h
+-
+QtNetwork/qsslsocket.h
+-
+QtNetwork/qssl.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qsslerror.h
+QtNetwork/qtnetworkglobal.h
+-
+QtCore/qvariant.h
+-
+QtNetwork/qsslcertificate.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qsslpresharedkeyauthenticator.h
+QtNetwork/qtnetworkglobal.h
+-
+QtCore/QString
+-
+QtCore/QSharedDataPointer
+-
+QtCore/QMetaType
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qsslsocket.h
+QtNetwork/qtnetworkglobal.h
+-
+QtCore/qlist.h
+-
+QtCore/qregexp.h
+-
+QtCore/qvector.h
+-
+QtNetwork/qtcpsocket.h
+-
+QtNetwork/qsslerror.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qtcpsocket.h
+QtNetwork/qtnetworkglobal.h
+-
+QtNetwork/qabstractsocket.h
+-
+QtCore/qvariant.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qtnetwork-config.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtNetwork/qtnetworkglobal.h
+QtCore/qglobal.h
+-
+QtNetwork/qtnetwork-config.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QApplication
 qapplication.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
@@ -1386,12 +1678,30 @@ QLabel
 Task.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
 
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RSATask.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RsaTask.cpp
+RsaTask.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RsaTask.h
+
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RsaTask.h
 QWidget
 -
 QLabel
 -
 utility
+-
+QNetworkAccessManager
+-
+QNetworkReply
+-
+QJsonObject
+-
+QJsonDocument
+-
+QHBoxLayout
+-
+QLineEdit
+-
+QPushButton
 -
 Task.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/Task.h
@@ -1427,8 +1737,8 @@ TaskManager.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/TaskManager.h
 GronsfeldTask.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/GronsfeldTask.h
-RSATask.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RSATask.h
+RsaTask.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RsaTask.h
 ElgamalTask.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/ElgamalTask.h
 DESTask.h
@@ -1452,11 +1762,11 @@ QtCore/qbytearray.h
 QtCore/qmetatype.h
 -
 
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_RSATask.cpp
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_RsaTask.cpp
 memory
 -
-../../../RSATask.h
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RSATask.h
+../../../RsaTask.h
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/RsaTask.h
 QtCore/qbytearray.h
 -
 QtCore/qmetatype.h
@@ -1475,8 +1785,8 @@ QtCore/qmetatype.h
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/mocs_compilation.cpp
 EWIEGA46WW/moc_GronsfeldTask.cpp
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_GronsfeldTask.cpp
-EWIEGA46WW/moc_RSATask.cpp
-/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_RSATask.cpp
+EWIEGA46WW/moc_RsaTask.cpp
+/home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_RsaTask.cpp
 EWIEGA46WW/moc_TaskManager.cpp
 /home/eldarian/Рабочий стол/pstu/Защита информации/untitled/cmake-build-debug/untitled_autogen/EWIEGA46WW/moc_TaskManager.cpp
 

@@ -7,7 +7,7 @@
 
 #include "TaskManager.h"
 #include "GronsfeldTask.h"
-#include "RSATask.h"
+#include "RsaTask.h"
 #include "ElgamalTask.h"
 #include "DESTask.h"
 #include "CicleTask.h"
@@ -42,7 +42,7 @@ public:
 
         tm = (new TaskManager(vLytMenu, wgtRight))
                 ->add(new GronsfeldTask())
-                ->add(new RSATask())
+                ->add(new RsaTask())
                 ->add(new ElgamalTask())
                 ->add(new DESTask())
                 ->add(new CicleTask())

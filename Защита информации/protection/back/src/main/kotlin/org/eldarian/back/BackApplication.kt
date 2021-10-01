@@ -22,7 +22,7 @@ class LController {
     }
 
     @GetMapping("/rsa")
-    fun rsa(@RequestParam(value = "bits", defaultValue = "16") bits: Int): RsaResponse {
+    fun rsa(@RequestParam(value = "cap", defaultValue = "16") bits: Int): RsaResponse {
         return generate(bits)
     }
 }

@@ -24,6 +24,9 @@ private:
 public:
     RsaClient(const BigInt& e, const BigInt& n);
     QString crypt(const QString &in);
+
+    const BigInt &E() { return e; }
+    const BigInt &N() { return n; }
 };
 
 class RsaTask;
@@ -37,7 +40,7 @@ private:
 
 public:
     explicit RsaLoader(RsaTask* task);
-    void download();
+    void download(QString capacity);
 
 private:
     void done(const QUrl& url, const QByteArray& array);
@@ -52,6 +55,7 @@ Q_OBJECT
 private:
     QHBoxLayout *lytMain;
     QVBoxLayout *lytAlice;
+    QHBoxLayout *lytCapacity;
     QVBoxLayout *lytBob;
     QHBoxLayout *lytABtns;
     QHBoxLayout *lytEN;
@@ -59,6 +63,7 @@ private:
 
     QLabel *lblAlice;
     QLabel *lblBob;
+    QLabel *lblCapacity;
     QLabel *lblE;
     QLabel *lblN;
     QLabel *lblInput;
@@ -69,6 +74,7 @@ private:
     QLabel *lblBIn;
     QLabel *lblBOut;
 
+    QLineEdit *txtCapacity;
     QLineEdit *txtE;
     QLineEdit *txtN;
     QLineEdit *txtAIn;

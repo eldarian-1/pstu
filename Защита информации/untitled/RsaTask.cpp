@@ -37,8 +37,8 @@ RsaLoader::RsaLoader(RsaTask* task) {
     connect(manager, SIGNAL(finished(QNetworkReply*)), SLOT(slotFinished(QNetworkReply*)));
 }
 
-void RsaLoader::download() {
-    manager->get(QNetworkRequest(QUrl("http://localhost:8080/rsa")));
+void RsaLoader::download(QString capacity) {
+    manager->get(QNetworkRequest(QUrl("http://localhost:8080/rsa?cap=" + capacity)));
 }
 
 void RsaLoader::done(const QUrl& url, const QByteArray& array) {
@@ -58,35 +58,43 @@ void RsaLoader::slotFinished(QNetworkReply* reply) {
     reply->deleteLater();
 }
 
-RsaTask::RsaTask(): Task("Алгоритм RsaLoader") {
+RsaTask::RsaTask(): Task("Алгоритм RSA") {
     loader = new RsaLoader(this);
 }
 
 void RsaTask::getRsa() {
-    loader->download();
+    loader->download(txtCapacity->text());
 }
 
 void RsaTask::aCrypt() {
     const QString &in = txtAIn->text();
     const QString &out = alice->crypt(in);
+    std::cout << BigInt::to_string(alice->E()) << std::endl;
+    std::cout << BigInt::to_string(alice->N()) << std::endl;
     txtBOut->setText(out);
 }
 
 void RsaTask::aDecrypt() {
     const QString &in = txtAOut->text();
     const QString &out = alice->crypt(in);
+    std::cout << BigInt::to_string(alice->E()) << std::endl;
+    std::cout << BigInt::to_string(alice->N()) << std::endl;
     txtAIn->setText(out);
 }
 
 void RsaTask::bCrypt() {
     const QString &in = txtBIn->text();
     const QString &out = bob->crypt(in);
+    std::cout << BigInt::to_string(bob->E()) << std::endl;
+    std::cout << BigInt::to_string(bob->N()) << std::endl;
     txtAOut->setText(out);
 }
 
 void RsaTask::bDecrypt() {
     const QString &in = txtBOut->text();
     const QString &out = bob->crypt(in);
+    std::cout << BigInt::to_string(bob->E()) << std::endl;
+    std::cout << BigInt::to_string(bob->N()) << std::endl;
     txtBIn->setText(out);
 }
 
@@ -110,6 +118,7 @@ void RsaTask::initWidget(QWidget *wgt) {
     lytMain = new QHBoxLayout();
     lytAlice = new QVBoxLayout();
     lytBob = new QVBoxLayout();
+    lytCapacity = new QHBoxLayout();
     lytABtns = new QHBoxLayout();
     lytEN = new QHBoxLayout();
     lytBBtns = new QHBoxLayout();
@@ -119,6 +128,7 @@ void RsaTask::initWidget(QWidget *wgt) {
 
     lblAlice = new QLabel("Alice");
     lblBob = new QLabel("Bob");
+    lblCapacity = new QLabel("Разрядность");
     lblE = new QLabel("e");
     lblN = new QLabel("n");
     lblInput = new QLabel("Вход: p - ..., q - ...");
@@ -129,6 +139,7 @@ void RsaTask::initWidget(QWidget *wgt) {
     lblBIn = new QLabel("Открытый текст");
     lblBOut = new QLabel("Шифротекст");
 
+    txtCapacity = new QLineEdit("16");
     txtE = new QLineEdit();
     txtN = new QLineEdit();
     txtAIn = new QLineEdit();
@@ -145,6 +156,9 @@ void RsaTask::initWidget(QWidget *wgt) {
     wgt->setLayout(lytMain);
     lytMain->addLayout(lytAlice);
     lytAlice->addWidget(lblAlice);
+    lytAlice->addLayout(lytCapacity);
+    lytCapacity->addWidget(lblCapacity);
+    lytCapacity->addWidget(txtCapacity);
     lytAlice->addWidget(lblInput);
     lytAlice->addWidget(lblPrivate);
     lytAlice->addWidget(lblPublic);

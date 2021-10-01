@@ -41,14 +41,26 @@ fun generate(bits: Int): RsaResponse {
     } while (p == q)
 
     val n: BigInteger = p.multiply(q)
-    val m: BigInteger = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE))
+    val phi: BigInteger = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE))
 
     do {
         e = BigInteger.probablePrime(bits, rnd)
-        gcd = e.gcd(m)
+        gcd = e.gcd(phi)
     } while (gcd != BigInteger.ONE)
 
-    val d = BigInteger.ONE.add(m).divide(e)
+    var d: BigInteger
+
+    var i = BigInteger.ONE
+    while(true) {
+        val top = i.multiply(phi).add(BigInteger.ONE)
+        if(top > e && e / top.gcd(e) == BigInteger.ONE) {
+            d = top.divide(e)
+            break
+        }
+        ++i
+    }
+
+    //val d = BigInteger.ONE.add(phi).divide(e)
 
     return RsaResponse(p, q, n, e, d)
 }

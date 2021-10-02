@@ -38,9 +38,10 @@ public:
         vLytMenu->setSpacing(10);
         vLytMenu->setAlignment(Qt::Alignment::enum_type::AlignTop);
         hLyt->addLayout(vLytMenu, 1);
-        hLyt->addWidget(wgtRight, 6);
+        hLyt->addWidget(wgtRight, 5);
 
         tm = (new TaskManager(vLytMenu, wgtRight))
+                ->add("Защита информации")
                 ->add(new GronsfeldTask())
                 ->add(new RsaTask())
                 ->add(new ElgamalTask())
@@ -51,7 +52,7 @@ public:
                 ->add(new GammaTask())
                 ->start();
 
-        resize(700, 320);
+        resize(1000, 500);
     }
 
     ~Window() {

@@ -139,7 +139,7 @@ void RsaTask::initWidget(QWidget *wgt) {
     txtBIn = new QLineEdit();
     txtBOut = new QLineEdit();
 
-    btnLoad = new QPushButton("Загрузить");
+    btnLoad = new QPushButton("Сгенерировать");
     btnACrypt = new QPushButton("Отправить");
     btnADecrypt = new QPushButton("Расшифровать");
     btnBCrypt = new QPushButton("Отправить");
@@ -151,10 +151,10 @@ void RsaTask::initWidget(QWidget *wgt) {
     lytAlice->addLayout(lytCapacity);
     lytCapacity->addWidget(lblCapacity);
     lytCapacity->addWidget(txtCapacity);
+    lytCapacity->addWidget(btnLoad);
     lytAlice->addWidget(lblInput);
     lytAlice->addWidget(lblPrivate);
     lytAlice->addWidget(lblPublic);
-    lytAlice->addWidget(btnLoad);
     lytAlice->addWidget(lblAIn);
     lytAlice->addWidget(txtAIn);
     lytAlice->addWidget(lblAOut);

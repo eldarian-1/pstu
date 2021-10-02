@@ -79,12 +79,15 @@
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtransform.h \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs.h \
+  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
+  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
+  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
   /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \

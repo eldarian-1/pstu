@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QWidget>
 #include <QVBoxLayout>
+#include <QLabel>
 
 #include "Task.h"
 
@@ -49,7 +50,7 @@ public:
     TaskManager *add(Task *task) {
         QPushButton *btnTemp = new QPushButton(task->title());
         QWidget *wgtTemp = new QWidget(_wgt);
-        wgtTemp->setGeometry(0,0, 450, 320);
+        wgtTemp->setGeometry(0,0, 750, 500);
         wgtTemp->setHidden(!_tasks->empty());
         task->initWidget(wgtTemp);
         _tasks->push_back(task);
@@ -57,6 +58,13 @@ public:
         _widgets->push_back(wgtTemp);
         _menu->addWidget(btnTemp);
         connect(btnTemp, SIGNAL(released()), this, SLOT(onclick()));
+        return this;
+    }
+
+    TaskManager *add(const char *title) {
+        QLabel *lbl = new QLabel(title);
+        lbl->setAlignment(Qt::Alignment::enum_type::AlignCenter);
+        _menu->addWidget(lbl);
         return this;
     }
 

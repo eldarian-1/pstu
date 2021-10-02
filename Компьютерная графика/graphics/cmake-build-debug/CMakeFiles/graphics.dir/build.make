@@ -92,22 +92,82 @@ CMakeFiles/graphics.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/main.cpp" -o CMakeFiles/graphics.dir/main.cpp.s
 
+CMakeFiles/graphics.dir/Canvas.cpp.o: CMakeFiles/graphics.dir/flags.make
+CMakeFiles/graphics.dir/Canvas.cpp.o: ../Canvas.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/graphics.dir/Canvas.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics.dir/Canvas.cpp.o -c "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.cpp"
+
+CMakeFiles/graphics.dir/Canvas.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics.dir/Canvas.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.cpp" > CMakeFiles/graphics.dir/Canvas.cpp.i
+
+CMakeFiles/graphics.dir/Canvas.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics.dir/Canvas.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.cpp" -o CMakeFiles/graphics.dir/Canvas.cpp.s
+
+CMakeFiles/graphics.dir/common.cpp.o: CMakeFiles/graphics.dir/flags.make
+CMakeFiles/graphics.dir/common.cpp.o: ../common.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/graphics.dir/common.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics.dir/common.cpp.o -c "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/common.cpp"
+
+CMakeFiles/graphics.dir/common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics.dir/common.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/common.cpp" > CMakeFiles/graphics.dir/common.cpp.i
+
+CMakeFiles/graphics.dir/common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics.dir/common.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/common.cpp" -o CMakeFiles/graphics.dir/common.cpp.s
+
+CMakeFiles/graphics.dir/Line.cpp.o: CMakeFiles/graphics.dir/flags.make
+CMakeFiles/graphics.dir/Line.cpp.o: ../Line.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/graphics.dir/Line.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics.dir/Line.cpp.o -c "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.cpp"
+
+CMakeFiles/graphics.dir/Line.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics.dir/Line.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.cpp" > CMakeFiles/graphics.dir/Line.cpp.i
+
+CMakeFiles/graphics.dir/Line.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics.dir/Line.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.cpp" -o CMakeFiles/graphics.dir/Line.cpp.s
+
+CMakeFiles/graphics.dir/WidthDialog.cpp.o: CMakeFiles/graphics.dir/flags.make
+CMakeFiles/graphics.dir/WidthDialog.cpp.o: ../WidthDialog.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/graphics.dir/WidthDialog.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/graphics.dir/WidthDialog.cpp.o -c "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.cpp"
+
+CMakeFiles/graphics.dir/WidthDialog.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/graphics.dir/WidthDialog.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.cpp" > CMakeFiles/graphics.dir/WidthDialog.cpp.i
+
+CMakeFiles/graphics.dir/WidthDialog.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/graphics.dir/WidthDialog.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.cpp" -o CMakeFiles/graphics.dir/WidthDialog.cpp.s
+
 # Object files for target graphics
 graphics_OBJECTS = \
 "CMakeFiles/graphics.dir/graphics_autogen/mocs_compilation.cpp.o" \
-"CMakeFiles/graphics.dir/main.cpp.o"
+"CMakeFiles/graphics.dir/main.cpp.o" \
+"CMakeFiles/graphics.dir/Canvas.cpp.o" \
+"CMakeFiles/graphics.dir/common.cpp.o" \
+"CMakeFiles/graphics.dir/Line.cpp.o" \
+"CMakeFiles/graphics.dir/WidthDialog.cpp.o"
 
 # External object files for target graphics
 graphics_EXTERNAL_OBJECTS =
 
 graphics: CMakeFiles/graphics.dir/graphics_autogen/mocs_compilation.cpp.o
 graphics: CMakeFiles/graphics.dir/main.cpp.o
+graphics: CMakeFiles/graphics.dir/Canvas.cpp.o
+graphics: CMakeFiles/graphics.dir/common.cpp.o
+graphics: CMakeFiles/graphics.dir/Line.cpp.o
+graphics: CMakeFiles/graphics.dir/WidthDialog.cpp.o
 graphics: CMakeFiles/graphics.dir/build.make
 graphics: /home/eldarian/Qt/5.15.2/gcc_64/lib/libQt5Widgets.so.5.15.2
 graphics: /home/eldarian/Qt/5.15.2/gcc_64/lib/libQt5Gui.so.5.15.2
 graphics: /home/eldarian/Qt/5.15.2/gcc_64/lib/libQt5Core.so.5.15.2
 graphics: CMakeFiles/graphics.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable graphics"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable graphics"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/graphics.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -142,6 +142,102 @@ graphics_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics_autogen.dir/build.make CMakeFiles/graphics_autogen.dir/build
 .PHONY : graphics_autogen/fast
 
+Canvas.o: Canvas.cpp.o
+.PHONY : Canvas.o
+
+# target to build an object file
+Canvas.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/Canvas.cpp.o
+.PHONY : Canvas.cpp.o
+
+Canvas.i: Canvas.cpp.i
+.PHONY : Canvas.i
+
+# target to preprocess a source file
+Canvas.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/Canvas.cpp.i
+.PHONY : Canvas.cpp.i
+
+Canvas.s: Canvas.cpp.s
+.PHONY : Canvas.s
+
+# target to generate assembly for a file
+Canvas.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/Canvas.cpp.s
+.PHONY : Canvas.cpp.s
+
+Line.o: Line.cpp.o
+.PHONY : Line.o
+
+# target to build an object file
+Line.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/Line.cpp.o
+.PHONY : Line.cpp.o
+
+Line.i: Line.cpp.i
+.PHONY : Line.i
+
+# target to preprocess a source file
+Line.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/Line.cpp.i
+.PHONY : Line.cpp.i
+
+Line.s: Line.cpp.s
+.PHONY : Line.s
+
+# target to generate assembly for a file
+Line.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/Line.cpp.s
+.PHONY : Line.cpp.s
+
+WidthDialog.o: WidthDialog.cpp.o
+.PHONY : WidthDialog.o
+
+# target to build an object file
+WidthDialog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/WidthDialog.cpp.o
+.PHONY : WidthDialog.cpp.o
+
+WidthDialog.i: WidthDialog.cpp.i
+.PHONY : WidthDialog.i
+
+# target to preprocess a source file
+WidthDialog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/WidthDialog.cpp.i
+.PHONY : WidthDialog.cpp.i
+
+WidthDialog.s: WidthDialog.cpp.s
+.PHONY : WidthDialog.s
+
+# target to generate assembly for a file
+WidthDialog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/WidthDialog.cpp.s
+.PHONY : WidthDialog.cpp.s
+
+common.o: common.cpp.o
+.PHONY : common.o
+
+# target to build an object file
+common.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/common.cpp.o
+.PHONY : common.cpp.o
+
+common.i: common.cpp.i
+.PHONY : common.i
+
+# target to preprocess a source file
+common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/common.cpp.i
+.PHONY : common.cpp.i
+
+common.s: common.cpp.s
+.PHONY : common.s
+
+# target to generate assembly for a file
+common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/common.cpp.s
+.PHONY : common.cpp.s
+
 graphics_autogen/mocs_compilation.o: graphics_autogen/mocs_compilation.cpp.o
 .PHONY : graphics_autogen/mocs_compilation.o
 
@@ -200,6 +296,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... graphics_autogen"
 	@echo "... graphics"
+	@echo "... Canvas.o"
+	@echo "... Canvas.i"
+	@echo "... Canvas.s"
+	@echo "... Line.o"
+	@echo "... Line.i"
+	@echo "... Line.s"
+	@echo "... WidthDialog.o"
+	@echo "... WidthDialog.i"
+	@echo "... WidthDialog.s"
+	@echo "... common.o"
+	@echo "... common.i"
+	@echo "... common.s"
 	@echo "... graphics_autogen/mocs_compilation.o"
 	@echo "... graphics_autogen/mocs_compilation.i"
 	@echo "... graphics_autogen/mocs_compilation.s"

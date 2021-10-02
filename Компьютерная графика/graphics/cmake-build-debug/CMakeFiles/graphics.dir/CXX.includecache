@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QPoint
+qpoint.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qpoint.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h
 QtCore/qglobal.h
 -
@@ -104,20 +108,6 @@ limits.h
 new
 -
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h
-QtCore/qglobal.h
--
-QtCore/qstring.h
--
-QtCore/qobject.h
--
-QtCore/qcoreevent.h
--
-QtCore/qeventloop.h
--
-QtCore/qscopedpointer.h
--
-
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcoreevent.h
 QtCore/qnamespace.h
 -
@@ -164,10 +154,6 @@ list
 map
 -
 utility
--
-
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h
-QtCore/qobject.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qfile.h
@@ -744,6 +730,18 @@ QtCore/qpoint.h
 QtCore/qglobal.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/QColor
+qcolor.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qcolor.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/QPaintEvent
+qevent.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qevent.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/QPainter
+qpainter.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpainter.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qbrush.h
 QtGui/qtguiglobal.h
 -
@@ -846,20 +844,14 @@ QtCore/qsharedpointer.h
 QtCore/qrect.h
 -
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qicon.h
 QtGui/qtguiglobal.h
 -
-QtCore/qcoreapplication.h
--
-QtGui/qwindowdefs.h
--
-QtGui/qinputmethod.h
--
-QtCore/qlocale.h
--
-QtCore/qpoint.h
--
 QtCore/qsize.h
+-
+QtCore/qlist.h
+-
+QtGui/qpixmap.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qimage.h
@@ -882,12 +874,6 @@ QtCore/qrect.h
 QtCore/qstring.h
 -
 QtCore/qstringlist.h
--
-
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h
-QtGui/qtguiglobal.h
--
-QtCore/qobject.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qkeysequence.h
@@ -922,10 +908,50 @@ QtGui/qwindowdefs.h
 QtCore/qrect.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpainter.h
+QtGui/qtguiglobal.h
+-
+QtCore/qnamespace.h
+-
+QtCore/qrect.h
+-
+QtCore/qpoint.h
+-
+QtCore/qscopedpointer.h
+-
+QtGui/qpixmap.h
+-
+QtGui/qimage.h
+-
+QtGui/qtextoption.h
+-
+QtGui/qpolygon.h
+-
+QtGui/qpen.h
+-
+QtGui/qbrush.h
+-
+QtGui/qmatrix.h
+-
+QtGui/qtransform.h
+-
+QtGui/qfontinfo.h
+-
+QtGui/qfontmetrics.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpalette.h
 QtGui/qtguiglobal.h
 -
 QtGui/qwindowdefs.h
+-
+QtGui/qcolor.h
+-
+QtGui/qbrush.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpen.h
+QtGui/qtguiglobal.h
 -
 QtGui/qcolor.h
 -
@@ -988,6 +1014,16 @@ QtGui/qtguiglobal.h
 QtCore/qprocessordetection.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h
+QtGui/qtguiglobal.h
+-
+QtCore/qnamespace.h
+-
+QtCore/qchar.h
+-
+QtCore/qmetatype.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h
@@ -1042,36 +1078,66 @@ QtGui/qwindowdefs_win.h
 QtGui/qtguiglobal.h
 -
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QApplication
-qapplication.h
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QColorDialog
+qcolordialog.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qcolordialog.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QDialog
+qdialog.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QMenu
+qmenu.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qmenu.h
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget
 qwidget.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qaction.h
 QtWidgets/qtwidgetsglobal.h
 -
-QtCore/qcoreapplication.h
+QtGui/qkeysequence.h
 -
-QtGui/qwindowdefs.h
+QtCore/qstring.h
 -
-QtCore/qpoint.h
+QtWidgets/qwidget.h
 -
-QtCore/qsize.h
+QtCore/qvariant.h
 -
-QtGui/qcursor.h
+QtGui/qicon.h
 -
-QtWidgets/qdesktopwidget.h
--
-QtGui/qguiapplication.h
+QtWidgets/qactiongroup.h
 -
 
-/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qactiongroup.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qaction.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qcolordialog.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qdialog.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h
 QtWidgets/qtwidgetsglobal.h
 -
 QtWidgets/qwidget.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qmenu.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qwidget.h
+-
+QtCore/qstring.h
+-
+QtGui/qicon.h
+-
+QtWidgets/qaction.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h
@@ -1122,13 +1188,39 @@ QtGui/qkeysequence.h
 QtGui/qevent.h
 -
 
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.cpp
+QWidget
+-
+QPainter
+-
+QPaintEvent
+-
+QMenu
+-
+QColorDialog
+-
+Canvas.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.h
+Line.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.h
+WidthDialog.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.h
+common.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/common.h
+
 /home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.h
 QWidget
 -
 
-/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/main.cpp
-QApplication
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.h
+QPoint
 -
-Canvas.h
-/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.h
+QColor
+-
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.h
+QDialog
+-
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/common.h
 

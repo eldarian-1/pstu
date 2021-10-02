@@ -12,6 +12,6 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
-add_executable(graphics main.cpp Canvas.h)
+add_executable(graphics main.cpp Canvas.h common.h Canvas.cpp common.cpp Line.cpp Line.h WidthDialog.cpp WidthDialog.h)
 
 target_link_libraries(graphics PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)

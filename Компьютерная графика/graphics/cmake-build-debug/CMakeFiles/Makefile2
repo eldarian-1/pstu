@@ -82,12 +82,12 @@ clean: CMakeFiles/graphics_autogen.dir/clean
 CMakeFiles/graphics.dir/all: CMakeFiles/graphics_autogen.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" --progress-num=1,2,3 "Built target graphics"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5,6,7 "Built target graphics"
 .PHONY : CMakeFiles/graphics.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/graphics.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" 4
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/graphics.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/graphics.dir/rule
@@ -108,7 +108,7 @@ CMakeFiles/graphics.dir/clean:
 CMakeFiles/graphics_autogen.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics_autogen.dir/build.make CMakeFiles/graphics_autogen.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics_autogen.dir/build.make CMakeFiles/graphics_autogen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" --progress-num=4 "Built target graphics_autogen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles" --progress-num=8 "Built target graphics_autogen"
 .PHONY : CMakeFiles/graphics_autogen.dir/all
 
 # Build rule for subdir invocation for target.

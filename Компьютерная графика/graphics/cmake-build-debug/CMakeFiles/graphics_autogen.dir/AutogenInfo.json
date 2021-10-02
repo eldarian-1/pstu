@@ -89,6 +89,24 @@
 			"MU",
 			"EWIEGA46WW/moc_Canvas.cpp",
 			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.h",
+			"MU",
+			"EWIEGA46WW/moc_Line.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.h",
+			"MU",
+			"EWIEGA46WW/moc_WidthDialog.cpp",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/common.h",
+			"MU",
+			"EWIEGA46WW/moc_common.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -141,6 +159,26 @@
 	"SETTINGS_FILE" : "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/graphics_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/common.cpp",
+			"MU",
+			null
+		],
 		[
 			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/main.cpp",
 			"MU",

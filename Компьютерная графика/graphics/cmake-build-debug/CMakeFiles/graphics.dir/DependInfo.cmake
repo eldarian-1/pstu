@@ -8,6 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.cpp" "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/graphics.dir/Canvas.cpp.o"
+  "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.cpp" "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/graphics.dir/Line.cpp.o"
+  "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.cpp" "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/graphics.dir/WidthDialog.cpp.o"
+  "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/common.cpp" "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/graphics.dir/common.cpp.o"
   "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/graphics_autogen/mocs_compilation.cpp" "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/graphics.dir/graphics_autogen/mocs_compilation.cpp.o"
   "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/main.cpp" "/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/graphics.dir/main.cpp.o"
   )

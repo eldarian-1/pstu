@@ -9,64 +9,45 @@ using namespace std;
 Line* Line::active = nullptr;
 bool Line::rightButtonPressed = false;
 
-Line::Line(QPoint p1, QPoint p2) : p1(p1), p2(p2), color(Qt::black), width(1) {}
-
-int f(int a, int b, int c, int x) {
-    return -(a * x + c) / b;
+double Line::f(double x) const {
+    return (b == 0. ? -c / a : -(a * x + c) / b);
 }
 
-bool between(const int &a0, const int &a1, const int &a) {
-    return min(a0, a1) <= a && a <= max(a0, a1);
+Line::Line(QPoint p1, QPoint p2) : color(Qt::black), thickness(1) {
+    a = p1.y() - p2.y();
+    b = p2.x() - p1.x();
+    c = p1.x() * p2.y() - p2.x() * p1.y();
 }
 
-void equation(const int &a1, const int &a2, const int &b1, const int &b2, int &a, int &b, int &c) {
-    a = b1 - b2;
-    b = a2 - a1;
-    c = a1 * b2 - a2 * b1;
+double Line::distanceFrom(const QPoint &p) const {
+    return fabs(a * p.x() + b * p.y() + c) / sqrt(pow(a, 2) + pow(b, 2));
 }
 
-void points(QPoint &p1, QPoint &p2, QPoint &p, int &a1, int &a2, int &b1, int &b2, int &x, int &y) {
-    a1 = p1.rx();
-    a2 = p2.rx();
-    b1 = p1.ry();
-    b2 = p2.ry();
-    x = p.rx();
-    y = p.ry();
-}
-
-double length(const int &a, const int &b) {
-    return sqrt(pow(a, 2) + pow(b, 2));
-}
-
-double distance(const int &a, const int &b, const int &c, const int &x, const int &y) {
-    return fabs(a * x + b * y + c) / length(a, b);
-}
-
-double Line::distanceFrom(QPoint p) {
-    double d;
-    int a1, a2, b1, b2, a, b, c, x, y;
-    points(p1, p2, p, a1, a2, b1, b2, x, y);
-    equation(a1, a2, b1, b2, a, b, c);
-    d = distance(a, b, c, x, y);
+QLineF Line::getLine(const QPainter *painter, int width, int height) {
+    QPointF p1, p2;
     if(b == 0) {
-        d += (between(a1, a2, -c / a) ? 0 : 100);
+        p1 = QPointF(-c/a, 0);
+        p2 = QPointF(-c/a, height);
+    } else if(a == 0) {
+        p1 = QPointF(0, -c/b);
+        p2 = QPointF(width, -c/b);
     } else {
-        d += (between(f(a, b, c, a1), f(a, b, c, a2), f(a, b, c, x)) ? 0 : 100);
+        p1 = QPointF(0, f(0));
+        p2 = QPointF(width, f(width));
     }
-    return d;
+    return QLineF(p1, p2);
 }
 
-void Line::draw(QPainter *painter) {
+void Line::draw(QPainter *painter, int width, int height) {
     QPen pen;
-    pen.setWidth(width);
+    pen.setWidth(thickness);
     if(this == active) {
         pen.setColor(rightButtonPressed ? Qt::green : Qt::red);
     } else {
         pen.setColor(color);
     }
-    QLine line(p1, p2);
     painter->setPen(pen);
-    painter->drawLine(line);
+    painter->drawLine(getLine(painter, width, height));
 }
 
 void Line::activize() {

@@ -20,6 +20,7 @@ Canvas::Canvas() : QWidget() {
     menu->addAction(COLOR);
     menu->addAction(WEIGHT);
     menu->addAction(DELETE);
+    startTimer(20);
     connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(slotTriggered(QAction*)));
 }
 
@@ -27,9 +28,11 @@ void Canvas::paintEvent(QPaintEvent *event) {
     QPainter painter;
     painter.begin(this);
     painter.setBrush(QBrush(Qt::white));
-    painter.drawRect(3, 3, 994, 494);
+    int width = painter.window().width();
+    int height = painter.window().height();
+    painter.drawRect(-1, -1, width + 1, height + 1);
     for(auto line : lines) {
-        line->draw(&painter);
+        line->draw(&painter, width, height);
     }
     painter.end();
 }
@@ -41,7 +44,6 @@ void Canvas::mousePressEvent(QMouseEvent *event) {
             break;
         case Qt::RightButton:
             Line::rightButtonPressed = true;
-            repaint();
             break;
     }
 }
@@ -50,11 +52,9 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event) {
     switch(event->button()) {
         case Qt::LeftButton:
             lines.append(new Line(activePoint, event->pos()));
-            repaint();
             break;
         case Qt::RightButton:
             Line::rightButtonPressed = false;
-            repaint();
             break;
     }
 }
@@ -62,19 +62,16 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event) {
 void Canvas::mouseMoveEvent(QMouseEvent *event) {
     auto d = 20.;
     for(auto line : lines) {
-        auto td = line->getWidth() / 2.;
-        auto t = line->distanceFrom(event->pos());
-        if(t < td) {
-            d = t - td;
+        auto allow = line->getThickness() / 2. + 10.;
+        auto real = line->distanceFrom(event->pos());
+        auto diff = allow - real;
+        if(diff > 0 && diff < d) {
+            d = diff;
             line->activize();
         }
     }
-    auto flag = d == 20. && Line::active;
-    if(flag) {
+    if(d == 20. && Line::active) {
         Line::active = nullptr;
-    }
-    if(flag || d < 20.) {
-        repaint();
     }
 }
 
@@ -83,17 +80,20 @@ void Canvas::contextMenuEvent(QContextMenuEvent *event) {
         menu->exec(event->globalPos());
         Line::active = nullptr;
         Line::rightButtonPressed = false;
-        repaint();
     }
+}
+
+void Canvas::timerEvent(QTimerEvent *event) {
+    repaint();
 }
 
 void Canvas::slotTriggered(QAction *action) {
     if(action->text() == COLOR) {
         Line::active->setColor(QColorDialog(Line::active->getColor()).getColor());
     } else if(action->text() == WEIGHT) {
-        WidthDialog *dialog = new WidthDialog(Line::active->getWidth());
+        WidthDialog *dialog = new WidthDialog(Line::active->getThickness());
         if(dialog->exec() == QDialog::Accepted) {
-            Line::active->setWidth(dialog->width());
+            Line::active->setThickness(dialog->width());
         }
         delete dialog;
     } else if(action->text() == DELETE) {

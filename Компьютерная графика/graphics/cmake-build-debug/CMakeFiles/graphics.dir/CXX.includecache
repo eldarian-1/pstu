@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QLine
+qline.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qline.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QLineF
+qline.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qline.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QPoint
+qpoint.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qpoint.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h
 QtCore/qglobal.h
 -
@@ -104,6 +116,20 @@ limits.h
 new
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h
+QtCore/qglobal.h
+-
+QtCore/qstring.h
+-
+QtCore/qobject.h
+-
+QtCore/qcoreevent.h
+-
+QtCore/qeventloop.h
+-
+QtCore/qscopedpointer.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcoreevent.h
 QtCore/qnamespace.h
 -
@@ -150,6 +176,10 @@ list
 map
 -
 utility
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h
+QtCore/qobject.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qfile.h
@@ -726,6 +756,18 @@ QtCore/qpoint.h
 QtCore/qglobal.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/QColor
+qcolor.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qcolor.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/QPaintEvent
+qevent.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qevent.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/QPainter
+qpainter.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpainter.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qbrush.h
 QtGui/qtguiglobal.h
 -
@@ -828,6 +870,22 @@ QtCore/qsharedpointer.h
 QtCore/qrect.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h
+QtGui/qtguiglobal.h
+-
+QtCore/qcoreapplication.h
+-
+QtGui/qwindowdefs.h
+-
+QtGui/qinputmethod.h
+-
+QtCore/qlocale.h
+-
+QtCore/qpoint.h
+-
+QtCore/qsize.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qicon.h
 QtGui/qtguiglobal.h
 -
@@ -858,6 +916,12 @@ QtCore/qrect.h
 QtCore/qstring.h
 -
 QtCore/qstringlist.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h
+QtGui/qtguiglobal.h
+-
+QtCore/qobject.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qkeysequence.h
@@ -892,10 +956,50 @@ QtGui/qwindowdefs.h
 QtCore/qrect.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpainter.h
+QtGui/qtguiglobal.h
+-
+QtCore/qnamespace.h
+-
+QtCore/qrect.h
+-
+QtCore/qpoint.h
+-
+QtCore/qscopedpointer.h
+-
+QtGui/qpixmap.h
+-
+QtGui/qimage.h
+-
+QtGui/qtextoption.h
+-
+QtGui/qpolygon.h
+-
+QtGui/qpen.h
+-
+QtGui/qbrush.h
+-
+QtGui/qmatrix.h
+-
+QtGui/qtransform.h
+-
+QtGui/qfontinfo.h
+-
+QtGui/qfontmetrics.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpalette.h
 QtGui/qtguiglobal.h
 -
 QtGui/qwindowdefs.h
+-
+QtGui/qcolor.h
+-
+QtGui/qbrush.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpen.h
+QtGui/qtguiglobal.h
 -
 QtGui/qcolor.h
 -
@@ -958,6 +1062,16 @@ QtGui/qtguiglobal.h
 QtCore/qprocessordetection.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h
+QtGui/qtguiglobal.h
+-
+QtCore/qnamespace.h
+-
+QtCore/qchar.h
+-
+QtCore/qmetatype.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h
@@ -1012,6 +1126,14 @@ QtGui/qwindowdefs_win.h
 QtGui/qtguiglobal.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QApplication
+qapplication.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QColorDialog
+qcolordialog.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qcolordialog.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QDialog
 qdialog.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h
@@ -1020,6 +1142,10 @@ qdialog.h
 qboxlayout.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QMenu
+qmenu.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qmenu.h
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton
 qpushbutton.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h
@@ -1027,6 +1153,10 @@ qpushbutton.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QSlider
 qslider.h
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qslider.h
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget
+qwidget.h
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h
 QtWidgets/qtwidgetsglobal.h
@@ -1044,6 +1174,46 @@ QtWidgets/qtwidgetsglobal.h
 QtWidgets/qwidget.h
 -
 
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qaction.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtGui/qkeysequence.h
+-
+QtCore/qstring.h
+-
+QtWidgets/qwidget.h
+-
+QtCore/qvariant.h
+-
+QtGui/qicon.h
+-
+QtWidgets/qactiongroup.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qactiongroup.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qaction.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtCore/qcoreapplication.h
+-
+QtGui/qwindowdefs.h
+-
+QtCore/qpoint.h
+-
+QtCore/qsize.h
+-
+QtGui/qcursor.h
+-
+QtWidgets/qdesktopwidget.h
+-
+QtGui/qguiapplication.h
+-
+
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h
 QtWidgets/qtwidgetsglobal.h
 -
@@ -1052,6 +1222,18 @@ QtWidgets/qlayout.h
 QtWidgets/qwidget.h
 -
 limits.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qcolordialog.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qdialog.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qwidget.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h
@@ -1098,6 +1280,18 @@ QtWidgets/qsizepolicy.h
 QtCore/qrect.h
 -
 limits.h
+-
+
+/home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qmenu.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qwidget.h
+-
+QtCore/qstring.h
+-
+QtGui/qicon.h
+-
+QtWidgets/qaction.h
 -
 
 /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h
@@ -1160,6 +1354,52 @@ QtGui/qkeysequence.h
 QtGui/qevent.h
 -
 
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.cpp
+QWidget
+-
+QPainter
+-
+QPaintEvent
+-
+QMenu
+-
+QColorDialog
+-
+Canvas.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.h
+Line.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.h
+WidthDialog.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.h
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.h
+QWidget
+-
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.cpp
+Line.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.h
+QPainter
+-
+QLine
+-
+cmath
+-
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Line.h
+QPoint
+-
+QColor
+-
+QLineF
+-
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Mode.cpp
+Mode.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Mode.h
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Mode.h
+
 /home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.cpp
 WidthDialog.h
 /home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.h
@@ -1173,4 +1413,36 @@ QPushButton
 /home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.h
 QDialog
 -
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/graphics_autogen/EWIEGA46WW/moc_Canvas.cpp
+memory
+-
+../../../Canvas.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/graphics_autogen/EWIEGA46WW/moc_WidthDialog.cpp
+memory
+-
+../../../WidthDialog.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/graphics_autogen/mocs_compilation.cpp
+EWIEGA46WW/moc_Canvas.cpp
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/graphics_autogen/EWIEGA46WW/moc_Canvas.cpp
+EWIEGA46WW/moc_WidthDialog.cpp
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/graphics_autogen/EWIEGA46WW/moc_WidthDialog.cpp
+
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/main.cpp
+QApplication
+-
+Canvas.h
+/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Canvas.h
 

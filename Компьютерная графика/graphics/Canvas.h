@@ -23,6 +23,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void contextMenuEvent(QContextMenuEvent *event) override;
+    void timerEvent(QTimerEvent *event) override;
 
 public slots:
     void slotTriggered(QAction*);

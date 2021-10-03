@@ -1,4 +1,0 @@
-/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/graphics.dir
-/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/cmake-build-debug/CMakeFiles/graphics_autogen.dir

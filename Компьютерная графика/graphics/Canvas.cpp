@@ -7,7 +7,6 @@
 #include "Canvas.h"
 #include "Line.h"
 #include "WidthDialog.h"
-#include "common.h"
 
 const QString COLOR("Изменить цвет");
 const QString WEIGHT("Изменить толщину");
@@ -61,19 +60,20 @@ void Canvas::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void Canvas::mouseMoveEvent(QMouseEvent *event) {
-    double d = 10.;
+    auto d = 20.;
     for(auto line : lines) {
-        auto td = d + line->getWidth() / 2;
-        auto t = distance(*line, event->pos());
+        auto td = line->getWidth() / 2.;
+        auto t = line->distanceFrom(event->pos());
         if(t < td) {
-            d = td - t;
+            d = t - td;
             line->activize();
         }
     }
-    if(d == 10. && Line::active) {
+    auto flag = d == 20. && Line::active;
+    if(flag) {
         Line::active = nullptr;
-        repaint();
-    } else if(d < 10.) {
+    }
+    if(flag || d < 20.) {
         repaint();
     }
 }

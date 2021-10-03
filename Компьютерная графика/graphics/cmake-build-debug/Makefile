@@ -190,6 +190,30 @@ Line.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/Line.cpp.s
 .PHONY : Line.cpp.s
 
+Mode.o: Mode.cpp.o
+.PHONY : Mode.o
+
+# target to build an object file
+Mode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/Mode.cpp.o
+.PHONY : Mode.cpp.o
+
+Mode.i: Mode.cpp.i
+.PHONY : Mode.i
+
+# target to preprocess a source file
+Mode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/Mode.cpp.i
+.PHONY : Mode.cpp.i
+
+Mode.s: Mode.cpp.s
+.PHONY : Mode.s
+
+# target to generate assembly for a file
+Mode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/Mode.cpp.s
+.PHONY : Mode.cpp.s
+
 WidthDialog.o: WidthDialog.cpp.o
 .PHONY : WidthDialog.o
 
@@ -213,30 +237,6 @@ WidthDialog.s: WidthDialog.cpp.s
 WidthDialog.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/WidthDialog.cpp.s
 .PHONY : WidthDialog.cpp.s
-
-common.o: common.cpp.o
-.PHONY : common.o
-
-# target to build an object file
-common.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/common.cpp.o
-.PHONY : common.cpp.o
-
-common.i: common.cpp.i
-.PHONY : common.i
-
-# target to preprocess a source file
-common.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/common.cpp.i
-.PHONY : common.cpp.i
-
-common.s: common.cpp.s
-.PHONY : common.s
-
-# target to generate assembly for a file
-common.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/graphics.dir/build.make CMakeFiles/graphics.dir/common.cpp.s
-.PHONY : common.cpp.s
 
 graphics_autogen/mocs_compilation.o: graphics_autogen/mocs_compilation.cpp.o
 .PHONY : graphics_autogen/mocs_compilation.o
@@ -302,12 +302,12 @@ help:
 	@echo "... Line.o"
 	@echo "... Line.i"
 	@echo "... Line.s"
+	@echo "... Mode.o"
+	@echo "... Mode.i"
+	@echo "... Mode.s"
 	@echo "... WidthDialog.o"
 	@echo "... WidthDialog.i"
 	@echo "... WidthDialog.s"
-	@echo "... common.o"
-	@echo "... common.i"
-	@echo "... common.s"
 	@echo "... graphics_autogen/mocs_compilation.o"
 	@echo "... graphics_autogen/mocs_compilation.i"
 	@echo "... graphics_autogen/mocs_compilation.s"

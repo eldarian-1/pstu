@@ -1,29 +1,33 @@
 #include "WidthDialog.h"
 
 #include <QHBoxLayout>
-#include <QLineEdit>
+#include <QSlider>
 #include <QPushButton>
-
-#include <cstdlib>
 
 WidthDialog::WidthDialog(int width) {
     lytWidth = new QHBoxLayout;
-    leWidth = new QLineEdit(QString::number(width));
+    sldWidth = new QSlider();
     btnApply = new QPushButton("Применить");
+    sldWidth->setMinimum(1);
+    sldWidth->setMaximum(100);
+    sldWidth->setOrientation(Qt::Horizontal);
+    sldWidth->setTickInterval(10);
+    sldWidth->setValue(width);
+    sldWidth->setTickPosition(QSlider::TicksAbove);
     setLayout(lytWidth);
-    lytWidth->addWidget(leWidth);
+    lytWidth->addWidget(sldWidth);
     lytWidth->addWidget(btnApply);
+    setFixedWidth(500);
     setWindowTitle("Редактирование толщины линии");
-
     connect(btnApply, SIGNAL(clicked()), SLOT(accept()));
 }
 
 WidthDialog::~WidthDialog() {
     delete lytWidth;
-    delete leWidth;
+    delete sldWidth;
     delete btnApply;
 }
 
 int WidthDialog::width() {
-    return leWidth->text().toInt();
+    return sldWidth->value();
 }

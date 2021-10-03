@@ -21,11 +21,9 @@ public:
     int getWidth() { return width; }
     void setWidth(int width) { this->width = width; }
 
-    inline const int& x1() { return p1.rx(); }
-    inline const int& x2() { return p2.rx(); }
-    inline const int& y1() { return p1.ry(); }
-    inline const int& y2() { return p2.ry(); }
+    double distanceFrom(QPoint p);
 
     void draw(QPainter *pointer);
     void activize();
+
 };

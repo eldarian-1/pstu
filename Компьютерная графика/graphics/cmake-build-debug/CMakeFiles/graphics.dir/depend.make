@@ -124,8 +124,7 @@ CMakeFiles/graphics.dir/Canvas.cpp.o: \
  ../Canvas.cpp \
  ../Canvas.h \
  ../Line.h \
- ../WidthDialog.h \
- ../common.h
+ ../WidthDialog.h
 CMakeFiles/graphics.dir/Line.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QLine \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QPoint \
@@ -304,16 +303,12 @@ CMakeFiles/graphics.dir/WidthDialog.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qmatrix.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpaintdevice.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpalette.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpen.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpixelformat.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpixmap.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qpolygon.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qregion.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgb.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgba64.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextcursor.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
@@ -323,77 +318,23 @@ CMakeFiles/graphics.dir/WidthDialog.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs_win.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QDialog \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QLineEdit \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/QSlider \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractslider.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qlineedit.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+ /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qslider.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h \
  ../WidthDialog.cpp \
  ../WidthDialog.h
-CMakeFiles/graphics.dir/common.cpp.o: \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/QPoint \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qbytearraylist.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qcontainertools_impl.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qhashfunctions.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qiterator.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qlist.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qpair.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qpoint.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qregexp.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qstringlist.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qstringmatcher.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qvector.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/QColor \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qcolor.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgb.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qrgba64.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h \
- /home/eldarian/Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h \
- ../Line.h \
- ../common.cpp \
- ../common.h
 CMakeFiles/graphics.dir/graphics_autogen/mocs_compilation.cpp.o: \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h \
  /home/eldarian/Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \

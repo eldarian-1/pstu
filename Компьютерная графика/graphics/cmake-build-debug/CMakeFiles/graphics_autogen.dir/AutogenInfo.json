@@ -97,15 +97,15 @@
 			null
 		],
 		[
-			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.h",
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Mode.h",
 			"MU",
-			"EWIEGA46WW/moc_WidthDialog.cpp",
+			"EWIEGA46WW/moc_Mode.cpp",
 			null
 		],
 		[
-			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/common.h",
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.h",
 			"MU",
-			"EWIEGA46WW/moc_common.cpp",
+			"EWIEGA46WW/moc_WidthDialog.cpp",
 			null
 		]
 	],
@@ -170,12 +170,12 @@
 			null
 		],
 		[
-			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.cpp",
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/Mode.cpp",
 			"MU",
 			null
 		],
 		[
-			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/common.cpp",
+			"/home/eldarian/Рабочий стол/pstu/Компьютерная графика/graphics/WidthDialog.cpp",
 			"MU",
 			null
 		],

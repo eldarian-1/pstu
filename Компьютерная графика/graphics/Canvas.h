@@ -2,30 +2,26 @@
 
 #include <QWidget>
 
-class QMenu;
+#include "Mode.h"
 
 class Line;
 
 class Canvas : public QWidget {
-Q_OBJECT
-
 private:
     QList<Line*> lines;
-    QMenu *menu;
-    QPoint activePoint;
+    Mode *mode;
 
 public:
     Canvas();
 
-protected:
-    void paintEvent(QPaintEvent *event) override;
-    void mousePressEvent(QMouseEvent *event) override;
-    void mouseReleaseEvent(QMouseEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
-    void contextMenuEvent(QContextMenuEvent *event) override;
-    void timerEvent(QTimerEvent *event) override;
+    QList<Line*> &getLines() { return lines; }
 
-public slots:
-    void slotTriggered(QAction*);
+protected:
+    void paintEvent(QPaintEvent *event) override { mode->paintEvent(event); }
+    void mousePressEvent(QMouseEvent *event) override { mode->mousePressEvent(event); }
+    void mouseReleaseEvent(QMouseEvent *event) override { mode->mouseReleaseEvent(event); }
+    void mouseMoveEvent(QMouseEvent *event) override { mode->mouseMoveEvent(event); }
+    void contextMenuEvent(QContextMenuEvent *event) override { mode->contextMenuEvent(event); }
+    void timerEvent(QTimerEvent *event) override;
 
 };

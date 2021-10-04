@@ -2,6 +2,7 @@
 
 #include <QObject>
 
+class Line;
 class QMenu;
 class Canvas;
 class QPoint;
@@ -37,7 +38,7 @@ public:
 
 class StateMode : public Mode {
 private:
-    ModeImpl* state = nullptr;
+    ModeImpl* state;
 
 public:
     StateMode(Canvas *canvas);
@@ -77,9 +78,13 @@ public slots:
 
 class MoveMode : public ModeImpl {
 private:
+    Line* line;
+
+protected:
+    void paint(QPainter *painter) override;
 
 public:
-    MoveMode(Canvas *canvas);
+    MoveMode(Canvas *canvas, Line* line);
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;

@@ -14,6 +14,7 @@
 
 const QString COLOR("Изменить цвет");
 const QString WEIGHT("Изменить толщину");
+const QString MOVE("Переместить");
 const QString DELETE("Удалить");
 
 void ModeImpl::paintEvent(QPaintEvent *event) {
@@ -28,9 +29,9 @@ StateMode::StateMode(Canvas *canvas) {
 }
 
 void StateMode::setState(ModeImpl* state) {
-    if(this->state) {
+    /*if(this->state) {
         delete this->state;
-    }
+    }*/
     this->state = state;
 }
 
@@ -38,6 +39,7 @@ CreateMode::CreateMode(Canvas *canvas) : ModeImpl(canvas) {
     menu = new QMenu();
     menu->addAction(COLOR);
     menu->addAction(WEIGHT);
+    menu->addAction(MOVE);
     menu->addAction(DELETE);
     connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(slotTriggered(QAction*)));
 }
@@ -111,6 +113,8 @@ void CreateMode::slotTriggered(QAction *action) {
             Line::active->setThickness(dialog->width());
         }
         delete dialog;
+    } else if(action->text() == MOVE) {
+        getCanvas()->setMode(new MoveMode(getCanvas(), Line::active));
     } else if(action->text() == DELETE) {
         getCanvas()->getLines().removeOne(Line::active);
         delete Line::active;
@@ -118,7 +122,13 @@ void CreateMode::slotTriggered(QAction *action) {
     }
 }
 
-MoveMode::MoveMode(Canvas *canvas) : ModeImpl(canvas) {}
+MoveMode::MoveMode(Canvas *canvas, Line* line) : ModeImpl(canvas), line(line) {}
+
+void MoveMode::paint(QPainter *painter) {
+    int width = painter->window().width();
+    int height = painter->window().height();
+    line->draw(painter, width, height);
+}
 
 void MoveMode::mousePressEvent(QMouseEvent *event) {
 

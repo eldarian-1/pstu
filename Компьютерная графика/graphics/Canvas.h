@@ -9,12 +9,13 @@ class Line;
 class Canvas : public QWidget {
 private:
     QList<Line*> lines;
-    Mode *mode;
+    StateMode *mode;
 
 public:
     Canvas();
 
     QList<Line*> &getLines() { return lines; }
+    void setMode(ModeImpl *mode) { this->mode->setState(mode); }
 
 protected:
     void paintEvent(QPaintEvent *event) override { mode->paintEvent(event); }

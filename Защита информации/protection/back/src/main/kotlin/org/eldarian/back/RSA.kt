@@ -3,10 +3,6 @@ package org.eldarian.back
 import java.math.BigInteger
 import java.util.*
 
-data class RsaRequest (
-    val bits: Int,
-)
-
 data class RsaResponse (
     val p: String,
     val q: String,

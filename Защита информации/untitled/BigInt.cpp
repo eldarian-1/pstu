@@ -530,6 +530,16 @@ BigInt BigInt::pow(BigInt number_first, BigInt number_second) {
     }
     return result;
 }
+BigInt BigInt::modPow(BigInt base, BigInt exp, BigInt modulus) {
+    base %= modulus;
+    BigInt result = 1;
+    while (exp > 0) {
+        if (!even(exp)) result = (result * base) % modulus;
+        base = (base * base) % modulus;
+        exp /= 2;
+    }
+    return result;
+}
 BigInt BigInt::_factorial_tree(BigInt number_first, const BigInt& number_second) {
     if (number_first > number_second) {
         return 1;

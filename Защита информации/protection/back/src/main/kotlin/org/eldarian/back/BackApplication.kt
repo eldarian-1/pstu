@@ -17,6 +17,10 @@ fun main(args: Array<String>) {
 class LController {
     @GetMapping("/rsa")
     fun rsa(@RequestParam(value = "cap", defaultValue = "16") bits: Int): RsaResponse {
-        return generate(bits)
+        return generateRsa(bits)
+    }
+    @GetMapping("/elgamal")
+    fun elgamal(): ElgamalResponse {
+        return elgamal()
     }
 }

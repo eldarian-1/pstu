@@ -25,7 +25,7 @@ data class RsaResponse (
     )
 }
 
-fun generate(bits: Int): RsaResponse {
+fun generateRsa(bits: Int): RsaResponse {
     val rnd = Random()
     var gcd: BigInteger
     val p = BigInteger.probablePrime(bits, rnd)

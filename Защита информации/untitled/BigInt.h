@@ -41,6 +41,7 @@ public:
     friend BigInt operator %(BigInt number_first, BigInt number_second);
     BigInt operator %=(BigInt number);
     static BigInt pow(BigInt number_first, BigInt number_second);
+    static BigInt modPow(BigInt number_first, BigInt exponent, BigInt number_second);
     static BigInt factorial(BigInt number);
     static BigInt gcd(BigInt number_first, BigInt number_second);
     static BigInt lcm(BigInt number_first, BigInt number_second);

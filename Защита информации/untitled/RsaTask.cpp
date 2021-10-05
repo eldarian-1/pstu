@@ -20,7 +20,7 @@ QString RsaClient::crypt(const QString &in) {
 }
 
 QString RsaClient::crypt(const BigInt &c) {
-    BigInt r = BigInt::pow(c, e) % n;
+    BigInt r = BigInt::modPow(c, e, n);
     BigInt nul(0);
     BigInt multiplier(65536);
     QString result;
@@ -31,31 +31,22 @@ QString RsaClient::crypt(const BigInt &c) {
     return result;
 }
 
-RsaLoader::RsaLoader(RsaTask* task) {
+RsaLoader::RsaLoader(RsaTask* task) : Loader() {
     this->task = task;
-    manager = new QNetworkAccessManager(this);
-    connect(manager, SIGNAL(finished(QNetworkReply*)), SLOT(slotFinished(QNetworkReply*)));
 }
 
 void RsaLoader::download(QString capacity) {
-    manager->get(QNetworkRequest(QUrl("http://localhost:8080/rsa?cap=" + capacity)));
+    Loader::download("cap=" + capacity);
 }
 
-void RsaLoader::done(const QUrl& url, const QByteArray& array) {
-    QJsonObject json = QJsonDocument::fromJson(array).object();
+void RsaLoader::done(QJsonObject* js) {
+    QJsonObject &json = *js;
     p = BigInt(json["p"].toString().toStdString());
     q = BigInt(json["q"].toString().toStdString());
     e = BigInt(json["e"].toString().toStdString());
     n = BigInt(json["n"].toString().toStdString());
     d = BigInt(json["d"].toString().toStdString());
     task->setRsa(p, q, e, n, d);
-}
-
-void RsaLoader::slotFinished(QNetworkReply* reply) {
-    if (reply->error() == QNetworkReply::NoError) {
-        done(reply->url(), reply->readAll());
-    }
-    reply->deleteLater();
 }
 
 RsaTask::RsaTask(): Task("Алгоритм RSA") {

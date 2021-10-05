@@ -13,6 +13,9 @@
 
 #include "Task.h"
 #include "BigInt.h"
+#include "Loader.h"
+
+class QJsonObject;
 
 class RsaClient {
 private:
@@ -31,22 +34,17 @@ public:
 
 class RsaTask;
 
-class RsaLoader : public QObject {
-Q_OBJECT
+class RsaLoader : public Loader {
 private:
-    QNetworkAccessManager* manager;
     RsaTask* task;
     BigInt p, q, e, n, d;
 
 public:
     explicit RsaLoader(RsaTask* task);
-    void download(QString capacity);
+    void download(QString query) override;
 
-private:
-    void done(const QUrl& url, const QByteArray& array);
-
-private slots:
-    void slotFinished(QNetworkReply* reply);
+protected:
+    void done(QJsonObject* json) override;
 
 };
 

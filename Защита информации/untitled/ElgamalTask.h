@@ -45,7 +45,7 @@ public:
     ElgamalTask(): Task("Метод Эль-Гамаля") {}
 
     void initWidget(QWidget *wgt) override;
-    void setElgamal(const BigInt &p, const BigInt &g, const BigInt &x, const BigInt &y, const BigInt &k);
+    void setElgamal(const BigInt &p, const BigInt &g, const BigInt &x, const BigInt &y, const BigInt &k, const BigInt &k_1);
 
 public slots:
     void getElgamal();
@@ -67,11 +67,12 @@ public:
 
 class ElgamalClient {
 private:
-    BigInt p, g, x, y, k;
+    BigInt p, g, x, y, k, k_1;
 
 public:
-    ElgamalClient(BigInt p, BigInt g, BigInt x, BigInt y, BigInt k) : p(p), g(g), x(x), y(y), k(k) {}
-    void generate(QString m, BigInt &r, BigInt &s);
-    bool check(BigInt r, BigInt s);
+    ElgamalClient(const BigInt &p, const BigInt &g, const BigInt &x, const BigInt &y, const BigInt &k, const BigInt &k_1)
+        : p(p), g(g), x(x), y(y), k(k), k_1(k_1) {}
+    void generate(const QString &m, BigInt &r, BigInt &s);
+    bool check(const QString &m, const BigInt &r, const BigInt &s);
 
 };

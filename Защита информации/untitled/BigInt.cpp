@@ -540,6 +540,9 @@ BigInt BigInt::modPow(BigInt base, BigInt exp, BigInt modulus) {
     }
     return result;
 }
+BigInt BigInt::mod2Pow(BigInt num1, BigInt exp1, BigInt num2, BigInt exp2, BigInt mod) {
+    return (modPow(num1, exp1, mod) * modPow(num2, exp2, mod)) % mod;
+}
 BigInt BigInt::_factorial_tree(BigInt number_first, const BigInt& number_second) {
     if (number_first > number_second) {
         return 1;

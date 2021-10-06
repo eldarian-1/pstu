@@ -34,16 +34,15 @@ public:
 
 class RsaTask;
 
-class RsaLoader : public Loader {
+class RsaLoader : public LoadTask {
 private:
     RsaTask* task;
+    QString capacity;
     BigInt p, q, e, n, d;
 
 public:
-    explicit RsaLoader(RsaTask* task);
-    void download(QString query) override;
-
-protected:
+    explicit RsaLoader(RsaTask* task, QString capacity);
+    QString query() override;
     void done(QJsonObject* json) override;
 
 };
@@ -90,7 +89,6 @@ private:
 
     RsaClient *alice = nullptr;
     RsaClient *bob = nullptr;
-    RsaLoader *loader;
 
 public slots:
     void getRsa();

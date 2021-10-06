@@ -31,12 +31,10 @@ QString RsaClient::crypt(const BigInt &c) {
     return result;
 }
 
-RsaLoader::RsaLoader(RsaTask* task) : Loader() {
-    this->task = task;
-}
+RsaLoader::RsaLoader(RsaTask* task, QString capacity) : task(task), capacity(capacity) {}
 
-void RsaLoader::download(QString capacity) {
-    Loader::download("cap=" + capacity);
+QString RsaLoader::query() {
+    return ("rsa?cap=" + capacity);
 }
 
 void RsaLoader::done(QJsonObject* js) {
@@ -49,12 +47,10 @@ void RsaLoader::done(QJsonObject* js) {
     task->setRsa(p, q, e, n, d);
 }
 
-RsaTask::RsaTask(): Task("Алгоритм RSA") {
-    loader = new RsaLoader(this);
-}
+RsaTask::RsaTask(): Task("Алгоритм RSA") {}
 
 void RsaTask::getRsa() {
-    loader->download(txtCapacity->text());
+    (new RsaLoader(this, txtCapacity->text()))->run();
 }
 
 void RsaTask::crypt(bool isAlice, bool isCrypt) {

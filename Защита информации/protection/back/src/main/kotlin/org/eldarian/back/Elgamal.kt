@@ -49,7 +49,6 @@ fun rand(rnd: Random, bits: Int, low: BigInteger? = null, high: BigInteger? = nu
     var result: BigInteger
     do {
         result = BigInteger(bits, rnd)
-    } while((low == null || low < result) &&
-        (high == null || result < high))
+    } while((low == null || low < result) && (high == null || result < high))
     return result
 }

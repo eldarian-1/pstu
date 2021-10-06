@@ -34,7 +34,7 @@ void Loader::download(LoadTask *task) {
 void Loader::slotFinished(QNetworkReply* reply) {
     if (reply->error() == QNetworkReply::NoError) {
         QJsonObject json = QJsonDocument::fromJson(reply->readAll()).object();
-        task->done(&json);
+        task->done(json);
     }
     reply->deleteLater();
 }

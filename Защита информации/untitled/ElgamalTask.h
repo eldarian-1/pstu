@@ -1,12 +1,25 @@
 #pragma once
 
 #include <QWidget>
-#include <QLabel>
 
 #include "Task.h"
+#include "Loader.h"
+#include "BigInt.h"
 
-class ElgamalTask: public Task {
+class QLabel;
+class QLineEdit;
+class QPushButton;
+class QVBoxLayout;
+class QHBoxLayout;
+
+class ElgamalClient;
+
+class ElgamalTask: public QObject, public Task {
+Q_OBJECT
+
 private:
+    ElgamalClient* client = nullptr;
+
     QVBoxLayout *lytMain;
     QHBoxLayout *lytPair;
 
@@ -29,50 +42,36 @@ private:
 
 
 public:
-    ElgamalTask(): Task("Метод Эль-Гамаля") {
+    ElgamalTask(): Task("Метод Эль-Гамаля") {}
 
-    }
+    void initWidget(QWidget *wgt) override;
+    void setElgamal(const BigInt &p, const BigInt &g, const BigInt &x, const BigInt &y, const BigInt &k);
 
-    void initWidget(QWidget *wgt) override {
-        lytMain = new QVBoxLayout;
-        lytPair = new QHBoxLayout;
+public slots:
+    void getElgamal();
+    void crypt();
+    void check();
 
-        lblName = new QLabel("Цифровая подпись методом Эль-Гамаля");
-        lblPrivate = new QLabel("Закрытый ключ x: ...");
-        lblPublic = new QLabel("Открытый ключ: p - ..., g - ..., y - ...");
-        lblSession = new QLabel("Сессионный ключ k: ...");
-        lblMessage = new QLabel("Сообщение");
-        lblR = new QLabel("r");
-        lblS = new QLabel("s");
-        lblVerdict = new QLabel("Вердикт: ...");
+};
 
-        leMessage = new QLineEdit;
-        leR = new QLineEdit;
-        leS = new QLineEdit;
+class ElgamalLoader : public LoadTask {
+private:
+    ElgamalTask* task;
 
-        btnGenerate = new QPushButton("Сгенерировать ключи");
-        btnCrypt = new QPushButton("Сгенерировать подпись");
-        btnCheck = new QPushButton("Проверка подписи");
+public:
+    explicit ElgamalLoader(ElgamalTask* task) : task(task) {}
+    QString query() override { return "elgamal"; }
+    void done(QJsonObject& json) override;
 
-        wgt->setLayout(lytMain);
-        lytMain->addWidget(lblName);
-        lytMain->addWidget(lblPrivate);
-        lytMain->addWidget(lblPublic);
-        lytMain->addWidget(lblSession);
-        lytMain->addWidget(btnGenerate);
-        lytMain->addWidget(lblMessage);
-        lytMain->addWidget(leMessage);
-        lytMain->addWidget(btnCrypt);
-        lytMain->addLayout(lytPair);
-        lytPair->addWidget(lblR);
-        lytPair->addWidget(leR);
-        lytPair->addWidget(lblS);
-        lytPair->addWidget(leS);
-        lytMain->addWidget(btnCheck);
-        lytMain->addWidget(lblVerdict);
-        lytMain->setAlignment(Qt::Alignment::enum_type::AlignTop);
-    }
+};
 
-    void run() const override { }
+class ElgamalClient {
+private:
+    BigInt p, g, x, y, k;
+
+public:
+    ElgamalClient(BigInt p, BigInt g, BigInt x, BigInt y, BigInt k) : p(p), g(g), x(x), y(y), k(k) {}
+    void generate(QString m, BigInt &r, BigInt &s);
+    bool check(BigInt r, BigInt s);
 
 };

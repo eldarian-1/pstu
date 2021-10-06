@@ -12,7 +12,7 @@ protected:
 public:
     virtual void initWidget(QWidget *wgt) = 0;
 
-    virtual void run() const = 0;
+    virtual void run() const {}
 
     const char *title() const { return _title; }
 

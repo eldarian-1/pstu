@@ -9,7 +9,7 @@ class LoadTask {
 public:
     void run();
     virtual QString query() = 0;
-    virtual void done(QJsonObject* json) = 0;
+    virtual void done(QJsonObject& json) = 0;
 
 };
 

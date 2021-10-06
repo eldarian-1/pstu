@@ -1,51 +1,15 @@
 #include "RsaTask.h"
 
-RsaClient::RsaClient(const BigInt& e, const BigInt& n) : e(e), n(n) {
-    k = BigInt::log2(n);
-    k > 16 ? k /= 16 : k = 1;
-}
+#include <QLabel>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QHBoxLayout>
+#include <QLineEdit>
+#include <QPushButton>
 
-QString RsaClient::crypt(const QString &in) {
-    QString result;
-    BigInt multiplier(65536);
-    for (int i = 0; i < in.size(); i += k) {
-        BigInt symbol(0);
-        for (int j = i; j < in.size() && j < i + k; ++j) {
-            symbol *= multiplier;
-            symbol += BigInt((int)in[j].unicode());
-        }
-        result.append(crypt(symbol));
-    }
-    return result;
-}
-
-QString RsaClient::crypt(const BigInt &c) {
-    BigInt r = BigInt::modPow(c, e, n);
-    BigInt nul(0);
-    BigInt multiplier(65536);
-    QString result;
-    for(int i = 0; i < k && r != nul; ++i) {
-        result = QChar(stoi(BigInt::to_string(r % multiplier))) + result;
-        r /= multiplier;
-    }
-    return result;
-}
-
-RsaLoader::RsaLoader(RsaTask* task, QString capacity) : task(task), capacity(capacity) {}
-
-QString RsaLoader::query() {
-    return ("rsa?cap=" + capacity);
-}
-
-void RsaLoader::done(QJsonObject* js) {
-    QJsonObject &json = *js;
-    p = BigInt(json["p"].toString().toStdString());
-    q = BigInt(json["q"].toString().toStdString());
-    e = BigInt(json["e"].toString().toStdString());
-    n = BigInt(json["n"].toString().toStdString());
-    d = BigInt(json["d"].toString().toStdString());
-    task->setRsa(p, q, e, n, d);
-}
+#include "Task.h"
+#include "BigInt.h"
+#include "Loader.h"
 
 RsaTask::RsaTask(): Task("Алгоритм RSA") {}
 
@@ -171,6 +135,46 @@ void RsaTask::initWidget(QWidget *wgt) {
     connect(btnBDecrypt, SIGNAL(released()), this, SLOT(bDecrypt()));
 }
 
-void RsaTask::run() const {
+QString RsaLoader::query() {
+    return ("rsa?cap=" + capacity);
+}
 
+void RsaLoader::done(QJsonObject& json) {
+    BigInt p(json["p"].toString().toStdString());
+    BigInt q(json["q"].toString().toStdString());
+    BigInt e(json["e"].toString().toStdString());
+    BigInt n(json["n"].toString().toStdString());
+    BigInt d(json["d"].toString().toStdString());
+    task->setRsa(p, q, e, n, d);
+}
+
+RsaClient::RsaClient(const BigInt& e, const BigInt& n) : e(e), n(n) {
+    k = BigInt::log2(n);
+    k > 16 ? k /= 16 : k = 1;
+}
+
+QString RsaClient::crypt(const QString &in) {
+    QString result;
+    BigInt multiplier(65536);
+    for (int i = 0; i < in.size(); i += k) {
+        BigInt symbol(0);
+        for (int j = i; j < in.size() && j < i + k; ++j) {
+            symbol *= multiplier;
+            symbol += BigInt((int)in[j].unicode());
+        }
+        result.append(crypt(symbol));
+    }
+    return result;
+}
+
+QString RsaClient::crypt(const BigInt &c) {
+    BigInt r = BigInt::modPow(c, e, n);
+    BigInt nul(0);
+    BigInt multiplier(65536);
+    QString result;
+    for(int i = 0; i < k && r != nul; ++i) {
+        result = QChar(stoi(BigInt::to_string(r % multiplier))) + result;
+        r /= multiplier;
+    }
+    return result;
 }

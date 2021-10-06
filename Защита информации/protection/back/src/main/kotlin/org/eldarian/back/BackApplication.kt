@@ -21,6 +21,6 @@ class LController {
     }
     @GetMapping("/elgamal")
     fun elgamal(): ElgamalResponse {
-        return elgamal()
+        return generateElgamal()
     }
 }

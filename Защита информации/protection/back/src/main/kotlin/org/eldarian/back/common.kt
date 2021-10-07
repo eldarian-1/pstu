@@ -50,6 +50,10 @@ data class ElgamalResponse (
     )
 }
 
+data class DesResponse (val key: String) {
+    constructor(key: BigInteger) : this(key.toString())
+}
+
 fun generateRsa(bits: Int): RsaResponse {
     val rnd = Random()
     val p = BigInteger.probablePrime(bits, rnd)

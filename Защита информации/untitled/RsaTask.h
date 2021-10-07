@@ -1,7 +1,5 @@
 #pragma once
 
-#include <QWidget>
-
 #include "Task.h"
 #include "BigInt.h"
 #include "Loader.h"
@@ -73,8 +71,6 @@ public:
     void initWidget(QWidget *wgt) override;
 
 };
-
-class RsaTask;
 
 class RsaLoader : public LoadTask {
 private:

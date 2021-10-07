@@ -9,7 +9,7 @@
 #include "GronsfeldTask.h"
 #include "RsaTask.h"
 #include "ElgamalTask.h"
-#include "DESTask.h"
+#include "DesTask.h"
 #include "CicleTask.h"
 #include "HuffmanTask.h"
 #include "HashTask.h"
@@ -45,7 +45,7 @@ public:
                 ->add(new GronsfeldTask())
                 ->add(new RsaTask())
                 ->add(new ElgamalTask())
-                ->add(new DESTask())
+                ->add(new DesTask())
                 ->add(new CicleTask())
                 ->add(new HuffmanTask())
                 ->add(new HashTask())

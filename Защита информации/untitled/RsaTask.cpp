@@ -1,15 +1,12 @@
 #include "RsaTask.h"
 
 #include <QLabel>
-#include <QJsonObject>
-#include <QJsonDocument>
-#include <QHBoxLayout>
 #include <QLineEdit>
+#include <QJsonObject>
+#include <QHBoxLayout>
 #include <QPushButton>
 
-#include "Task.h"
 #include "BigInt.h"
-#include "Loader.h"
 
 RsaTask::RsaTask(): Task("Алгоритм RSA") {}
 

@@ -8,6 +8,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include "Des.h"
+
 void DesTask::initWidget(QWidget *wgt) {
     lytMain = new QVBoxLayout;
     lytInput = new QHBoxLayout;
@@ -15,7 +17,7 @@ void DesTask::initWidget(QWidget *wgt) {
     lytCrypt = new QHBoxLayout;
     lytDecrypt = new QHBoxLayout;
 
-    lblName = new QLabel("Блочное шифрование по методике DES");
+    lblName = new QLabel("Блочное шифрование по методике Des");
     lblBlock = new QLabel("Блок 16 бит");
     lblKey = new QLabel("Ключ 32 бита: ...");
     lblSource = new QLabel("Исходный файл");
@@ -69,14 +71,14 @@ void DesTask::source() {
 }
 
 void DesTask::crypt() {
-    crypt(lblSource, lblCrypt);
+    crypt(lblSource, lblCrypt, false);
 }
 
 void DesTask::decrypt() {
-    crypt(lblCrypt, lblDecrypt);
+    crypt(lblCrypt, lblDecrypt, true);
 }
 
-void DesTask::crypt(QLabel *source, QLabel *target) {
+void DesTask::crypt(QLabel *source, QLabel *target, bool d) {
     QFile flSource(source->text());
     QFile flTarget(QFileDialog::getSaveFileName());
     if(!flSource.open(QIODevice::ReadOnly) || !flTarget.open(QIODevice::WriteOnly)) {
@@ -85,7 +87,7 @@ void DesTask::crypt(QLabel *source, QLabel *target) {
     }
     target->setText(flTarget.fileName());
     QString sourceStr(flSource.readAll());
-    flTarget.write(client->crypt(sourceStr).toUtf8());
+    flTarget.write(client->crypt(sourceStr, d).toUtf8());
     flSource.close();
     flTarget.close();
 }
@@ -94,15 +96,26 @@ void DesLoader::done(QJsonObject& json) {
     task->setKey(json["key"].toString());
 }
 
-QString DesClient::crypt(QString text) const {
+QString DesClient::crypt(QString text, bool d) const {
     int n = text.length();
     QString r;
+    std::string in;
     for(int i = 0; i < n; ++i) {
-        r.append(crypt(text[i]));
+        ushort t = text[i].unicode();
+        in += char(t / 256);
+        in += char(t % 256);
     }
+    std::string out = myEncrypt(in, key, d);
+    for(int i = 0; i < 2 * n; i += 2) {
+        r += QChar(int(out[i]) * 256 + int(out[i + 1]));
+    }
+    /*for(int i = 0; i < n; ++i) {
+        r.append(crypt(text[i], d));
+    }*/
     return r;
 }
 
-QChar DesClient::crypt(QChar symbol) const {
+QChar DesClient::crypt(QChar symbol, bool d) const {
     return {ushort(symbol.unicode() ^ key)};
+    //return {(ushort)(d ? Des::decrypt : Des::encrypt)(symbol.unicode(), key).to_ulong()};
 }

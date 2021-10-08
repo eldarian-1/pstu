@@ -37,7 +37,7 @@ private:
     QPushButton *btnDecrypt;
 
 public:
-    DesTask(): Task("Методика DES") {}
+    DesTask(): Task("Методика Des") {}
 
     void initWidget(QWidget *wgt) override;
     void setKey(const QString& key);
@@ -49,14 +49,13 @@ public slots:
     void decrypt();
 
 private:
-    void crypt(QLabel *source, QLabel *target);
+    void crypt(QLabel *source, QLabel *target, bool d);
 
 };
 
 class DesLoader : public LoadTask {
 private:
     DesTask* task;
-    QString capacity;
 
 public:
     explicit DesLoader(DesTask* task) : task(task) {}
@@ -72,7 +71,7 @@ private:
 public:
     explicit DesClient(long long key) : key(key) {}
 
-    QString crypt(QString text) const;
-    QChar crypt(QChar symbol) const;
+    QString crypt(QString text, bool d) const;
+    QChar crypt(QChar symbol, bool d) const;
 
 };

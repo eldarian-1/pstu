@@ -5,7 +5,7 @@ echo $1 > t0.txt
 byte="([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
 ip="(${byte}\.){3}${byte}"
 m32="([1-2]?[1-9]|[1-3][0-2])"
-mip="${byte}(\.${byte}){1,3}"
+mip="${byte}(\.${byte}){0,3}"
 ms32="\/$m32"
 msip="\/$mip"
 
@@ -39,11 +39,15 @@ elif grep -Eq $rg2 t0.txt; then
 
 elif grep -Eq $rg3 t0.txt; then
 
-    echo "Найдено rg3: $(cat t3.txt)"
     GREPPED=$(cat t3.txt | grep -Eo $msip | grep -Eo $mip | grep -Eo $byte)
+    m=0
     for a in $GREPPED; do
-        echo $a
+        while [ $a -gt 0 ]; do
+            m=$((m + 1))
+            a=$((a / 2))
+        done
     done
+    echo "$(cat t3.txt | grep -Eo ^$ip)/$m"
 
 else
     echo "файл пуст"

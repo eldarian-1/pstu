@@ -19,38 +19,37 @@ grep -E $rg3 t0.txt > t3.txt
 
 if grep -Eq $rg1 t0.txt; then
 
-    grep -Eo ^$byte t0.txt > t1.txt
-    b=$(cat t1.txt)
-    m=32
-    if [ $b -ge 0 ] && [ $b -le 127 ]; then
-        m=8
-    elif [ $b -ge 128 ] && [ $b -le 181 ]; then
-        m=16
-    elif [ $b -ge 182 ] && [ $b -le 255 ]; then
-        m=24
-    fi
-    echo "$(cat t0.txt)/$m"
-
+	grep -Eo ^$byte t0.txt > t1.txt
+	b=$(cat t1.txt)
+	m=32
+	if [ $b -ge 0 ] && [ $b -le 127 ]; then
+		m=8
+	elif [ $b -ge 128 ] && [ $b -le 181 ]; then
+		m=16
+	elif [ $b -ge 182 ] && [ $b -le 255 ]; then
+		m=24
+	fi
+	echo "$(cat t0.txt)/$m"
 
 elif grep -Eq $rg2 t0.txt; then
 
-    m=$(cat t2.txt | grep -Eo $ms32 | grep -Eo $m32)
-    echo "$(cat t0.txt)"
+	m=$(cat t2.txt | grep -Eo $ms32 | grep -Eo $m32)
+	echo "$(cat t0.txt)"
 
 elif grep -Eq $rg3 t0.txt; then
 
-    GREPPED=$(cat t3.txt | grep -Eo $msip | grep -Eo $mip | grep -Eo $byte)
-    m=0
-    for a in $GREPPED; do
-        while [ $a -gt 0 ]; do
-            m=$((m + 1))
-            a=$((a / 2))
-        done
-    done
-    echo "$(cat t3.txt | grep -Eo ^$ip)/$m"
+	arr=$(cat t3.txt | grep -Eo $msip | grep -Eo $mip | grep -Eo $byte)
+	m=0
+	for a in $arr; do
+		while [ $a -gt 0 ]; do
+			m=$((m + 1))
+			a=$((a / 2))
+		done
+	done
+	echo "$(cat t3.txt | grep -Eo ^$ip)/$m"
 
 else
-    echo "файл пуст"
+	echo "файл пуст"
 fi
 
 rm t0.txt t1.txt t2.txt t3.txt

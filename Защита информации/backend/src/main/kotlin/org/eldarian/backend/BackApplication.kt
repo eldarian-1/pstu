@@ -1,4 +1,4 @@
-package org.eldarian.back
+package org.eldarian.backend
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

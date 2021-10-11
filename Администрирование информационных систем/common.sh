@@ -5,7 +5,7 @@ if [ ! -d "$1" ]; then
     exit 1
 fi
 
-if echo "$1" | grep -Eq "^[\.~]" ; then
+if echo "$1" | grep -Eq "^[\.\~]" ; then
     echo "$1 - относительный путь"
     exit 1
 fi
@@ -21,7 +21,7 @@ fi
 cd "$archive_dir"
 
 current_dir=$(pwd)
-base_dir=$(echo "$1" | grep -Po "[0-9a-zA-ZА-Яа-я_\/ ]+(?=$dir_name$)")
+base_dir=$(echo "$1" | grep -Po "[0-9a-zA-ZА-Яа-я_\/ ]+(?=$dir_name\/?$)")
 
 cd "$base_dir"
 tar -czf "$out_file" "$dir_name"

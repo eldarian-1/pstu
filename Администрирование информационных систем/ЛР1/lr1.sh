@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo $1 > t0.txt
-
 byte="([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])"
 ip="(${byte}\.){3}${byte}"
 m32="([1-2]?[1-9]|[1-3][0-2])"
@@ -9,18 +7,9 @@ mip="${byte}(\.${byte}){0,3}"
 ms32="\/$m32"
 msip="\/$mip"
 
-rg1="^${ip}$"
-rg2="^${ip}${ms32}$"
-rg3="^${ip}${msip}$"
+if echo "$1" | grep -Eq "^${ip}$"; then
 
-grep -E $rg1 t0.txt > t1.txt
-grep -E $rg2 t0.txt > t2.txt
-grep -E $rg3 t0.txt > t3.txt
-
-if grep -Eq $rg1 t0.txt; then
-
-	grep -Eo ^$byte t0.txt > t1.txt
-	b=$(cat t1.txt)
+	b=$(echo "$1" | grep -Eo ^$byte)
 	m=32
 	if [ $b -ge 0 ] && [ $b -le 127 ]; then
 		m=8
@@ -29,27 +18,33 @@ if grep -Eq $rg1 t0.txt; then
 	elif [ $b -ge 182 ] && [ $b -le 255 ]; then
 		m=24
 	fi
-	echo "$(cat t0.txt)/$m"
+	echo "$1/$m"
 
-elif grep -Eq $rg2 t0.txt; then
+elif echo "$1" | grep -Eq "^${ip}${ms32}$"; then
 
-	m=$(cat t2.txt | grep -Eo $ms32 | grep -Eo $m32)
-	echo "$(cat t0.txt)"
+	m=$(echo "$1" | grep -Eq "${ms32}$" | grep -Eo "$m32$")
+	echo "$1"
 
-elif grep -Eq $rg3 t0.txt; then
+elif echo "$1" | grep -Eq "^${ip}${msip}$"; then
 
-	arr=$(cat t3.txt | grep -Eo $msip | grep -Eo $mip | grep -Eo $byte)
+	arr=$(echo "$1" | grep -Eo $msip | grep -Eo $mip | grep -Eo $byte)
+	caps=(128 64 32 16 8 4 2 1)
 	m=0
 	for a in $arr; do
-		while [ $a -gt 0 ]; do
-			m=$((m + 1))
-			a=$((a / 2))
+		for i in ${caps[@]}; do
+			if [ $a -eq 0 ]; then
+				break
+			elif [ $i -eq 1 ]; then
+				m=$((m + 1))
+				break
+			else
+				a=$((a % i))
+				m=$((m + 1))
+			fi
 		done
 	done
-	echo "$(cat t3.txt | grep -Eo ^$ip)/$m"
+	echo "$(echo "$1" | grep -Eo ^$ip)/$m"
 
 else
-	echo "файл пуст"
+	echo "Некорректный ввод!"
 fi
-
-rm t0.txt t1.txt t2.txt t3.txt

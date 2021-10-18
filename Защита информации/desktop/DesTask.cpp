@@ -96,7 +96,7 @@ void DesLoader::done(QJsonObject& json) {
     task->setKey(json["key"].toString());
 }
 
-QString DesClient::crypt(QString text, bool d) const {
+QString crypt(QString text, bool d, int key) {
     int n = text.length();
     QString r;
     std::string in;
@@ -109,10 +109,17 @@ QString DesClient::crypt(QString text, bool d) const {
     for(int i = 0; i < 2 * n; i += 2) {
         r += QChar(int(out[i]) * 256 + int(out[i + 1]));
     }
-    /*for(int i = 0; i < n; ++i) {
-        r.append(crypt(text[i], d));
-    }*/
     return r;
+}
+
+QString DesClient::crypt(QString text, bool d) const {
+    int n = text.length();
+    QString r;
+    for(int i = 0; i < n; ++i) {
+        r.append(crypt(text[i], d));
+    }
+    return r;
+    ::crypt(text, d, key);
 }
 
 QChar DesClient::crypt(QChar symbol, bool d) const {

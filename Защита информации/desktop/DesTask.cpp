@@ -124,5 +124,4 @@ QString DesClient::crypt(QString text, bool d) const {
 
 QChar DesClient::crypt(QChar symbol, bool d) const {
     return {ushort(symbol.unicode() ^ key)};
-    //return {(ushort)(d ? Des::decrypt : Des::encrypt)(symbol.unicode(), key).to_ulong()};
 }

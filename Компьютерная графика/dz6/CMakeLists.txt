@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.0)
 
-project(dz6 VERSION 1.0.0 LANGUAGES CXX)
+project(dz VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_PREFIX_PATH "/home/eldarian/Qt/5.15.2/gcc_64")
@@ -12,6 +12,6 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
-add_executable(dz6 main.cpp Dz6.h)
+add_executable(dz main.cpp Dz6.h Dz4.h common.cpp common.h Matrix.cpp Matrix.h)
 
-target_link_libraries(dz6 PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(dz PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)

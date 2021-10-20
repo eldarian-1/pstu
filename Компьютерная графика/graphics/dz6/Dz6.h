@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QPainter>
 
-#include "common.h"
+#include <common.h>
 
 class Dz6 : public QWidget {
 private:

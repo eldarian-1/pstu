@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-#include "Matrix.h"
+#include <Matrix.h>
 
 class Dz4 : public QWidget {
 private:

@@ -2,60 +2,46 @@
 
 #include <vector>
 #include <memory>
-using namespace std;
 
 class Matrix;
-typedef shared_ptr<Matrix> Matrix_ptr;
+typedef std::vector<double> vector;
+typedef std::vector<vector> matrix;
 
 class Matrix {
 private:
-    vector<vector<double>> _matrix;
+    matrix _m;
 
 public:
-    static Matrix_ptr multiply(Matrix_ptr left, Matrix_ptr right);
-
-    Matrix(Matrix_ptr matrix);
+    Matrix(Matrix& matrix);
     Matrix(const int &n, const int &m);
-    Matrix(initializer_list<initializer_list<double>> matrix);
-    //Matrix & operator = (Matrix &&);
+    Matrix(std::initializer_list<std::initializer_list<double>> matrix);
     ~Matrix();
 
     int n();
     int m();
 
+    void out();
+    double min(int i);
     Matrix normalize();
+    Matrix to2D(double zc);
+    Matrix to2D(double t, double f, double zc);
 
-    Matrix_ptr to2D(double zc);
-    Matrix_ptr to2D(double t, double f, double zc);
+    vector & operator [] (const int &i);
 
-    vector<double> & operator [] (const int &i);
-
-};
-
-class Matrix2D : public Matrix {
-public:
-    static Matrix_ptr transfer(double m, double n);
-    static Matrix_ptr rotate(double alpha);
-    static Matrix_ptr scale(double a, double d);
-    static Matrix_ptr mirror(bool horizontal, bool vertical);
-    static Matrix_ptr project(double p, double q);
-
-    Matrix2D() : Matrix(3, 3) {}
-    Matrix2D(Matrix_ptr matrix) : Matrix(matrix) {}
+    friend Matrix operator * (Matrix &left, Matrix &right);
 
 };
 
-class Matrix3D : public Matrix {
-public:
-    static Matrix_ptr transfer(double m, double n, double l);
-    static Matrix_ptr rotateOx(double t);
-    static Matrix_ptr rotateOy(double f);
-    static Matrix_ptr rotate(double t, double f);
-    static Matrix_ptr scale(double a, double d, double e);
-    static Matrix_ptr mirror(bool horizontal, bool vertical, bool frontal);
-    static Matrix_ptr project(double p, double q, double r);
+Matrix transfer2D(double m, double n);
+Matrix rotate2D(double alpha);
+Matrix scale2D(double a, double d);
+Matrix mirror2D(bool horizontal, bool vertical);
+Matrix project2D(double p, double q);
 
-    Matrix3D() : Matrix(4, 4) {}
-    Matrix3D(Matrix_ptr matrix) : Matrix(matrix) {}
-
-};
+Matrix transfer3D(double m, double n, double l);
+Matrix rotateOx(double t);
+Matrix rotateOy(double f);
+Matrix rotate3D(double t, double f);
+Matrix scale3D(double a, double d, double e);
+Matrix mirror3D(bool horizontal, bool vertical, bool frontal);
+Matrix project3D(double p, double q, double r);

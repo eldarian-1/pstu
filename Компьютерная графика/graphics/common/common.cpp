@@ -1,5 +1,9 @@
 #include "common.h"
 
+using namespace std;
+
+extern const double PI = 3.1415926535;
+
 double get(vector<double> v, int p) {
     if(p >= 0 && p < v.size()) {
         return v[p];

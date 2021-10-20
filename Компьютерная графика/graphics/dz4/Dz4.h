@@ -1,6 +1,8 @@
 #pragma once
 
+#include <QTimer>
 #include <QColor>
+#include <QLabel>
 #include <QWidget>
 #include <QSlider>
 #include <QPainter>
@@ -9,8 +11,11 @@
 #include <iostream>
 
 #include <Matrix.h>
+#include <common.h>
 
 class Dz4 : public QWidget {
+Q_OBJECT
+
 private:
     Matrix _house{
             {0, 0, 0, 1}, // a
@@ -37,6 +42,7 @@ private:
             {2, 0, 0, 1}, // b
     };
     QVBoxLayout *lytControls;
+    QLabel *lblF, *lblT, *lblZ;
     QSlider *sldF, *sldT, *sldZ;
 
 public:
@@ -44,23 +50,44 @@ public:
         setWindowTitle("Д/З №4");
         resize(900, 700);
         lytControls = new QVBoxLayout;
+        lblF = new QLabel("f");
+        lblT = new QLabel("t");
+        lblZ = new QLabel("Zc");
         sldF = new QSlider;
         sldT = new QSlider;
         sldZ = new QSlider;
+
+        sldF->setMinimum(0);
+        sldF->setMaximum(360);
+        sldF->setValue(15);
+        sldT->setMinimum(0);
+        sldT->setMaximum(360);
+        sldT->setValue(5);
+        sldZ->setMinimum(0);
+        sldZ->setMaximum(1000);
+        sldZ->setValue(100);
+
         this->setLayout(lytControls);
+        lytControls->addWidget(lblF);
         lytControls->addWidget(sldF);
+        lytControls->addWidget(lblT);
         lytControls->addWidget(sldT);
+        lytControls->addWidget(lblZ);
         lytControls->addWidget(sldZ);
+
+        QTimer *timer = new QTimer(this);
+        connect(timer, SIGNAL(timeout()), SLOT(repaint()));
+        timer->start(20);
     }
 
 private:
     QPoint* getPoints(Matrix &matrix) {
         Matrix m = matrix.normalize();
-        Matrix t = transfer3D(-m.min(0) + 100, -m.min(1) + 100, 0);
+        Matrix t = transfer3D(450, 350, 0);//transfer3D(-m.min(0) + 100, -m.min(1) + 100, 0);
         m = (m * t);
-        int _n = matrix.n();
-        QPoint *result = new QPoint[_n];
-        for(int i = 0; i < _n; ++i) {
+        int n = matrix.n();
+        QPoint *result = new QPoint[n];
+        for(int i = 0; i < n; ++i) {
             result[i] = QPoint(m[i][0], m[i][1]);
         }
         return result;
@@ -68,16 +95,15 @@ private:
 
 protected:
     void paintEvent(QPaintEvent *event) override {
-        Matrix t = scale3D(5, 5, 5);
-        Matrix house = (_house * t);
-        Matrix h = house.to2D(0.13, 0.6, 30);
-        int size = h.n();
+        double t = PI / 180 * sldT->value();
+        double f = PI / 180 * sldF->value();
+        Matrix h = _house.to2D(t, f, sldZ->value());
         QPoint *points = getPoints(h);
-
         QPainter painter;
         painter.begin(this);
-        painter.drawPolygon(points, size);
+        painter.drawPolygon(points, h.n());
         painter.end();
         delete[] points;
     }
+
 };

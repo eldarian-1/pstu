@@ -94,12 +94,13 @@ private:
         double t = PI / 180 * sldT->value();
         double f = PI / 180 * sldF->value();
         int zc = sldZ->value();
-        Matrix vp = vanishingPoints(t, f, zc);
+        Matrix result = _house.to2D(t, f, zc).normalize() * transfer3D(450, 350, 0);
+        Matrix vp = result.vanishingPoints();
         lblInfo->setText(
                 QString::asprintf(
                         "Точки схода\nx: (%f, %f)\ny: (%f, %f)\nz: (%f, %f)",
                         vp[0][0],  vp[0][1],  vp[1][0],  vp[1][1],  vp[2][0],  vp[2][1]));
-        return (_house.to2D(t, f, zc).normalize() * transfer3D(450, 350, 0));
+        return result;
     }
 
 protected:

@@ -25,6 +25,7 @@ public:
     Matrix normalize();
     Matrix to2D(double zc);
     Matrix to2D(double t, double f, double zc);
+    Matrix vanishingPoints();
 
     vector & operator [] (const int &i);
 
@@ -45,5 +46,3 @@ Matrix rotate3D(double t, double f);
 Matrix scale3D(double a, double d, double e);
 Matrix mirror3D(bool horizontal, bool vertical, bool frontal);
 Matrix project3D(double p, double q, double r);
-
-Matrix vanishingPoints(double t, double f, double zc);

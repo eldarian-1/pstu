@@ -91,6 +91,15 @@ Matrix Matrix::to2D(double t, double f, double zc) {
     return res;
 }
 
+Matrix Matrix::vanishingPoints() {
+    Matrix ones {
+            {1, 0, 0, 0},
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
+    };
+    return (ones * (*this)).normalize();
+}
+
 vector & Matrix::operator [] (const int &i) {
     return begin(_m)[i];
 }
@@ -197,14 +206,4 @@ Matrix project3D(double p, double q, double r) {
             {0, 0, 1, r},
             {0, 0, 0, 1},
     };
-}
-
-Matrix vanishingPoints(double t, double f, double zc) {
-    Matrix ones {
-            {1, 0, 0, 0},
-            {0, 1, 0, 0},
-            {0, 0, 1, 0},
-    };
-    Matrix r = rotate3D(t, f);
-    return (ones * r).to2D(zc);
 }

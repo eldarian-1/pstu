@@ -1,9 +1,7 @@
 #pragma once
 
 #include <vector>
-#include <memory>
 
-class Matrix;
 typedef std::vector<double> vector;
 typedef std::vector<vector> matrix;
 

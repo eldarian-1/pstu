@@ -4,7 +4,8 @@
 #include <QWidget>
 #include <QPainter>
 
-#include <common.h>
+#include <splines.h>
+using namespace std;
 
 class Dz6 : public QWidget {
 private:

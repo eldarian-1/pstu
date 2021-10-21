@@ -28,7 +28,7 @@ public:
 
     vector & operator [] (const int &i);
 
-    friend Matrix operator * (Matrix &left, Matrix &right);
+    friend Matrix operator * (Matrix left, Matrix right);
 
 };
 
@@ -45,3 +45,5 @@ Matrix rotate3D(double t, double f);
 Matrix scale3D(double a, double d, double e);
 Matrix mirror3D(bool horizontal, bool vertical, bool frontal);
 Matrix project3D(double p, double q, double r);
+
+Matrix vanishingPoints(double t, double f, double zc);

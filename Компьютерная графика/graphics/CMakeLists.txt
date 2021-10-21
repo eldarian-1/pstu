@@ -17,11 +17,13 @@ find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 include_directories(common)
 
-add_library(common common/common.h common/common.cpp common/Matrix.h common/Matrix.cpp)
+add_library(common common/splines.h common/splines.cpp common/Matrix.h common/Matrix.cpp)
 add_executable(dz4 dz4/main.cpp dz4/Dz4.h)
+add_executable(dz5 dz5/main.cpp dz5/Dz5.h)
 add_executable(dz6 dz6/main.cpp dz6/Dz6.h)
 add_executable(line line/main.cpp line/Canvas.h line/Canvas.cpp line/Line.h line/Line.cpp line/WidthDialog.h line/WidthDialog.cpp line/Mode.cpp line/Mode.h)
 
 target_link_libraries(dz4 PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(dz5 PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(dz6 PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(line PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)

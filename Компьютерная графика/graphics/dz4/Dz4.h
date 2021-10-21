@@ -8,10 +8,8 @@
 #include <QPainter>
 #include <QVBoxLayout>
 
-#include <iostream>
-
 #include <Matrix.h>
-#include <common.h>
+#include <splines.h>
 
 class Dz4 : public QWidget {
 Q_OBJECT
@@ -42,7 +40,7 @@ private:
             {2, 0, 0, 1}, // b
     };
     QVBoxLayout *lytControls;
-    QLabel *lblF, *lblT, *lblZ;
+    QLabel *lblF, *lblT, *lblZ, *lblInfo;
     QSlider *sldF, *sldT, *sldZ;
 
 public:
@@ -53,6 +51,7 @@ public:
         lblF = new QLabel("f");
         lblT = new QLabel("t");
         lblZ = new QLabel("Zc");
+        lblInfo = new QLabel("Точки схода\nx:\ny:\nz:");
         sldF = new QSlider;
         sldT = new QSlider;
         sldZ = new QSlider;
@@ -74,18 +73,16 @@ public:
         lytControls->addWidget(sldT);
         lytControls->addWidget(lblZ);
         lytControls->addWidget(sldZ);
+        lytControls->addWidget(lblInfo);
 
         QTimer *timer = new QTimer(this);
-        connect(timer, SIGNAL(timeout()), SLOT(repaint()));
+        connect(timer, SIGNAL(timeout()), SLOT(sliderChanged()));
         timer->start(20);
     }
 
 private:
-    QPoint* getPoints(Matrix &matrix) {
-        Matrix m = matrix.normalize();
-        Matrix t = transfer3D(450, 350, 0);//transfer3D(-m.min(0) + 100, -m.min(1) + 100, 0);
-        m = (m * t);
-        int n = matrix.n();
+    QPoint* getPoints(Matrix m) {
+        int n = m.n();
         QPoint *result = new QPoint[n];
         for(int i = 0; i < n; ++i) {
             result[i] = QPoint(m[i][0], m[i][1]);
@@ -93,17 +90,32 @@ private:
         return result;
     }
 
-protected:
-    void paintEvent(QPaintEvent *event) override {
+    Matrix resultMatrix() {
         double t = PI / 180 * sldT->value();
         double f = PI / 180 * sldF->value();
-        Matrix h = _house.to2D(t, f, sldZ->value());
-        QPoint *points = getPoints(h);
+        int zc = sldZ->value();
+        Matrix vp = vanishingPoints(t, f, zc);
+        lblInfo->setText(
+                QString::asprintf(
+                        "Точки схода\nx: (%f, %f)\ny: (%f, %f)\nz: (%f, %f)",
+                        vp[0][0],  vp[0][1],  vp[1][0],  vp[1][1],  vp[2][0],  vp[2][1]));
+        return (_house.to2D(t, f, zc).normalize() * transfer3D(450, 350, 0));
+    }
+
+protected:
+    void paintEvent(QPaintEvent *event) override {
+        Matrix house = resultMatrix();
+        QPoint *points = getPoints(house);
         QPainter painter;
         painter.begin(this);
-        painter.drawPolygon(points, h.n());
+        painter.drawPolygon(points, house.n());
         painter.end();
         delete[] points;
+    }
+
+private slots:
+    void sliderChanged() {
+        repaint();
     }
 
 };

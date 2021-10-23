@@ -1,23 +1,48 @@
 #pragma once
 
 #include <QWidget>
-#include <QLabel>
 
 #include "Task.h"
 
-class GammaTask: public Task {
+class QVBoxLayout;
+class QHBoxLayout;
+class QLabel;
+class QLineEdit;
+class QPushButton;
+class QTextEdit;
+
+struct u48 {
+    ushort s[3];
+};
+
+void getBlocks(QString text, u48 *&out, int &n);
+
+QString getString(u48 *&in, const int &n);
+
+class GammaTask: public QWidget, public Task {
+Q_OBJECT
+
 private:
-    QLabel *label;
+    QVBoxLayout *lytMain;
+    QHBoxLayout *lytKey;
+    QHBoxLayout *lytIn;
+    QLabel *lblName;
+    QLabel *lblKey;
+    QLabel *lblIn;
+    QLineEdit *leKey;
+    QLineEdit *leIn;
+    QPushButton *btn;
+    QLineEdit *leResult;
+    QTextEdit *txtResult;
 
 public:
-    GammaTask(): Task("Метод однократного гаммирования") {
+    GammaTask() : Task("Метод однократного гаммирования") {}
 
-    }
+    void initWidget(QWidget *wgt) override;
 
-    void initWidget(QWidget *wgt) override {
-        label = new QLabel("Gamma", wgt);
-    }
+    void run() const override {}
 
-    void run() const override { }
+private slots:
+    void generate();
 
 };

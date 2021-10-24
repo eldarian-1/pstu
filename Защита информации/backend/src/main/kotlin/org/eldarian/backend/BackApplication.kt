@@ -2,9 +2,7 @@ package org.eldarian.backend
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.math.BigInteger
 import java.util.*
 
@@ -28,5 +26,9 @@ class LController {
     @GetMapping("/des")
     fun des(): DesResponse {
         return DesResponse(BigInteger.probablePrime(32, Random()))
+    }
+    @PostMapping("/hash")
+    fun hash(@RequestBody body: HashRequest): HashResponse {
+        return HashResponse(body.text)
     }
 }

@@ -1,7 +1,10 @@
 package org.eldarian.backend
 
+import sun.misc.BASE64Encoder
 import java.math.BigInteger
 import java.util.*
+import javax.crypto.Cipher
+import javax.crypto.KeyGenerator
 
 data class RsaResponse (
     val p: String,
@@ -52,6 +55,19 @@ data class ElgamalResponse (
 
 data class DesResponse (val key: String) {
     constructor(key: BigInteger) : this(key.toString())
+}
+
+data class HashRequest (val text: String)
+
+data class HashResponse (var hash: String) {
+    init {
+        val cipher = Cipher.getInstance("DES")
+        val key = KeyGenerator.getInstance("DES").generateKey()
+        cipher.init(Cipher.ENCRYPT_MODE, key)
+        val utf8 = hash.toByteArray(Charsets.UTF_16)
+        val enc = cipher.doFinal(utf8)
+        hash = BASE64Encoder().encode(enc)
+    }
 }
 
 fun generateRsa(bits: Int): RsaResponse {

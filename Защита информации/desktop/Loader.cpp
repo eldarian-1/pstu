@@ -3,9 +3,14 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QNetworkReply>
+#include <QNetworkRequest>
 #include <QNetworkAccessManager>
 
 void LoadTask::run() {
+    Loader::getInstance()->download(this);
+}
+
+void PostLoadTask::run() {
     Loader::getInstance()->download(this);
 }
 
@@ -29,6 +34,17 @@ void Loader::download(LoadTask *task) {
     }
     this->task = task;
     manager->get(QNetworkRequest(QUrl("http://localhost:8080/" + task->query())));
+}
+
+void Loader::download(PostLoadTask *task) {
+    if(this->task) {
+        delete this->task;
+    }
+    this->task = task;
+    const QUrl url("http://localhost:8080/" + task->query());
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    manager->post(request, task->request().toJson());
 }
 
 void Loader::slotFinished(QNetworkReply* reply) {

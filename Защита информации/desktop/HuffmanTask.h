@@ -8,42 +8,47 @@
 #include <iostream>
 #include <string>
 #include <queue>
-#include <unordered_map>
 using namespace std;
 
+class QDataStream;
+class QTextStream;
 class QVBoxLayout;
 class QHBoxLayout;
 class QPushButton;
 
 struct HuffmanNode {
-    char ch;
+    QChar ch;
     int freq;
     HuffmanNode *left, *right;
 
-    static HuffmanNode * get(char ch, int freq, HuffmanNode* left, HuffmanNode* right);
+    static HuffmanNode * get(QChar ch, int freq, HuffmanNode* left, HuffmanNode* right);
     bool operator()(HuffmanNode* l, HuffmanNode* r);
 
 };
 
-void encode(HuffmanNode* root, string str, unordered_map<char, string> &huffmanCode);
-string decode(HuffmanNode* root, int &index, string str, string out = "");
+void encode(HuffmanNode* root, QString str, QHash<QChar, QString> &huffmanCode);
+QString  decode(HuffmanNode* root, int &index, QString str);
+QBitArray strToBit(QString text);
+QString bitToStr(QBitArray bits);
 
 class HuffmanAlgorithm {
 private:
-    unordered_map<char, int> freq;
+    QHash<QChar, int> freq;
     priority_queue<HuffmanNode*, vector<HuffmanNode*>, HuffmanNode> pq;
     HuffmanNode* root;
-    unordered_map<char, string> huffmanCode;
+    QHash<QChar, QString> huffmanCode;
+    QString text;
 
 public:
     HuffmanAlgorithm() {}
-    HuffmanAlgorithm(string text);
+    HuffmanAlgorithm(QString text);
+    void fillPq();
 
-    string encode(string text);
-    string decode(string text);
+    QString decode(QString text);
 
-    friend istream& operator << (istream& in, HuffmanAlgorithm& algorithm);
-    friend ostream& operator >> (ostream& out, HuffmanAlgorithm& algorithm);
+    friend QDataStream& operator >> (QDataStream &in, HuffmanAlgorithm& algorithm);
+    friend QDataStream& operator << (QDataStream &out, const HuffmanAlgorithm& algorithm);
+    friend QTextStream& operator << (QTextStream &out, const HuffmanAlgorithm& algorithm);
 
 };
 
@@ -72,13 +77,14 @@ public:
     HuffmanTask(): Task("Алгоритм Хаффмана") {}
     void initWidget(QWidget *wgt) override;
 
-private:
-    void doAnything(QLabel *lbl, QString (*)(QString));
-
 private slots:
     void packHuff();
     void unpackHuff();
     void packArif();
     void unpackArif();
+
+private:
+    template<class TIn, class TOut>
+    void doAnything(QLabel *lbl, void (*fun)(TIn&, TOut&));
 
 };

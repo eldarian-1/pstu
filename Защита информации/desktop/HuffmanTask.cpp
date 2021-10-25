@@ -2,13 +2,15 @@
 
 #include <QLabel>
 #include <QLineEdit>
-#include <QJsonObject>
+#include <QBitArray>
+#include <QTextStream>
+#include <QDataStream>
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QFileDialog>
 #include <QMessageBox>
 
-HuffmanNode * HuffmanNode::get(char ch, int freq, HuffmanNode* left, HuffmanNode* right) {
+HuffmanNode * HuffmanNode::get(QChar ch, int freq, HuffmanNode* left, HuffmanNode* right) {
     HuffmanNode* node = new HuffmanNode();
     node->ch = ch;
     node->freq = freq;
@@ -21,30 +23,25 @@ bool HuffmanNode::operator()(HuffmanNode* l, HuffmanNode* r) {
     return l->freq > r->freq;
 }
 
-void encode(HuffmanNode* root, string str, unordered_map<char, string> &huffmanCode) {
+void encode(HuffmanNode* root, QString str, QHash<QChar, QString> &huffmanCode) {
     if (root == nullptr) {
         return;
     }
-
     if (!root->left && !root->right) {
         huffmanCode[root->ch] = str;
     }
-
     encode(root->left, str + "0", huffmanCode);
     encode(root->right, str + "1", huffmanCode);
 }
 
-string decode(HuffmanNode* root, int &index, string str, string out) {
+QString  decode(HuffmanNode* root, int &index, QString str) {
     if (root == nullptr) {
         return "";
     }
-
     if (!root->left && !root->right) {
-        return (out + root->ch);
+        return root->ch;
     }
-
     index++;
-
     if (str[index] == '0') {
         return decode(root->left, index, str);
     } else {
@@ -52,65 +49,118 @@ string decode(HuffmanNode* root, int &index, string str, string out) {
     }
 }
 
-HuffmanAlgorithm::HuffmanAlgorithm(string text) {
-    for (char ch: text) {
+QBitArray strToBit(QString text) {
+    int n = text.size();
+    QBitArray result(n);
+    for(int i = 0; i < n; ++i) {
+        result.setBit(i, text[i] == "1");
+    }
+    return result;
+}
+
+QString bitToStr(QBitArray bits) {
+    int n = bits.size();
+    QString result;
+    for(int i = 0; i < n; ++i) {
+        result += bits.at(i) ? "1" : "0";
+    }
+    return result;
+}
+
+HuffmanAlgorithm::HuffmanAlgorithm(QString text) {
+    for (QChar ch: text) {
         freq[ch]++;
     }
-    for (auto pair: freq) {
-        pq.push(HuffmanNode::get(pair.first, pair.second, nullptr, nullptr));
+    fillPq();
+    ::encode(root, "", huffmanCode);
+    this->text = text;
+}
+
+void HuffmanAlgorithm::fillPq() {
+    for (auto pair = freq.begin(); pair != freq.end(); ++pair) {
+        pq.push(HuffmanNode::get(pair.key(), pair.value(), nullptr, nullptr));
     }
     while (pq.size() != 1) {
         HuffmanNode *left = pq.top(); pq.pop();
         HuffmanNode *right = pq.top();	pq.pop();
-
         int sum = left->freq + right->freq;
         pq.push(HuffmanNode::get('\0', sum, left, right));
     }
     root = pq.top();
-    ::encode(root, "", huffmanCode);
+}
 
-    cout << "Huffman Codes are :\n" << '\n';
-    for (auto pair: huffmanCode) {
-        cout << pair.first << " " << pair.second << '\n';
-    }
-
-    cout << "\nOriginal string was :\n" << text << '\n';
-
-    string str = "";
-    for (char ch: text) {
-        str += huffmanCode[ch];
-    }
-
-    cout << "\nEncoded string is :\n" << str << '\n';
-
+QString HuffmanAlgorithm::decode(QString text) {
+    QString str = "";
     int index = -1;
-    cout << "\nDecoded string is: \n";
-    while (index < (int)str.size() - 2) {
-        ::decode(root, index, str);
-    }
-}
-
-string HuffmanAlgorithm::encode(string text) {
-    string str = "";
-    for (char ch: text) {
-        str += huffmanCode[ch];
+    while (index < (int)text.size() - 2) {
+        str += ::decode(root, index, text);
     }
     return str;
 }
 
-string HuffmanAlgorithm::decode(string text) {
-    string str = "";
-    for (char ch: text) {
-        str += huffmanCode[ch];
+QDataStream& operator >> (QDataStream &in, HuffmanAlgorithm& a) {
+    int n;
+    in >> n;
+    for (int i = 0; i < n; ++i) {
+        QChar key;
+        int value;
+        in >> key >> value;
+        a.freq[key] = value;
     }
-    return str;
-}
+    a.fillPq();
+    in >> n;
+    for (int i = 0; i < n; ++i) {
+        QChar key;
+        QString value;
+        in >> key >> value;
+        a.huffmanCode[key] = value;
+    }
 
-istream& operator << (istream& in, HuffmanAlgorithm& algorithm) {
+    //Binary
+    /*QBitArray bits;
+    in >> bits;
+    a.text = a.decode(bitToStr(bits));*/
+
+    //Text
+    in >> n;
+    QString packed, temp;
+    for (int i = 0; i < n; ++i) {
+        in >> temp;
+        packed += temp;
+    }
+    a.text = a.decode(packed);
+
     return in;
 }
 
-ostream& operator >> (ostream& out, HuffmanAlgorithm& algorithm) {
+QDataStream& operator << (QDataStream &out, const HuffmanAlgorithm& a) {
+    out << (int)a.freq.size();
+    for (auto pair = a.freq.begin(); pair != a.freq.end(); ++pair) {
+        out << pair.key() << pair.value();
+    }
+    out << (int)a.huffmanCode.size();
+    for (auto pair = a.huffmanCode.begin(); pair != a.huffmanCode.end(); ++pair) {
+        out << pair.key() << pair.value();
+    }
+
+    //Binary
+    /*QString packed;
+    for (QChar ch: a.text) {
+        packed += a.huffmanCode[ch];
+    }
+    out << strToBit(packed);*/
+
+    //Text
+    out << a.text.size();
+    for (QChar ch: a.text) {
+        out << a.huffmanCode[ch];
+    }
+
+    return out;
+}
+
+QTextStream& operator << (QTextStream &out, const HuffmanAlgorithm& a) {
+    out << a.text;
     return out;
 }
 
@@ -156,42 +206,47 @@ void HuffmanTask::initWidget(QWidget *wgt) {
     connect(btnUnpackArif, SIGNAL(released()), this, SLOT(unpackArif()));
 }
 
-void HuffmanTask::doAnything(QLabel *lbl, QString (*fun)(QString)) {
-    QFile source(QFileDialog::getOpenFileName());
-    QFile target(QFileDialog::getSaveFileName());
-    lbl->setText(QString::asprintf(
-                    "From: %s\nTo: %s",
-                    source.fileName().toStdString().c_str(),
-                    target.fileName().toStdString().c_str()));
-    if(!source.open(QIODevice::ReadOnly) || !target.open(QIODevice::WriteOnly)) {
-        QMessageBox::warning(nullptr, "Предупреждение", "Исходный файл не выбран или не существует");
-        return;
-    }
-    target.write(fun(source.readAll()).toUtf8());
-    source.close();
-    target.close();
-}
-
 void HuffmanTask::packHuff() {
-    doAnything(lblPackHuff, [](QString s) -> QString {
-        return HuffmanAlgorithm(s.toStdString()).encode(s.toStdString()).c_str();
+    doAnything<QTextStream, QDataStream>(lblPackHuff, [](QTextStream &in, QDataStream &out) -> void {
+        out << HuffmanAlgorithm(in.readAll());
     });
 }
 
 void HuffmanTask::unpackHuff() {
-    doAnything(lblUnpackHuff, [](QString s) -> QString {
-        return HuffmanAlgorithm(s.toStdString()).encode(s.toStdString()).c_str();
+    doAnything<QDataStream, QTextStream>(lblUnpackHuff, [](QDataStream &in, QTextStream &out) -> void {
+        HuffmanAlgorithm a;
+        in >> a;
+        out << a;
     });
 }
 
 void HuffmanTask::packArif() {
-    doAnything(lblPackArif, [](QString s) -> QString {
-        return HuffmanAlgorithm(s.toStdString()).encode(s.toStdString()).c_str();
-    });
+    /*doAnything(lblPackArif, [](QDataStream &in, QDataStream &out) -> void {
+        out << HuffmanAlgorithm(in.readAll().toStdString()).encode().c_str();
+    });*/
 }
 
 void HuffmanTask::unpackArif() {
-    doAnything(lblUnpackArif, [](QString s) -> QString {
-        return HuffmanAlgorithm(s.toStdString()).encode(s.toStdString()).c_str();
-    });
+    /*doAnything(lblUnpackArif, [](QDataStream &in, QDataStream &out) -> void {
+        out << HuffmanAlgorithm(in).decode().c_str();
+    });*/
+}
+
+template<class TIn, class TOut>
+void HuffmanTask::doAnything(QLabel *lbl, void (*fun)(TIn&, TOut&)) {
+    QFile source(QFileDialog::getOpenFileName());
+    QFile target(QFileDialog::getSaveFileName());
+    lbl->setText(QString::asprintf(
+            "From: %s\nTo: %s",
+            source.fileName().toStdString().c_str(),
+            target.fileName().toStdString().c_str()));
+    if(!source.open(QIODevice::ReadOnly) || !target.open(QIODevice::WriteOnly)) {
+        QMessageBox::warning(nullptr, "Предупреждение", "Исходный файл не выбран или не существует");
+        return;
+    }
+    TIn in(&source);
+    TOut out(&target);
+    fun(in, out);
+    source.close();
+    target.close();
 }

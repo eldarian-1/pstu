@@ -5,8 +5,8 @@
 
 #include <iostream>
 
-HuffmanNode * HuffmanNode::node(QChar ch, int freq, HuffmanNode* left, HuffmanNode* right) {
-    HuffmanNode* node = new HuffmanNode();
+Huffman::Node* Huffman::node(QChar ch, int freq, Node* left, Node* right) {
+    Node* node = new Node;
     node->ch = ch;
     node->freq = freq;
     node->left = left;
@@ -14,36 +14,45 @@ HuffmanNode * HuffmanNode::node(QChar ch, int freq, HuffmanNode* left, HuffmanNo
     return node;
 }
 
-HuffmanNode* HuffmanNode::tree(QHash<QChar, int> freq) {
-    priority_queue<HuffmanNode*, vector<HuffmanNode*>, HuffmanNode> pq;
+Huffman::Node* Huffman::tree(QHash<QChar, int> freq) {
+    priority_queue<Node*, vector<Node*>, Node> pq;
     for (auto pair = freq.begin(); pair != freq.end(); ++pair) {
         pq.push(node(pair.key(), pair.value(), nullptr, nullptr));
     }
     while (pq.size() != 1) {
-        HuffmanNode *left = pq.top(); pq.pop();
-        HuffmanNode *right = pq.top();	pq.pop();
+        Node *left = pq.top(); pq.pop();
+        Node *right = pq.top();	pq.pop();
         int sum = left->freq + right->freq;
         pq.push(node('\0', sum, left, right));
     }
     return pq.top();
 }
 
-bool HuffmanNode::operator()(HuffmanNode* l, HuffmanNode* r) {
+bool Huffman::Node::operator()(Node* l, Node* r) {
     return l->freq > r->freq;
 }
 
-void encode(HuffmanNode* root, QString str, QHash<QChar, QString> &huffmanCode) {
+void Huffman::encode(Node* root, QString text, QHash<QChar, QString> &huffmanCode) {
     if (root == nullptr) {
         return;
     }
     if (!root->left && !root->right) {
-        huffmanCode[root->ch] = str;
+        huffmanCode[root->ch] = text;
     }
-    encode(root->left, str + "0", huffmanCode);
-    encode(root->right, str + "1", huffmanCode);
+    encode(root->left, text + "0", huffmanCode);
+    encode(root->right, text + "1", huffmanCode);
 }
 
-QChar decode(HuffmanNode* root, int &index, QString str) {
+QString Huffman::decode(QString text, Node* root) {
+    QString str = "";
+    int index = -1;
+    while (index < (int)text.size() - 2) {
+        str += decode(root, index, text);
+    }
+    return str;
+}
+
+QChar Huffman::decode(Node* root, int &index, QString str) {
     if (root == nullptr) {
         return '\0';
     }
@@ -58,17 +67,17 @@ QChar decode(HuffmanNode* root, int &index, QString str) {
     }
 }
 
-QTextStream& operator >> (QTextStream &in, HuffmanEncoder& encoder) {
+QTextStream& Huffman::operator >> (QTextStream &in, Encoder& encoder) {
     encoder.text = in.readAll();
     return in;
 }
 
-QTextStream& operator << (QTextStream &out, const HuffmanEncoder& encoder) {
+QTextStream& Huffman::operator << (QTextStream &out, const Encoder& encoder) {
     QHash<QChar, int> freq;
     for (QChar ch: encoder.text) {
         freq[ch]++;
     }
-    HuffmanNode* root = HuffmanNode::tree(freq);
+    Node* root = tree(freq);
     QHash<QChar, QString> huffmanCode;
     encode(root, "", huffmanCode);
     out << huffmanCode.size();
@@ -83,7 +92,7 @@ QTextStream& operator << (QTextStream &out, const HuffmanEncoder& encoder) {
     return out;
 }
 
-QTextStream& operator >> (QTextStream &in, HuffmanDecoder& decoder) {
+QTextStream& Huffman::operator >> (QTextStream &in, Decoder& decoder) {
     int n;
     in >> n;
     QHash<QChar, int> freq;
@@ -100,21 +109,12 @@ QTextStream& operator >> (QTextStream &in, HuffmanDecoder& decoder) {
     QString packed;
     in >> packed;
 
-    decoder.text = decoder.decode(packed, HuffmanNode::tree(freq));
+    decoder.text = decode(packed, tree(freq));
 
     return in;
 }
 
-QString HuffmanDecoder::decode(QString text, HuffmanNode* root) {
-    QString str = "";
-    int index = -1;
-    while (index < (int)text.size() - 2) {
-        str += ::decode(root, index, text);
-    }
-    return str;
-}
-
-QTextStream& operator << (QTextStream &out, const HuffmanDecoder& decoder) {
+QTextStream& Huffman::operator << (QTextStream &out, const Decoder& decoder) {
     out << decoder.text;
     return out;
 }

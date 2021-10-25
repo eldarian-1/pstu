@@ -53,19 +53,19 @@ void HuffmanTask::initWidget(QWidget *wgt) {
 }
 
 void HuffmanTask::packHuff() {
-    doAnything<HuffmanEncoder>(lblPackHuff);
+    doAnything<Huffman::Encoder>(lblPackHuff);
 }
 
 void HuffmanTask::unpackHuff() {
-    doAnything<HuffmanDecoder>(lblUnpackHuff);
+    doAnything<Huffman::Decoder>(lblUnpackHuff);
 }
 
 void HuffmanTask::packArif() {
-    doAnything<ArithmeticEncoder>(lblPackArif);
+    doAnything<Arithmetic::Encoder>(lblPackArif);
 }
 
 void HuffmanTask::unpackArif() {
-    doAnything<ArithmeticDecoder>(lblUnpackArif);
+    doAnything<Arithmetic::Decoder>(lblUnpackArif);
 }
 
 template<class TCipher>

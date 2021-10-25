@@ -62,7 +62,7 @@ void GammaTask::initWidget(QWidget *wgt) {
     txtResult = new QTextEdit("Результат в числах");
     leKey = new QLineEdit;
     leIn = new QLineEdit;
-    btn = new QPushButton("Захешировать");
+    btn = new QPushButton("Выполнить гаммирование");
 
     wgt->setLayout(lytMain);
     lytMain->addWidget(lblName);

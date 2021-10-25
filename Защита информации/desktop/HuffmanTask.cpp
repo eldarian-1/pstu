@@ -53,33 +53,28 @@ void HuffmanTask::initWidget(QWidget *wgt) {
 }
 
 void HuffmanTask::packHuff() {
-    doAnything<QTextStream, QTextStream>(lblPackHuff, [](QTextStream &in, QTextStream &out) -> void {
-        HuffmanEncoder encoder;
-        in >> encoder;
-        out << encoder;
-    });
+    doAnything<HuffmanEncoder>(lblPackHuff);
 }
 
 void HuffmanTask::unpackHuff() {
-    doAnything<QTextStream, QTextStream>(lblUnpackHuff, [](QTextStream &in, QTextStream &out) -> void {
-        HuffmanDecoder decoder;
-        in >> decoder;
-        out << decoder;
-    });
+    doAnything<HuffmanDecoder>(lblUnpackHuff);
 }
 
 void HuffmanTask::packArif() {
-    /*doAnything<QTextStream, QDataStream>(lblPackArif, [](QTextStream &in, QDataStream &out) -> void {
-        out << HuffmanAlgorithm(in.readAll());
-    });**/
+    doAnything<ArithmeticEncoder>(lblPackArif);
 }
 
 void HuffmanTask::unpackArif() {
-    /*doAnything<QDataStream, QTextStream>(lblUnpackArif, [](QDataStream &in, QTextStream &out) -> void {
-        HuffmanAlgorithm a;
-        in >> a;
-        out << a;
-    });*/
+    doAnything<ArithmeticDecoder>(lblUnpackArif);
+}
+
+template<class TCipher>
+void HuffmanTask::doAnything(QLabel *lbl) {
+    doAnything<QTextStream, QTextStream>(lbl, [](QTextStream &in, QTextStream &out) -> void {
+        TCipher decoder;
+        in >> decoder;
+        out << decoder;
+    });
 }
 
 template<class TIn, class TOut>

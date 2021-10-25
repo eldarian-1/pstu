@@ -41,6 +41,9 @@ private slots:
     void unpackArif();
 
 private:
+    template<class TCipher>
+    void doAnything(QLabel *lbl);
+
     template<class TIn, class TOut>
     void doAnything(QLabel *lbl, void (*fun)(TIn&, TOut&));
 

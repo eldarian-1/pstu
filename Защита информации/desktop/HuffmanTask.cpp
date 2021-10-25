@@ -1,4 +1,6 @@
 #include "HuffmanTask.h"
+#include "Huffman.h"
+#include "Arithmetic.h"
 
 #include <QLabel>
 #include <QLineEdit>
@@ -34,7 +36,7 @@ void encode(HuffmanNode* root, QString str, QHash<QChar, QString> &huffmanCode) 
     encode(root->right, str + "1", huffmanCode);
 }
 
-QString  decode(HuffmanNode* root, int &index, QString str) {
+QString decode(HuffmanNode* root, int &index, QString str) {
     if (root == nullptr) {
         return "";
     }
@@ -117,18 +119,9 @@ QDataStream& operator >> (QDataStream &in, HuffmanAlgorithm& a) {
     }
 
     //Binary
-    /*QBitArray bits;
+    QBitArray bits;
     in >> bits;
-    a.text = a.decode(bitToStr(bits));*/
-
-    //Text
-    in >> n;
-    QString packed, temp;
-    for (int i = 0; i < n; ++i) {
-        in >> temp;
-        packed += temp;
-    }
-    a.text = a.decode(packed);
+    a.text = a.decode(bitToStr(bits));
 
     return in;
 }
@@ -144,17 +137,11 @@ QDataStream& operator << (QDataStream &out, const HuffmanAlgorithm& a) {
     }
 
     //Binary
-    /*QString packed;
+    QString packed;
     for (QChar ch: a.text) {
         packed += a.huffmanCode[ch];
     }
-    out << strToBit(packed);*/
-
-    //Text
-    out << a.text.size();
-    for (QChar ch: a.text) {
-        out << a.huffmanCode[ch];
-    }
+    out << strToBit(packed);
 
     return out;
 }
@@ -207,6 +194,11 @@ void HuffmanTask::initWidget(QWidget *wgt) {
 }
 
 void HuffmanTask::packHuff() {
+    /*doAnything<QDataStream, QDataStream>(lblPackHuff, [](QDataStream &in, QDataStream &out) -> void {
+        HuffmanEncoder encoder;
+        in >> encoder;
+        out << encoder;
+    });*/
     doAnything<QTextStream, QDataStream>(lblPackHuff, [](QTextStream &in, QDataStream &out) -> void {
         out << HuffmanAlgorithm(in.readAll());
     });
@@ -218,17 +210,24 @@ void HuffmanTask::unpackHuff() {
         in >> a;
         out << a;
     });
-}
-
-void HuffmanTask::packArif() {
-    /*doAnything(lblPackArif, [](QDataStream &in, QDataStream &out) -> void {
-        out << HuffmanAlgorithm(in.readAll().toStdString()).encode().c_str();
+    /*doAnything<QDataStream, QDataStream>(lblUnpackHuff, [](QDataStream &in, QDataStream &out) -> void {
+        HuffmanDecoder decoder;
+        in >> decoder;
+        out << decoder;
     });*/
 }
 
+void HuffmanTask::packArif() {
+    /*doAnything<QTextStream, QDataStream>(lblPackArif, [](QTextStream &in, QDataStream &out) -> void {
+        out << HuffmanAlgorithm(in.readAll());
+    });**/
+}
+
 void HuffmanTask::unpackArif() {
-    /*doAnything(lblUnpackArif, [](QDataStream &in, QDataStream &out) -> void {
-        out << HuffmanAlgorithm(in).decode().c_str();
+    /*doAnything<QDataStream, QTextStream>(lblUnpackArif, [](QDataStream &in, QTextStream &out) -> void {
+        HuffmanAlgorithm a;
+        in >> a;
+        out << a;
     });*/
 }
 

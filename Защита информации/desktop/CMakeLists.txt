@@ -12,6 +12,6 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets Network REQUIRED)
 
-add_executable(desktop main.cpp Window.h TaskManager.h Task.h RsaTask.h GronsfeldTask.h GronsfeldTask.cpp ElgamalTask.h DesTask.h CicleTask.h HuffmanTask.h HashTask.h GammaTask.h BigInt.cpp BigInt.h RsaTask.cpp Loader.cpp Loader.h ElgamalTask.cpp DesTask.cpp Des.h HuffmanTask.cpp GammaTask.cpp HashTask.cpp Huffman.cpp Huffman.h Arithmetic.cpp Arithmetic.h)
+add_executable(desktop main.cpp Window.h TaskManager.h Task.h RsaTask.h GronsfeldTask.h GronsfeldTask.cpp ElgamalTask.h DesTask.h CicleTask.h HuffmanTask.h HashTask.h GammaTask.h BigInt.cpp BigInt.h RsaTask.cpp Loader.cpp Loader.h ElgamalTask.cpp DesTask.cpp Des.h HuffmanTask.cpp GammaTask.cpp HashTask.cpp Huffman.cpp Huffman.h Arithmetic.cpp Arithmetic.h CicleTask.cpp)
 
 target_link_libraries(desktop PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network)

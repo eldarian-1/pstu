@@ -10,7 +10,7 @@ class QTextEdit;
 class QPushButton;
 class QVBoxLayout;
 
-class HashTask: public QWidget, public Task {
+class HashTask: public QObject, public Task {
 Q_OBJECT
 
 private:

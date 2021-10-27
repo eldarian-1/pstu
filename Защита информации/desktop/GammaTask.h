@@ -19,7 +19,7 @@ void getBlocks(QString text, u48 *&out, int &n);
 
 QString getString(u48 *&in, const int &n);
 
-class GammaTask: public QWidget, public Task {
+class GammaTask: public QObject, public Task {
 Q_OBJECT
 
 private:

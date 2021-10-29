@@ -18,9 +18,12 @@ private:
     QLabel *lblName;
     QLabel *lblSource;
     QLineEdit *leSource;
-    QLabel *lblReceived;
-    QTextEdit *teTarget;
-    QLabel *lblTarget;
+    QTextEdit *teSource;
+    QLabel *lblEncoded;
+    QTextEdit *teEncoded;
+    QLabel *lblDecoded;
+    QTextEdit *teDecoded;
+    QLineEdit *leDecoded;
     QPushButton *btnCorrect;
 
 public:
@@ -32,14 +35,22 @@ public:
 
 private slots:
     void sourceChanged(const QString &text);
-    void targetChanged();
+    void encodedChanged();
     void correctReleased();
 
 private:
     static QBitArray stringToBits(const QString &text);
     static QString bitsToString(const QBitArray &bits);
-    static QString bitsAsString(const QBitArray &&bits);
+    static QString bitsAsString(const QBitArray &bits);
     static QBitArray stringAsBits(const QString &text);
-    static QBitArray correct(const QBitArray &&bits);
+    static QBitArray correct(const QBitArray &bits);
+
+    static QBitArray encode(const QBitArray &bits);
+    static QBitArray decode(const QBitArray &bits);
+
+    static QVector<QBitArray> divide(const QBitArray &bits, int denominator);
+    static QBitArray sum(const QVector<QBitArray> &bits, int denominator);
+    static QBitArray bit4to7(const QBitArray &bits);
+    static QBitArray bit7to4(const QBitArray &bits);
 
 };

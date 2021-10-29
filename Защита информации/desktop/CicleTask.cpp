@@ -4,7 +4,6 @@
 #include <QBitArray>
 #include <QLineEdit>
 #include <QTextEdit>
-#include <QPushButton>
 #include <QVBoxLayout>
 
 void CicleTask::initWidget(QWidget *wgt) {
@@ -18,7 +17,6 @@ void CicleTask::initWidget(QWidget *wgt) {
     lblDecoded = new QLabel("Декодированный текст");
     teDecoded = new QTextEdit;
     leDecoded = new QLineEdit;
-    btnCorrect = new QPushButton("Исправить ошибки");
 
     teSource->setDisabled(true);
     teDecoded->setDisabled(true);
@@ -36,11 +34,9 @@ void CicleTask::initWidget(QWidget *wgt) {
     lytMain->addWidget(lblDecoded);
     lytMain->addWidget(leDecoded);
     lytMain->addWidget(teDecoded);
-    lytMain->addWidget(btnCorrect);
 
     connect(leSource, SIGNAL(textChanged(QString)), SLOT(sourceChanged(QString)));
     connect(teEncoded, SIGNAL(textChanged()), SLOT(encodedChanged()));
-    connect(btnCorrect, SIGNAL(released()), SLOT(correctReleased()));
 }
 
 void CicleTask::sourceChanged(const QString &text) {
@@ -55,10 +51,6 @@ void CicleTask::encodedChanged() {
     QBitArray decoded = decode(bits);
     teDecoded->setText(bitsAsString(decoded));
     leDecoded->setText(bitsToString(decoded));
-}
-
-void CicleTask::correctReleased() {
-    teEncoded->setText(bitsAsString(correct(stringAsBits(teSource->toPlainText()))));
 }
 
 QBitArray CicleTask::stringToBits(const QString &text) {
@@ -106,12 +98,6 @@ QBitArray CicleTask::stringAsBits(const QString &text) {
     return result;
 }
 
-QBitArray CicleTask::correct(const QBitArray &bits) {
-    QBitArray result(bits);
-    result[0] = 1;
-    return result;
-}
-
 QBitArray CicleTask::encode(const QBitArray &bits) {
     QVector<QBitArray> devs = divide(bits, 4);
     for(int i = 0, n = devs.size(); i < n; ++i) {
@@ -151,7 +137,7 @@ QBitArray CicleTask::sum(const QVector<QBitArray> &bits, int denominator) {
 }
 
 QBitArray CicleTask::bit4to7(const QBitArray &bits) {
-    QBitArray result(7, 0);
+    QBitArray s(7, 0);
     auto sdvig = [](const QBitArray& in) -> QBitArray {
         int size = in.size();
         QBitArray result(size, 0);
@@ -164,7 +150,7 @@ QBitArray CicleTask::bit4to7(const QBitArray &bits) {
         return (a[i] + b[i] + d[i]) % 2;
     };
     auto bitArray = [](const QBitArray& a, int size) -> QBitArray {
-        QBitArray result(size);
+        QBitArray result(size, 0);
         for(int i = 0, n = a.size(); i < n; ++i) {
             result[i] = a[i];
         }
@@ -175,15 +161,66 @@ QBitArray CicleTask::bit4to7(const QBitArray &bits) {
     auto c = sdvig(b);
     auto d = sdvig(c);
     for(int i = 0; i < 7; ++i) {
-        result[i] = summod(a, b, d, i);
+        s[i] = summod(a, b, d, i);
+    }
+    return s;
+}
+
+QBitArray CicleTask::bit7to4(const QBitArray &s) {
+    QBitArray result(4, 0);
+    QBitArray r0(7, 0), r1(7, 0), r2(7, 0), a(7, 0);
+    r0[0] = s[6];
+    for(int i = 1; i < 7; ++i) {
+        r2[i] = r1[i - 1];
+        a[i] = r2[i - 1];
+        r0[i] = (a[i] + s[6 - i]) % 2;
+        r1[i] = (a[i] + r0[i - 1]) % 2;
+        if(i >= 3) {
+            result[6 - i] = a[i];
+        }
+    }
+    return plus(result, code(r0[6], r1[6], r2[6]));
+}
+
+QBitArray CicleTask::plus(const QBitArray &left, const QBitArray &right) {
+    int n = left.size();
+    QBitArray result(left);
+    for(int i = 0; i < n; ++i) {
+        result[i] = (result[i] + right[i]) % 2;
     }
     return result;
 }
 
-QBitArray CicleTask::bit7to4(const QBitArray &bits) {
-    QBitArray result(4, 0);
-    for(int i = 0; i < 4; ++i) {
-        result[i] = bits[i];
+QBitArray CicleTask::code(bool r0, bool r1, bool r2) {
+    int p = e({r0, r1, r2});
+    switch(p) {
+        case 6: // 4
+            return c({1, 0, 0, 0});
+        case 3: // 5
+            return c({0, 1, 0, 0});
+        case 7: // 6
+            return c({1, 0, 1, 0});
+        case 5: // 7
+            return c({1, 1, 0, 1});
+        default: // с 1 по 3
+            return c({0, 0, 0, 0});
+    }
+}
+
+QBitArray CicleTask::c(std::initializer_list<int> vector) {
+    int size = vector.size();
+    QBitArray result(size);
+    for(int i = 0; i < size; ++i) {
+        result[i] = *(vector.begin() + i);
+    }
+    return result;
+}
+
+int CicleTask::e(std::initializer_list<int> vector) {
+    int result = 0;
+    for(int i = 0, n = vector.size(); i < n; ++i) {
+        result *= 2;
+        result += *(vector.begin() + i);
     }
     return result;
 }

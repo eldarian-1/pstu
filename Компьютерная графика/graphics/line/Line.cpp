@@ -6,9 +6,6 @@
 #include <cmath>
 using namespace std;
 
-Line* Line::active = nullptr;
-bool Line::rightButtonPressed = false;
-
 double Line::f(double x) const {
     return (b == 0. ? -c / a : -(a * x + c) / b);
 }
@@ -38,22 +35,14 @@ QLineF Line::getLine(const QPainter *painter, int width, int height) {
     return QLineF(p1, p2);
 }
 
-void Line::draw(QPainter *painter, int width, int height) {
+void Line::draw(QPainter *painter, int width, int height, bool active, bool focused) {
     QPen pen;
     pen.setWidth(weight);
-    if(this == active) {
-        pen.setColor(rightButtonPressed ? Qt::green : Qt::red);
-    } else {
-        pen.setColor(color);
-    }
+    pen.setColor(focused ? Qt::red : active ? Qt::green : color);
     painter->setPen(pen);
     painter->drawLine(getLine(painter, width, height));
 }
 
-void Line::activize() {
-    active = this;
-}
-
 QString Line::toString() {
-    return QString::asprintf("%fx + %fy + %f = 0", a, b, c);
+    return QString::asprintf("%dx + %dy + %d = 0", A(), B(), C());
 }

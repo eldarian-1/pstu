@@ -7,11 +7,12 @@ class LineEditor;
 
 class EditMode : public ModeImpl {
 private:
-    Line *line;
-    LineEditor* editor;
+    Line *line = nullptr;
+    LineEditor* editor = nullptr;
 
 public:
     EditMode();
+    EditMode(Line *line);
     void setLine(Line *line);
 
 protected:

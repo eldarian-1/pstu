@@ -20,7 +20,7 @@ void MoveMode::setLine(Line *line) {
 void MoveMode::paint(QPainter *painter) {
     int width = painter->window().width();
     int height = painter->window().height();
-    line->draw(painter, width, height);
+    line->draw(painter, width, height, true, focused);
 }
 
 void MoveMode::mousePressEvent(QMouseEvent *event) {
@@ -35,9 +35,6 @@ void MoveMode::mouseMoveEvent(QMouseEvent *event) {
     double d = 10.;
     focusLine(line, event->pos(), d);
     focused = d < 10.;
-    if(!focused && Line::active) {
-        Line::active = nullptr;
-    }
 }
 
 void MoveMode::contextMenuEvent(QContextMenuEvent *event) {

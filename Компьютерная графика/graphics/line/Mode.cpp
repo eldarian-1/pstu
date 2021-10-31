@@ -45,7 +45,6 @@ bool Mode::focusLine(Line *line, QPoint point, double &d) {
     auto diff = abs(allow - real);
     if(real < allow || diff < d) {
         d = diff;
-        line->activize();
     }
 }
 

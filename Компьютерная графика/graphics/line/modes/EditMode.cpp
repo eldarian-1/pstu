@@ -12,6 +12,10 @@
 
 EditMode::EditMode() {}
 
+EditMode::EditMode(Line *line) : EditMode() {
+    setLine(line);
+}
+
 void EditMode::setLine(Line *line) {
     if(editor) {
         delete editor;

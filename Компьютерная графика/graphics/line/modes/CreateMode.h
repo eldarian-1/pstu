@@ -11,6 +11,8 @@ class CreateMode : public QObject, public ModeImpl {
 private:
     QMenu *menu;
     QPoint *activePoint = nullptr;
+    Line *activeLine = nullptr;
+    Line *focusedLine = nullptr;
 
 protected:
     void paint(QPainter *painter) override;

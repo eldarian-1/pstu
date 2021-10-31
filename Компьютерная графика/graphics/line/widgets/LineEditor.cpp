@@ -12,7 +12,7 @@
 #include "../Line.h"
 #include "Slider.h"
 
-LineEditor::LineEditor(Line *line, QWidget *wgt) : QWidget(wgt), line(line) {
+LineEditor::LineEditor(Line *line) : QWidget(), line(line) {
     setWindowTitle("Настройка линии " + line->toString());
     setFixedSize(450, 200);
 
@@ -73,8 +73,7 @@ void LineEditor::weightChanged(int value) {
 }
 
 void LineEditor::colorChanged() {
-    QColor to = QColorDialog::getColor(line->getColor(), this);
-    colorChanged(to);
+    colorChanged(QColorDialog::getColor(line->getColor()));
 }
 
 void LineEditor::colorChanged(QColor color) {

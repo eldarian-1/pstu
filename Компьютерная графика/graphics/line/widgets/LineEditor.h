@@ -1,7 +1,7 @@
 #pragma once
 
-#include <QWidget>
 #include <QColor>
+#include <QWidget>
 
 class Line;
 class Slider;
@@ -33,7 +33,7 @@ private:
     Line* line = nullptr;
 
 public:
-    LineEditor(Line *line, QWidget *wgt = nullptr);
+    LineEditor(Line *line);
     ~LineEditor();
 
 private slots:

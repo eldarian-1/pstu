@@ -9,10 +9,12 @@
 
 #include "modes/CreateMode.h"
 #include "modes/MoveMode.h"
+#include "modes/EditMode.h"
 
 Canvas *Mode::canvas = nullptr;
 CreateMode *Mode::createInstance = nullptr;
 MoveMode *Mode::moveInstance = nullptr;
+EditMode *Mode::editInstance = nullptr;
 
 Mode* Mode::create() {
     if(createInstance == nullptr) {
@@ -27,6 +29,14 @@ Mode* Mode::move(Line* line) {
     }
     moveInstance->setLine(line);
     return moveInstance;
+}
+
+Mode* Mode::edit(Line* line) {
+    if(editInstance == nullptr) {
+        editInstance = new EditMode;
+    }
+    editInstance->setLine(line);
+    return editInstance;
 }
 
 bool Mode::focusLine(Line *line, QPoint point, double &d) {

@@ -5,6 +5,7 @@
 class Line;
 class Canvas;
 class MoveMode;
+class EditMode;
 class CreateMode;
 class QPainter;
 class QPaintEvent;
@@ -14,8 +15,9 @@ class QContextMenuEvent;
 class Mode {
 protected:
     static Canvas *canvas;
-    static CreateMode *createInstance;
     static MoveMode *moveInstance;
+    static EditMode *editInstance;
+    static CreateMode *createInstance;
 
 public:
     virtual void paintEvent(QPaintEvent *event) = 0;
@@ -26,6 +28,7 @@ public:
 
     static Mode* create();
     static Mode* move(Line* line);
+    static Mode* edit(Line* line);
 
     static bool focusLine(Line *line, QPoint point, double &d);
 

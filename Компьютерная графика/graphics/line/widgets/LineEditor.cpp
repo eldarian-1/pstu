@@ -12,7 +12,7 @@
 #include "../Line.h"
 #include "Slider.h"
 
-LineEditor::LineEditor(Line *line) : line(line) {
+LineEditor::LineEditor(Line *line, QWidget *wgt) : QWidget(wgt), line(line) {
     setWindowTitle("Настройка линии " + line->toString());
     setFixedSize(450, 200);
 
@@ -26,14 +26,15 @@ LineEditor::LineEditor(Line *line) : line(line) {
     lblC = new QLabel("C");
     lblAlpha = new QLabel("Угол");
 
-    sldWeight = new Slider(1, 100);
+    sldWeight = new Slider(1, 100, line->getWeight());
     btnColor = new QPushButton;
-    sldA = new Slider(-1000, 1000);
-    sldB = new Slider(-1000, 1000);
-    sldC = new Slider(-1000, 1000);
-    sldAlpha = new Slider(0, 360);
+    sldA = new Slider(-1000, 1000, line->A());
+    sldB = new Slider(-1000, 1000, line->B());
+    sldC = new Slider(-1000, 1000, line->C());
+    sldAlpha = new Slider(0, 360, line->A());
 
     setLayout(lytMain);
+    colorChanged(line->getColor());
 
     lytMain->addWidget(lblWeight, 0, 0, Qt::AlignRight);
     lytMain->addWidget(sldWeight, 0, 1, 1, 7);
@@ -54,11 +55,13 @@ LineEditor::LineEditor(Line *line) : line(line) {
     lytMain->addWidget(sldAlpha, 5, 1, 1, 7);
 
     connect(sldWeight, SIGNAL(valueChanged(int)), SLOT(weightChanged(int)));
-    connect(btnColor, SIGNAL(release()), SLOT(colorChanged()));
+    connect(btnColor, SIGNAL(released()), SLOT(colorChanged()));
     connect(sldA, SIGNAL(valueChanged(int)), SLOT(aChanged(int)));
     connect(sldB, SIGNAL(valueChanged(int)), SLOT(bChanged(int)));
     connect(sldC, SIGNAL(valueChanged(int)), SLOT(cChanged(int)));
     connect(sldAlpha, SIGNAL(valueChanged(int)), SLOT(alphaChanged(int)));
+
+    show();
 }
 
 LineEditor::~LineEditor() {
@@ -70,7 +73,11 @@ void LineEditor::weightChanged(int value) {
 }
 
 void LineEditor::colorChanged() {
-    QColor color = QColorDialog(Line::active->getColor()).getColor();
+    QColor to = QColorDialog::getColor(line->getColor(), this);
+    colorChanged(to);
+}
+
+void LineEditor::colorChanged(QColor color) {
     btnColor->setPalette(QPalette(color));
     line->setColor(color);
 }

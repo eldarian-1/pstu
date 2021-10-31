@@ -13,6 +13,7 @@
 const QString COLOR("Изменить цвет");
 const QString WEIGHT("Изменить толщину");
 const QString MOVE("Переместить");
+const QString EDIT("Редактировать");
 const QString DELETE("Удалить");
 
 CreateMode::CreateMode() {
@@ -20,6 +21,7 @@ CreateMode::CreateMode() {
     menu->addAction(COLOR);
     menu->addAction(WEIGHT);
     menu->addAction(MOVE);
+    menu->addAction(EDIT);
     menu->addAction(DELETE);
     connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(slotTriggered(QAction*)));
 }
@@ -89,6 +91,8 @@ void CreateMode::slotTriggered(QAction *action) {
         delete dialog;
     } else if(action->text() == MOVE) {
         canvas->setMode(Mode::move(Line::active));
+    } else if(action->text() == EDIT) {
+        canvas->setMode(Mode::edit(Line::active));
     } else if(action->text() == DELETE) {
         canvas->getLines().removeOne(Line::active);
         delete Line::active;

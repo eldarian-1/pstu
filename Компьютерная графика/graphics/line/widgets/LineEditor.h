@@ -11,6 +11,8 @@ class QGridLayout;
 class QPushButton;
 
 class LineEditor : public QWidget {
+Q_OBJECT
+
 private:
     QGridLayout *lytMain;
 
@@ -28,15 +30,16 @@ private:
     Slider *sldC;
     Slider *sldAlpha;
 
-    Line* line;
+    Line* line = nullptr;
 
 public:
-    LineEditor(Line *line);
+    LineEditor(Line *line, QWidget *wgt = nullptr);
     ~LineEditor();
 
 private slots:
     void weightChanged(int value);
     void colorChanged();
+    void colorChanged(QColor color);
     void aChanged(int value);
     void bChanged(int value);
     void cChanged(int value);

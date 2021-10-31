@@ -37,6 +37,7 @@ public:
 
 protected:
     bool isPoint(QPoint point, int &i);
+    int minDistance(QPoint point);
 
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
@@ -45,6 +46,7 @@ protected:
     void contextMenuEvent(QContextMenuEvent *event) override;
     void timerEvent(QTimerEvent *event) override;
 
+    static double distance(std::vector<double> vector, QPoint point);
     static void remove(pair_t*& p);
 
 };

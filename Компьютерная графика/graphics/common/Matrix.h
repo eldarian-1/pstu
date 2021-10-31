@@ -22,8 +22,8 @@ public:
 
     std::vector<double> & operator [] (const int &i);
     double & operator [] (const std::pair<int, int> &pair);
-    void push(std::vector<double> vector) { _m.push_back(vector); }
-    void erase(int i) { _m.erase(_m.begin() + i); }
+    void insert(int index, std::vector<double> vector) { _m.insert(_m.begin() + index, vector); }
+    void erase(int index) { _m.erase(_m.begin() + index); }
 
     friend Matrix operator * (Matrix left, Matrix right);
 

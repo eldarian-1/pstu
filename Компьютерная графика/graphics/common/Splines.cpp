@@ -1,25 +1,29 @@
 #include "Splines.h"
 
 extern const Splines::equation_t Splines::a0 = {
-        {{1, -1},
+        {
+            {1, -1},
             {4, 0},
             {1, 1}
-            }, 6};
+        }, 6};
 extern const Splines::equation_t Splines::a1 = {
-        {{-1, -1},
+        {
+            {-1, -1},
             {1, 1}
-            }, 2};
+        }, 2};
 extern const Splines::equation_t Splines::a2 = {
-        {{1, -1},
+        {
+            {1, -1},
             {-2, 0},
             {1, 1}
-            }, 2};
+        }, 2};
 extern const Splines::equation_t Splines::a3 = {
-        {{-1, -1},
+        {
+            {-1, -1},
             {3, 0},
             {-3, 1},
             {1, 2}
-            }, 6};
+        }, 6};
 
 double Splines::solve(Matrix &m, int i, int j, equation_t equation) {
     double result = 0;
@@ -27,15 +31,15 @@ double Splines::solve(Matrix &m, int i, int j, equation_t equation) {
         std::pair p = equation.first[k];
         result += p.first * m[{i + p.second, j}];
     }
-    return (result / equation.second);
+    return result / equation.second;
 }
 
 double Splines::f(Matrix &v, int i, int j, double t) {
-    return (((
+    return ((
             solve(v, i, j, a3) * t +
             solve(v, i, j, a2)) * t +
             solve(v, i, j, a1)) * t +
-            solve(v, i, j, a0));
+            solve(v, i, j, a0);
 }
 
 Matrix Splines::get(Matrix &m, int parts) {

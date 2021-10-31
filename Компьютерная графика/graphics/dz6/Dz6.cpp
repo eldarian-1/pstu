@@ -2,6 +2,7 @@
 
 #include <QMenu>
 #include <QMouseEvent>
+#include <QMessageBox>
 #include <QContextMenuEvent>
 
 #include <Splines.h>
@@ -44,11 +45,23 @@ void Dz6::paintEvent(QPaintEvent *event) {
 bool Dz6::isPoint(QPoint point, int &i) {
     int n = matrix.n();
     for(i = 0; i < n; ++i) {
-        if(std::sqrt(std::pow(matrix[i][0] - point.x(), 2) + std::pow(matrix[i][1] - point.y(), 2)) <= 5) {
+        if(distance(matrix[i], point) <= 5) {
             return true;
         }
     }
     return false;
+}
+
+int Dz6::minDistance(QPoint point) {
+    int index = 0, min = 1000000000;
+    for(int i = 0, n = matrix.n(); i < n; ++i) {
+        int d = distance(matrix[i - 1], point) + distance(matrix[i], point);
+        if(d < min) {
+            min = d;
+            index = i;
+        }
+    }
+    return index;
 }
 
 void Dz6::mousePressEvent(QMouseEvent *event) {
@@ -87,9 +100,15 @@ void Dz6::contextMenuEvent(QContextMenuEvent *event) {
     }
     QString res = menu.exec(event->globalPos())->text();
     if(res == add) {
-        matrix.push(std::vector<double>{(double)event->x(), (double)event->y()});
+        QPoint p = event->pos();
+        int i = minDistance(p);
+        matrix.insert(i, {(double)p.x(), (double)p.y()});
     } else if(res == del) {
-        matrix.erase(focusedPoint->first);
+        if(matrix.n() <= 4) {
+            QMessageBox::warning(this, "Предупреждение", "Точек не может быть менее 4!");
+        } else {
+            matrix.erase(focusedPoint->first);
+        }
         remove(focusedPoint);
         remove(activePoint);
     }
@@ -97,6 +116,10 @@ void Dz6::contextMenuEvent(QContextMenuEvent *event) {
 
 void Dz6::timerEvent(QTimerEvent *event) {
     repaint();
+}
+
+double Dz6::distance(std::vector<double> vector, QPoint point) {
+    return std::sqrt(std::pow(vector[0] - point.x(), 2) + std::pow(vector[1] - point.y(), 2));
 }
 
 void Dz6::remove(pair_t*& p) {

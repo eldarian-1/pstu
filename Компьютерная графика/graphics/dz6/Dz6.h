@@ -8,7 +8,15 @@
 
 class Dz6 : public QWidget {
 private:
+    typedef std::pair<int, QPoint> pair_t;
+
     static const int steps = 100;
+    const char *add = "Добавить точку";
+    const char *del = "Удалить точку";
+
+    pair_t* focusedPoint = nullptr;
+    pair_t* activePoint = nullptr;
+
     Matrix matrix {
             {100, 350},
             {250, 450},
@@ -28,6 +36,15 @@ public:
     Dz6();
 
 protected:
+    bool isPoint(QPoint point, int &i);
+
     void paintEvent(QPaintEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void contextMenuEvent(QContextMenuEvent *event) override;
+    void timerEvent(QTimerEvent *event) override;
+
+    static void remove(pair_t*& p);
 
 };

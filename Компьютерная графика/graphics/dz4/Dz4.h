@@ -8,14 +8,16 @@
 #include <QPainter>
 #include <QVBoxLayout>
 
+#include <Const.h>
 #include <Matrix.h>
-#include <splines.h>
+#include <Splines.h>
+#include <Graphic.h>
 
 class Dz4 : public QWidget {
 Q_OBJECT
 
 private:
-    Matrix _house{
+    Matrix _house {
             {0, 0, 0, 1}, // a
             {2, 0, 0, 1}, // b
             {2, 2, 0, 1}, // c
@@ -81,20 +83,11 @@ public:
     }
 
 private:
-    QPoint* getPoints(Matrix m) {
-        int n = m.n();
-        QPoint *result = new QPoint[n];
-        for(int i = 0; i < n; ++i) {
-            result[i] = QPoint(m[i][0], m[i][1]);
-        }
-        return result;
-    }
-
     Matrix resultMatrix() {
-        double t = PI / 180 * sldT->value();
-        double f = PI / 180 * sldF->value();
+        double t = Const::PI / 180 * sldT->value();
+        double f = Const::PI / 180 * sldF->value();
         int zc = sldZ->value();
-        Matrix result = _house.to2D(t, f, zc).normalize() * transfer3D(450, 350, 0);
+        Matrix result = _house.to2D(t, f, zc).normalize() * Matrix::transfer3D(450, 350, 0);
         Matrix vp = result.vanishingPoints();
         lblInfo->setText(
                 QString::asprintf(
@@ -106,7 +99,7 @@ private:
 protected:
     void paintEvent(QPaintEvent *event) override {
         Matrix house = resultMatrix();
-        QPoint *points = getPoints(house);
+        QPoint *points = Graphic::getPoints(house);
         QPainter painter;
         painter.begin(this);
         painter.drawPolygon(points, house.n());

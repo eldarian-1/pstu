@@ -29,7 +29,7 @@ public:
 
     void initWidget(QWidget *wgt) override;
 
-    void run() const override { }
+    void run() const override {}
 
 private slots:
     void sourceChanged(const QString &text);

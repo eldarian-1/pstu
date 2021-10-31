@@ -1,21 +1,43 @@
 #include "Mode.h"
 
 #include <QMenu>
-#include <QBrush>
-#include <QWidget>
 #include <QPainter>
 #include <QPaintEvent>
-#include <QMouseEvent>
-#include <QColorDialog>
 
 #include "Line.h"
 #include "Canvas.h"
-#include "WidthDialog.h"
 
-const QString COLOR("Изменить цвет");
-const QString WEIGHT("Изменить толщину");
-const QString MOVE("Переместить");
-const QString DELETE("Удалить");
+#include "modes/CreateMode.h"
+#include "modes/MoveMode.h"
+
+Canvas *Mode::canvas = nullptr;
+CreateMode *Mode::createInstance = nullptr;
+MoveMode *Mode::moveInstance = nullptr;
+
+Mode* Mode::create() {
+    if(createInstance == nullptr) {
+        createInstance = new CreateMode;
+    }
+    return createInstance;
+}
+
+Mode* Mode::move(Line* line) {
+    if(moveInstance == nullptr) {
+        moveInstance = new MoveMode;
+    }
+    moveInstance->setLine(line);
+    return moveInstance;
+}
+
+bool Mode::focusLine(Line *line, QPoint point, double &d) {
+    auto allow = line->getWeight() / 2.;
+    auto real = line->distanceFrom(point);
+    auto diff = abs(allow - real);
+    if(real < allow || diff < d) {
+        d = diff;
+        line->activize();
+    }
+}
 
 void ModeImpl::paintEvent(QPaintEvent *event) {
     QPainter painter;
@@ -25,123 +47,30 @@ void ModeImpl::paintEvent(QPaintEvent *event) {
 }
 
 StateMode::StateMode(Canvas *canvas) {
-    state = new CreateMode(canvas);
+    Mode::canvas = canvas;
+    state = Mode::create();
 }
 
-void StateMode::setState(ModeImpl* state) {
-    /*if(this->state) {
-        delete this->state;
-    }*/
+void StateMode::setState(Mode* state) {
     this->state = state;
 }
 
-CreateMode::CreateMode(Canvas *canvas) : ModeImpl(canvas) {
-    menu = new QMenu();
-    menu->addAction(COLOR);
-    menu->addAction(WEIGHT);
-    menu->addAction(MOVE);
-    menu->addAction(DELETE);
-    connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(slotTriggered(QAction*)));
+void StateMode::paintEvent(QPaintEvent *event) {
+    state->paintEvent(event);
 }
 
-void CreateMode::paint(QPainter *painter) {
-    painter->setBrush(QBrush(Qt::white));
-    int width = painter->window().width();
-    int height = painter->window().height();
-    painter->drawRect(-1, -1, width + 1, height + 1);
-    for(auto line : getCanvas()->getLines()) {
-        line->draw(painter, width, height);
-    }
+void StateMode::mousePressEvent(QMouseEvent *event) {
+    state->mousePressEvent(event);
 }
 
-void CreateMode::mousePressEvent(QMouseEvent *event) {
-    switch(event->button()) {
-        case Qt::LeftButton:
-            if(activePoint) {
-                delete activePoint;
-                activePoint = nullptr;
-            }
-            activePoint = new QPoint(event->pos());
-            break;
-        case Qt::RightButton:
-            Line::rightButtonPressed = true;
-            break;
-    }
+void StateMode::mouseReleaseEvent(QMouseEvent *event) {
+    state->mouseReleaseEvent(event);
 }
 
-void CreateMode::mouseReleaseEvent(QMouseEvent *event) {
-    switch(event->button()) {
-        case Qt::LeftButton:
-            getCanvas()->getLines().append(new Line(*activePoint, event->pos()));
-            break;
-        case Qt::RightButton:
-            Line::rightButtonPressed = false;
-            break;
-    }
+void StateMode::mouseMoveEvent(QMouseEvent *event) {
+    state->mouseMoveEvent(event);
 }
 
-void CreateMode::mouseMoveEvent(QMouseEvent *event) {
-    auto d = 20.;
-    for(auto line : getCanvas()->getLines()) {
-        auto allow = line->getThickness() / 2. + 10.;
-        auto real = line->distanceFrom(event->pos());
-        auto diff = allow - real;
-        if(diff > 0 && diff < d) {
-            d = diff;
-            line->activize();
-        }
-    }
-    if(d == 20. && Line::active) {
-        Line::active = nullptr;
-    }
-}
-
-void CreateMode::contextMenuEvent(QContextMenuEvent *event) {
-    if(Line::active) {
-        menu->exec(event->globalPos());
-        Line::active = nullptr;
-        Line::rightButtonPressed = false;
-    }
-}
-
-void CreateMode::slotTriggered(QAction *action) {
-    if(action->text() == COLOR) {
-        Line::active->setColor(QColorDialog(Line::active->getColor()).getColor());
-    } else if(action->text() == WEIGHT) {
-        WidthDialog *dialog = new WidthDialog(Line::active->getThickness());
-        if(dialog->exec() == QDialog::Accepted) {
-            Line::active->setThickness(dialog->width());
-        }
-        delete dialog;
-    } else if(action->text() == MOVE) {
-        getCanvas()->setMode(new MoveMode(getCanvas(), Line::active));
-    } else if(action->text() == DELETE) {
-        getCanvas()->getLines().removeOne(Line::active);
-        delete Line::active;
-        Line::active = nullptr;
-    }
-}
-
-MoveMode::MoveMode(Canvas *canvas, Line* line) : ModeImpl(canvas), line(line) {}
-
-void MoveMode::paint(QPainter *painter) {
-    int width = painter->window().width();
-    int height = painter->window().height();
-    line->draw(painter, width, height);
-}
-
-void MoveMode::mousePressEvent(QMouseEvent *event) {
-
-}
-
-void MoveMode::mouseReleaseEvent(QMouseEvent *event) {
-
-}
-
-void MoveMode::mouseMoveEvent(QMouseEvent *event) {
-
-}
-
-void MoveMode::contextMenuEvent(QContextMenuEvent *event) {
-
+void StateMode::contextMenuEvent(QContextMenuEvent *event) {
+    state->contextMenuEvent(event);
 }

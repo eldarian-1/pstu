@@ -13,7 +13,7 @@ double Line::f(double x) const {
     return (b == 0. ? -c / a : -(a * x + c) / b);
 }
 
-Line::Line(QPoint p1, QPoint p2) : color(Qt::black), thickness(1) {
+Line::Line(QPoint p1, QPoint p2) : color(Qt::black), weight(1) {
     a = p1.y() - p2.y();
     b = p2.x() - p1.x();
     c = p1.x() * p2.y() - p2.x() * p1.y();
@@ -40,7 +40,7 @@ QLineF Line::getLine(const QPainter *painter, int width, int height) {
 
 void Line::draw(QPainter *painter, int width, int height) {
     QPen pen;
-    pen.setWidth(thickness);
+    pen.setWidth(weight);
     if(this == active) {
         pen.setColor(rightButtonPressed ? Qt::green : Qt::red);
     } else {
@@ -52,4 +52,8 @@ void Line::draw(QPainter *painter, int width, int height) {
 
 void Line::activize() {
     active = this;
+}
+
+QString Line::toString() {
+    return QString::asprintf("%fx + %fy + %f = 0", a, b, c);
 }

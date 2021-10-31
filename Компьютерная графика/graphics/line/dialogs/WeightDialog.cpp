@@ -1,10 +1,10 @@
-#include "WidthDialog.h"
+#include "WeightDialog.h"
 
 #include <QHBoxLayout>
 #include <QSlider>
 #include <QPushButton>
 
-WidthDialog::WidthDialog(int width) {
+WeightDialog::WeightDialog(int width) {
     lytWidth = new QHBoxLayout;
     sldWidth = new QSlider();
     btnApply = new QPushButton("Применить");
@@ -22,12 +22,12 @@ WidthDialog::WidthDialog(int width) {
     connect(btnApply, SIGNAL(clicked()), SLOT(accept()));
 }
 
-WidthDialog::~WidthDialog() {
+WeightDialog::~WeightDialog() {
     delete lytWidth;
     delete sldWidth;
     delete btnApply;
 }
 
-int WidthDialog::width() {
+int WeightDialog::width() {
     return sldWidth->value();
 }

@@ -15,7 +15,7 @@ public:
     Canvas();
 
     QList<Line*> &getLines() { return lines; }
-    void setMode(ModeImpl *mode) { this->mode->setState(mode); }
+    void setMode(Mode *mode) { this->mode->setState(mode); }
 
 protected:
     void paintEvent(QPaintEvent *event) override { mode->paintEvent(event); }

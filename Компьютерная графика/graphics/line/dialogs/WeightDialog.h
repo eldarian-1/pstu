@@ -6,7 +6,7 @@ class QHBoxLayout;
 class QSlider;
 class QPushButton;
 
-class WidthDialog : public QDialog {
+class WeightDialog : public QDialog {
 Q_OBJECT
 
 private:
@@ -15,8 +15,8 @@ private:
     QPushButton *btnApply;
 
 public:
-    WidthDialog(int width);
-    ~WidthDialog();
+    WeightDialog(int width);
+    ~WeightDialog();
     int width();
 
 };

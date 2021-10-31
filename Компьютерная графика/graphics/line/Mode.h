@@ -3,16 +3,20 @@
 #include <QObject>
 
 class Line;
-class QMenu;
 class Canvas;
-class QPoint;
-class QAction;
+class MoveMode;
+class CreateMode;
 class QPainter;
 class QPaintEvent;
 class QMouseEvent;
 class QContextMenuEvent;
 
 class Mode {
+protected:
+    static Canvas *canvas;
+    static CreateMode *createInstance;
+    static MoveMode *moveInstance;
+
 public:
     virtual void paintEvent(QPaintEvent *event) = 0;
     virtual void mousePressEvent(QMouseEvent *event) = 0;
@@ -20,16 +24,16 @@ public:
     virtual void mouseMoveEvent(QMouseEvent *event) = 0;
     virtual void contextMenuEvent(QContextMenuEvent *event) = 0;
 
+    static Mode* create();
+    static Mode* move(Line* line);
+
+    static bool focusLine(Line *line, QPoint point, double &d);
+
 };
 
 class ModeImpl : public Mode {
-private:
-    Canvas *canvas;
-
 protected:
-    ModeImpl(Canvas *canvas) : canvas(canvas) {}
     virtual void paint(QPainter *painter) {}
-    Canvas *getCanvas() { return canvas; }
 
 public:
     void paintEvent(QPaintEvent *event) override;
@@ -38,56 +42,17 @@ public:
 
 class StateMode : public Mode {
 private:
-    ModeImpl* state;
+    Mode* state;
 
 public:
     StateMode(Canvas *canvas);
 
-    void setState(ModeImpl* state);
+    void setState(Mode* state);
 
-    void paintEvent(QPaintEvent *event) override { state->paintEvent(event); }
-    void mousePressEvent(QMouseEvent *event) override { state->mousePressEvent(event); }
-    void mouseReleaseEvent(QMouseEvent *event) override { state->mouseReleaseEvent(event); }
-    void mouseMoveEvent(QMouseEvent *event) override { state->mouseMoveEvent(event); }
-    void contextMenuEvent(QContextMenuEvent *event) override { state->contextMenuEvent(event); }
-
-};
-
-class CreateMode : public QObject, public ModeImpl {
-Q_OBJECT
-
-private:
-    QMenu *menu;
-    QPoint *activePoint = nullptr;
-
-protected:
-    void paint(QPainter *painter) override;
-
-public:
-    CreateMode(Canvas *canvas);
-
+    void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void contextMenuEvent(QContextMenuEvent *event) override;
 
-public slots:
-    void slotTriggered(QAction *action);
-
-};
-
-class MoveMode : public ModeImpl {
-private:
-    Line* line;
-
-protected:
-    void paint(QPainter *painter) override;
-
-public:
-    MoveMode(Canvas *canvas, Line* line);
-
-    void mousePressEvent(QMouseEvent *event) override;
-    void mouseReleaseEvent(QMouseEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
-    void contextMenuEvent(QContextMenuEvent *event) override;
 };

@@ -17,6 +17,7 @@ private:
 
 public:
     Line(QPoint p1, QPoint p2);
+    void rebuild(QPoint p1, QPoint p2);
     QColor getColor() { return color; }
     void setColor(QColor color) { this->color = color; }
     int getWeight() { return weight; }

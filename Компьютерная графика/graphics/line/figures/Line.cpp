@@ -11,6 +11,10 @@ double Line::f(double x) const {
 }
 
 Line::Line(QPoint p1, QPoint p2) : color(Qt::black), weight(1) {
+    rebuild(p1, p2);
+}
+
+void Line::rebuild(QPoint p1, QPoint p2) {
     a = p1.y() - p2.y();
     b = p2.x() - p1.x();
     c = p1.x() * p2.y() - p2.x() * p1.y();

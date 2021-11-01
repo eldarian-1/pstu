@@ -13,7 +13,7 @@
 
 #include <Graphic.h>
 
-Point top, middle, bottom;
+Point top(0, 0, 10, Qt::darkBlue), middle(0, 0, 10, Qt::darkGreen), bottom(0, 0, 10, Qt::darkRed);
 Point *focusedPoint = nullptr, *activePoint = nullptr;
 
 EditMode::EditMode() {}
@@ -31,6 +31,10 @@ void EditMode::setLine(Line *line) {
     connect(editor, SIGNAL(closed()), SLOT(slotClosed()));
 }
 
+void drawPoint(QPainter *painter, Point *point) {
+    point->draw(painter, activePoint == point, focusedPoint == point);
+}
+
 void EditMode::paint(QPainter *painter) {
     painter->setBrush(QBrush(Qt::white));
     int width = painter->window().width();
@@ -42,10 +46,9 @@ void EditMode::paint(QPainter *painter) {
 
     if(line != nullptr) {
         line->getPoints(top.qt(), middle.qt(), bottom.qt(), width, height);
-        painter->setPen(QPen(QBrush(Qt::red), 10));
-        top.draw(painter, false, false);
-        middle.draw(painter, false, false);
-        bottom.draw(painter, false, false);
+        drawPoint(painter, &top);
+        drawPoint(painter, &middle);
+        drawPoint(painter, &bottom);
     }
 }
 
@@ -61,7 +64,11 @@ void EditMode::mouseReleaseEvent(QMouseEvent *event) {
 
 void EditMode::mouseMoveEvent(QMouseEvent *event) {
     if(activePoint) {
+        if(activePoint == &middle) {
 
+        } else {
+            line->rebuild(middle.qt(), event->pos());
+        }
     } else {
         if (Graphic::isPoint(event->pos(), top.qt(), 5)) {
             focusedPoint = &top;

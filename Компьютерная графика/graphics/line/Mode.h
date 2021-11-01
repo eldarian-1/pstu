@@ -7,6 +7,7 @@ class Canvas;
 class MoveMode;
 class EditMode;
 class CreateMode;
+class RemoveMode;
 class QPainter;
 class QPaintEvent;
 class QMouseEvent;
@@ -18,6 +19,10 @@ protected:
     static MoveMode *moveInstance;
     static EditMode *editInstance;
     static CreateMode *createInstance;
+    static RemoveMode *removeInstance;
+
+    template<class TMode>
+    static TMode *instance(TMode *&mode, const std::function<void(void)>& task = nullptr);
 
 public:
     virtual void paintEvent(QPaintEvent *event) = 0;
@@ -29,6 +34,7 @@ public:
     static Mode* create();
     static Mode* move(Line* line);
     static Mode* edit(Line* line);
+    static Mode* remove();
 
     static bool focusLine(Line *line, QPoint point, double &d);
 
@@ -36,7 +42,9 @@ public:
 
 class ModeImpl : public Mode {
 protected:
-    virtual void paint(QPainter *painter) {}
+    virtual void paint(QPainter *painter);
+    virtual bool isActive(Line *line);
+    virtual bool isFocused(Line *line);
 
 public:
     void paintEvent(QPaintEvent *event) override;

@@ -21,7 +21,7 @@ add_library(common common/Splines.h common/Splines.cpp common/Matrix.h common/Ma
 add_executable(dz4 dz4/main.cpp dz4/Dz4.h)
 add_executable(dz5 dz5/main.cpp dz5/Dz5.h)
 add_executable(dz6 dz6/main.cpp dz6/Dz6.h dz6/Dz6.cpp)
-add_executable(line line/main.cpp line/Canvas.h line/Canvas.cpp line/figures/Line.h line/figures/Line.cpp line/dialogs/WeightDialog.h line/dialogs/WeightDialog.cpp line/Mode.cpp line/Mode.h line/modes/CreateMode.cpp line/modes/CreateMode.h line/modes/MoveMode.cpp line/modes/MoveMode.h line/widgets/LineEditor.cpp line/widgets/LineEditor.h line/widgets/Slider.cpp line/widgets/Slider.h line/modes/EditMode.cpp line/modes/EditMode.h line/figures/Point.cpp line/figures/Point.h)
+add_executable(line line/main.cpp line/Canvas.h line/Canvas.cpp line/figures/Line.h line/figures/Line.cpp line/dialogs/WeightDialog.h line/dialogs/WeightDialog.cpp line/Mode.cpp line/Mode.h line/modes/CreateMode.cpp line/modes/CreateMode.h line/modes/MoveMode.cpp line/modes/MoveMode.h line/widgets/LineEditor.cpp line/widgets/LineEditor.h line/widgets/Slider.cpp line/widgets/Slider.h line/modes/EditMode.cpp line/modes/EditMode.h line/figures/Point.cpp line/figures/Point.h line/modes/RemoveMode.cpp line/modes/RemoveMode.h line/widgets/LineCleaner.cpp line/widgets/LineCleaner.h)
 
 target_link_libraries(common PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
 

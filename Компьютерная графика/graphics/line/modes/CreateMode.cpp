@@ -15,25 +15,27 @@ const QString WEIGHT("Изменить толщину");
 const QString MOVE("Переместить");
 const QString EDIT("Редактировать");
 const QString DELETE("Удалить");
+const QString DELLINES("Удалить линии");
 
 CreateMode::CreateMode() {
-    menu = new QMenu();
-    menu->addAction(COLOR);
-    menu->addAction(WEIGHT);
-    menu->addAction(MOVE);
-    menu->addAction(EDIT);
-    menu->addAction(DELETE);
-    connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(slotTriggered(QAction*)));
+    lineMenu = new QMenu();
+    lineMenu->addAction(COLOR);
+    lineMenu->addAction(WEIGHT);
+    lineMenu->addAction(MOVE);
+    lineMenu->addAction(EDIT);
+    lineMenu->addAction(DELETE);
+    canvasMenu = new QMenu();
+    canvasMenu->addAction(DELLINES);
+    connect(lineMenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
+    connect(canvasMenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
 }
 
-void CreateMode::paint(QPainter *painter) {
-    painter->setBrush(QBrush(Qt::white));
-    int width = painter->window().width();
-    int height = painter->window().height();
-    painter->drawRect(-1, -1, width + 1, height + 1);
-    for(auto line : canvas->getLines()) {
-        line->draw(painter, width, height, line == activeLine, line == focusedLine);
-    }
+bool CreateMode::isActive(Line *line) {
+    return line == activeLine;
+}
+
+bool CreateMode::isFocused(Line *line) {
+    return line == focusedLine;
 }
 
 void CreateMode::mousePressEvent(QMouseEvent *event) {
@@ -85,9 +87,11 @@ void CreateMode::contextMenuEvent(QContextMenuEvent *event) {
         activeLine = focusedLine;
     }
     if(activeLine) {
-        menu->exec(event->globalPos());
+        lineMenu->exec(event->globalPos());
         activeLine = nullptr;
         focusedLine = nullptr;
+    } else {
+        canvasMenu->exec(event->globalPos());
     }
 }
 
@@ -107,6 +111,8 @@ void CreateMode::slotTriggered(QAction *action) {
     } else if(action->text() == DELETE) {
         canvas->getLines().removeOne(activeLine);
         delete activeLine;
+    } else if(action->text() == DELLINES) {
+        canvas->setMode(Mode::remove());
     }
     activeLine = nullptr;
 }

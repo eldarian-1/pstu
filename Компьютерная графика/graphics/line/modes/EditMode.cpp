@@ -18,10 +18,9 @@ Point top(0, 0, 10, Qt::darkBlue),
     bottom(0, 0, 10, Qt::darkRed);
 Point *focusedPoint = nullptr, *activePoint = nullptr;
 
-EditMode::EditMode() {}
-
-EditMode::EditMode(Line *line) : EditMode() {
-    setLine(line);
+EditMode::EditMode() {
+    line = nullptr;
+    editor = nullptr;
 }
 
 void EditMode::setLine(Line *line) {
@@ -38,15 +37,10 @@ void drawPoint(QPainter *painter, Point *point) {
 }
 
 void EditMode::paint(QPainter *painter) {
-    painter->setBrush(QBrush(Qt::white));
-    int width = painter->window().width();
-    int height = painter->window().height();
-    painter->drawRect(-1, -1, width + 1, height + 1);
-    for(auto line : canvas->getLines()) {
-        line->draw(painter, width, height);
-    }
-
+    ModeImpl::paint(painter);
     if(line != nullptr) {
+        int width = painter->window().width();
+        int height = painter->window().height();
         line->getPoints(top.qt(), middle.qt(), bottom.qt(), width, height);
         drawPoint(painter, &top);
         drawPoint(painter, &middle);

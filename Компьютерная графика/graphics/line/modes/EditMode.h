@@ -9,12 +9,11 @@ class EditMode : public QObject, public ModeImpl {
 Q_OBJECT
 
 private:
-    Line *line = nullptr;
-    LineEditor* editor = nullptr;
+    Line *line;
+    LineEditor* editor;
 
 public:
     EditMode();
-    EditMode(Line *line);
     void setLine(Line *line);
 
 protected:

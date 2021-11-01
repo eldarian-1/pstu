@@ -9,13 +9,15 @@ class CreateMode : public QObject, public ModeImpl {
     Q_OBJECT
 
 private:
-    QMenu *menu;
+    QMenu *lineMenu;
+    QMenu *canvasMenu;
     QPoint *activePoint = nullptr;
     Line *activeLine = nullptr;
     Line *focusedLine = nullptr;
 
 protected:
-    void paint(QPainter *painter) override;
+    bool isActive(Line *line) override;
+    bool isFocused(Line *line) override;
 
 public:
     CreateMode();

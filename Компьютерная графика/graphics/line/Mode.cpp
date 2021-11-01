@@ -10,33 +10,43 @@
 #include "modes/CreateMode.h"
 #include "modes/MoveMode.h"
 #include "modes/EditMode.h"
+#include "modes/RemoveMode.h"
 
 Canvas *Mode::canvas = nullptr;
 CreateMode *Mode::createInstance = nullptr;
 MoveMode *Mode::moveInstance = nullptr;
 EditMode *Mode::editInstance = nullptr;
+RemoveMode *Mode::removeInstance = nullptr;
+
+template<class TMode>
+TMode *Mode::instance(TMode *&mode, const std::function<void(void)>& task) {
+    if(mode == nullptr) {
+        mode = new TMode;
+    }
+    if(task) {
+        task();
+    }
+    return mode;
+}
 
 Mode* Mode::create() {
-    if(createInstance == nullptr) {
-        createInstance = new CreateMode;
-    }
-    return createInstance;
+    return instance(createInstance);
 }
 
 Mode* Mode::move(Line* line) {
-    if(moveInstance == nullptr) {
-        moveInstance = new MoveMode;
-    }
-    moveInstance->setLine(line);
-    return moveInstance;
+    return instance(moveInstance);
 }
 
 Mode* Mode::edit(Line* line) {
-    if(editInstance == nullptr) {
-        editInstance = new EditMode;
-    }
-    editInstance->setLine(line);
-    return editInstance;
+    return instance(editInstance, [&]() {
+        editInstance->setLine(line);
+    });
+}
+
+Mode* Mode::remove() {
+    return instance(removeInstance, [&]() {
+        removeInstance->start();
+    });
 }
 
 bool Mode::focusLine(Line *line, QPoint point, double &d) {
@@ -47,6 +57,24 @@ bool Mode::focusLine(Line *line, QPoint point, double &d) {
         d = diff;
         return true;
     }
+    return false;
+}
+
+void ModeImpl::paint(QPainter *painter) {
+    painter->setBrush(QBrush(Qt::white));
+    int width = painter->window().width();
+    int height = painter->window().height();
+    painter->drawRect(-1, -1, width + 1, height + 1);
+    for(auto line : canvas->getLines()) {
+        line->draw(painter, width, height, isActive(line), isFocused(line));
+    }
+}
+
+bool ModeImpl::isActive(Line *line) {
+    return false;
+}
+
+bool ModeImpl::isFocused(Line *line) {
     return false;
 }
 

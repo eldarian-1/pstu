@@ -4,7 +4,7 @@
 #include <QPainter>
 #include <QPaintEvent>
 
-#include "Line.h"
+#include "figures/Line.h"
 #include "Canvas.h"
 
 #include "modes/CreateMode.h"

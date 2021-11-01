@@ -28,6 +28,7 @@ public:
     void B(double b) { this->b = b; }
     void C(double c) { this->c = c; }
 
+    void getPoints(QPoint &a, QPoint &b, QPoint &c, int width, int height);
     double distanceFrom(const QPoint &p) const;
 
     void draw(QPainter *pointer, int width, int height, bool active = false, bool focused = false);

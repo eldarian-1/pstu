@@ -6,7 +6,7 @@
 #include <QMouseEvent>
 #include <QColorDialog>
 
-#include "../Line.h"
+#include "../figures/Line.h"
 #include "../Canvas.h"
 #include "../dialogs/WeightDialog.h"
 

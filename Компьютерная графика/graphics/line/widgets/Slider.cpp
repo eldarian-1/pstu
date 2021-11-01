@@ -5,13 +5,13 @@
 #include <QLineEdit>
 #include <QHBoxLayout>
 
-bool changed = false;
+#include <Func.h>
 
 Slider::Slider(int from, int to) {
     layout = new QHBoxLayout;
-    lineEdit = new QLineEdit(stringOf(from));
-    lblFrom = new QLabel(stringOf(from));
-    lblTo = new QLabel(stringOf(to));
+    lineEdit = new QLineEdit(Func::stringOf(from));
+    lblFrom = new QLabel(Func::stringOf(from));
+    lblTo = new QLabel(Func::stringOf(to));
     slider = new QSlider(Qt::Horizontal);
 
     setLayout(layout);
@@ -30,7 +30,7 @@ Slider::Slider(int from, int to) {
 
 Slider::Slider(int from, int to, int def) : Slider(from, to) {
     slider->setValue(def);
-    lineEdit->setText(stringOf(def));
+    lineEdit->setText(Func::stringOf(def));
 }
 
 Slider::~Slider() {
@@ -38,23 +38,13 @@ Slider::~Slider() {
 }
 
 void Slider::slotValueChanged(int value) {
-    if(changed) {
-        changed = false;
-    } else {
-        lineEdit->setText(stringOf(value));
-        changed = true;
-    }
+    Func::doIt([&]() -> void {
+        lineEdit->setText(Func::stringOf(value));
+    });
 }
 
 void Slider::slotTextChanged(const QString &text) {
-    if(changed) {
-        changed = false;
-    } else {
+    Func::doIt([&]() -> void {
         slider->setValue(text.toInt());
-        changed = true;
-    }
-}
-
-QString Slider::stringOf(int value) {
-    return QString::asprintf("%d", value);
+    });
 }

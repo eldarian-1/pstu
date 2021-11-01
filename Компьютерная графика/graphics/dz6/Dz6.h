@@ -46,7 +46,6 @@ protected:
     void contextMenuEvent(QContextMenuEvent *event) override;
     void timerEvent(QTimerEvent *event) override;
 
-    static double distance(std::vector<double> vector, QPoint point);
     static void remove(pair_t*& p);
 
 };

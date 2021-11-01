@@ -21,14 +21,12 @@ private:
     QLabel *lblA;
     QLabel *lblB;
     QLabel *lblC;
-    QLabel *lblAlpha;
 
     Slider *sldWeight;
     QPushButton *btnColor;
-    Slider *sldA;
-    Slider *sldB;
-    Slider *sldC;
-    Slider *sldAlpha;
+    QLineEdit *leA;
+    QLineEdit *leB;
+    QLineEdit *leC;
 
     Line* line = nullptr;
 
@@ -36,13 +34,18 @@ public:
     LineEditor(Line *line);
     ~LineEditor();
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
 private slots:
     void weightChanged(int value);
     void colorChanged();
     void colorChanged(QColor color);
-    void aChanged(int value);
-    void bChanged(int value);
-    void cChanged(int value);
-    void alphaChanged(int value);
+    void aChanged(const QString &value);
+    void bChanged(const QString &value);
+    void cChanged(const QString &value);
+
+signals:
+    void closed();
 
 };

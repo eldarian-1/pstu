@@ -29,7 +29,4 @@ private slots:
     void slotValueChanged(int value);
     void slotTextChanged(const QString &text);
 
-private:
-    static QString stringOf(int value);
-
 };

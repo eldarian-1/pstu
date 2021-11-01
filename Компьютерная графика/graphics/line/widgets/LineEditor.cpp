@@ -9,12 +9,14 @@
 #include <QGridLayout>
 #include <QColorDialog>
 
-#include "../Line.h"
+#include "../figures/Line.h"
 #include "Slider.h"
+
+#include <Func.h>
 
 LineEditor::LineEditor(Line *line) : QWidget(), line(line) {
     setWindowTitle("Настройка линии " + line->toString());
-    setFixedSize(450, 200);
+    setFixedSize(450, 100);
 
     lytMain = new QGridLayout();
     lytMain->setColumnStretch(2, 8);
@@ -24,14 +26,12 @@ LineEditor::LineEditor(Line *line) : QWidget(), line(line) {
     lblA = new QLabel("A");
     lblB = new QLabel("B");
     lblC = new QLabel("C");
-    lblAlpha = new QLabel("Угол");
 
     sldWeight = new Slider(1, 100, line->getWeight());
     btnColor = new QPushButton;
-    sldA = new Slider(-1000, 1000, line->A());
-    sldB = new Slider(-1000, 1000, line->B());
-    sldC = new Slider(-1000, 1000, line->C());
-    sldAlpha = new Slider(0, 360, line->A());
+    leA = new QLineEdit(Func::stringOf(line->A()));
+    leB = new QLineEdit(Func::stringOf(line->B()));
+    leC = new QLineEdit(Func::stringOf(line->C()));
 
     setLayout(lytMain);
     colorChanged(line->getColor());
@@ -43,29 +43,29 @@ LineEditor::LineEditor(Line *line) : QWidget(), line(line) {
     lytMain->addWidget(btnColor, 1, 1, 1, 7);
 
     lytMain->addWidget(lblA, 2, 0, Qt::AlignRight);
-    lytMain->addWidget(sldA, 2, 1, 1, 7);
+    lytMain->addWidget(leA, 2, 1);
 
-    lytMain->addWidget(lblB, 3, 0, Qt::AlignRight);
-    lytMain->addWidget(sldB, 3, 1, 1, 7);
+    lytMain->addWidget(lblB, 2, 2, Qt::AlignRight);
+    lytMain->addWidget(leB, 2, 3);
 
-    lytMain->addWidget(lblC, 4, 0, Qt::AlignRight);
-    lytMain->addWidget(sldC, 4, 1, 1, 7);
-
-    lytMain->addWidget(lblAlpha, 5, 0, Qt::AlignRight);
-    lytMain->addWidget(sldAlpha, 5, 1, 1, 7);
+    lytMain->addWidget(lblC, 2, 4, Qt::AlignRight);
+    lytMain->addWidget(leC, 2, 5);
 
     connect(sldWeight, SIGNAL(valueChanged(int)), SLOT(weightChanged(int)));
     connect(btnColor, SIGNAL(released()), SLOT(colorChanged()));
-    connect(sldA, SIGNAL(valueChanged(int)), SLOT(aChanged(int)));
-    connect(sldB, SIGNAL(valueChanged(int)), SLOT(bChanged(int)));
-    connect(sldC, SIGNAL(valueChanged(int)), SLOT(cChanged(int)));
-    connect(sldAlpha, SIGNAL(valueChanged(int)), SLOT(alphaChanged(int)));
+    connect(leA, SIGNAL(textChanged(const QString &)), SLOT(aChanged(const QString &)));
+    connect(leB, SIGNAL(textChanged(const QString &)), SLOT(bChanged(const QString &)));
+    connect(leC, SIGNAL(textChanged(const QString &)), SLOT(cChanged(const QString &)));
 
     show();
 }
 
 LineEditor::~LineEditor() {
     delete lytMain;
+}
+
+void LineEditor::closeEvent(QCloseEvent *event) {
+    emit closed();
 }
 
 void LineEditor::weightChanged(int value) {
@@ -81,18 +81,14 @@ void LineEditor::colorChanged(QColor color) {
     line->setColor(color);
 }
 
-void LineEditor::aChanged(int value) {
-    line->A(value);
+void LineEditor::aChanged(const QString &value) {
+    line->A(value.toInt());
 }
 
-void LineEditor::bChanged(int value) {
-    line->B(value);
+void LineEditor::bChanged(const QString &value) {
+    line->B(value.toInt());
 }
 
-void LineEditor::cChanged(int value) {
-    line->C(value);
-}
-
-void LineEditor::alphaChanged(int value) {
-    line->A(value);
+void LineEditor::cChanged(const QString &value) {
+    line->C(value.toInt());
 }

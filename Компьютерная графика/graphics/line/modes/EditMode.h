@@ -5,7 +5,9 @@
 class Line;
 class LineEditor;
 
-class EditMode : public ModeImpl {
+class EditMode : public QObject, public ModeImpl {
+Q_OBJECT
+
 private:
     Line *line = nullptr;
     LineEditor* editor = nullptr;
@@ -23,5 +25,8 @@ public:
     void mouseReleaseEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void contextMenuEvent(QContextMenuEvent *event) override;
+
+private slots:
+    void slotClosed();
 
 };

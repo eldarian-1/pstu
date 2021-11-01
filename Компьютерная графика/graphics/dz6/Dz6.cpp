@@ -45,7 +45,7 @@ void Dz6::paintEvent(QPaintEvent *event) {
 bool Dz6::isPoint(QPoint point, int &i) {
     int n = matrix.n();
     for(i = 0; i < n; ++i) {
-        if(distance(matrix[i], point) <= 5) {
+        if(Graphic::isPoint(matrix[i], point, 5)) {
             return true;
         }
     }
@@ -53,9 +53,10 @@ bool Dz6::isPoint(QPoint point, int &i) {
 }
 
 int Dz6::minDistance(QPoint point) {
-    int index = 0, min = 1000000000;
+    int index = 0;
+    double min = 1000000000.;
     for(int i = 0, n = matrix.n(); i < n; ++i) {
-        int d = distance(matrix[i - 1], point) + distance(matrix[i], point);
+        double d = Graphic::distance(matrix[i - 1], point) + Graphic::distance(matrix[i], point);
         if(d < min) {
             min = d;
             index = i;
@@ -116,10 +117,6 @@ void Dz6::contextMenuEvent(QContextMenuEvent *event) {
 
 void Dz6::timerEvent(QTimerEvent *event) {
     repaint();
-}
-
-double Dz6::distance(std::vector<double> vector, QPoint point) {
-    return std::sqrt(std::pow(vector[0] - point.x(), 2) + std::pow(vector[1] - point.y(), 2));
 }
 
 void Dz6::remove(pair_t*& p) {

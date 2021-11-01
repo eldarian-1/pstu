@@ -6,9 +6,15 @@
 #include <QMouseEvent>
 #include <QColorDialog>
 
-#include "../Line.h"
 #include "../Canvas.h"
+#include "../figures/Line.h"
+#include "../figures/Point.h"
 #include "../widgets/LineEditor.h"
+
+#include <Graphic.h>
+
+Point top, middle, bottom;
+Point *focusedPoint = nullptr, *activePoint = nullptr;
 
 EditMode::EditMode() {}
 
@@ -20,7 +26,9 @@ void EditMode::setLine(Line *line) {
     if(editor) {
         delete editor;
     }
+    this->line = line;
     editor = new LineEditor(line);
+    connect(editor, SIGNAL(closed()), SLOT(slotClosed()));
 }
 
 void EditMode::paint(QPainter *painter) {
@@ -31,12 +39,44 @@ void EditMode::paint(QPainter *painter) {
     for(auto line : canvas->getLines()) {
         line->draw(painter, width, height);
     }
+
+    if(line != nullptr) {
+        line->getPoints(top.qt(), middle.qt(), bottom.qt(), width, height);
+        painter->setPen(QPen(QBrush(Qt::red), 10));
+        top.draw(painter, false, false);
+        middle.draw(painter, false, false);
+        bottom.draw(painter, false, false);
+    }
 }
 
-void EditMode::mousePressEvent(QMouseEvent *event) {}
+void EditMode::mousePressEvent(QMouseEvent *event) {
+    activePoint = focusedPoint ? focusedPoint : nullptr;
+}
 
-void EditMode::mouseReleaseEvent(QMouseEvent *event) {}
+void EditMode::mouseReleaseEvent(QMouseEvent *event) {
+    if(activePoint) {
+        activePoint = nullptr;
+    }
+}
 
-void EditMode::mouseMoveEvent(QMouseEvent *event) {}
+void EditMode::mouseMoveEvent(QMouseEvent *event) {
+    if(activePoint) {
+
+    } else {
+        if (Graphic::isPoint(event->pos(), top.qt(), 5)) {
+            focusedPoint = &top;
+        } else if (Graphic::isPoint(event->pos(), middle.qt(), 5)) {
+            focusedPoint = &middle;
+        } else if (Graphic::isPoint(event->pos(), bottom.qt(), 5)) {
+            focusedPoint = &bottom;
+        } else {
+            focusedPoint = nullptr;
+        }
+    }
+}
 
 void EditMode::contextMenuEvent(QContextMenuEvent *event) {}
+
+void EditMode::slotClosed() {
+    canvas->setMode(Mode::create());
+}

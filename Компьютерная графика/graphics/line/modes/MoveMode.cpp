@@ -5,7 +5,7 @@
 #include <QPainter>
 #include <QMouseEvent>
 
-#include "../Line.h"
+#include "../figures/Line.h"
 #include "../Canvas.h"
 
 const QString CHANGE_ANGLE("Изменить угол");

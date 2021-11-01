@@ -3,7 +3,7 @@
 #include <QPaintEvent>
 #include <QMenu>
 
-#include "Line.h"
+#include "figures/Line.h"
 #include "Mode.h"
 #include "Canvas.h"
 

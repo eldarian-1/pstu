@@ -35,6 +35,22 @@ QLineF Line::getLine(const QPainter *painter, int width, int height) {
     return QLineF(p1, p2);
 }
 
+void Line::getPoints(QPoint &top, QPoint &middle, QPoint &bottom, int width, int height) {
+    if(b == 0) {
+        top = QPoint(-c/a, 0.25 * height);
+        middle = QPoint(-c/a, 0.5 * height);
+        bottom = QPoint(-c/a, 0.75 * height);
+    } else if(a == 0) {
+        top = QPoint(0.25 * width, -c/b);
+        middle = QPoint(0.5 * width, -c/b);
+        bottom = QPoint(0.75 * width, -c/b);
+    } else {
+        top = QPoint(0.25 * width, f(0.25 * width));
+        middle = QPoint(0.5 * width, f(0.5 * width));
+        bottom = QPoint(0.75 * width, f(0.75 * width));
+    }
+}
+
 void Line::draw(QPainter *painter, int width, int height, bool active, bool focused) {
     QPen pen;
     pen.setWidth(weight);

@@ -11,3 +11,18 @@ void Func::doIt(std::function<void(void)> task, bool &mutex) {
         mutex = false;
     }
 }
+
+int Func::gcd(int a, int b) {
+    while(a && b) {
+        if(abs(a) > abs(b)) {
+            a %= b;
+        } else {
+            b %= a;
+        }
+    }
+    return a + b;
+}
+
+int Func::gcd(int a, int b, int c) {
+    return gcd(gcd(a, b), gcd(b, c));
+}

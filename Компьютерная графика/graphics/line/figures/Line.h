@@ -13,6 +13,7 @@ private:
     int weight;
 
     double f(double x) const;
+    double g(double y) const;
     QLineF getLine(int width, int height);
 
 public:

@@ -6,8 +6,14 @@
 #include <cmath>
 using namespace std;
 
+#include <Func.h>
+
 double Line::f(double x) const {
     return (b == 0. ? -c / a : -(a * x + c) / b);
+}
+
+double Line::g(double y) const {
+    return (a == 0. ? -c / b : -(b * y + c) / a);
 }
 
 Line::Line(QPoint p1, QPoint p2) : color(Qt::black), weight(1) {
@@ -18,6 +24,10 @@ void Line::rebuild(QPoint p1, QPoint p2) {
     a = p1.y() - p2.y();
     b = p2.x() - p1.x();
     c = p1.x() * p2.y() - p2.x() * p1.y();
+    int d = Func::gcd((int)a, (int)b, (int)c);
+    a /= d;
+    b /= d;
+    c /= d;
 }
 
 void Line::moveCenter(QPoint old, QPoint now) {
@@ -56,9 +66,16 @@ void Line::getPoints(QPoint &top, QPoint &middle, QPoint &bottom, int width, int
         middle = QPoint(0.5 * width, -c/b);
         bottom = QPoint(0.75 * width, -c/b);
     } else {
-        top = QPoint(0.25 * width, f(0.25 * width));
-        middle = QPoint(0.5 * width, f(0.5 * width));
-        bottom = QPoint(0.75 * width, f(0.75 * width));
+        double start = f(0);
+        if(start < 0 || height < start) {
+            top = QPoint(g(0.25 * height), 0.25 * height);
+            middle = QPoint(g(0.5 * height), 0.5 * height);
+            bottom = QPoint(g(0.75 * height), 0.75 * height);
+        } else {
+            top = QPoint(0.25 * width, f(0.25 * width));
+            middle = QPoint(0.5 * width, f(0.5 * width));
+            bottom = QPoint(0.75 * width, f(0.75 * width));
+        }
     }
 }
 

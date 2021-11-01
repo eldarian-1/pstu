@@ -14,6 +14,8 @@ class LineEditor : public QWidget {
 Q_OBJECT
 
 private:
+    static bool mutex;
+
     QGridLayout *lytMain;
 
     QLabel *lblWeight;
@@ -34,6 +36,8 @@ public:
     LineEditor(Line *line);
     ~LineEditor();
 
+    void lineChanged();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 
@@ -47,5 +51,8 @@ private slots:
 
 signals:
     void closed();
+
+private:
+    void setTitle();
 
 };

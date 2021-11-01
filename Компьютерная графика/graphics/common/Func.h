@@ -4,6 +4,6 @@
 
 namespace Func {
     QString stringOf(int value);
-    void doIt(std::function<void(void)> task);
+    void doIt(std::function<void(void)> task, bool &mutex);
 
 }

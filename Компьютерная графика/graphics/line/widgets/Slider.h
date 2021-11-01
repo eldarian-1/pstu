@@ -11,6 +11,8 @@ class Slider : public QWidget {
 Q_OBJECT
 
 private:
+    static bool mutex;
+
     QHBoxLayout* layout;
     QLineEdit* lineEdit;
     QLabel* lblFrom;

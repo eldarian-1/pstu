@@ -20,11 +20,18 @@ void Line::rebuild(QPoint p1, QPoint p2) {
     c = p1.x() * p2.y() - p2.x() * p1.y();
 }
 
+void Line::moveCenter(QPoint old, QPoint now) {
+    int dx = old.x() - now.x();
+    int dy = old.y() - now.y();
+    QLineF l = getLine(1000, 1000);
+    rebuild(QPoint(l.x1() - dx, l.y1() - dy), QPoint(l.x2() - dx, l.y2() - dy));
+}
+
 double Line::distanceFrom(const QPoint &p) const {
     return fabs(a * p.x() + b * p.y() + c) / sqrt(pow(a, 2) + pow(b, 2));
 }
 
-QLineF Line::getLine(const QPainter *painter, int width, int height) {
+QLineF Line::getLine(int width, int height) {
     QPointF p1, p2;
     if(b == 0) {
         p1 = QPointF(-c/a, 0);
@@ -60,7 +67,7 @@ void Line::draw(QPainter *painter, int width, int height, bool active, bool focu
     pen.setWidth(weight);
     pen.setColor(focused ? Qt::red : active ? Qt::green : color);
     painter->setPen(pen);
-    painter->drawLine(getLine(painter, width, height));
+    painter->drawLine(getLine(width, height));
 }
 
 QString Line::toString() {

@@ -7,6 +7,8 @@
 
 #include <Func.h>
 
+bool Slider::mutex = false;
+
 Slider::Slider(int from, int to) {
     layout = new QHBoxLayout;
     lineEdit = new QLineEdit(Func::stringOf(from));
@@ -40,11 +42,11 @@ Slider::~Slider() {
 void Slider::slotValueChanged(int value) {
     Func::doIt([&]() -> void {
         lineEdit->setText(Func::stringOf(value));
-    });
+    }, mutex);
 }
 
 void Slider::slotTextChanged(const QString &text) {
     Func::doIt([&]() -> void {
         slider->setValue(text.toInt());
-    });
+    }, mutex);
 }

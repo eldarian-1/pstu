@@ -13,11 +13,12 @@ private:
     int weight;
 
     double f(double x) const;
-    QLineF getLine(const QPainter *painter, int width, int height);
+    QLineF getLine(int width, int height);
 
 public:
     Line(QPoint p1, QPoint p2);
     void rebuild(QPoint p1, QPoint p2);
+    void moveCenter(QPoint old, QPoint now);
     QColor getColor() { return color; }
     void setColor(QColor color) { this->color = color; }
     int getWeight() { return weight; }

@@ -14,8 +14,10 @@
 
 #include <Func.h>
 
+bool LineEditor::mutex = false;
+
 LineEditor::LineEditor(Line *line) : QWidget(), line(line) {
-    setWindowTitle("Настройка линии " + line->toString());
+    setTitle();
     setFixedSize(450, 100);
 
     lytMain = new QGridLayout();
@@ -82,13 +84,35 @@ void LineEditor::colorChanged(QColor color) {
 }
 
 void LineEditor::aChanged(const QString &value) {
-    line->A(value.toInt());
+    Func::doIt([&]() {
+        line->A(value.toInt());
+        setTitle();
+    }, mutex);
 }
 
 void LineEditor::bChanged(const QString &value) {
-    line->B(value.toInt());
+    Func::doIt([&]() {
+        line->B(value.toInt());
+        setTitle();
+    }, mutex);
 }
 
 void LineEditor::cChanged(const QString &value) {
-    line->C(value.toInt());
+    Func::doIt([&]() {
+        line->C(value.toInt());
+        setTitle();
+    }, mutex);
+}
+
+void LineEditor::lineChanged() {
+    Func::doIt([&](){
+        leA->setText(Func::stringOf(line->A()));
+        leB->setText(Func::stringOf(line->B()));
+        leC->setText(Func::stringOf(line->C()));
+        setTitle();
+    }, mutex);
+}
+
+void LineEditor::setTitle() {
+    setWindowTitle("Настройка линии " + line->toString());
 }

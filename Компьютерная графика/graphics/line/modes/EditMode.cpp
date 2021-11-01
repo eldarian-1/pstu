@@ -13,7 +13,9 @@
 
 #include <Graphic.h>
 
-Point top(0, 0, 10, Qt::darkBlue), middle(0, 0, 10, Qt::darkGreen), bottom(0, 0, 10, Qt::darkRed);
+Point top(0, 0, 10, Qt::darkBlue),
+    middle(0, 0, 10, Qt::darkGreen),
+    bottom(0, 0, 10, Qt::darkRed);
 Point *focusedPoint = nullptr, *activePoint = nullptr;
 
 EditMode::EditMode() {}
@@ -65,10 +67,11 @@ void EditMode::mouseReleaseEvent(QMouseEvent *event) {
 void EditMode::mouseMoveEvent(QMouseEvent *event) {
     if(activePoint) {
         if(activePoint == &middle) {
-
+            line->moveCenter(middle.qt(), event->pos());
         } else {
             line->rebuild(middle.qt(), event->pos());
         }
+        editor->lineChanged();
     } else {
         if (Graphic::isPoint(event->pos(), top.qt(), 5)) {
             focusedPoint = &top;

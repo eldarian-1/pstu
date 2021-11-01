@@ -1,13 +1,15 @@
 #pragma once
 
-#include <QWidget>
+#include <QMainWindow>
 
 #include "Mode.h"
 
 class Line;
+class QLabel;
 
-class Canvas : public QWidget {
+class Canvas : public QMainWindow {
 private:
+    QLabel *lblStatus;
     QList<Line*> lines;
     StateMode *mode;
 
@@ -16,6 +18,7 @@ public:
 
     QList<Line*> &getLines() { return lines; }
     void setMode(Mode *mode) { this->mode->setState(mode); }
+    void setStatus(QString text);
 
 protected:
     void paintEvent(QPaintEvent *event) override { mode->paintEvent(event); }

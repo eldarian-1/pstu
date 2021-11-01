@@ -72,6 +72,11 @@ void CreateMode::mouseMoveEvent(QMouseEvent *event) {
     }
     if(d == 10. && focusedLine) {
         focusedLine = nullptr;
+    } else if (focusedLine) {
+        canvas->setStatus(focusedLine->toString());
+    }
+    if(!focusedLine) {
+        canvas->setStatus("");
     }
 }
 

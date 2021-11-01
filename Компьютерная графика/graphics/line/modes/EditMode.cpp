@@ -72,6 +72,7 @@ void EditMode::mouseMoveEvent(QMouseEvent *event) {
             line->rebuild(middle.qt(), event->pos());
         }
         editor->lineChanged();
+        canvas->setStatus(line->toString());
     } else {
         if (Graphic::isPoint(event->pos(), top.qt(), 5)) {
             focusedPoint = &top;

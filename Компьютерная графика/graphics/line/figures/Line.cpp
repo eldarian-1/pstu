@@ -71,5 +71,8 @@ void Line::draw(QPainter *painter, int width, int height, bool active, bool focu
 }
 
 QString Line::toString() {
-    return QString::asprintf("%dx + %dy + %d = 0", A(), B(), C());
+    int a = this->a, b = this->b, c = this->c;
+    return QString::asprintf("%dx ", a) +
+        (b >= 0 ? QString::asprintf("+ %dy ", b) : QString::asprintf("- %dy ", -b)) +
+        (c >= 0 ? QString::asprintf("+ %d = 0", c) : QString::asprintf("- %d = 0", -c));
 }

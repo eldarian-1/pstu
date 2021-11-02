@@ -118,6 +118,7 @@ byte read_index() {
         index *= 2;
         index += (buffer[i] != '0' ? 1 : 0);
     }
+    getchar();
     return index;
 }
 

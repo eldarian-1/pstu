@@ -1,0 +1,6 @@
+docker build -t holidays .
+docker run --name holidays --network host -d holidays
+docker stop holidays
+docker rm $(docker ps -qa)
+ 
+sudo docker run --rm --name holidays -p 8000:8000 -e TZ=Europe/Moscow holidays

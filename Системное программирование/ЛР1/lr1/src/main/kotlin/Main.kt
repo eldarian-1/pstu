@@ -105,7 +105,7 @@ fun task4() {
         readLine()?.toInt().let { n -> // Start(x)
             // y1 := a
             var result = 1.0
-            // p1(x, y1)
+            // p1(x)
             if(n!! < 1) {
                 // Stop(b)
                 throw IllegalArgumentException()

@@ -4,7 +4,6 @@
 
 class Line;
 class Canvas;
-class MoveMode;
 class EditMode;
 class CreateMode;
 class RemoveMode;
@@ -16,7 +15,6 @@ class QContextMenuEvent;
 class Mode {
 protected:
     static Canvas *canvas;
-    static MoveMode *moveInstance;
     static EditMode *editInstance;
     static CreateMode *createInstance;
     static RemoveMode *removeInstance;
@@ -32,7 +30,6 @@ public:
     virtual void contextMenuEvent(QContextMenuEvent *event) = 0;
 
     static Mode* create();
-    static Mode* move(Line* line);
     static Mode* edit(Line* line);
     static Mode* remove();
 

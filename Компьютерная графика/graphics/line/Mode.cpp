@@ -8,13 +8,11 @@
 #include "Canvas.h"
 
 #include "modes/CreateMode.h"
-#include "modes/MoveMode.h"
 #include "modes/EditMode.h"
 #include "modes/RemoveMode.h"
 
 Canvas *Mode::canvas = nullptr;
 CreateMode *Mode::createInstance = nullptr;
-MoveMode *Mode::moveInstance = nullptr;
 EditMode *Mode::editInstance = nullptr;
 RemoveMode *Mode::removeInstance = nullptr;
 
@@ -31,10 +29,6 @@ TMode *Mode::instance(TMode *&mode, const std::function<void(void)>& task) {
 
 Mode* Mode::create() {
     return instance(createInstance);
-}
-
-Mode* Mode::move(Line* line) {
-    return instance(moveInstance);
 }
 
 Mode* Mode::edit(Line* line) {

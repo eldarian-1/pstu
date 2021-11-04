@@ -3,12 +3,9 @@
 #include <QMenu>
 #include <QMouseEvent>
 #include <QMessageBox>
-#include <QContextMenuEvent>
 
 #include <Splines.h>
 #include <Graphic.h>
-
-#include <cmath>
 
 Dz6::Dz6() : QWidget() {
     setWindowTitle("Д/З №6");
@@ -99,7 +96,8 @@ void Dz6::contextMenuEvent(QContextMenuEvent *event) {
     } else {
         menu.addAction(add);
     }
-    QString res = menu.exec(event->globalPos())->text();
+    QAction *action = menu.exec(event->globalPos());
+    QString res = action ? action->text() : "";
     if(res == add) {
         QPoint p = event->pos();
         int i = minDistance(p);
@@ -110,8 +108,6 @@ void Dz6::contextMenuEvent(QContextMenuEvent *event) {
         } else {
             matrix.erase(focusedPoint->first);
         }
-        remove(focusedPoint);
-        remove(activePoint);
     }
 }
 

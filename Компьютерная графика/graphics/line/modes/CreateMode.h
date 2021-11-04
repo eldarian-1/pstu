@@ -12,10 +12,12 @@ private:
     QMenu *lineMenu;
     QMenu *canvasMenu;
     QPoint *activePoint = nullptr;
+    QPoint *focusedPoint = nullptr;
     Line *activeLine = nullptr;
     Line *focusedLine = nullptr;
 
 protected:
+    void paint(QPainter* painter) override;
     bool isActive(Line *line) override;
     bool isFocused(Line *line) override;
 
@@ -29,5 +31,8 @@ public:
 
 public slots:
     void slotTriggered(QAction *action);
+
+private:
+    static void remove(QPoint*& ptr);
 
 };

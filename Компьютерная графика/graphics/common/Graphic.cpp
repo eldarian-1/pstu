@@ -1,7 +1,9 @@
 #include "Graphic.h"
 
+#include <QLine>
 #include <QPoint>
 #include <cmath>
+#include <iostream>
 
 QPoint* Graphic::getPoints(Matrix m) {
     int n;
@@ -35,4 +37,12 @@ bool Graphic::isPoint(std::vector<double> cursor, QPoint target, int allow) {
 
 QPoint Graphic::pointOf(std::vector<double> vector) {
     return QPoint(vector[0], vector[1]);
+}
+
+void Graphic::out(QLine line) {
+    std::cout << line.x1() << " " << line.y1() << " " << line.x2() << " " << line.y2() << "\n";
+}
+
+void Graphic::out(QPoint point) {
+    std::cout << point.x() << " " << point.y() << "\n";
 }

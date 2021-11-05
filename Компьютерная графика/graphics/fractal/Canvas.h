@@ -18,11 +18,7 @@ public:
 
 protected:
     void paintEvent(QPaintEvent* event) override;
-
-    void paint(QPainter* painter, QLine line, int start, int end);
-
-    static QLine continuum(QLine line);
-    static QLine rotate(QLine line, double angle);
-    static QPoint rotate(QPoint point, double angle);
+    void paint(QPainter* painter, QPoint begin, QPoint end, int i, int n);
+    static QPoint rotate(QPoint begin, QPoint end, double angle);
 
 };

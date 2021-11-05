@@ -5,6 +5,8 @@
 #include <cmath>
 #include <iostream>
 
+#include "Const.h"
+
 QPoint* Graphic::getPoints(Matrix m) {
     int n;
     return getPoints(m, n);
@@ -21,6 +23,35 @@ QPoint* Graphic::getPoints(Matrix m, int &n) {
 
 double Graphic::distance(QPoint a, QPoint b) {
     return std::sqrt(std::pow(a.x() - b.x(), 2) + std::pow(a.y() - b.y(), 2));
+}
+
+double Graphic::angle(QPoint from, QPoint to) {
+    if(to.x() - from.x()) {
+        double r = std::atan((double)(from.y() - to.y()) / (to.x() - from.x()));
+        return r;r < 0 ? Const::PI / 2 - r : r;
+    } else {
+        return from.y() == to.y() ? 0 : from.y() < to.y() ? -Const::PI / 2 : Const::PI / 2;
+    }
+}
+
+QPoint Graphic::rotate(QPoint point, double a) {
+    int x = std::cos(a) * point.x() - std::sin(a) * point.y();
+    int y = std::sin(a) * point.x() + std::cos(a) * point.y();
+    return QPoint(x, y);
+}
+
+QPoint Graphic::continuation(QPoint begin, QPoint end, double multiplier) {
+    double c = Graphic::angle(begin, end);
+    double l = Graphic::distance(begin, end) * multiplier;
+    return QPoint(end.x() + std::cos(c) * l, end.y() + std::sin(c) * l);
+}
+
+double Graphic::degreesToRadians(double degrees) {
+    return degrees * Const::PI / 180;
+}
+
+double Graphic::radiansToDegrees(double radians) {
+    return radians * 180 / Const::PI;
 }
 
 double Graphic::distance(std::vector<double> vector, QPoint point) {

@@ -4,7 +4,6 @@
 
 int main(int argc, char** argv) {
     QApplication app(argc, argv);
-    Canvas canvas;
-    canvas.show();
+    Canvas::instance()->show();
     return app.exec();
 }

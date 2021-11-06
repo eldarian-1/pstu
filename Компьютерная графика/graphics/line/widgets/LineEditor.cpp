@@ -10,9 +10,9 @@
 #include <QColorDialog>
 
 #include "../figures/Line.h"
-#include "Slider.h"
 
 #include <Func.h>
+#include <widgets/Slider.h>
 
 bool LineEditor::mutex = false;
 

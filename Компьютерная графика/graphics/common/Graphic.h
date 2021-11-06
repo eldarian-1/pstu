@@ -12,7 +12,7 @@ namespace Graphic {
     double distance(QPoint a, QPoint b);
     double angle(QPoint a, QPoint b);
     QPoint rotate(QPoint point, double angle);
-    QPoint continuation(QPoint begin, QPoint end, double multiplier);
+    QPoint continuation(QPoint begin, QPoint end, double multiplier = 1.);
     double degreesToRadians(double degrees);
     double radiansToDegrees(double radians);
     double distance(std::vector<double> vector, QPoint point);

@@ -27,10 +27,14 @@ double Graphic::distance(QPoint a, QPoint b) {
 
 double Graphic::angle(QPoint from, QPoint to) {
     if(to.x() - from.x()) {
-        double r = std::atan((double)(from.y() - to.y()) / (to.x() - from.x()));
-        return r;r < 0 ? Const::PI / 2 - r : r;
+        double r = std::atan((double)-(from.y() - to.y()) / (to.x() - from.x()));
+        if(r <= 0) {
+            return from.x() > to.x() ? Const::PI + r : r;
+        } else {
+            return from.x() < to.x() ? r - Const::PI : r;
+        }
     } else {
-        return from.y() == to.y() ? 0 : from.y() < to.y() ? -Const::PI / 2 : Const::PI / 2;
+        return from.y() == to.y() ? Const::PI / 4 : from.y() < to.y() ? -Const::PI / 2 : Const::PI / 2;
     }
 }
 

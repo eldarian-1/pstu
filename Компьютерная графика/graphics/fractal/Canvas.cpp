@@ -57,12 +57,13 @@ void Canvas::paintEvent(QPaintEvent* event) {
 
 void Canvas::paint(QPainter* painter, QPoint begin, QPoint end, int i) {
     FractalSettings *set = FractalSettings::instance();
-    if(i == set->levels.size()) {
+    if(i == set->iterations) {
         return;
     }
-    painter->setPen(QPen(set->levels[i].color, set->levels[i].weight));
+    Level &level = i < set->levels.size() ? set->levels[i] : set->levels.back();
+    painter->setPen(QPen(level.color, level.weight));
     painter->drawLine(begin.x(), 700 - begin.y(), end.x(), 700 - end.y());
-    QPoint target = Graphic::continuation(begin, end, set->levels[i].multiplier);
+    QPoint target = Graphic::continuation(begin, end, level.multiplier);
     for(int j = 0, n = set->angles.size(); j < n; ++j) {
         paint(painter, end, rotate(end, target, set->angles[j]), i + 1);
     }

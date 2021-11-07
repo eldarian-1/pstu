@@ -12,6 +12,7 @@ struct Level {
 struct FractalSettings {
     QPoint first;
     QPoint second;
+    int iterations;
     std::vector<double> angles;
     std::vector<Level> levels;
 

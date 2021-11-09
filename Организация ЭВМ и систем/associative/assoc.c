@@ -7,6 +7,10 @@
 typedef unsigned char byte;
 typedef void (*task)(void**);
 
+struct bin {
+    char s[9];
+};
+
 const byte BYTE_COUNT = 64;
 
 const char *DIALOG =
@@ -20,6 +24,8 @@ const char *DIALOG =
         "\t(*). Выход.\n"
         "Введите номер действия: ";
 
+const char *INCORRECT = "Некорректный индекс!";
+
 const task TASKS[] = {
         &create,
         &out,
@@ -29,8 +35,10 @@ const task TASKS[] = {
         &drop
 };
 
-byte read_index();
+int read_index(byte *result);
 byte read_value();
+struct bin byte_to_bin(byte b);
+byte bin_to_byte(struct bin b);
 
 void run() {
     int number;
@@ -69,7 +77,7 @@ void out(void **mem) {
     for(byte i = 0; i < BYTE_COUNT; ++i) {
         byte value = ((byte*)*mem)[i];
         if(value) {
-            printf("\t%d -> %c\n", i, value);
+            printf("\t%s -> %c\n", byte_to_bin(i).s, value);
             ++count;
         }
     }
@@ -80,25 +88,37 @@ void out(void **mem) {
 }
 
 void read(void **mem) {
-    byte index = read_index();
-    byte value = ((byte*)*mem)[index];
-    printf("%d -> %c\n", index, value);
+    byte index;
+    if (read_index(&index)) {
+        byte value = ((byte *) *mem)[index];
+        printf("%s -> %c\n", byte_to_bin(index).s, value);
+    } else {
+        printf("%s\n", INCORRECT);
+    }
 }
 
 void write(void **mem) {
-    byte index = read_index();
-    byte value = read_value();
-    ((byte*)*mem)[index] = value;
-    printf("%d -> %c\n", index, value);
+    byte index;
+    if (read_index(&index)) {
+        byte value = read_value();
+        ((byte*)*mem)[index] = value;
+        printf("%s -> %c\n", byte_to_bin(index).s, value);
+    } else {
+        printf("%s\n", INCORRECT);
+    }
 }
 
 void rem(void **mem) {
-    byte index = read_index();
-    if(((byte*)*mem)[index]) {
-        ((byte*)*mem)[index] = 0;
-        printf("Байт по индексу %d обнулён.\n", index);
+    byte index;
+    if (read_index(&index)) {
+        if(((byte*)*mem)[index]) {
+            ((byte*)*mem)[index] = 0;
+            printf("Байт по индексу %s обнулён.\n", byte_to_bin(index).s);
+        } else {
+            printf("Байт по индексу %s уже был обнулён.\n", byte_to_bin(index).s);
+        }
     } else {
-        printf("Байт по индексу %d уже был обнулён.\n", index);
+        printf("%s\n", INCORRECT);
     }
 }
 
@@ -108,18 +128,13 @@ void drop(void **mem) {
     printf("Устройство ассоциативной памяти удалено.\n");
 }
 
-byte read_index() {
-    const byte buffer_size = 10;
-    char buffer[buffer_size];
+int read_index(byte *result) {
+    struct bin b;
     printf("Введите индекс: ");
-    scanf("%s", buffer);
-    int index = 0;
-    for(byte i = 0, n = strlen(buffer); i < n; ++i) {
-        index *= 2;
-        index += (buffer[i] != '0' ? 1 : 0);
-    }
+    scanf("%s", b.s);
+    *result = bin_to_byte(b);
     getchar();
-    return index;
+    return *result < 64;
 }
 
 byte read_value() {
@@ -127,4 +142,23 @@ byte read_value() {
     printf("Введите значение: ");
     scanf("\n%c", &value);
     return value;
+}
+
+struct bin byte_to_bin(byte b) {
+    struct bin r;
+    r.s[8] = '\0';
+    for(int i = 0; i < 8; ++i) {
+        r.s[i] = (b & 128) ? '1' : '0';
+        b <<= 1;
+    }
+    return r;
+}
+
+byte bin_to_byte(struct bin b) {
+    byte r = 0;
+    for(byte i = 0, n = strlen(b.s); i < n; ++i) {
+        r *= 2;
+        r += (b.s[i] != '0' ? 1 : 0);
+    }
+    return r;
 }

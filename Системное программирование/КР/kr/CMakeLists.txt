@@ -1,9 +1,21 @@
 cmake_minimum_required(VERSION 3.20)
 project(server C)
 project(client C)
+project(work C)
 
 set(CMAKE_C_STANDARD 11)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 
-add_executable(server src/server/main.c src/common.h)
-add_executable(client src/client/main.c src/common.h)
-target_link_libraries(server m)
+include_directories(.)
+
+add_library(common server.h server.c client.h client.c)
+
+add_executable(server main_server.c)
+add_executable(client main_client.c)
+add_executable(work main_work.c)
+
+target_link_libraries(common PRIVATE m)
+target_link_libraries(server PRIVATE common)
+target_link_libraries(client PRIVATE common)
+target_link_libraries(work PRIVATE Threads::Threads common)

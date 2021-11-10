@@ -157,8 +157,8 @@ struct bin byte_to_bin(byte b) {
 byte bin_to_byte(struct bin b) {
     byte r = 0;
     for(byte i = 0, n = strlen(b.s); i < n; ++i) {
-        r *= 2;
-        r += (b.s[i] != '0' ? 1 : 0);
+        r <<= 1;
+        r |= (b.s[i] != '0' ? 1 : 0);
     }
     return r;
 }

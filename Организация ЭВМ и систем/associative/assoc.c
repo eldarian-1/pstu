@@ -55,7 +55,8 @@ void run() {
                 printf("\n");
             }
         } else {
-            break;
+            printf("Спасибо за работу! До свидания!\n");
+            return;
         }
     }
 }

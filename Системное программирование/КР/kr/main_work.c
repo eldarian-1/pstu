@@ -19,7 +19,7 @@ int main() {
     }
     do {
         if(!connections) {
-            printf("Введите число подключений: ");
+            printf("Введите число подключений (отрицательное число - выход): ");
             scanf("%d", &connections);
             getchar();
         } else {

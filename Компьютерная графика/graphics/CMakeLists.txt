@@ -31,6 +31,8 @@ add_executable(dz5 dz5/main.cpp dz5/Dz5.h)
 
 add_executable(dz6 dz6/main.cpp dz6/Dz6.h dz6/Dz6.cpp)
 
+add_executable(multy multy/main.cpp multy/Multy.h multy/Multy.cpp)
+
 add_executable(fractal fractal/main.cpp
         fractal/Canvas.cpp fractal/Canvas.h
         fractal/FractalEditor.cpp fractal/FractalEditor.h)
@@ -51,5 +53,6 @@ target_link_libraries(common PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(dz4 PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(dz5 PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(dz6 PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(multy PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(fractal PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(line PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)

@@ -9,9 +9,9 @@ FractalSettings *FractalSettings::instance() {
         _instance = new FractalSettings {
             QPoint(600, 0),
             QPoint(600, 200),
-            13,
-            {-30, 30}, {{1, 0.75, QColor("#123456")}}
-            /*{-120, -60, 0, 60, 120},
+            7,
+            //{-30, 30}, {{1, 0.75, QColor("#123456")}}
+            {-120, -60, 0, 60, 120},
             {
                 {7, 0.5, QColor("#704b23")},
                 {5, 0.5, QColor("#704b23")},
@@ -19,7 +19,7 @@ FractalSettings *FractalSettings::instance() {
                 {1, 0.5, QColor("#704b23")},
                 {3, 0.5, QColor("#007d34")},
                 {5, 1, QColor("#007d34")},
-            }*/
+            }
         };
     }
     return _instance;

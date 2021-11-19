@@ -15,8 +15,9 @@
 
 Point top(0, 0, 10, Qt::darkBlue),
     middle(0, 0, 10, Qt::darkGreen),
-    bottom(0, 0, 10, Qt::darkRed);
-Point *focusedPoint = nullptr, *activePoint = nullptr;
+    bottom(0, 0, 10, Qt::darkRed),
+    *focusedPoint = nullptr,
+    *activePoint = nullptr;
 
 EditMode::EditMode() {
     line = nullptr;
@@ -39,9 +40,7 @@ void drawPoint(QPainter *painter, Point *point) {
 void EditMode::paint(QPainter *painter) {
     ModeImpl::paint(painter);
     if(line != nullptr) {
-        int width = painter->window().width();
-        int height = painter->window().height();
-        line->getPoints(top.qt(), middle.qt(), bottom.qt(), width, height);
+        line->getPoints(top.qt(), middle.qt(), bottom.qt());
         drawPoint(painter, &top);
         drawPoint(painter, &middle);
         drawPoint(painter, &bottom);
@@ -62,8 +61,10 @@ void EditMode::mouseMoveEvent(QMouseEvent *event) {
     if(activePoint) {
         if(activePoint == &middle) {
             line->moveCenter(middle.qt(), event->pos());
-        } else {
-            line->rebuild(middle.qt(), event->pos());
+        } else if(activePoint == &top) {
+            line->top() = event->pos();
+        } else if(activePoint == &bottom) {
+            line->bottom() = event->pos();
         }
         editor->lineChanged();
         canvas->setStatus(line->toString());

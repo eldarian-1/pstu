@@ -8,13 +8,13 @@ class QPainter;
 
 class Line {
 private:
+    QPoint p1, p2;
     double a, b, c;
     QColor color;
     int weight;
 
     double f(double x) const;
     double g(double y) const;
-    QLineF getLine(int width, int height);
 
 public:
     Line(QPoint p1, QPoint p2);
@@ -31,10 +31,12 @@ public:
     void B(double b) { this->b = b; }
     void C(double c) { this->c = c; }
 
-    void getPoints(QPoint &a, QPoint &b, QPoint &c, int width, int height);
+    QPoint &top();
+    QPoint &bottom();
+    void getPoints(QPoint &a, QPoint &b, QPoint &c);
     double distanceFrom(const QPoint &p) const;
 
-    void draw(QPainter *pointer, int width, int height, bool active = false, bool focused = false);
+    void draw(QPainter *pointer, bool active = false, bool focused = false);
     QString toString();
 
 };

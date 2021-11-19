@@ -60,7 +60,7 @@ void ModeImpl::paint(QPainter *painter) {
     int height = painter->window().height();
     painter->drawRect(-1, -1, width + 1, height + 1);
     for(auto line : canvas->getLines()) {
-        line->draw(painter, width, height, isActive(line), isFocused(line));
+        line->draw(painter, isActive(line), isFocused(line));
     }
 }
 

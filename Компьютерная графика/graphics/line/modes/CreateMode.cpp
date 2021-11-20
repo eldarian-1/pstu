@@ -17,6 +17,7 @@ QString CreateMode::lineMenu(QPoint position) {
     QMenu menu;
     menu.addAction(EDIT);
     menu.addAction(MIRROR);
+    menu.addAction(DELETE);
     QAction *action = menu.exec(position);
     return (action ? action->text() : "");
 }

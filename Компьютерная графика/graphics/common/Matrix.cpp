@@ -186,6 +186,15 @@ Matrix Matrix::project3D(double p, double q, double r) {
     };
 }
 
+Matrix Matrix::super(double t, double f, double zc) {
+    return Matrix {
+            {cos(f),    sin(f) * sin(t),    0, sin(f) * cos(t) / zc},
+            {0,         cos(t),             0, -sin(t) / zc},
+            {sin(f),    -cos(f) * sin(t),   0, -cos(f) * cos(t) / zc},
+            {0, 0, 0, 1},
+    };
+}
+
 int Matrix::safeIndex(const int &n, const int &i) {
     if(i >= 0 && i < n) {
         return i;

@@ -41,6 +41,8 @@ public:
     static Matrix mirror3D(bool horizontal, bool vertical, bool frontal);
     static Matrix project3D(double p, double q, double r);
 
+    static Matrix super(double t, double f, double zc);
+
 private:
     static int safeIndex(const int &n, const int &i);
 

@@ -51,6 +51,14 @@ QPoint &Line::bottom() {
     return p2;
 }
 
+void Line::top(QPoint p) {
+    rebuild(p, bottom());
+}
+
+void Line::bottom(QPoint p) {
+    rebuild(top(), p);
+}
+
 void Line::getPoints(QPoint &top, QPoint &middle, QPoint &bottom) {
     top = p1;
     bottom = p2;

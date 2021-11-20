@@ -33,6 +33,8 @@ public:
 
     QPoint &top();
     QPoint &bottom();
+    void top(QPoint p);
+    void bottom(QPoint p);
     void getPoints(QPoint &a, QPoint &b, QPoint &c);
     double distanceFrom(const QPoint &p) const;
 

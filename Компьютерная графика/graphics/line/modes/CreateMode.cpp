@@ -8,18 +8,24 @@
 #include "../Canvas.h"
 #include "../figures/Line.h"
 
-const QString EDIT("Редактировать");
-const QString DELETE("Удалить");
-const QString DELLINES("Удалить линии");
+const QString EDIT = "Редактировать";
+const QString MIRROR = "Зеркалировать";
+const QString DELETE = "Удалить";
+const QString DELLINES = "Удалить линии";
 
-CreateMode::CreateMode() {
-    lineMenu = new QMenu();
-    lineMenu->addAction(EDIT);
-    lineMenu->addAction(DELETE);
-    canvasMenu = new QMenu();
-    canvasMenu->addAction(DELLINES);
-    connect(lineMenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
-    connect(canvasMenu, SIGNAL(triggered(QAction *)), this, SLOT(slotTriggered(QAction *)));
+QString CreateMode::lineMenu(QPoint position) {
+    QMenu menu;
+    menu.addAction(EDIT);
+    menu.addAction(MIRROR);
+    QAction *action = menu.exec(position);
+    return (action ? action->text() : "");
+}
+
+QString CreateMode::canvasMenu(QPoint position) {
+    QMenu menu;
+    menu.addAction(DELLINES);
+    QAction *action = menu.exec(position);
+    return (action ? action->text() : "");
 }
 
 void CreateMode::paint(QPainter* painter) {
@@ -86,24 +92,22 @@ void CreateMode::contextMenuEvent(QContextMenuEvent *event) {
         activeLine = focusedLine;
     }
     if(activeLine) {
-        lineMenu->exec(event->globalPos());
+        QString text = lineMenu(event->globalPos());
+        if(text == EDIT) {
+            canvas->setMode(Mode::edit(activeLine));
+        } else if(text == MIRROR) {
+            int x1 = activeLine->top().x(), x2 = activeLine->bottom().x();
+            int y1 = activeLine->top().y(), y2 = activeLine->bottom().y();
+            activeLine->rebuild(QPoint(x1, y2), QPoint(x2, y1));
+        } else if(text == DELETE) {
+            canvas->getLines().removeOne(activeLine);
+            delete activeLine;
+        }
         activeLine = nullptr;
         focusedLine = nullptr;
-    } else {
-        canvasMenu->exec(event->globalPos());
-    }
-}
-
-void CreateMode::slotTriggered(QAction *action) {
-    if(action->text() == EDIT) {
-        canvas->setMode(Mode::edit(activeLine));
-    } else if(action->text() == DELETE) {
-        canvas->getLines().removeOne(activeLine);
-        delete activeLine;
-    } else if(action->text() == DELLINES) {
+    } else if (canvasMenu(event->globalPos()) == DELLINES) {
         canvas->setMode(Mode::remove());
     }
-    activeLine = nullptr;
 }
 
 void CreateMode::remove(QPoint*& ptr) {

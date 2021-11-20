@@ -13,6 +13,9 @@
 #include <Splines.h>
 #include <Graphic.h>
 
+#include <cmath>
+using namespace std;
+
 class Dz4 : public QWidget {
 Q_OBJECT
 
@@ -60,13 +63,13 @@ public:
 
         sldF->setMinimum(0);
         sldF->setMaximum(360);
-        sldF->setValue(15);
+        sldF->setValue(320);
         sldT->setMinimum(0);
         sldT->setMaximum(360);
-        sldT->setValue(5);
+        sldT->setValue(360);
         sldZ->setMinimum(0);
         sldZ->setMaximum(1000);
-        sldZ->setValue(100);
+        sldZ->setValue(1000);
 
         this->setLayout(lytControls);
         lytControls->addWidget(lblF);
@@ -87,13 +90,16 @@ private:
         double t = Const::PI / 180 * sldT->value();
         double f = Const::PI / 180 * sldF->value();
         int zc = sldZ->value();
-        Matrix result = _house.to2D(t, f, zc).normalize() * Matrix::transfer3D(450, 350, 0);
-        Matrix vp = result.vanishingPoints();
+        Matrix vp = _house * Matrix::scale3D(100, -100, 100) * Matrix::super(t, f, zc) * Matrix::transfer3D(450, 450, 0);
         lblInfo->setText(
                 QString::asprintf(
-                        "Точки схода\nx: (%f, %f)\ny: (%f, %f)\nz: (%f, %f)",
-                        vp[0][0],  vp[0][1],  vp[1][0],  vp[1][1],  vp[2][0],  vp[2][1]));
-        return result;
+                        "Точки схода\nx: (%f, %f)\ny: (%f, %f)\nz: (%f, %f)\nИскажения:\nfx: %f\nfy: %f\nfz: %f",
+                        vp[0][0],  vp[0][1],  vp[1][0],  vp[1][1],  vp[2][0],  vp[2][1],
+                        sqrt(pow(cos(f), 2) + pow(sin(f) * cos(t), 2)),
+                        abs(cos(f)),
+                        sqrt(pow(sin(f), 2) + pow(cos(f) * sin(t), 2))
+                        ));
+        return vp;
     }
 
 protected:

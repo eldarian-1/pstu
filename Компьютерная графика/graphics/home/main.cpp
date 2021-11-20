@@ -1,9 +1,9 @@
 #include <QApplication>
-#include "Dz6.h"
+#include "Home.h"
 
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
-    Dz6 d;
+    Home d;
     d.show();
     app.exec();
     return 0;

@@ -6,7 +6,7 @@
 
 #include <Matrix.h>
 
-class Dz6 : public QWidget {
+class Splines : public QWidget {
 private:
     typedef std::pair<int, QPoint> pair_t;
 
@@ -33,7 +33,7 @@ private:
     };
 
 public:
-    Dz6();
+    Splines();
 
 protected:
     bool isPoint(QPoint point, int &i);

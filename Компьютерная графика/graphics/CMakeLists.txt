@@ -21,11 +21,13 @@ add_library(common common/Splines.h common/Splines.cpp
         common/Func.cpp common/Func.h
         common/widgets/Slider.cpp common/widgets/Slider.h)
 
-add_executable(dz4 dz4/main.cpp dz4/Dz4.h)
+add_executable(home home/main.cpp home/Home.h)
 
-add_executable(dz5 dz5/main.cpp dz5/Dz5.h)
+add_executable(point point/main.cpp point/Point.h)
 
-add_executable(dz6 dz6/main.cpp dz6/Dz6.h dz6/Dz6.cpp)
+add_executable(human human/main.cpp human/Human.h)
+
+add_executable(spline spline/main.cpp spline/Splines.h spline/Splines.cpp)
 
 add_executable(multy multy/main.cpp multy/Multy.h multy/Multy.cpp)
 
@@ -46,9 +48,10 @@ add_executable(line line/main.cpp
 
 target_link_libraries(common PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
 
-target_link_libraries(dz4 PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
-target_link_libraries(dz5 PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
-target_link_libraries(dz6 PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(home PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(point PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(human PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(spline PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(multy PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(fractal PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)
 target_link_libraries(line PRIVATE common Qt5::Core Qt5::Gui Qt5::Widgets)

@@ -10,7 +10,7 @@
 
 #include <Matrix.h>
 
-class Dz5 : public QWidget {
+class Point : public QWidget {
 private:
     Matrix left {
             {30, 100, 1},
@@ -78,7 +78,7 @@ private:
     QSlider *sld;
 
 public:
-    Dz5() : QWidget() {
+    Point() : QWidget() {
         setWindowTitle("Д/З №5");
         setFixedSize(400, 140);
 

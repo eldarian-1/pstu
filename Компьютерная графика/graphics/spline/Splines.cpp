@@ -1,4 +1,4 @@
-#include "Dz6.h"
+#include "Splines.h"
 
 #include <QMenu>
 #include <QMouseEvent>
@@ -7,14 +7,14 @@
 #include <Splines.h>
 #include <Graphic.h>
 
-Dz6::Dz6() : QWidget() {
+Splines::Splines() : QWidget() {
     setWindowTitle("Д/З №6");
     resize(900, 700);
     startTimer(20);
     setMouseTracking(true);
 }
 
-void Dz6::paintEvent(QPaintEvent *event) {
+void Splines::paintEvent(QPaintEvent *event) {
     QPainter painter;
     painter.begin(this);
 
@@ -39,7 +39,7 @@ void Dz6::paintEvent(QPaintEvent *event) {
     painter.end();
 }
 
-bool Dz6::isPoint(QPoint point, int &i) {
+bool Splines::isPoint(QPoint point, int &i) {
     int n = matrix.n();
     for(i = 0; i < n; ++i) {
         if(Graphic::isPoint(matrix[i], point, 5)) {
@@ -49,7 +49,7 @@ bool Dz6::isPoint(QPoint point, int &i) {
     return false;
 }
 
-int Dz6::minDistance(QPoint point) {
+int Splines::minDistance(QPoint point) {
     int index = 0;
     double min = 1000000000.;
     for(int i = 0, n = matrix.n(); i < n; ++i) {
@@ -62,20 +62,20 @@ int Dz6::minDistance(QPoint point) {
     return index;
 }
 
-void Dz6::mousePressEvent(QMouseEvent *event) {
+void Splines::mousePressEvent(QMouseEvent *event) {
     int i;
     if(focusedPoint) {
         activePoint = new pair_t(*focusedPoint);
     }
 }
 
-void Dz6::mouseReleaseEvent(QMouseEvent *event) {
+void Splines::mouseReleaseEvent(QMouseEvent *event) {
     if(activePoint) {
         remove(activePoint);
     }
 }
 
-void Dz6::mouseMoveEvent(QMouseEvent *event) {
+void Splines::mouseMoveEvent(QMouseEvent *event) {
     int i;
     if(focusedPoint) {
         remove(focusedPoint);
@@ -89,7 +89,7 @@ void Dz6::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
-void Dz6::contextMenuEvent(QContextMenuEvent *event) {
+void Splines::contextMenuEvent(QContextMenuEvent *event) {
     QMenu menu;
     if(focusedPoint) {
         menu.addAction(del);
@@ -111,11 +111,11 @@ void Dz6::contextMenuEvent(QContextMenuEvent *event) {
     }
 }
 
-void Dz6::timerEvent(QTimerEvent *event) {
+void Splines::timerEvent(QTimerEvent *event) {
     repaint();
 }
 
-void Dz6::remove(pair_t*& p) {
+void Splines::remove(pair_t*& p) {
     delete p;
     p = nullptr;
 }

@@ -16,7 +16,7 @@
 #include <cmath>
 using namespace std;
 
-class Dz4 : public QWidget {
+class Home : public QWidget {
 Q_OBJECT
 
 private:
@@ -49,7 +49,7 @@ private:
     QSlider *sldF, *sldT, *sldZ;
 
 public:
-    Dz4() : QWidget() {
+    Home() : QWidget() {
         setWindowTitle("Д/З №4");
         resize(900, 700);
         lytControls = new QVBoxLayout;
@@ -63,13 +63,13 @@ public:
 
         sldF->setMinimum(0);
         sldF->setMaximum(360);
-        sldF->setValue(320);
+        sldF->setValue(43);
         sldT->setMinimum(0);
         sldT->setMaximum(360);
-        sldT->setValue(360);
+        sldT->setValue(140);
         sldZ->setMinimum(0);
         sldZ->setMaximum(1000);
-        sldZ->setValue(1000);
+        sldZ->setValue(249);
 
         this->setLayout(lytControls);
         lytControls->addWidget(lblF);
@@ -86,11 +86,18 @@ public:
     }
 
 private:
-    Matrix resultMatrix() {
-        double t = Const::PI / 180 * sldT->value();
-        double f = Const::PI / 180 * sldF->value();
+    Matrix resultMatrix(Matrix &vp, int width, int height) {
+        const int k = 50;
+        int F = sldF->value(), T = sldT->value();
+        double f = Const::PI / 180 * F;
+        double t = Const::PI / 180 * T;
         int zc = sldZ->value();
-        Matrix vp = _house * Matrix::scale3D(100, -100, 100) * Matrix::super(t, f, zc) * Matrix::transfer3D(450, 450, 0);
+        lblF->setText(QString::asprintf("f: %d", F));
+        lblT->setText(QString::asprintf("t: %d", T));
+        lblZ->setText(QString::asprintf("Zc: %d", zc));
+        Matrix result = (_house * Matrix::scale3D(k, k, k) * Matrix::super(t, f, zc)).normalize()
+                * Matrix::transfer3D(width / 2, height / 2, 0);
+        vp = Matrix::super(t, f, zc).vanishingPoints() * Matrix::transfer3D(width / 2, height / 2, 0);
         lblInfo->setText(
                 QString::asprintf(
                         "Точки схода\nx: (%f, %f)\ny: (%f, %f)\nz: (%f, %f)\nИскажения:\nfx: %f\nfy: %f\nfz: %f",
@@ -99,18 +106,32 @@ private:
                         abs(cos(f)),
                         sqrt(pow(sin(f), 2) + pow(cos(f) * sin(t), 2))
                         ));
-        return vp;
+        return result;
+    }
+
+    void drawPoint(QPainter *painter, QString name, double x, double y) {
+        painter->setPen(QPen(Qt::red, 5));
+        painter->drawPoint(x,  y);
+        painter->setPen(QPen(Qt::black));
+        painter->drawText(x + 10, y + 5, name);
     }
 
 protected:
     void paintEvent(QPaintEvent *event) override {
-        Matrix house = resultMatrix();
+        int width = this->width(), height = this->height();
+        Matrix vp, house = resultMatrix(vp, width, height);
         QPoint *points = Graphic::getPoints(house);
         QPainter painter;
         painter.begin(this);
+        painter.setBrush(Qt::white);
+        painter.drawRect(0, 0, width, height);
+        painter.setPen(QPen(Qt::darkBlue, 2));
         painter.drawPolygon(points, house.n());
-        painter.end();
         delete[] points;
+        drawPoint(&painter, "X", vp[0][0],  vp[0][1]);
+        drawPoint(&painter, "Y", vp[1][0],  vp[1][1]);
+        drawPoint(&painter, "Z", vp[2][0],  vp[2][1]);
+        painter.end();
     }
 
 private slots:

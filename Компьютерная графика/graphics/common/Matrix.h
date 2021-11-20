@@ -7,6 +7,7 @@ private:
     std::vector<std::vector<double>> _m;
 
 public:
+    Matrix();
     Matrix(Matrix& matrix);
     Matrix(const int &n, const int &m);
     Matrix(std::initializer_list<std::initializer_list<double>> matrix);

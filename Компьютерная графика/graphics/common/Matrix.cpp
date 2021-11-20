@@ -2,6 +2,10 @@
 
 #include <cmath>
 
+Matrix::Matrix() {
+    this->_m = std::vector<std::vector<double>>();
+}
+
 Matrix::Matrix(Matrix &mx) {
     int _n = mx.n(), _m = mx.m();
     this->_m = std::vector<std::vector<double>>(_n, std::vector<double>(_m));
@@ -35,7 +39,7 @@ int Matrix::n() {
 }
 
 int Matrix::m() {
-    return _m[0].size();
+    return n() ? _m[0].size() : 0;
 }
 
 Matrix Matrix::normalize() {
@@ -51,7 +55,7 @@ Matrix Matrix::normalize() {
 }
 
 Matrix Matrix::to2D(double zc) {
-    for(int i = 0, _n = (*this).n(), last = (*this).m() - 1; i < _n; ++i) {
+    for(int i = 0, _n = this->n(), last = this->m(); i < _n; ++i) {
         (*this)[i][last] = -(*this)[i][last] / zc;
     }
     return *this;

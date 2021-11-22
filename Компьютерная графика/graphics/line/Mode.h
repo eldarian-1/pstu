@@ -13,8 +13,10 @@ class QMouseEvent;
 class QContextMenuEvent;
 
 class Mode {
-protected:
+public:
     static Canvas *canvas;
+
+protected:
     static EditMode *editInstance;
     static CreateMode *createInstance;
     static RemoveMode *removeInstance;

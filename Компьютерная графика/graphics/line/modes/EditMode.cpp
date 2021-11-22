@@ -63,8 +63,10 @@ void EditMode::mouseMoveEvent(QMouseEvent *event) {
             line->moveCenter(middle.qt(), event->pos());
         } else if(activePoint == &top) {
             line->top(event->pos());
+            editor->angleChanged();
         } else if(activePoint == &bottom) {
             line->bottom(event->pos());
+            editor->angleChanged();
         }
         editor->lineChanged();
         canvas->setStatus(line->toString());

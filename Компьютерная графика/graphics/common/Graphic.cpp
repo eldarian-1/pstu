@@ -2,6 +2,7 @@
 
 #include <QLine>
 #include <QPoint>
+#include <QPointF>
 #include <cmath>
 #include <iostream>
 
@@ -42,6 +43,12 @@ QPoint Graphic::rotate(QPoint point, double a) {
     int x = std::cos(a) * point.x() - std::sin(a) * point.y();
     int y = std::sin(a) * point.x() + std::cos(a) * point.y();
     return QPoint(x, y);
+}
+
+QPointF Graphic::rotate(QPointF point, double a) {
+    double x = std::cos(a) * point.x() - std::sin(a) * point.y();
+    double y = std::sin(a) * point.x() + std::cos(a) * point.y();
+    return QPointF(x, y);
 }
 
 QPoint Graphic::continuation(QPoint begin, QPoint end, double multiplier) {

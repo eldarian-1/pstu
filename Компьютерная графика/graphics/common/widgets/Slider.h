@@ -24,6 +24,8 @@ public:
     Slider(int from, int to, int def);
     ~Slider();
 
+    void setValue(int value);
+
 signals:
     void valueChanged(int value);
 

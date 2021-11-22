@@ -39,6 +39,12 @@ Slider::~Slider() {
     delete layout;
 }
 
+void Slider::setValue(int value) {
+    Func::doIt([&]() -> void {
+        slider->setValue(value);
+    }, mutex);
+}
+
 void Slider::slotValueChanged(int value) {
     Func::doIt([&]() -> void {
         lineEdit->setText(Func::stringOf(value));

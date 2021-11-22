@@ -25,3 +25,26 @@ void Canvas::setStatus(QString text) {
 void Canvas::timerEvent(QTimerEvent *event) {
     repaint();
 }
+
+QTextStream& operator >> (QTextStream& in, Canvas& canvas) {
+    for(auto item : canvas.lines) {
+        delete item;
+    }
+    canvas.lines.clear();
+    int n;
+    in >> n;
+    for(int i = 0; i < n; ++i) {
+        Line *temp;
+        in >> temp;
+        canvas.lines.push_back(temp);
+    }
+    return in;
+}
+
+QTextStream& operator << (QTextStream& out, Canvas& canvas) {
+    out << canvas.lines.count() << " ";
+    for(auto item : canvas.lines) {
+        out << item << " ";
+    }
+    return out;
+}

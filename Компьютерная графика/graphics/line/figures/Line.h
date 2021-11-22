@@ -3,6 +3,7 @@
 #include <QPoint>
 #include <QColor>
 #include <QLineF>
+#include <QTextStream>
 
 class QPainter;
 
@@ -23,7 +24,10 @@ public:
     QColor getColor() { return color; }
     void setColor(QColor color) { this->color = color; }
     int getWeight() { return weight; }
+    int getAngle();
     void setWeight(int weight) { this->weight = weight; }
+    void setAngle(int angle);
+    Line forAngle(int angle);
     int A() { return a; }
     int B() { return b; }
     int C() { return c; }
@@ -35,10 +39,14 @@ public:
     QPoint &bottom();
     void top(QPoint p);
     void bottom(QPoint p);
+    QPoint middle();
     void getPoints(QPoint &a, QPoint &b, QPoint &c);
     double distanceFrom(const QPoint &p) const;
 
     void draw(QPainter *pointer, bool active = false, bool focused = false);
     QString toString();
+
+    friend QTextStream& operator >> (QTextStream& in, Line*& line);
+    friend QTextStream& operator << (QTextStream& out, Line*& line);
 
 };

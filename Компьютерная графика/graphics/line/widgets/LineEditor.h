@@ -19,30 +19,35 @@ private:
     QGridLayout *lytMain;
 
     QLabel *lblWeight;
+    QLabel *lblRotate;
     QLabel *lblColor;
     QLabel *lblA;
     QLabel *lblB;
     QLabel *lblC;
 
     Slider *sldWeight;
+    Slider *sldRotate;
     QPushButton *btnColor;
     QLineEdit *leA;
     QLineEdit *leB;
     QLineEdit *leC;
 
     Line* line = nullptr;
+    Line* original;
 
 public:
     LineEditor(Line *line);
     ~LineEditor();
 
     void lineChanged();
+    void angleChanged();
 
 protected:
     void closeEvent(QCloseEvent *event) override;
 
 private slots:
     void weightChanged(int value);
+    void angleChanged(int value);
     void colorChanged();
     void colorChanged(QColor color);
     void aChanged(const QString &value);

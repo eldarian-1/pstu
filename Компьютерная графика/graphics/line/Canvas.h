@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QMainWindow>
+#include <QTextStream>
 
 #include "Mode.h"
 
@@ -19,6 +20,9 @@ public:
     QList<Line*> &getLines() { return lines; }
     void setMode(Mode *mode) { this->mode->setState(mode); }
     void setStatus(QString text);
+
+    friend QTextStream& operator >> (QTextStream& in, Canvas& canvas);
+    friend QTextStream& operator << (QTextStream& out, Canvas& canvas);
 
 protected:
     void paintEvent(QPaintEvent *event) override { mode->paintEvent(event); }

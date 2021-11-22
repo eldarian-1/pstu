@@ -4,19 +4,25 @@
 #include <QAction>
 #include <QPainter>
 #include <QMouseEvent>
+#include <QFileDialog>
+#include <QDataStream>
 
 #include "../Canvas.h"
 #include "../figures/Line.h"
 
 const QString EDIT = "Редактировать";
 const QString MIRROR = "Зеркалировать";
+const QString PROJECT = "Проецировать";
 const QString DELETE = "Удалить";
+const QString SAVE = "Сохранить линии";
+const QString LOAD = "Загрузить линии";
 const QString DELLINES = "Удалить линии";
 
 QString CreateMode::lineMenu(QPoint position) {
     QMenu menu;
     menu.addAction(EDIT);
     menu.addAction(MIRROR);
+    menu.addAction(PROJECT);
     menu.addAction(DELETE);
     QAction *action = menu.exec(position);
     return (action ? action->text() : "");
@@ -24,6 +30,8 @@ QString CreateMode::lineMenu(QPoint position) {
 
 QString CreateMode::canvasMenu(QPoint position) {
     QMenu menu;
+    menu.addAction(SAVE);
+    menu.addAction(LOAD);
     menu.addAction(DELLINES);
     QAction *action = menu.exec(position);
     return (action ? action->text() : "");
@@ -84,7 +92,7 @@ void CreateMode::mouseMoveEvent(QMouseEvent *event) {
         canvas->setStatus(focusedLine->toString());
     }
     if(!focusedLine) {
-        canvas->setStatus("");
+        canvas->setStatus(QString::asprintf("x: %d\ny: %d", event->pos().x(), event->pos().y()));
     }
 }
 
@@ -100,14 +108,31 @@ void CreateMode::contextMenuEvent(QContextMenuEvent *event) {
             int x1 = activeLine->top().x(), x2 = activeLine->bottom().x();
             int y1 = activeLine->top().y(), y2 = activeLine->bottom().y();
             activeLine->rebuild(QPoint(x1, y2), QPoint(x2, y1));
+        } else if(text == PROJECT) {
+            /* TODO */
         } else if(text == DELETE) {
             canvas->getLines().removeOne(activeLine);
             delete activeLine;
         }
         activeLine = nullptr;
         focusedLine = nullptr;
-    } else if (canvasMenu(event->globalPos()) == DELLINES) {
-        canvas->setMode(Mode::remove());
+    } else {
+        QString text = canvasMenu(event->globalPos());
+        if (text == SAVE) {
+            QFile file(QFileDialog::getSaveFileName());
+            file.open(QIODevice::WriteOnly);
+            QTextStream out(&file);
+            out << *Mode::canvas;
+            file.close();
+        } else if (text == LOAD) {
+            QFile file(QFileDialog::getOpenFileName());
+            file.open(QIODevice::ReadOnly);
+            QTextStream in(&file);
+            in >> *Mode::canvas;
+            file.close();
+        } else if (text == DELLINES) {
+            canvas->setMode(Mode::remove());
+        }
     }
 }
 

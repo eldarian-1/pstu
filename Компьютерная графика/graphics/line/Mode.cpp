@@ -9,11 +9,13 @@
 
 #include "modes/CreateMode.h"
 #include "modes/EditMode.h"
+#include "modes/ProjectMode.h"
 #include "modes/RemoveMode.h"
 
 Canvas *Mode::canvas = nullptr;
 CreateMode *Mode::createInstance = nullptr;
 EditMode *Mode::editInstance = nullptr;
+ProjectMode *Mode::projectInstance = nullptr;
 RemoveMode *Mode::removeInstance = nullptr;
 
 template<class TMode>
@@ -34,6 +36,12 @@ Mode* Mode::create() {
 Mode* Mode::edit(Line* line) {
     return instance(editInstance, [&]() {
         editInstance->setLine(line);
+    });
+}
+
+Mode* Mode::project(Line* line) {
+    return instance(projectInstance, [&]() {
+        projectInstance->setLine(line);
     });
 }
 

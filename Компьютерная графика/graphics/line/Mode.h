@@ -6,6 +6,7 @@ class Line;
 class Canvas;
 class EditMode;
 class CreateMode;
+class ProjectMode;
 class RemoveMode;
 class QPainter;
 class QPaintEvent;
@@ -19,6 +20,7 @@ public:
 protected:
     static EditMode *editInstance;
     static CreateMode *createInstance;
+    static ProjectMode *projectInstance;
     static RemoveMode *removeInstance;
 
     template<class TMode>
@@ -33,6 +35,7 @@ public:
 
     static Mode* create();
     static Mode* edit(Line* line);
+    static Mode* project(Line* line);
     static Mode* remove();
 
     static bool focusLine(Line *line, QPoint point, double &d);

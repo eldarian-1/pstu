@@ -109,7 +109,7 @@ void CreateMode::contextMenuEvent(QContextMenuEvent *event) {
             int y1 = activeLine->top().y(), y2 = activeLine->bottom().y();
             activeLine->rebuild(QPoint(x1, y2), QPoint(x2, y1));
         } else if(text == PROJECT) {
-            /* TODO */
+            canvas->setMode(Mode::project(activeLine));
         } else if(text == DELETE) {
             canvas->getLines().removeOne(activeLine);
             delete activeLine;

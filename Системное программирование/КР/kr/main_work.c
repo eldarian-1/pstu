@@ -30,10 +30,6 @@ int main() {
     return 0;
 }
 
-int predicate(void *arg) {
-    return *((int*)arg) >= 0;
-}
-
 void *server_thread(void *arg) {
     server_run(0);
     pthread_exit(NULL);

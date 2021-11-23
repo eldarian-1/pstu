@@ -11,6 +11,10 @@
 
 char *toString(int number);
 
+struct server_soc {
+
+};
+
 void server_run(int logged) {
     int sock, listener;
     struct sockaddr_in addr;
@@ -59,6 +63,31 @@ void server_run(int logged) {
 
         close(sock);
     }
+}
+
+void *server_thread(void *arg) {
+    int sock = *((int*)arg);
+    if (sock < 0) {
+        perror("accept");
+        exit(3);
+    }
+
+    while (1) {
+        memset(buf, '\0', 1024);
+        bytes_read = recv(sock, buf, 1024, 0);
+        if(bytes_read <= 0) break;
+        else {
+            char *number = toString(sum += atoi(buf));
+            ++i;
+            if(logged) {
+                printf("Клиент %d: %s\nТекущая сумма: %d\n", i, buf, sum);
+            }
+            send(sock, number, strlen(number), 0);
+            free(number);
+        }
+    }
+
+    close(sock);
 }
 
 char *toString(int number) {

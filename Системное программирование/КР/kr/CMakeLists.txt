@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(server C)
-project(client C)
-project(work C)
+project(sysprog C)
 
 set(CMAKE_C_STANDARD 11)
 set(THREADS_PREFER_PTHREAD_FLAG ON)

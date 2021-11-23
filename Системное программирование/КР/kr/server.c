@@ -1,25 +1,22 @@
 #include "server.h"
+#include "consts.h"
 
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
+#include <sys/ipc.h>
+#include <sys/sem.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-char *toString(int number);
-
-struct server_soc {
-
-};
-
 void server_run(int logged) {
-    int sock, listener;
+    int listener;
     struct sockaddr_in addr;
-    char buf[1024];
-    int bytes_read;
+    resources_t resources = {{}, logged, 0, 0};
+    sem_init(&resources.semaphore, 0, 1);
 
     listener = socket(AF_INET, SOCK_STREAM, 0);
     if (listener < 0) {
@@ -28,7 +25,7 @@ void server_run(int logged) {
     }
 
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(3456);
+    addr.sin_port = htons(PORT);
     addr.sin_addr.s_addr = htonl(INADDR_ANY);
     if (bind(listener, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
         perror("bind");
@@ -37,57 +34,48 @@ void server_run(int logged) {
 
     listen(listener, 1);
 
-    int i = 0;
-    int sum = 0;
     while (1) {
-        sock = accept(listener, 0, 0);
-        if (sock < 0) {
-            perror("accept");
-            exit(3);
+        thread_data_t *data = malloc(sizeof(thread_data_t));
+        data->socket = accept(listener, 0, 0);
+        data->resources = &resources;
+        pthread_t thread;
+        if(pthread_create(&thread, NULL, &socket_thread, data)) {
+            exit(-1);
         }
-
-        while (1) {
-            memset(buf, '\0', 1024);
-            bytes_read = recv(sock, buf, 1024, 0);
-            if(bytes_read <= 0) break;
-            else {
-                char *number = toString(sum += atoi(buf));
-                ++i;
-                if(logged) {
-                    printf("Клиент %d: %s\nТекущая сумма: %d\n", i, buf, sum);
-                }
-                send(sock, number, strlen(number), 0);
-                free(number);
-            }
-        }
-
-        close(sock);
     }
 }
 
-void *server_thread(void *arg) {
-    int sock = *((int*)arg);
-    if (sock < 0) {
+void *socket_thread(void *arg) {
+    char buf[1024];
+    int bytes_read;
+    thread_data_t *data = (thread_data_t*)arg;
+
+    if (data->socket < 0) {
         perror("accept");
         exit(3);
     }
 
     while (1) {
         memset(buf, '\0', 1024);
-        bytes_read = recv(sock, buf, 1024, 0);
+        bytes_read = recv(data->socket, buf, 1024, 0);
         if(bytes_read <= 0) break;
         else {
-            char *number = toString(sum += atoi(buf));
-            ++i;
-            if(logged) {
-                printf("Клиент %d: %s\nТекущая сумма: %d\n", i, buf, sum);
+            sem_wait(&data->resources->semaphore);
+            char *number = toString(data->resources->sum += atoi(buf));
+            ++data->resources->i;
+            if(data->resources->logged) {
+                printf("Клиент %d: %s\nТекущая сумма: %d\n",
+                       data->resources->i, buf, data->resources->sum);
             }
-            send(sock, number, strlen(number), 0);
+            sem_post(&data->resources->semaphore);
+            send(data->socket, number, strlen(number), 0);
             free(number);
         }
     }
 
-    close(sock);
+    close(data->socket);
+    free(arg);
+    return 0;
 }
 
 char *toString(int number) {

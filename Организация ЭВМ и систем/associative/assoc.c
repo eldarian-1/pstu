@@ -21,7 +21,7 @@ const char *DIALOG =
         "\t4. Записать в память.\n"
         "\t5. Удалить из памяти.\n"
         "\t6. Удалить устройство ассоциативной памяти.\n"
-        "\t(*). Выход.\n"
+        "\t(любое другое число). Выход.\n"
         "Введите номер действия: ";
 
 const char *INCORRECT = "Некорректный индекс!";
@@ -92,7 +92,11 @@ void read(void **mem) {
     byte index;
     if (read_index(&index)) {
         byte value = ((byte *) *mem)[index];
-        printf("%s -> %c\n", byte_to_bin(index).s, value);
+        if (value) {
+            printf("%s -> %c\n", byte_to_bin(index).s, value);
+        } else {
+            printf("Значение по адресу %s - занулено.\n", byte_to_bin(index).s);
+        }
     } else {
         printf("%s\n", INCORRECT);
     }

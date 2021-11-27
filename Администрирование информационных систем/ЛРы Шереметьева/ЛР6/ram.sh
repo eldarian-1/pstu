@@ -1,0 +1,1 @@
+free -h | grep -E "^Mem:" >> /home/eldarian/memory/stat

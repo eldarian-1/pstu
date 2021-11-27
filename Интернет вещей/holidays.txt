@@ -1,6 +1,7 @@
 Для Python:
 docker build -t holidays .
 docker run --name holidays --network host -d holidays
+docker run -p 8888:80 --name holidays --network host -d holidays
 docker stop holidays
 docker rm $(docker ps -qa)
  

@@ -12,15 +12,6 @@
 const QString CANCEL = "Отменить выделение";
 const QString CREATE = "Создание";
 
-QString GroupMode::menu(QPoint position) {
-    std::vector<QString> actions;
-    if(rect) {
-        actions.push_back(CANCEL);
-    }
-    actions.push_back(CREATE);
-    return Mode::menu(position, actions);
-}
-
 void GroupMode::drawRect(QPainter *painter, QRect *r, QColor color) {
     painter->setPen(QPen(color, 1, Qt::DashLine));
     painter->setBrush(Qt::NoBrush);
@@ -89,22 +80,29 @@ QVector<QPoint*> GroupMode::getPoints(QRect &r) {
 }
 
 void GroupMode::mousePressEvent(QMouseEvent *event) {
-    if (rect && isPointInRect(*rect, event->pos())) {
-        remove(movePoint);
-        movePoint = new QPoint(event->pos());
-    } else {
-        remove(firstPoint);
-        firstPoint = new QPoint(event->pos());
+    if (event->button() == Qt::LeftButton) {
+        if (rect && isPointInRect(*rect, event->pos())) {
+            remove(movePoint);
+            movePoint = new QPoint(event->pos());
+        } else {
+            points.clear();
+            remove(firstPoint);
+            firstPoint = new QPoint(event->pos());
+        }
     }
 }
 
 void GroupMode::mouseReleaseEvent(QMouseEvent *event) {
-    remove(rect);
-    if (firstPoint && secondPoint) {
-        rect = new QRect(getRect(*firstPoint, *secondPoint));
-        points = getPoints(*rect);
-        remove(firstPoint);
-        remove(secondPoint);
+    if (event->button() == Qt::LeftButton) {
+        if (firstPoint && secondPoint) {
+            remove(rect);
+            rect = new QRect(getRect(*firstPoint, *secondPoint));
+            points = getPoints(*rect);
+            remove(firstPoint);
+            remove(secondPoint);
+        } else if (movePoint) {
+            remove(movePoint);
+        }
     }
 }
 
@@ -118,15 +116,26 @@ void GroupMode::mouseMoveEvent(QMouseEvent *event) {
         }
         rect->setBottomLeft(newPoint(*movePoint, event->pos(), rect->bottomLeft()));
         rect->setTopRight(newPoint(*movePoint, event->pos(), rect->topRight()));
+        remove(movePoint);
+        movePoint = new QPoint(event->pos());
     }
+    canvas->setStatus(QString::asprintf("x: %d\ny: %d", event->pos().x(), event->pos().y()));
 }
 
 void GroupMode::contextMenuEvent(QContextMenuEvent *event) {
-    QString text = menu(event->globalPos());
+    QString text;
+    if (isPointInRect(*rect, event->pos())) {
+        text = Mode::menu(event->globalPos(), {CANCEL});
+    } else {
+        text = Mode::menu(event->globalPos(), {CREATE});
+    }
     if(text == CANCEL) {
+        points.clear();
         remove(rect);
     } else if(text == CREATE) {
+        points.clear();
         remove(rect);
+        remove(movePoint);
         remove(firstPoint);
         remove(secondPoint);
         canvas->setMode(Mode::create());

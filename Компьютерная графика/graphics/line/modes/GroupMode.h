@@ -13,8 +13,6 @@ private:
     QPoint *secondPoint = nullptr;
     QPoint *movePoint = nullptr;
 
-    QString menu(QPoint position);
-
     static void drawRect(QPainter *painter, QRect *r, QColor color);
     void drawPoints(QPainter *painter, QVector<QPoint*>& ps, QColor color);
     static QRect getRect(QPoint p1, QPoint p2);

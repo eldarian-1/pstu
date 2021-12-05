@@ -16,25 +16,15 @@ const QString PROJECT = "Проецировать";
 const QString DELETE = "Удалить";
 const QString SAVE = "Сохранить линии";
 const QString LOAD = "Загрузить линии";
+const QString GROUP = "Группирование";
 const QString DELLINES = "Удалить линии";
 
 QString CreateMode::lineMenu(QPoint position) {
-    QMenu menu;
-    menu.addAction(EDIT);
-    menu.addAction(MIRROR);
-    menu.addAction(PROJECT);
-    menu.addAction(DELETE);
-    QAction *action = menu.exec(position);
-    return (action ? action->text() : "");
+    return menu(position, {EDIT, MIRROR, PROJECT, DELETE});
 }
 
 QString CreateMode::canvasMenu(QPoint position) {
-    QMenu menu;
-    menu.addAction(SAVE);
-    menu.addAction(LOAD);
-    menu.addAction(DELLINES);
-    QAction *action = menu.exec(position);
-    return (action ? action->text() : "");
+    return menu(position, {SAVE, LOAD, GROUP, DELLINES});
 }
 
 void CreateMode::paint(QPainter* painter) {
@@ -130,15 +120,10 @@ void CreateMode::contextMenuEvent(QContextMenuEvent *event) {
             QTextStream in(&file);
             in >> *Mode::canvas;
             file.close();
+        } else if (text == GROUP) {
+            canvas->setMode(Mode::group());
         } else if (text == DELLINES) {
             canvas->setMode(Mode::remove());
         }
-    }
-}
-
-void CreateMode::remove(QPoint*& ptr) {
-    if(ptr) {
-        delete ptr;
-        ptr = nullptr;
     }
 }

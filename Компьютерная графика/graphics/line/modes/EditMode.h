@@ -3,6 +3,7 @@
 #include "../Mode.h"
 
 class Line;
+class Point;
 class LineEditor;
 
 class EditMode : public QObject, public ModeImpl {
@@ -11,6 +12,10 @@ Q_OBJECT
 private:
     Line *line;
     LineEditor* editor;
+
+    static Point top, middle, bottom, *focusedPoint, *activePoint;
+
+    static void drawPoint(QPainter *painter, Point *point);
 
 public:
     EditMode();

@@ -8,6 +8,7 @@ class EditMode;
 class CreateMode;
 class ProjectMode;
 class RemoveMode;
+class GroupMode;
 class QPainter;
 class QPaintEvent;
 class QMouseEvent;
@@ -22,6 +23,7 @@ protected:
     static CreateMode *createInstance;
     static ProjectMode *projectInstance;
     static RemoveMode *removeInstance;
+    static GroupMode *groupInstance;
 
     template<class TMode>
     static TMode *instance(TMode *&mode, const std::function<void(void)>& task = nullptr);
@@ -37,10 +39,24 @@ public:
     static Mode* edit(Line* line);
     static Mode* project(Line* line);
     static Mode* remove();
+    static Mode* group();
+
+    static QString menu(QPoint position, std::vector<QString> actions);
 
     static bool focusLine(Line *line, QPoint point, double &d);
 
+    template<class T>
+    static void remove(T*& ptr);
+
 };
+
+template<class T>
+void Mode::remove(T*& ptr) {
+    if(ptr) {
+        delete ptr;
+        ptr = nullptr;
+    }
+}
 
 class ModeImpl : public Mode {
 protected:

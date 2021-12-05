@@ -30,7 +30,4 @@ public:
     void mouseMoveEvent(QMouseEvent *event) override;
     void contextMenuEvent(QContextMenuEvent *event) override;
 
-private:
-    static void remove(QPoint*& ptr);
-
 };

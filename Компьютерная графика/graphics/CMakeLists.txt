@@ -44,7 +44,10 @@ add_executable(line line/main.cpp
         line/modes/EditMode.cpp line/modes/EditMode.h
         line/figures/Point.cpp line/figures/Point.h
         line/modes/RemoveMode.cpp line/modes/RemoveMode.h
-        line/widgets/LineCleaner.cpp line/widgets/LineCleaner.h line/widgets/LineProjector.cpp line/widgets/LineProjector.h line/modes/ProjectMode.cpp line/modes/ProjectMode.h)
+        line/widgets/LineCleaner.cpp line/widgets/LineCleaner.h
+        line/widgets/LineProjector.cpp line/widgets/LineProjector.h
+        line/modes/ProjectMode.cpp line/modes/ProjectMode.h
+        line/modes/GroupMode.cpp line/modes/GroupMode.h)
 
 target_link_libraries(common PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
 

@@ -11,12 +11,14 @@
 #include "modes/EditMode.h"
 #include "modes/ProjectMode.h"
 #include "modes/RemoveMode.h"
+#include "modes/GroupMode.h"
 
 Canvas *Mode::canvas = nullptr;
 CreateMode *Mode::createInstance = nullptr;
 EditMode *Mode::editInstance = nullptr;
 ProjectMode *Mode::projectInstance = nullptr;
 RemoveMode *Mode::removeInstance = nullptr;
+GroupMode *Mode::groupInstance = nullptr;
 
 template<class TMode>
 TMode *Mode::instance(TMode *&mode, const std::function<void(void)>& task) {
@@ -49,6 +51,19 @@ Mode* Mode::remove() {
     return instance(removeInstance, [&]() {
         removeInstance->start();
     });
+}
+
+Mode* Mode::group() {
+    return instance(groupInstance);
+}
+
+QString Mode::menu(QPoint position, std::vector<QString> actions) {
+    QMenu menu;
+    for(QString action : actions) {
+        menu.addAction(action);
+    }
+    QAction *action = menu.exec(position);
+    return (action ? action->text() : "");
 }
 
 bool Mode::focusLine(Line *line, QPoint point, double &d) {

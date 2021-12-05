@@ -13,11 +13,11 @@
 
 #include <Graphic.h>
 
-Point top(0, 0, 10, Qt::darkBlue),
-    middle(0, 0, 10, Qt::darkGreen),
-    bottom(0, 0, 10, Qt::darkRed),
-    *focusedPoint = nullptr,
-    *activePoint = nullptr;
+Point EditMode::top = Point(0, 0, 10, Qt::darkBlue);
+Point EditMode::middle = Point(0, 0, 10, Qt::darkGreen);
+Point EditMode::bottom = Point(0, 0, 10, Qt::darkRed);
+Point *EditMode::focusedPoint = nullptr;
+Point *EditMode::activePoint = nullptr;
 
 EditMode::EditMode() {
     line = nullptr;
@@ -33,7 +33,7 @@ void EditMode::setLine(Line *line) {
     connect(editor, SIGNAL(closed()), SLOT(slotClosed()));
 }
 
-void drawPoint(QPainter *painter, Point *point) {
+void EditMode::drawPoint(QPainter *painter, Point *point) {
     point->draw(painter, activePoint == point, focusedPoint == point);
 }
 

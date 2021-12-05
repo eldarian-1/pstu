@@ -14,6 +14,7 @@ namespace Graphic {
     double angle(QPoint a, QPoint b);
     QPoint rotate(QPoint point, double angle);
     QPointF rotate(QPointF point, double angle);
+    QPoint rotate(QPoint begin, QPoint end, double angle);
     QPoint continuation(QPoint begin, QPoint end, double multiplier = 1.);
     double degreesToRadians(double degrees);
     double radiansToDegrees(double radians);

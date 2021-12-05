@@ -27,6 +27,5 @@ protected:
     void contextMenuEvent(QContextMenuEvent* event) override;
     void paintEvent(QPaintEvent* event) override;
     void paint(QPainter* painter, QPoint begin, QPoint end, int i);
-    static QPoint rotate(QPoint begin, QPoint end, double angle);
 
 };

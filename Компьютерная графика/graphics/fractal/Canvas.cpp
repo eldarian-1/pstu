@@ -65,16 +65,6 @@ void Canvas::paint(QPainter* painter, QPoint begin, QPoint end, int i) {
     painter->drawLine(begin.x(), 700 - begin.y(), end.x(), 700 - end.y());
     QPoint target = Graphic::continuation(begin, end, level.multiplier);
     for(int j = 0, n = set->angles.size(); j < n; ++j) {
-        paint(painter, end, rotate(end, target, set->angles[j]), i + 1);
+        paint(painter, end, Graphic::rotate(end, target, set->angles[j]), i + 1);
     }
-}
-
-QPoint Canvas::rotate(QPoint begin, QPoint end, double angle) {
-    double a = Graphic::degreesToRadians(angle);
-    double c = Graphic::angle(begin, end);
-    double l = Graphic::distance(begin, end);
-    QPoint target = Graphic::rotate(QPoint(l, 0), c + a);
-    target.rx() += begin.x();
-    target.ry() += begin.y();
-    return target;
 }

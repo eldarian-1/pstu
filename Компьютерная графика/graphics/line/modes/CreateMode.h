@@ -9,12 +9,13 @@ class CreateMode : public QObject, public ModeImpl {
     Q_OBJECT
 
 private:
+    static bool drawTree;
     QPoint *activePoint = nullptr;
     QPoint *focusedPoint = nullptr;
     Line *activeLine = nullptr;
     Line *focusedLine = nullptr;
 
-    static QString lineMenu(QPoint position);
+    static QString lineMenu(QPoint position, Line *line);
     static QString canvasMenu(QPoint position);
 
 protected:

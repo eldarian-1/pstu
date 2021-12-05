@@ -43,8 +43,10 @@ public:
     void getPoints(QPoint &a, QPoint &b, QPoint &c);
     double distanceFrom(const QPoint &p) const;
 
-    void draw(QPainter *pointer, bool active = false, bool focused = false);
+    virtual void draw(QPainter *pointer, bool active = false, bool focused = false);
     QString toString();
+
+    virtual bool isLine() { return true; }
 
     friend QTextStream& operator >> (QTextStream& in, Line*& line);
     friend QTextStream& operator << (QTextStream& out, Line*& line);

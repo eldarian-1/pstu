@@ -51,6 +51,16 @@ QPointF Graphic::rotate(QPointF point, double a) {
     return QPointF(x, y);
 }
 
+QPoint Graphic::rotate(QPoint begin, QPoint end, double angl) {
+    double a = degreesToRadians(angl);
+    double c = angle(begin, end);
+    double l = distance(begin, end);
+    QPoint target = rotate(QPoint(l, 0), c + a);
+    target.rx() += begin.x();
+    target.ry() += begin.y();
+    return target;
+}
+
 QPoint Graphic::continuation(QPoint begin, QPoint end, double multiplier) {
     double c = Graphic::angle(begin, end);
     double l = Graphic::distance(begin, end) * multiplier;

@@ -9,6 +9,9 @@
 
 #include "../Canvas.h"
 #include "../figures/Line.h"
+#include "../figures/Fractal.h"
+
+bool CreateMode::drawTree = false;
 
 const QString EDIT = "Редактировать";
 const QString MIRROR = "Зеркалировать";
@@ -17,14 +20,24 @@ const QString DELETE = "Удалить";
 const QString SAVE = "Сохранить линии";
 const QString LOAD = "Загрузить линии";
 const QString GROUP = "Группирование";
+const QString TREE = "Рисовать деревья";
+const QString LINE = "Рисовать линии";
 const QString DELLINES = "Удалить линии";
 
-QString CreateMode::lineMenu(QPoint position) {
-    return menu(position, {EDIT, MIRROR, PROJECT, DELETE});
+QString CreateMode::lineMenu(QPoint position, Line *line) {
+    std::vector<QString> actions;
+    if (line->isLine()) {
+        actions = {EDIT, MIRROR, PROJECT};
+    }
+    actions.push_back(DELETE);
+    return menu(position, actions);
 }
 
 QString CreateMode::canvasMenu(QPoint position) {
-    return menu(position, {SAVE, LOAD, GROUP, DELLINES});
+    std::vector<QString> actions = {SAVE, LOAD, GROUP};
+    actions.push_back(drawTree ? LINE : TREE);
+    actions.push_back(DELLINES);
+    return menu(position, actions);
 }
 
 void CreateMode::paint(QPainter* painter) {
@@ -59,7 +72,13 @@ void CreateMode::mousePressEvent(QMouseEvent *event) {
 void CreateMode::mouseReleaseEvent(QMouseEvent *event) {
     switch(event->button()) {
         case Qt::LeftButton:
-            canvas->getLines().append(new Line(*activePoint, *focusedPoint));
+            Line *line;
+            if (drawTree) {
+                line = new FractalLine(*activePoint, *focusedPoint);
+            } else {
+                line = new Line(*activePoint, *focusedPoint);
+            }
+            canvas->getLines().append(line);
             remove(activePoint);
             break;
         case Qt::RightButton:
@@ -91,7 +110,7 @@ void CreateMode::contextMenuEvent(QContextMenuEvent *event) {
         activeLine = focusedLine;
     }
     if(activeLine) {
-        QString text = lineMenu(event->globalPos());
+        QString text = lineMenu(event->globalPos(), activeLine);
         if(text == EDIT) {
             canvas->setMode(Mode::edit(activeLine));
         } else if(text == MIRROR) {
@@ -122,6 +141,10 @@ void CreateMode::contextMenuEvent(QContextMenuEvent *event) {
             file.close();
         } else if (text == GROUP) {
             canvas->setMode(Mode::group());
+        } else if (text == LINE) {
+            drawTree = false;
+        } else if (text == TREE) {
+            drawTree = true;
         } else if (text == DELLINES) {
             canvas->setMode(Mode::remove());
         }

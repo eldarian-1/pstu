@@ -43,6 +43,7 @@ add_executable(line line/main.cpp
         line/widgets/LineEditor.cpp line/widgets/LineEditor.h
         line/modes/EditMode.cpp line/modes/EditMode.h
         line/figures/Point.cpp line/figures/Point.h
+        line/figures/Fractal.cpp line/figures/Fractal.h
         line/modes/RemoveMode.cpp line/modes/RemoveMode.h
         line/widgets/LineCleaner.cpp line/widgets/LineCleaner.h
         line/widgets/LineProjector.cpp line/widgets/LineProjector.h

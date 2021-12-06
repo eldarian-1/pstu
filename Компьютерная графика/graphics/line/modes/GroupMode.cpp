@@ -13,14 +13,14 @@ const QString CANCEL = "Отменить выделение";
 const QString CREATE = "Создание";
 
 void GroupMode::drawRect(QPainter *painter, QRect *r, QColor color) {
-    painter->setPen(QPen(color, 1, Qt::DashLine));
+    painter->setPen(QPen(color, 2, Qt::DashLine));
     painter->setBrush(Qt::NoBrush);
     painter->drawRect(*r);
 }
 
 void GroupMode::drawPoints(QPainter *painter, QVector<QPoint*>& ps, QColor color) {
-    painter->setPen(QPen(color, 3));
-    for(QPoint* point : points) {
+    painter->setPen(QPen(color, 5));
+    for(QPoint* point : ps) {
         painter->drawPoint(*point);
     }
 }
@@ -30,14 +30,14 @@ GroupMode::GroupMode() {}
 void GroupMode::paint(QPainter *painter) {
     ModeImpl::paint(painter);
     if (rect) {
-        drawRect(painter, rect, Qt::black);
-        drawPoints(painter, points, Qt::black);
+        drawRect(painter, rect, Qt::darkGreen);
+        drawPoints(painter, points, Qt::green);
     }
     if (firstPoint && secondPoint) {
         QRect r = getRect(*firstPoint, *secondPoint);
-        drawRect(painter, &r, Qt::darkBlue);
+        drawRect(painter, &r, Qt::darkRed);
         QVector<QPoint*> ps = getPoints(r);
-        drawPoints(painter, ps, Qt::darkBlue);
+        drawPoints(painter, ps, Qt::red);
     }
 }
 
@@ -85,7 +85,6 @@ void GroupMode::mousePressEvent(QMouseEvent *event) {
             remove(movePoint);
             movePoint = new QPoint(event->pos());
         } else {
-            points.clear();
             remove(firstPoint);
             firstPoint = new QPoint(event->pos());
         }
@@ -96,6 +95,7 @@ void GroupMode::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         if (firstPoint && secondPoint) {
             remove(rect);
+            points.clear();
             rect = new QRect(getRect(*firstPoint, *secondPoint));
             points = getPoints(*rect);
             remove(firstPoint);

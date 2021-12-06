@@ -7,5 +7,6 @@ namespace Func {
     void doIt(const std::function<void(void)>& task, bool &mutex);
     int gcd(int a, int b);
     int gcd(int a, int b, int c);
+    double rand(double from, double to);
 
 }

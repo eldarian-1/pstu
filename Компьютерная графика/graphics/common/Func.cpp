@@ -26,3 +26,7 @@ int Func::gcd(int a, int b) {
 int Func::gcd(int a, int b, int c) {
     return gcd(gcd(a, b), gcd(b, c));
 }
+
+double Func::rand(double from, double to) {
+    return from + (to - from) * ::rand() / RAND_MAX;
+}

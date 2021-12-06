@@ -21,13 +21,11 @@ private:
     double multiplier;
     std::vector<Fractal> merges;
 
-    static double rand(double from, double to);
-
 public:
     static Fractal generate();
     Fractal(int i);
 
-    void draw(QPainter *painter, QPoint begin, QPoint end);
+    void draw(QPainter *painter, QPoint begin, QPoint end, int height);
 };
 
 class FractalLine : public Line {

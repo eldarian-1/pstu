@@ -14,7 +14,7 @@
 void server_run(int logged) {
     int listener;
     struct sockaddr_in addr;
-    resources_t resources = {{}, logged, 0, 0};
+    resources_t resources = {{}, 0, 0};
     sem_init(&resources.semaphore, 0, 1);
 
     listener = socket(AF_INET, SOCK_STREAM, 0);
@@ -62,18 +62,16 @@ void *socket_thread(void *arg) {
             sem_wait(&data->resources->semaphore);
             int client_number;
             if (isNumber(buf, &client_number)) {
-                char *number = numberToString(data->resources->sum += client_number);
-                ++data->resources->i;
-                if (data->resources->logged) {
-                    printf("Клиент %d: %s\nТекущая сумма: %d\n",
-                           data->resources->i, buf, data->resources->sum);
-                }
+                char *number = numberToString(data->resources->sum_of_numbers += client_number);
+                ++data->resources->current_index;
+                printf("Клиент %d: %s\nТекущая сумма: %d\n",
+                       data->resources->current_index, buf, data->resources->sum_of_numbers);
                 send(data->socket, number, strlen(number), 0);
                 free(number);
             } else {
-                ++data->resources->i;
+                ++data->resources->current_index;
                 const char *warn = "Некорректный ввод!";
-                printf("Клиент %d ввёл строку: %s\n", data->resources->i, buf);
+                printf("Клиент %d ввёл строку: %s\n", data->resources->current_index, buf);
                 send(data->socket, warn, strlen(warn), 0);
             }
             sem_post(&data->resources->semaphore);

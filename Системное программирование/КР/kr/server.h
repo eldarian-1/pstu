@@ -4,7 +4,7 @@
 
 typedef struct {
     sem_t semaphore;
-    int logged, i, sum;
+    int current_index, sum_of_numbers;
 } resources_t;
 
 typedef struct {

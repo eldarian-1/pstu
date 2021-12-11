@@ -12,7 +12,7 @@ typedef struct {
     resources_t *resources;
 } thread_data_t;
 
-void server_run(int logged);
+void server_run();
 void *socket_thread(void *arg);
 
 int isNumber(const char *input, int *output);

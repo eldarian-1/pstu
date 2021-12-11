@@ -11,7 +11,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-void server_run(int logged) {
+void server_run() {
     int listener;
     struct sockaddr_in addr;
     resources_t resources = {{}, 0, 0};
@@ -60,16 +60,15 @@ void *socket_thread(void *arg) {
         if(bytes_read <= 0) break;
         else {
             sem_wait(&data->resources->semaphore);
+            ++data->resources->current_index;
             int client_number;
             if (isNumber(buf, &client_number)) {
                 char *number = numberToString(data->resources->sum_of_numbers += client_number);
-                ++data->resources->current_index;
                 printf("Клиент %d: %s\nТекущая сумма: %d\n",
                        data->resources->current_index, buf, data->resources->sum_of_numbers);
                 send(data->socket, number, strlen(number), 0);
                 free(number);
             } else {
-                ++data->resources->current_index;
                 const char *warn = "Некорректный ввод!";
                 printf("Клиент %d ввёл строку: %s\n", data->resources->current_index, buf);
                 send(data->socket, warn, strlen(warn), 0);

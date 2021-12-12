@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сервис видеоконференций</title>
+</head>
+<body>
+    {% if login == '' %}
+
+        <form action="/sign_in" method="POST">
+            {% csrf_token %}
+            <table>
+                <tr><td>Логин </td><td><input type="text" name="login"></td></tr>
+                <tr><td>Пароль </td><td><input type="text" name="password"></td></tr>
+            </table>
+            <input type="submit" value="Авторизоваться">
+        </form>
+
+    {% else %}
+
+        <p>Добро пожаловать, {{ login }}</p>
+        <p><a href="/sign_out">Выйти</a></p>
+        <p><img id="frame" src="/frame" width=640 height=480 />
+
+    {% endif %}
+
+</body>
+</html>

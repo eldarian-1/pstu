@@ -1,7 +1,7 @@
 from .logic import *
 from .models import *
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 
 
 def index(request):

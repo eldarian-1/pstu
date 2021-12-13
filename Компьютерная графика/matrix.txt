@@ -6,7 +6,7 @@ using namespace std;
 
 class Matrix {
     vector<vector<double>> _m;
-    public:
+public:
     Matrix() = default;
     Matrix(vector<vector<double>> m) : _m(m) {}
     Matrix min();
@@ -23,11 +23,6 @@ int main() {
         {11, 10, 1},
         {12, 2, 1},
         {8, 3, 1}
-    });
-    Matrix oper = Matrix({
-        {1./2, -sqrt(3)/2, 0},
-        {sqrt(3)/2, 1./2, 0},
-        {-1-sqrt(3), sqrt(3) - 1, 1}
     });
     Matrix t = Matrix({
         {1, 0, 0},

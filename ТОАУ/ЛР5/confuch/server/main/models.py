@@ -19,3 +19,4 @@ class Message(models.Model):
     conference_id = models.ForeignKey(Conference, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
+    date = models.DateTimeField()

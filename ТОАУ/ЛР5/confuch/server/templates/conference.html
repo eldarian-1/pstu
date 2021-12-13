@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Конференция{% endblock title %}
+{% block content %}
+    {{ conference.name }}
+    <hr>
+    {% for guest in guests %}
+        <p> {{ guest.user_id.id }} {{ guest.user_id.login }}
+    {% endfor %}
+    <p> <a href="/add_guest_list?conference_id={{ conference.id }}">Добавить пользователя</a>
+    <hr>
+    {% for message in messages %}
+        <p><span style="color:#9e2fce;">{{ message.user_id.login }}:</span> {{ message.text }} <span style="color:#aaa;">{{ message.date }}</span>
+    {% endfor %}
+    <hr>
+    <form method="post" action="/add_message">
+        {% csrf_token %}
+        <input type="hidden" name="conference_id" value="{{ conference.id }}">
+        <input type="hidden" name="user_id" value="{{ id }}">
+        <input type="text" name="message"><br>
+        <input type="submit" value="Отправить">
+    </form>
+{% endblock content %}

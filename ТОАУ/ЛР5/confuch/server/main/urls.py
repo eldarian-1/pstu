@@ -1,5 +1,5 @@
-from django.urls import path
 from . import views
+from django.urls import path
 
 urlpatterns = [
     path('', views.index),
@@ -9,6 +9,7 @@ urlpatterns = [
     path('users', views.users),
     path('conference', views.conference),
     path('conferences', views.conferences),
+    path('add_guest_list', views.add_guest_list),
     path('add_guest', views.add_guest),
     path('add_message', views.add_message),
     path('create_conference', views.create_conference),

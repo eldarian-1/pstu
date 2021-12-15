@@ -20,8 +20,8 @@ void Multy::paintEvent(QPaintEvent *event) {
     int n = moon.size();
     std::vector<QPointF> r(n);
     for(int i = 0; i < n; ++i) {
-        r[i].rx() = 1/6. * vaza[i].rx() + 0.5 * moon[i].rx() + 1/3. * banan[i].rx();
-        r[i].ry() = 1/6. * vaza[i].ry() + 0.5 * moon[i].ry() + 1/3. * banan[i].ry();
+        r[i].rx() = 1/4. * vaza[i].rx() + 1/4. * moon[i].rx() + 1/2. * banan[i].rx();
+        r[i].ry() = 1/4. * vaza[i].ry() + 1/4. * moon[i].ry() + 1/2. * banan[i].ry();
     }
 
     QPainter p;

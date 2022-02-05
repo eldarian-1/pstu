@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% block title %}Пользователи{% endblock title %}
-{% block content %}
-    {% for user in users %}
-        <p><a href="/add_guest?conference_id={{ conference_id }}&user_id={{ user.id }}">{{ user.login }}</a>
-    {% endfor %}
-{% endblock content %}

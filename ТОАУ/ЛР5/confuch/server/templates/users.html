@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% block title %}Пользователи{% endblock title %}
-{% block content %}
-    {% for user in users %}
-        <p> {{ user.id }} {{ user.login }}
-    {% endfor %}
-{% endblock content %}

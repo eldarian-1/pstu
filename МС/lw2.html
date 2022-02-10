@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Лабораторная работа №2</title>
+    </head>
+    <body>
+        <div id='result'></div>
+        <script>
+            const data = [
+                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                [3, 5, 4, 4, 5, 7, 6, 8, 7, 9],
+                [4, 2, 4, 6, 4, 6, 8, 6, 8, 10]
+            ], coords = []
+            data[0].forEach((x1, i) => coords.push({x1, x2: data[1][i], y: data[2][i]}))
+            const n = coords.length
+            const P = coords.reduce((c, i) => c + i.x1, 0)
+            const R = coords.reduce((c, i) => c + i.x2, 0)
+            const S = coords.reduce((c, i) => c + i.y, 0)
+            const T = coords.reduce((c, i) => c + i.x1 * i.x2, 0)
+            const L = coords.reduce((c, i) => c + i.x1 ** 2, 0)
+            const M = coords.reduce((c, i) => c + i.x2 ** 2, 0)
+            const H = coords.reduce((c, i) => c + i.x1 * i.y, 0)
+            const G = coords.reduce((c, i) => c + i.x2 * i.y, 0)
+            const d = n*L*M + 2*P*T*R - T*R**2 - M*P**2 - n*T**2
+            const dA0 = S*L*M + G*P*T + R*T*H - R*L*G - P*M*H - S*T**2
+            const dA1 = n*H*M + S*T*R + P*R*G - H*R**2 - S*P*M - n*T*G
+            const dA2 = n*L*G + P*H*R + S*P*T - S*L*R - G*P**2 - n*H*T
+            const A0 = dA0 / d
+            const A1 = dA1 / d
+            const A2 = dA2 / d
+            const g = (a) => a.toFixed(3)
+            const f = (a) => (a < 0 ? '- ' : '+ ') + Math.abs(g(a))
+            const ans = `y = ${g(A0)} ${f(A1)}x1 ${f(A2)}x2`
+            document.querySelector('#result').textContent = ans
+        </script>
+    </body>
+</html>

@@ -10,15 +10,15 @@
                 [2, 4, 6, 4, 7, 8, 10, 12, 15, 16, 14, 15, 17, 17],
                 [15, 13, 11, 7, 7, 4, 2, 5, 5, 7, 8, 11, 13, 15]
             ], coords = []
-            data[0].forEach((t, i) => coords.push([t, data[1][i]]))
+            data[0].forEach((x, i) => coords.push({x, y: data[1][i]}))
             const n = coords.length
-            const P = coords.reduce((c, i) => c + i[0], 0)
-            const S = coords.reduce((c, i) => c + i[0] ** 2, 0)
-            const R = coords.reduce((c, i) => c + i[1], 0)
-            const L = coords.reduce((c, i) => c + i[0] ** 3, 0)
-            const T = coords.reduce((c, i) => c + i[0] * i[1], 0)
-            const Z = coords.reduce((c, i) => c + i[0] ** 4, 0)
-            const V = coords.reduce((c, i) => c + i[0] ** 2 * i[1], 0)
+            const P = coords.reduce((c, i) => c + i.x, 0)
+            const S = coords.reduce((c, i) => c + i.x ** 2, 0)
+            const R = coords.reduce((c, i) => c + i.y, 0)
+            const L = coords.reduce((c, i) => c + i.x ** 3, 0)
+            const T = coords.reduce((c, i) => c + i.x * i.y, 0)
+            const Z = coords.reduce((c, i) => c + i.x ** 4, 0)
+            const V = coords.reduce((c, i) => c + i.x ** 2 * i.y, 0)
             const d = n*S*Z + 2*P*S*L - S**3 - Z*P**2 - n*L**2
             const dA0 = R*S*Z + S*T*L + P*V*L - V*S**2 - P*T*Z - R*L**2
             const dA1 = n*T*Z + S*P*V + R*S*L - T*S**2 - R*P*Z - n*V*L
